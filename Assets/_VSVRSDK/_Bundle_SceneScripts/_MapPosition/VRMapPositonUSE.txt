@@ -1,0 +1,4 @@
+﻿big             small
+z               -y
+x               -x
+y               -z

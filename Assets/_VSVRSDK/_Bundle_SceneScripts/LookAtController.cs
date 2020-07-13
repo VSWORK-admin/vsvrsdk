@@ -1,0 +1,16 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LookAtController : MonoBehaviour
+{
+    // Update is called once per frame
+    void Update()
+    {
+        if(mStaticThings.I.SendAvatar){
+            transform.LookAt(mStaticThings.I.Maincamera);
+        }else{
+            transform.LookAt(mStaticThings.I.PCCamra);
+        }
+    }
+}
