@@ -39,6 +39,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmGameObject MenuAnchor;
         public FsmBool Isadmin;
         public FsmBool Sadmin;
+        public FsmBool IsDrawingenabled;
         public override void OnEnter()
         {
             GetGameObjects();
@@ -89,6 +90,7 @@ namespace HutongGames.PlayMaker.Actions
                 MenuAnchor.Value = mStaticThings.I.MenuAnchor.gameObject;
                 Isadmin.Value = mStaticThings.I.isAdmin;
                 Sadmin.Value = mStaticThings.I.sadmin;
+                IsDrawingenabled.Value = mStaticThings.I.isdrawingon;
             }
         }
     }

@@ -5,6 +5,7 @@ public class mStaticThings : MonoBehaviour
 {
     public string now_UnityVersion;
     public Transform Maincamera;
+    public Camera[] VRCameras;
     public Transform LeftHand;
     public Transform RightHand;
     public Transform LeftTeleportAnchor;
@@ -69,6 +70,8 @@ public class mStaticThings : MonoBehaviour
     public bool ispanorama = false;
     public string nowdevicename;
     public Transform MenuAnchor;
+    public bool isurp;
+    public bool isdrawingon;
 
 
     public static Dictionary<string, WsAvatarFrame> AllStaticAvatarsDic = new Dictionary<string, WsAvatarFrame>();

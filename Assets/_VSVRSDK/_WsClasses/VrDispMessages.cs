@@ -130,7 +130,8 @@ public enum VrDispMessageType
     SystemMenuEnable,
     SceneMenuEnable,
     SystemMenuEvent,
-    InitVideoPlayer
+    InitVideoPlayer,
+    ChangePipeLine
 }
 
 

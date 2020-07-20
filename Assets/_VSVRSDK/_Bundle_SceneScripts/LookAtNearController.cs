@@ -10,6 +10,7 @@ public class LookAtNearController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (mStaticThings.I == null) { return; }
         if (mStaticThings.I.IsThirdCamera)
         {
 

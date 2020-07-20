@@ -369,6 +369,13 @@ public class CustomVideoPlayer{
     public bool autostart;
 }
 
+[Serializable]
+public class urporstandardOBJ{
+    public GameObject mObj;
+    public Material StandardMat;
+    public Material UrpMat;
+}
+
 
 public class VRUtils
 {

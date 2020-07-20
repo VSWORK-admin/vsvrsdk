@@ -594,19 +594,26 @@ public class WsPlayceController : MonoBehaviour
                 MessageDispatcher.SendMessage(CommonVREventType.VRrecenter.ToString());
             }
             mStaticThings.I.MainVRROOT.localScale = target.lossyScale;
-            if (mStaticThings.I.nowdevicename == "neo2")
-            {
-                mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-                mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
 
-                mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-                mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
-            }
-            else
+            foreach (var item in mStaticThings.I.VRCameras)
             {
-                mStaticThings.I.Maincamera.GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-                mStaticThings.I.Maincamera.GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
+                item.nearClipPlane = target.lossyScale.x * 0.1f;
+                item.farClipPlane = target.lossyScale.x * 1000f;
             }
+
+            // if (mStaticThings.I.nowdevicename == "neo2")
+            // {
+            //     mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
+            //     mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
+
+            //     mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
+            //     mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
+            // }
+            // else
+            // {
+            //     mStaticThings.I.Maincamera.GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
+            //     mStaticThings.I.Maincamera.GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
+            // }
 
             MessageDispatcher.SendMessage(this, VrDispMessageType.SelfPlaceTo.ToString(), wpm.dname, 0);
         }
