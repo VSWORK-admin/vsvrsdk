@@ -43,28 +43,33 @@ public class HomeVRMenuController : MonoBehaviour
         MessageDispatcher.AddListener(toggleButton.ToString(), ToggleCanvas);
         MessageDispatcher.AddListener(OnButton.ToString(), ToggleCanvas);
         MessageDispatcher.AddListener(OffButton.ToString(), ToggleCanvas);
-        MessageDispatcher.AddListener(CommonVREventType.VRRaw_Y_ButtonClick.ToString(), DeactiveCanvas);
+        //MessageDispatcher.AddListener(CommonVREventType.VRRaw_Y_ButtonClick.ToString(), DeactiveCanvas);
         cavasparent.SetActive(false);
-        MessageDispatcher.AddListener(VrDispMessageType.SceneMenuEnable.ToString(),SceneMenuAction);
+        MessageDispatcher.AddListener(VrDispMessageType.SceneMenuEnable.ToString(), SceneMenuAction);
+        MessageDispatcher.AddListener(VrDispMessageType.SystemMenuEvent.ToString(), SystemMenuEvent);
     }
 
     private void OnDestroy()
     {
-        MessageDispatcher.RemoveListener(VrDispMessageType.SceneMenuEnable.ToString(),SceneMenuAction);
+        MessageDispatcher.RemoveListener(VrDispMessageType.SceneMenuEnable.ToString(), SceneMenuAction);
+        MessageDispatcher.RemoveListener(VrDispMessageType.SystemMenuEvent.ToString(), SystemMenuEvent);
+
         MessageDispatcher.RemoveListener(VrDispMessageType.SetAdmin.ToString(), SetAdmin);
         MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_Start_ButtonClick.ToString(), DeactiveCanvas);
         MessageDispatcher.RemoveListener(toggleButton.ToString(), ToggleCanvas);
         MessageDispatcher.RemoveListener(OnButton.ToString(), ToggleCanvas);
         MessageDispatcher.RemoveListener(OffButton.ToString(), ToggleCanvas);
-        MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_Y_ButtonClick.ToString(), DeactiveCanvas);
+        //MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_Y_ButtonClick.ToString(), DeactiveCanvas);
     }
 
-    void SceneMenuAction(IMessage msg){
+    void SceneMenuAction(IMessage msg)
+    {
         bool ison = (bool)msg.Data;
         iscanvasshow = ison;
         cavasparent.SetActive(ison);
-        if(isSelfShow){
-            MessageDispatcher.SendMessage(this,VrDispMessageType.SystemMenuEnable.ToString(),false,0);
+        if (isSelfShow)
+        {
+            MessageDispatcher.SendMessage(this, VrDispMessageType.SystemMenuEnable.ToString(), false, 0);
         }
     }
 
@@ -83,8 +88,13 @@ public class HomeVRMenuController : MonoBehaviour
         {
             if (IsToggle && mStaticThings.I.WsAvatarIsReady)
             {
+                MessageDispatcher.SendMessage(VrDispMessageType.SetMenuRootPos.ToString());
                 iscanvasshow = !iscanvasshow;
                 cavasparent.SetActive(iscanvasshow);
+                if (iscanvasshow && isSelfShow)
+                {
+                    MessageDispatcher.SendMessage(this, VrDispMessageType.SystemMenuEnable.ToString(), false, 0);
+                }
             }
         }
         else
@@ -93,8 +103,13 @@ public class HomeVRMenuController : MonoBehaviour
             {
                 if (msg.Type == OnButton.ToString() && mStaticThings.I.WsAvatarIsReady)
                 {
+                    MessageDispatcher.SendMessage(VrDispMessageType.SetMenuRootPos.ToString());
                     cavasparent.SetActive(true);
                     iscanvasshow = true;
+                    if (isSelfShow)
+                {
+                    MessageDispatcher.SendMessage(this, VrDispMessageType.SystemMenuEnable.ToString(), false, 0);
+                }
                 }
                 else if (msg.Type == OffButton.ToString())
                 {
@@ -105,12 +120,30 @@ public class HomeVRMenuController : MonoBehaviour
         }
     }
 
-    void DeactiveCanvas(IMessage msg)
+    void SystemMenuEvent(IMessage msg)
     {
-        if(!isSelfShow){
+        bool en = (bool)msg.Data;
+        if (en)
+        {
+            if (isSelfShow)
+            {
+                iscanvasshow = false;
+                cavasparent.SetActive(false);
+            }
+        }
+        else
+        {
+            iscanvasshow = false;
             cavasparent.SetActive(false);
         }
-        
+    }
+
+    void DeactiveCanvas(IMessage msg)
+    {
+        if (!isSelfShow)
+        {
+            cavasparent.SetActive(false);
+        }
     }
 
     void SetAdmin(IMessage msg)
@@ -144,7 +177,7 @@ public class HomeVRMenuController : MonoBehaviour
             transform.localScale = lefthand.lossyScale;
         }
         else if (isOnBodyAnchor)
-        {   
+        {
             transform.position = mStaticThings.I.MenuAnchor.position;
             transform.rotation = mStaticThings.I.MenuAnchor.rotation;
             transform.localScale = mStaticThings.I.MainVRROOT.lossyScale;
