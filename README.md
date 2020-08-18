@@ -97,3 +97,9 @@ Stereo Rendering Mode : SinglePass
 ```
 在 UGUI 的canvas 上添加 VRUISelectorProxy 脚本， 场景运行时 脚本会自动为子物体添加射线交互事件，若按钮的宽高是由其父物体设置的，则需要手动为按钮添加合适的boxcollider
 ```
+### 五、场景打包
+###### 1. 
+> 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene）
+###### 2. 
+
+> 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
