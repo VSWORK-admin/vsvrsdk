@@ -98,8 +98,21 @@ Stereo Rendering Mode : SinglePass
 在 UGUI 的canvas 上添加 VRUISelectorProxy 脚本， 场景运行时 脚本会自动为子物体添加射线交互事件，若按钮的宽高是由其父物体设置的，则需要手动为按钮添加合适的boxcollider
 ```
 ### 五、场景打包
-###### 1. 
-> 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene）
-###### 2. 
-
+###### 1. 打包名称设置
+> 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene），也可以打包后将文件后缀名改为 .scene 
+###### 2. 资源检查
 > 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
+###### 3. 打包平台选择
+>安卓平台所需场景文件 需要再AssetBundle Browser中设置为Android  Window平台运行场景需要设置为Windows
+###### 4. 多人调试和使用
+> 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
+```
+# LWRP 渲染管线 :  
+    安卓 : a_  (覆盖设备包括 ：Oculus quest， pico neo2， pico G2 ， 安卓手机端)
+    Windows : w_  （覆盖设备包括 ：Oculus Rift S , HTC VIVE， WMR ，Window 桌面端） 
+# Unity Standard 渲染管线 ：
+    安卓 ： b_ (覆盖设备包括 ： 华为VR眼镜)
+
+例如 ： 如果需要为华为VR眼镜打包，则需要在Standard 渲染管线设置场景，打包资源包名称 为  ceshi.scene, 则需要上传至资源管理器后台的资源包名称需加上前缀为 ： b_ceshi.scene
+如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   b_ceshi.scene   w_ceshi.scene
+```
