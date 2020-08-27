@@ -21,22 +21,22 @@ namespace HutongGames.PlayMaker.Actions
 
         public override void OnEnter()
         {
+            if (mStaticThings.I == null)
+            {
+                return;
+            }
             if (ByPass.Value)
             {
                 Fsm.Event(AdminTrue);
             }
             else
             {
-                int sort;
-                if (mStaticThings.I == null)
-                {
-                    sort = 0;
+                if(mStaticThings.I.isAdmin || mStaticThings.I.sadmin){
+                    Fsm.Event(AdminTrue);
+                }else{
+                    Fsm.Event(AdminFalse);
                 }
-                else
-                {
-                    sort = mStaticThings.I.GetSortNumber(mStaticThings.I.mAvatarID);
-                }
-                Fsm.Event(sort == 0 ? AdminTrue : AdminFalse);
+                
             }
             Finish();
         }

@@ -40,6 +40,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmBool Isadmin;
         public FsmBool Sadmin;
         public FsmBool IsDrawingenabled;
+        
         public override void OnEnter()
         {
             GetGameObjects();

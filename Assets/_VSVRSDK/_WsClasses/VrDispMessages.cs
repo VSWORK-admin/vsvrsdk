@@ -61,6 +61,7 @@ public enum VrDispMessageType
     ChangeObj,
     // teleport
     TeleportTo,
+    TelePortToMesh,
     //UIPointer & Teleporter status
     SelectorPointerStatusChange,
     TeleporterStatusChange,
@@ -98,6 +99,7 @@ public enum VrDispMessageType
     GetGroups,
     GetGroupRooms,
     GetSelfRooms,
+    GetPublicRooms,
     Logedout,
     RoomConnected,
     RoomDisConnected,

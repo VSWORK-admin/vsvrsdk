@@ -72,6 +72,7 @@ public class mStaticThings : MonoBehaviour
     public Transform MenuAnchor;
     public bool isurp;
     public bool isdrawingon;
+    public bool enhide;
 
 
     public static Dictionary<string, WsAvatarFrame> AllStaticAvatarsDic = new Dictionary<string, WsAvatarFrame>();
@@ -103,4 +104,5 @@ public class mStaticThings : MonoBehaviour
         int cnt = AllActiveAvatarList.Count;
         return i < 0 ? cnt : i;
     }
+
 }

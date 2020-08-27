@@ -18,7 +18,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             MessageDispatcher.AddListener(VrDispMessageType.BigScreenShowImage.ToString(), BigScreenShowImage);
             MessageDispatcher.AddListener(VrDispMessageType.BigScreenUpdateImage.ToString(), BigScreenUpdateImage);
-            MessageDispatcher.AddListener(VrDispMessageType.BigScreenShowVideoFrame.ToString(), BigScreenShowImage);
+            MessageDispatcher.AddListener(VrDispMessageType.BigScreenShowVideoFrame.ToString(), BigScreenShowVideoFrame);
         }
 
         // Code that runs when exiting the state.
@@ -26,10 +26,18 @@ namespace HutongGames.PlayMaker.Actions
         {
             MessageDispatcher.RemoveListener(VrDispMessageType.BigScreenShowImage.ToString(), BigScreenShowImage);
             MessageDispatcher.RemoveListener(VrDispMessageType.BigScreenUpdateImage.ToString(), BigScreenUpdateImage);
-            MessageDispatcher.RemoveListener(VrDispMessageType.BigScreenShowVideoFrame.ToString(), BigScreenShowImage);
+            MessageDispatcher.RemoveListener(VrDispMessageType.BigScreenShowVideoFrame.ToString(), BigScreenShowVideoFrame);
         }
 
         void BigScreenShowImage(IMessage msg)
+        {
+            Texture2D texture = msg.Data as Texture2D;
+            wsTexturePath.Value = (string)msg.Sender;
+            wsTexture.Value = texture;
+            Fsm.Event(RecieveTextureEvent);
+        }
+
+        void BigScreenShowVideoFrame(IMessage msg)
         {
             Texture2D texture = msg.Data as Texture2D;
             wsTexture.Value = texture;
@@ -38,7 +46,9 @@ namespace HutongGames.PlayMaker.Actions
 
         void BigScreenUpdateImage(IMessage msg)
         {
-            wsTexturePath.Value = (string)msg.Data;
+            Texture2D texture = msg.Data as Texture2D;
+            wsTexturePath.Value = (string)msg.Sender;
+            wsTexture.Value = texture;
             Fsm.Event(UpdateTextureEvent);
         }
 

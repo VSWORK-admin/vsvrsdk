@@ -186,7 +186,7 @@ public class HomeVRMenuController : MonoBehaviour
 
     private void OnButtonClicked(Button bt)
     {
-        if (bt.name.Length > 4 && bt.name.Substring(0, 7) == "change_")
+        if (bt.name.Length > 7 && bt.name.Substring(0, 7) == "change_")
         {
             string[] infos = new string[7];
             infos = bt.name.Split('_');
@@ -209,7 +209,7 @@ public class HomeVRMenuController : MonoBehaviour
             };
             MessageDispatcher.SendMessage(this, WsMessageType.SendCChangeObj.ToString(), wsinfo, 0);
         }
-        else if (bt.name.Length > 3 && bt.name.Substring(0, 8) == "placeto_")
+        else if (bt.name.Length > 8 && bt.name.Substring(0, 8) == "placeto_")
         {
             MessageDispatcher.SendMessage(true, VrDispMessageType.AllPlaceTo.ToString(), bt.name.Substring(8, bt.name.Length - 8), 0);
         }

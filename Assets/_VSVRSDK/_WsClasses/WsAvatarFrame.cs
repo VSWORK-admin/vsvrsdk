@@ -120,6 +120,7 @@ public class WsMediaFile
     public string size;
     public string mtime;
     public string ext;
+    public string fileMd5;
     public bool isupdate;
 }
 
@@ -201,6 +202,7 @@ public class WsMultiTeleportInfo
 public class WsTeleTransform
 {
     public string id;
+    public string objname;
     public Vector3 position;
     public Quaternion rotation;
     public Vector3 scale;
@@ -515,7 +517,7 @@ public class VRUtils
 
     public static bool IsKodScene(string filename)
     {
-        if (filename.StartsWith("a") || filename.StartsWith("w") || filename.StartsWith("i"))
+        if (filename.StartsWith("a") || filename.StartsWith("w") || filename.StartsWith("i") || filename.StartsWith("b") || filename.StartsWith("x")|| filename.StartsWith("j") ||filename.StartsWith("m") ||filename.StartsWith("n"))
         {
             return true;
         }

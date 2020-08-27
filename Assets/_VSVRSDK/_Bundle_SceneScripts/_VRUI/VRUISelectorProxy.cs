@@ -38,7 +38,10 @@ public class VRUISelectorProxy : MonoBehaviour
         {
             foreach (Collider cd in cds)
             {
-                cd.gameObject.AddComponent<VRUIsystemMenuMark>();
+                if(!cd.gameObject.GetComponent<VRUIsystemMenuMark>()){
+                    cd.gameObject.AddComponent<VRUIsystemMenuMark>();
+                }
+                
             }
         }
 

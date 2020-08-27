@@ -17,6 +17,7 @@ namespace HutongGames.PlayMaker.Actions
         {
                     WsSceneInfo newscene = new WsSceneInfo
                     {
+                        id = SceneName.Value,
                         scene = Path.Value,
                         name = SceneName.Value,
                         version = Sign.Value,
