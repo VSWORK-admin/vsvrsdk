@@ -122,7 +122,7 @@ Stereo Rendering Mode : SinglePass
 
 ## 六、VSVR 支持 GLB格式规则
 
-> VSVR 支持GLB模型直接加载，可将GLB模型上传至VSVR后台VR资源管理器中，并实时在VR中多人同步观看。并可依靠VSVR SDK对GLB模型进行个性化控制操作。在设计汇报示例中完成了GLB模型的多人手动拆解，激光笔拿起，物体旋转，物体远近，动力学标记等操作。
+> VSVR 支持GLB模型直接加载，可将GLB模型上传至VSVR后台VR资源管理器中，并实时在VR中多人同步观看。并可依靠VSVR SDK对GLB模型进行个性化控制操作。在Glb_LoadAndControl_Example示例中完成了GLB模型的多人手动拆解，激光笔拿起，物体旋转，物体远近，动力学标记等操作。
 
 #### 6.1 glb格式导出：
 ##### 6.1.1 支持 3DMAX 、MAYA、C4D、Blender、Sketchup 等软件，需要安装glb格式导出插件，建议通过blender导出glb模型。
@@ -148,3 +148,220 @@ Stereo Rendering Mode : SinglePass
 * 隐藏物体meshrender 使物体不可见： ```_mr_```
 * 加载0点（出生点） ：```_zero_```
 * 缩放标记：```_scale_```
+
+
+## 七、 VSVRSDK  VRAction 说明 
+
+#### EventAdminChange  ```事件```：探测主持人改变事件
+>使用示例：用来配合切换只有主持人才能看到或操作的某些物体，主持人切换后操作面板自动消失等操作
+```
+M Enabled： 脚本是否启用
+AdminTrue： 自身切换为主持人
+adminFalse： 支持切换为非主持人
+```
+#### EventCustomVRInput  ```事件```：探测VR Input 事件
+>使用示例：手柄按钮    头盔戴上取下等事件，比如使用摇杆左右控制某个UI切换下一页，头盔摘下后背景音乐声音变小 ，手柄抓握移动物体等
+```
+InputType： 需要探测的VR Input事件
+Input Event ： 探测的VR Input 事件 触发后执行的 Event 
+Rcieved 2D Axis ：摇杆改变时返回 摇杆的2D位置
+Rcieved 1D Axis ： 握持键 和 扳机键 按动时返回 1D位置
+```
+#### EventPlayerPlaceChange  ```事件```：自身角色移动到位置点或位置面
+>使用实例 ： 人物移动到某个位置点时 门自动打开
+
+
+#### EventRoomConnectionChange  ```事件```：探测房间登录状态事件
+>使用示例：房间断开连接或重新连接时 做出UI提示
+
+#### EventSelectAvatarWsid  ```事件```：选择某个角色
+>使用示例：激光笔选择某个角色时触发某个事件，并返回该角色ID，可以实现激光笔点击某角色名牌移动    该角色到身前，需要发送信息给其他角色，并由各自判断ID执行事件。
+```
+Select ID： 选择到的角色ID
+Event SelectID ：选择到某角色时触发事件
+```
+#### EventSelectorPointerStatusChange  ```事件```：激光笔状态改变
+>使用示例：当激光笔显示时，显示某些可以点击的物体，激光笔关闭时，将这些可点击的物体隐藏
+
+
+#### EventTeleportStatusChange  ```事件```：移动状态切换
+>使用示例：当每个角色开始用位置移动时（按下摇杆），某些物体隐藏或出现
+
+
+#### EventVRLaserChange	```事件``` ： 激光笔移动到某个物体上或离开某个物体或在某个物体上点击确认按键时获取改变的物体
+```
+Point Event Type：选择监听 Enter Exit 或者 click事件
+PointEvent ：事件触发
+Pointed Obj ： 返回当前激光笔监听的事件的物体
+```
+#### EventVRSystemMenuChange ```事件``` ：系统菜单和场景菜单呼出和关闭事件
+>使用示例：当系统菜单呼出时自动隐藏某个物体，当场景菜单呼出时自动出现可控制物体标记
+
+
+#### GetAdminStatus ```获取``` ：判断当前自身是否为主持人身份。
+#### GetAvatarSort ```获取```： 获取自身在当前房间内所有角色的排序。
+#### GetKODToLocalCacheFile ```获取``` ： 缓存KOD服务的远程文件到缓存文件
+>使用示例：将KOD服务器中的某个文件缓存到本地，并返回本地路径给其他模块使用
+```
+KOD Url ：KOD服务器上的相对路径IsURLSign ： 是否通过网络url文件来控制版本
+HasPrefix ： 是否根据自身平台来添加平台前缀， 安卓添加”a“ windows 添加 ”w“ 
+GetLocalPath ： 缓存文件成功 事件
+GetLocalPathFaild ： 缓存文件失败事件
+Geted Sign ： 获取到的签名
+LocalPath ： 缓存成功后的本地文件路径
+LocalUrl ： 缓存成功后的URL路径
+```
+#### GetPathToScene ```获取```： 缓存本地文件路径到场景
+>使用示例：配合 GetKODToLocalCacheFile 加载场景
+```
+Path ：场景文件的本地路径
+Sign ： 场景文件签名
+SceneName ： 场景的名称
+```
+#### GetPathToTexture ```获取``` ： 缓存本地文件路径到Texture
+>使用示例： 配合 8 GetKODToLocalCacheFile 加载远程图片素材
+```
+Path ： 图片文件的本地路径
+EventGetTexture ： 获取图片成功事件
+EventGetTextureFail ： 获取图片失败事件
+Geted Texture ： 获取到的Texture
+```
+#### GetUrlToLocalCacheFile ```获取```： 通过URL缓存服务远程服务器中的远程文件到缓存文件
+#### GetVRGameObjects ```获取``` ： 获取VR场景内相关参数
+>使用示例：获取左右手手柄位置，获取自己的昵称等配合其他模块完成功能
+````
+Everyframe ： 每一帧更新获取到的信息
+Maincamera ： 返回当前主视角相机的gameobject 
+LeftHand ： 返回左手gameobject
+RightHand ： 返回右手gameobjet
+LeftTeleportAnchor ： 返回左手手柄Teleport射线的初始位置物体
+RightTeleportAnchor： 返回右手手柄Teleport射线的初始位置物体
+leftFingerPointerAnchor ： 返回左手手柄激光笔的初始位置物体
+RightFingrerPointerAnchor ：返回右手手柄激光笔的初始位置物体
+MainVRROOT ： 返回角色的Root物体
+LaserPoint ：返回激光笔点的物体gameobject
+GlbRoot ： 返回Glb 场景和 Glb物体的总父物体
+GlbSceneRoot ：返回Glb场景父物体（加载的glb文件后缀添加了_s 的物体）
+GlbOjbRoot ： 返回Glb物体父物体（加载的glb文件后缀未添加_s 的物体）
+BigscreenRoot ： 返回大屏gamobject
+Msex ： 返 回 当 前 角 色 性 别 0 1 
+mWsID ： 返回当前角色 网络连接ID 
+mAvatarID ： 返 回 当 前 角 色 ID 
+MnickName ：返回当前角色昵称
+GMEconnected ： 返回语音连接状态
+NowMicVol ： 返回当前语音麦克的声音大小
+MicEnabled ： 返回当前Mic是否被禁用
+NowSelectedAvatarWsid ： 返回当前选择的角色的网络连接ID 
+nowUnityVersion ：返回当前Unity版本
+isVRApp ： 返回是否时通过头盔连接的VR 
+ismobile ： 返回是否是移动设备接入
+AutoPlayScene ： 返回是否是场景自动播放模式状态
+Startaid : 获取自身默认角色id
+MenuAnchor ：获取系统菜单锚点物体
+isadmin sadmin：获取用户是否为主持人
+isDrawingenabled : 获取自身画笔是否启用
+````
+
+
+#### RecieveBigScreenTexture ```网络获取``` ： 大屏幕获取到图片
+>使用示例：资源库获取到全景图片后，360图改变
+```
+WsTexture ： 获取或缓存到的图片资源
+RecieveTextureEvent ： 大屏播放新的的图片事件
+WsTexturePaht ： 获取到的大屏播放图片的路径
+UpdateTextureEvent ： 资源管理器缓存图片成功事件
+```
+#### RecieveBigScreenVideoPlayer ```网络获取``` ： 大屏幕获取到视频帧使用示例：大屏播放视频时 同步更新视频的帧贴图到三维物体。
+
+#### RecieveCustomWsMessages ```网络获取``` ： 获取到网络同步信息
+>使用示例： 所有角色同步事件通过此模块来获取
+```
+Bypass：忽略网络获取，触发Recieve事件
+Recieve ： 获取到任意的网络信息触发事件
+AbcdefgFlow ：收到的ABCDEFG信息按顺序判断处理
+Ws_a - Ws_g : 需要对比的 A 信息
+RecieveSame_a  - RecieveSame_g收到与Ws_a - Ws_g相同的信息触发事件
+A-G ： 存储收到的A-G信息文本
+```
+#### RecieveWsPlaceMark ```网络获取``` ： 获取到位置改变信息
+>使用示例： 移动到某个位置或位置组时 某些物体显示，移动到某个位置组时  第三视角相机切换到相应的视角
+````
+WsGroupName ： 需要对比的位置组的名称
+WsMyPlaceName ： 需要对比的位置的名称
+RecieveSameGroupName ： 收到与WsGroupName相同的位置组名称触发事件
+RecieveMysamePlaceaName ： 收到与WsMyPlaceName 相同的位置的名称触发事件
+RecievedGroupName ： 存储收到的位置组的名称
+RecievedPlaceName ： 存储收到的位置的名称
+````
+#### SendCommitOrder ```网络发送``` ： 发送调试口令
+#### SendCustomWsMessages ```网络发送``` ： 发送网络同步信息使用示例：发送同步信息给其他所有角色（包括自身） ABCDEFG
+#### SendWsAllInfoLog ```网络发送``` ： 发送Log信息给其他角色
+#### SendWsAllPlayceTo ```网络发送``` ： 发送移动位置组指令到其他角色（包括自身） 使用示例： 所有角色移动到某个位置组
+```
+GroupName ： 位置组名称
+ToALl ： 是否发送给所有人
+```
+#### SetCustomVRInput ```设置``` ： 设置VRInput指令
+>使用示例：  手柄震动  重置位置（Windows端有效，Quest端无效）
+```
+Input Type： 指令类型
+Vibinfo Hand ： 选择手柄震动
+Frequency ： 震动频率 0-1 
+Amplitude ： 震动强度 0-1 
+Lasttime ： 持续时间 0-4
+```
+#### SetHandModelEnabled ```设置``` ： 设置手柄模型是否隐藏使用示例： 拿起工具时隐藏手柄模型 ，放下工具时手柄模型显示
+#### SetLoadUrlIdScene ```设置```： 加载远程服务器上的场景
+```
+Server ： 远程服务器地址ID ： 场景ID
+IsNowServer ： 是否使用当前登录的远程服务器
+Update ： 是否仅更新场景而不加载
+```
+#### SetMaterialTextrueEveryFrame ```设置``` ： 每一帧为物体改变贴图，配合 RecieveBigScreenVideoPlayer 将视频播放的Texture更新到物体上
+#### SetVRBigScreen ```设置``` ： 将大屏幕其替换到某个位置
+#### SetVRInputField ```设置``` ： 将某个UI的InputField 设置为输入状态
+#### SetVRControllingObj ```设置``` ： 将某个物体设置为控制和帧同步状态
+```
+Controlling Obj ：需要设置的物体
+Islocal ： 是否是世界位置或自身位置
+Is Sending ：是否发送此物体的位置信息
+TriiggerStart ：开始发送位置信息
+TriggerEnd	： 结束发送位置信息
+TriggerEndEvent ： 结束发送位置信息触发事件
+FrameSend ：发送帧速率 1 ： 以最高帧率发送 2： 以一半的帧率发送 3：以三分之一帧率发送 4： 以四分之一的帧速率发送
+ControllStart ：接收到开始位置信息
+Controlling ： 接收到位置信息
+ControllEnd ： 接收到结束位置信息
+```
+#### SetVRMovingObj ```设置``` ： 将某个物体设置为帧同步状态
+>使用示例 ： 手柄拿起某物体后，需要将此物体设置为 MovingObj 同步给其他角色
+```
+MovingObj ： 需要设置的物体
+Islocal ： 是否时世界位置或是自身位置
+IsSending ： 是否发送此物体的位置信息
+FrameSend ： 发送帧速率	1 ： 以最高帧率发送 2： 以一半的帧率发送 3：以三分之一帧率发送 4： 以四分之一的帧速率发送
+```
+
+#### SetVRScreenCamera ```设置``` ：设置第三视角相机的位置
+>使用示例 ： 移动到某个位置组的时候 切换相应的第三视角相机，（拖动 第三视角相机的Prefab到CameraMark上）
+
+
+#### SetVRGameObject ```设置``` ：设置自身VR信息
+```
+Aid  ： 设置角色ID
+Name ：改变头部名牌名称
+Hideavatar : 隐藏角色
+```
+#### SendChangeAvatar ```网络发送```  ： 向服务器发送 自身VR信息，与SetVRGameObject结合使用
+#### SetVRObjLoadPosition ```设置``` ：设置glb 场景和glb物体加载的位置
+#### SetVRSystemMenuEnable ```设置``` ：设置系统菜单的显示和隐藏
+#### SetVRVideoPlayer ```设置``` ：设置一个视频播放器
+```
+ContorlObj ： 用来设置播放器的控制物体，设置完成后可通过 SendMessage 来控制播放器的播放：
+	播放：“Play”，停止：“Stop”，暂停：“Pause”，准备：“Prepare”
+RenderObj ： Array  先填写Array数量，再将需要渲染视频的物体拖入，物体可以为 UI 的 RawTextrue 或者材质为Unlit-》Texture材质的三维物体，可一次设置多个物体
+Url : string  视频流地址，或 远程视频地址 或缓存完成的视频的本地 path地址（非url地址）
+Vol ：float   声音大小 范围 0 - 100
+Isloop ： bool  是否循环播放（若是视频流则不勾选此项）
+Autostart : bool  是否自动播放 （如果不勾选自动播放，则视频只会Prepare准备，可以使用向ContorlObj发送SendMessage 消息来控制播放）
+```
