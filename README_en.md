@@ -18,7 +18,7 @@ LightweightRP
 Asset Bundle Browser
 ```
 ###### 2.2.3. Set up the rendering pipeline：
-Project Settings ： Scriptable Render Pipeline Settings 中 创建 LWRP 设置
+Project Settings ：Add Scriptable Render Pipeline Settings in Project
 ###### 2.2.4. Import third-party plugins first, then import   VSVR_SDK：
 
  >  Third-party plugins that must be imported ： DOTween Pro、Event System - Dispatcher、 Playmaker  、Playmaker_CustomActions （PlayMaker Third party interface）
