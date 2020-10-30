@@ -14,6 +14,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmString GetedSign;
         public FsmString LocalPath;
         public FsmString LocalUrl;
+
         // Code that runs on entering the state.
         public override void OnEnter()
         {
@@ -22,7 +23,7 @@ namespace HutongGames.PlayMaker.Actions
                 isURLSign = isURLSign.Value,
                 sign = Sign.Value,
                 hasPrefix = hasPrefix.Value,
-                isKOD = false
+                isKOD = false,
             };
             MessageDispatcher.AddListener(VrDispMessageType.GetLocalCacheFile.ToString(), GetCacheFile);
             MessageDispatcher.SendMessage(this,VrDispMessageType.SendCacheFile.ToString(), sendfile, 0);
@@ -37,14 +38,17 @@ namespace HutongGames.PlayMaker.Actions
             LocalPath.Value = sendfile.path;
             LocalUrl.Value = "File://" + LocalPath;
             GetedSign.Value = sendfile.sign;
-            if (sendfile.path != "")
-            {
-                Fsm.Event(GetLocalPath);
+            if(sendfile.sign == Sign.Value){
+                if (sendfile.path != "")
+                {
+                    Fsm.Event(GetLocalPath);
+                }
+                else
+                {
+                    Fsm.Event(GetLocalPathFaild);
+                }
             }
-            else
-            {
-                Fsm.Event(GetLocalPathFaild);
-            }
+
         }
 
     }

@@ -11,6 +11,15 @@ public enum InfoColor
     yellow
 }
 
+public enum LanguageType : byte
+{
+    English = 0,
+    Chinese,
+    Korean,
+    Japanese,
+    
+}
+
 [Serializable]
 public class WsAvatarFrame
 {
@@ -267,6 +276,7 @@ public class WsSceneInfo
     public bool isremote;
     public bool isupdate;
     public bool iskod;
+    public WsMediaFile kod;
 }
 
 public class URLIDSceneInfo
@@ -526,4 +536,44 @@ public class VRUtils
             return false;
         }
     }
+
+
+    public static string getrealRoomGetServer(string roomstring){
+        string thisroomstring;
+
+        if (roomstring.Contains("@"))
+        {
+            string[] roomarr = roomstring.Split('@');
+
+            if (roomstring.StartsWith("ws://"))
+            {
+                thisroomstring = "http://" + mStaticThings.I.now_ServerURL + roomarr[1];
+            }
+            else if (roomstring.StartsWith("wss://"))
+            {
+                thisroomstring = "https://" + mStaticThings.I.now_ServerURL + roomarr[1];
+            }
+            else
+            {
+                thisroomstring = "http://" + mStaticThings.I.now_ServerURL + roomarr[1];
+            }
+        }
+        else
+        {
+            if (roomstring.StartsWith("ws://"))
+            {
+                thisroomstring = "http://" + roomstring.Substring(5, roomstring.Length - 5);
+            }
+            else if (roomstring.StartsWith("wss://"))
+            {
+                thisroomstring = "https://" + roomstring.Substring(6, roomstring.Length - 6);
+            }
+            else
+            {
+                thisroomstring = "http://" + roomstring;
+            }
+        }
+        return thisroomstring;
+    }
+    
 }

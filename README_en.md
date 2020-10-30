@@ -105,7 +105,8 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 ###### 5.2. Resource check
 > Open Window -> AssetBundle Browser to sort by Size, check to avoid redundant files and too large files (mainly too large images, you need to use external image editing software to change the image format, if there is an Alpha channel, it is recommended to change to png format, If there is no Alpha channel, it is recommended to change to jpg format)
 ###### 5.3. Packaging platform selection
->The scene file required by the Android platform needs to be set to Android in the AssetBundle Browser, and the running scene of the Window platform needs to be set to Standalone Windows
+>The scene file required by the Android platform needs to be set to Android in the AssetBundle Browser, and the running scene of the Window platform needs to be set to Standalone Windows.
+**It is recommended to open Unity's CacheServer: Edit -> Preferences -> CacheServer -> Cache Server Mode and select Local to avoid repeated loading of resources caused by platform switching, and save the time for assetbundles of different platforms to be packaged in the same project.**
 ###### 5.4. Multi-person debugging and use
 > Before uploading to the resource management background, you need to set the file name prefix for the bundle files required by different platforms
 ```
@@ -156,7 +157,8 @@ The recommended format for large-screen demo images is ```jpg```, and the image 
 ##### 7.1.2 Panorama picture
 The recommended format for panoramic pictures is ```jpg```, and the picture size is recommended to be in the range of ```4096*2048 - 6000*3000```
 #### 7.2 Video format
-Recommended format for flat video and panoramic video: ```mp4``` Encoding: ```H.264``` ```h.265``` The bit rate is recommended to be controlled in the range of ```4Mbps-6Mbps```
+Recommended format for flat video : ```mp4``` Encoding: ```H.264``` The bit rate is recommended to be controlled in the range of ```4Mbps-6Mbps```
+Recommended format for panoramic video: ```mp4``` Encoding: ```H.264``` The bit rate is recommended to be controlled in the range of ```10Mbps-20Mbps```
 #### 7.3 Video stream format
 Video stream format supports ```rtmp``` ```rtsp``` ```hls``` protocol format video stream
 Write the video streaming address into a txt file, change the file suffix of ```.txt``` to ```.order``` and upload to the explorer, click to play
@@ -274,7 +276,13 @@ MenuAnchor: Get the system menu anchor object
 isadmin sadmin: Get whether the user is the moderator
 isDrawingenabled: Get whether the own brush is enabled
 ````
+#### GetVRLanguage ```Get``` ： Get Current Language
+>Usage example: Detect language and set scene panel for that language
+```
+LanguageSort ： Get the current language sort   0： English  1：Chinese 3:Korean 4:Japanese
+LanguageString ： Get the current language string   English  Chinese Korean Japanese 
 
+```
 
 #### RecieveBigScreenTexture ```Get on the Internet```: get the picture on the big screen
 >Usage example: After the resource library obtains the panoramic picture, the 360 ​​picture changes

@@ -26,6 +26,7 @@ public class mStaticThings : MonoBehaviour
     public bool AutoLogin;
     public string nowRoomID;
     public string nowRoomServerUrl;
+    public string nowRoomServerGetUrl;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
     public string nowRoomAdminCMD;
@@ -33,6 +34,7 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomGMEappKey;
     public int nowRoomMaxCount;
     public int nowMicVol;
+    public WsSceneInfo nowRoomLinkScene;
     public bool MicEnabled;
     public string mAvatarID;
     public string aid;
@@ -73,7 +75,9 @@ public class mStaticThings : MonoBehaviour
     public bool isurp;
     public bool isdrawingon;
     public bool enhide;
-
+    public static string apikey = "";
+    public static string apitoken = "";
+    public LanguageType NowLanguageType = LanguageType.English;
 
     public static Dictionary<string, WsAvatarFrame> AllStaticAvatarsDic = new Dictionary<string, WsAvatarFrame>();
     public static List<string> AllStaticAvatarList = new List<string>();

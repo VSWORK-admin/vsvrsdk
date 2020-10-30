@@ -81,7 +81,7 @@ public class WsPlayceController : MonoBehaviour
 
     IEnumerator SelfLoadScene()
     {
-        string url = "http://" + mStaticThings.I.nowRoomServerUrl + "/placemark";
+        string url = mStaticThings.I.nowRoomServerGetUrl + "/placemark?apitoken="+mStaticThings.apitoken+"&socketid="+mStaticThings.I.mWsID;
         UnityWebRequest request = UnityWebRequest.Get(@url);
         yield return request.SendWebRequest();
         if (request.error != null)
@@ -600,20 +600,6 @@ public class WsPlayceController : MonoBehaviour
                 item.nearClipPlane = target.lossyScale.x * 0.1f;
                 item.farClipPlane = target.lossyScale.x * 1000f;
             }
-
-            // if (mStaticThings.I.nowdevicename == "neo2")
-            // {
-            //     mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-            //     mStaticThings.I.Maincamera.transform.Find("LeftEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
-
-            //     mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-            //     mStaticThings.I.Maincamera.transform.Find("RightEye").GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
-            // }
-            // else
-            // {
-            //     mStaticThings.I.Maincamera.GetComponent<Camera>().nearClipPlane = target.lossyScale.x * 0.1f;
-            //     mStaticThings.I.Maincamera.GetComponent<Camera>().farClipPlane = target.lossyScale.x * 1000f;
-            // }
 
             MessageDispatcher.SendMessage(this, VrDispMessageType.SelfPlaceTo.ToString(), wpm.dname, 0);
         }

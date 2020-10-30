@@ -45,7 +45,8 @@ public enum WsMessageType
     RecieveCheckDelay,
     SendChangeAvatar,
     RecieveAlist,
-    RecieveCheckAvatar
+    RecieveCheckAvatar,
+    RecieveAuthFaild
 }
 
 

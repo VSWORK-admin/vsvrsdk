@@ -106,6 +106,7 @@ Stereo Rendering Mode : SinglePass
 > 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
 ###### 5.3. 打包平台选择
 >安卓平台所需场景文件 需要再AssetBundle Browser中设置为Android , Window平台运行场景需要设置为Standalone Windows
+**建议打开Unity的CacheServer ： Edit -> Preferences -> CacheServer -> Cache Server Mode  选择 Local， 以避免平台的切换导致的资源重复加载，节省不同平台assetbundle在同一个工程打包的时间。**
 ###### 5.4. 多人调试和使用
 > 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
 ```
@@ -156,7 +157,8 @@ Stereo Rendering Mode : SinglePass
 ##### 7.1.2全景图片
 全景图片建议格式 ```jpg``` ，图片大小建议控制在```4096*2048 -- 6000*3000```范围
 #### 7.2 视频格式
-平面视频和全景视频建议格式: ```mp4```  编码: ```H.264``` ```h.265``` 码率建议控制在```4Mbps - 6Mbps```范围
+平面视频建议格式: ```mp4```  编码: ```H.264``` 码率建议控制在```4Mbps - 6Mbps```范围
+全景视频建议格式: ```mp4```  编码: ```H.264``` 码率建议控制在```10Mbps - 20Mbps```范围
 #### 7.3 视频流格式
 视频流格式支持 ```rtmp``` ```rtsp``` ```hls``` 协议格式视频流
 将视频流拉流地址写入到 txt 文件中，将```.txt```文件后缀改为 ```.order``` 上传至资源管理器，点击即可播放
@@ -275,6 +277,13 @@ isadmin sadmin：获取用户是否为主持人
 isDrawingenabled : 获取自身画笔是否启用
 ````
 
+#### GetVRLanguage ```获取``` ： 获取目前用户的语言
+>使用示例 ： 检测语言并设置该语言的场景面板
+```
+LanguageSort ： 获取当前语言的排序   0： English  1：Chinese 3:Korean 4:Japanese
+LanguageString ： 获取当前语言的字符串   English  Chinese Korean Japanese 
+
+```
 
 #### RecieveBigScreenTexture ```网络获取``` ： 大屏幕获取到图片
 >使用示例：资源库获取到全景图片后，360图改变
