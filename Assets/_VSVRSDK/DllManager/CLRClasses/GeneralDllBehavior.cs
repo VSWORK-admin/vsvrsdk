@@ -45,7 +45,6 @@ public class GeneralDllBehavior : MonoBehaviour
     private DllGenerateBase GenClass = null;
     private void Awake()
     {
-        
         try
         {
             if (DllManager.appdomain == null)

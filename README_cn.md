@@ -1,5 +1,11 @@
 ## 一、环境搭建
-### 1. unity版本： 使用 unity2019.2.16 版本
+### 1. 开发环境
+#### 1.1 unity版本： 使用 **unity2019.2.16** 版本
+#### 1.2 交互编程方式
+###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
+###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址:
+https://gitee.com/vswork_admin/vsvrdll
+
 ### 2. VSVRSDK 环境搭建
 #### 2.1 方式 A   
 注册并登录 gitee.com ,   Git 或 svn 获取 或直接下载 zip工程包
@@ -39,6 +45,7 @@ GraphicsAPIs : OpenGLES3
 LightmapEncoding : High Quality 
 LightmapStreaming Enabled : True 
 Minimum API Level : 24
+Allow 'unsafe' Code : True
 
 ## PlayerSetting-> XR Settings:
 Virtual Reality Supported : True
@@ -54,6 +61,7 @@ ColorSpace : Linear
 AutoGraphics API for Windows : True 
 LightmapEncoding : High Quality 
 LightmapStreaming Enabled : True
+Allow 'unsafe' Code : True
 
 ## PlayerSetting -> XR Settings: 
 Virtual Reality Supported : True
@@ -242,6 +250,30 @@ EventGetTextureFail ： 获取图片失败事件
 Geted Texture ： 获取到的Texture
 ```
 #### GetUrlToLocalCacheFile ```获取```： 通过URL缓存服务远程服务器中的远程文件到缓存文件
+>使用示例：缓存一个互联网文件
+```
+HttpUrl : 文件所在路径地址
+IsURLSign : 是否使用http的txt文件内容作为版本标记
+Sign ： 签名（版本） 或 http 签名文件路径
+HasPrefix ：是否根据设备自动获取所对应scene文件，比如 "a_xx.xx" "w_xx.xx"
+GetLocalPath : 获取到文件成功
+GetLocalPathFaild : 获取到文件失败
+GetedSign : 获取到的签名
+LocalPath ：已缓存文件的的本地路径
+LocalUrl ： 已缓存文件的本地url（`File：//`+ 本地路径）
+```
+
+#### GetUrlToLocalScene ```获取```： 通过URL缓存服务远程服务器中的场景
+>使用示例：在场景中加载另外的url链接场景
+```
+HttpUrl : scene文件所在路径地址
+IsURLSign : 是否使用http的txt文件内容作为版本标记
+Sign ： 签名（版本） 或 http 签名文件路径
+SceneName ：场景名称
+HasPrefix ：是否根据设备自动获取所对应scene文件，比如 "a_xx.scene" "w_xx.scene"
+GetLocalPath : 获取到场景成功
+GetLocalPathFaild : 获取到场景失败
+```
 #### GetVRGameObjects ```获取``` ： 获取VR场景内相关参数
 >使用示例：获取左右手手柄位置，获取自己的昵称等配合其他模块完成功能
 ````

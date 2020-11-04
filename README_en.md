@@ -1,5 +1,11 @@
 ## 1、Environment setup
-### 1. unity Version： Use unity2019.2.16 
+### 1. Development Environment
+#### 1.1 unity version: use **unity2019.2.16** version
+#### 1.2 Interactive programming
+###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
+###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on:
+https://gitee.com/vswork_admin/vsvrdll
+
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
 Register and log in gitee.com ,  use Git or svn checkout the sdk project
@@ -39,6 +45,7 @@ GraphicsAPIs : OpenGLES3
 LightmapEncoding : High Quality 
 LightmapStreaming Enabled : True 
 Minimum API Level : 24
+Allow 'unsafe' Code : True
 
 ## PlayerSetting-> XR Settings:
 Virtual Reality Supported : True
@@ -54,13 +61,13 @@ ColorSpace : Linear
 AutoGraphics API for Windows : True 
 LightmapEncoding : High Quality 
 LightmapStreaming Enabled : True
+Allow 'unsafe' Code : True
 
 ## PlayerSetting -> XR Settings: 
 Virtual Reality Supported : True
 VirtualRealitySDKs : none
 Stereo Rendering Mode : SinglePass
 ```
-
 
 ## 3、Scene setting
 ###### 3.1. Use the LWRP rendering pipeline in the scene
@@ -242,6 +249,31 @@ EventGetTextureFail: the event of failure to get the picture
 Geted Texture: Texture obtained
 ```
 #### GetUrlToLocalCacheFile ```Get```: Serving remote files from remote servers to cache files via URL cache
+> Example of use: Cache an Internet file
+```
+HttpUrl: The path address where the file is located
+IsURLSign: Whether to use the content of the http txt file as the version mark
+Sign: Signature (version) or http signature file path
+HasPrefix: Whether to automatically obtain the corresponding scene file according to the device, such as "a_xx.xx" "w_xx.xx"
+GetLocalPath: Get the file successfully
+GetLocalPathFaild: Failed to get the file
+GetedSign: Get the signature
+LocalPath: The local path of the cached file
+LocalUrl: The local url of the cached file (`File: //`+ local path)
+```
+
+#### GetUrlToLocalScene ```Get```: Serving the scene in the remote server through URL cache
+>Use example: Load another url link scene in the scene
+```
+HttpUrl: The path address where the scene file is located
+IsURLSign: Whether to use the content of the http txt file as the version mark
+Sign: Signature (version) or http signature file path
+SceneName: scene name
+HasPrefix: Whether to automatically obtain the corresponding scene file according to the device, such as "a_xx.scene" "w_xx.scene"
+GetLocalPath: Get the scene successfully
+GetLocalPathFaild: Failed to get the scene
+```
+
 #### GetVRGameObjects ```Get```: Get the relevant parameters in the VR scene
 >Usage example: Get the position of the left and right hand handles, get your own nickname, etc. to complete functions with other modules
 ````
