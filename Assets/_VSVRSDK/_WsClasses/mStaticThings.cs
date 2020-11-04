@@ -33,6 +33,7 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomPass;
     public string nowRoomGMEappKey;
     public int nowRoomMaxCount;
+    public int nowRoomAeMaxCount;
     public int nowMicVol;
     public WsSceneInfo nowRoomLinkScene;
     public bool MicEnabled;

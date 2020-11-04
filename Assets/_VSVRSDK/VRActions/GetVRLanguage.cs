@@ -8,7 +8,6 @@ namespace HutongGames.PlayMaker.Actions
     {
         public FsmInt LanguageSort;
         public FsmString LanguageString;
-
         public override void OnEnter()
         {
             int sort;

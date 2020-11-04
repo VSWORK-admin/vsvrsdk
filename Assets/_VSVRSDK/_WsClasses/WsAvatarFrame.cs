@@ -151,6 +151,7 @@ public class ConnectAvatars
     public string wsid;
     public int sort;
     public List<WsAvatarFrame> sceneavatars;
+    public WsSceneInfo nowscene;
     public WsMediaFrame nowmedia;
     public WsBigScreen nowbigscreen;
 }

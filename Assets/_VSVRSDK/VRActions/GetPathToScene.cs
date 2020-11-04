@@ -25,7 +25,7 @@ namespace HutongGames.PlayMaker.Actions
                         isupdate = false,
                         iskod = true
                     };
-                    MessageDispatcher.SendMessage(this, VrDispMessageType.LoadLocalPathScene.ToString(), newscene, 0);
+                    MessageDispatcher.SendMessage(false, VrDispMessageType.LoadLocalPathScene.ToString(), newscene, 0);
         }
 
     }

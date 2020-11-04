@@ -29,10 +29,17 @@ public class WsPlayceController : MonoBehaviour
         if (mStaticThings.I == null) { return; }
         if (mStaticThings.I.IsSelfJoinScene)
         {
+            mStaticThings.I.IsSelfJoinScene = false;
             StartCoroutine(SelfLoadScene());
         }
         else
         {
+            GoStartGroup();
+        }
+    }
+
+
+    void GoStartGroup(){
             int sort = 0;
             int max = StartGroup.GetComponent<VRPlayceGroup>()._VRPlayceDots.Count - 1;
             if (mStaticThings.AllStaticAvatarsDic.Count > 1)
@@ -58,7 +65,6 @@ public class WsPlayceController : MonoBehaviour
             wmlist.marks.Add(newteleinfo);
             PlayceToNew(newteleinfo);
             MessageDispatcher.SendMessage(this, WsMessageType.SendPlaceMark.ToString(), wmlist, 0);
-        }
     }
 
 
@@ -86,6 +92,7 @@ public class WsPlayceController : MonoBehaviour
         yield return request.SendWebRequest();
         if (request.error != null)
         {
+            Debug.LogWarning(request.error);
             yield break;
         }
         string str = request.downloadHandler.text;
@@ -97,6 +104,10 @@ public class WsPlayceController : MonoBehaviour
 
     void InitConnectGroup(WsPlaceMarkList nowwpm)
     {
+        if(nowwpm.gname == null || nowwpm.gname == ""){
+            GoStartGroup();
+            return;
+        }
         MarkAllPlayce(nowwpm, false);
         //Debug.LogWarning(JsonUtility.ToJson(nowwpm));
         Dictionary<string, string> temdic = new Dictionary<string, string>();
@@ -156,7 +167,6 @@ public class WsPlayceController : MonoBehaviour
                 }
                 return;
             }
-
         }
 
     }
