@@ -40,6 +40,8 @@ namespace HutongGames.PlayMaker.Actions
         public FsmBool Isadmin;
         public FsmBool Sadmin;
         public FsmBool IsDrawingenabled;
+        public FsmString nowRoomExID;
+        public FsmString nowRoomExEnabled;
         
         public override void OnEnter()
         {
@@ -92,6 +94,8 @@ namespace HutongGames.PlayMaker.Actions
                 Isadmin.Value = mStaticThings.I.isAdmin;
                 Sadmin.Value = mStaticThings.I.sadmin;
                 IsDrawingenabled.Value = mStaticThings.I.isdrawingon;
+                nowRoomExID.Value = mStaticThings.I.nowRoomGMEroomExID;
+                nowRoomExEnabled.Value =  mStaticThings.I.nowRoomExEnabled;
             }
         }
     }

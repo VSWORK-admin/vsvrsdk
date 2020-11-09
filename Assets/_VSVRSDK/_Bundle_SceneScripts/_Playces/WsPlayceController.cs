@@ -592,6 +592,13 @@ public class WsPlayceController : MonoBehaviour
         //Debug.LogWarning(wpm.id + "      " + mStaticThings.I.mWsID);
         if (wpm.id == mStaticThings.I.mAvatarID)
         {
+            bool ccenabled = false;
+            if(mStaticThings.I.MainVRROOT.GetComponent<CharacterController>()){
+                if(mStaticThings.I.MainVRROOT.GetComponent<CharacterController>().enabled){
+                    ccenabled  =true;
+                    mStaticThings.I.MainVRROOT.GetComponent<CharacterController>().enabled = false;
+                }
+            }
             PlayceDotKind dotkind = vp.dotkind;
             mStaticThings.I.MainVRROOT.position = target.position;
             if (dotkind == PlayceDotKind.direction)
@@ -611,7 +618,11 @@ public class WsPlayceController : MonoBehaviour
                 item.farClipPlane = target.lossyScale.x * 1000f;
             }
 
+            if(ccenabled){
+                mStaticThings.I.MainVRROOT.GetComponent<CharacterController>().enabled = true;
+            }
             MessageDispatcher.SendMessage(this, VrDispMessageType.SelfPlaceTo.ToString(), wpm.dname, 0);
+            
         }
     }
 }

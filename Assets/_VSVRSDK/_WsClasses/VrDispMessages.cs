@@ -136,14 +136,18 @@ public enum VrDispMessageType
     SystemMenuEvent,
     InitVideoPlayer,
     ChangePipeLine,
-    SetMenuRootPos
-
+    SetMenuRootPos,
+    CharactorEditing
 }
 
 
-public enum GMEDispMessageType
+public enum VoiceDispMessageType
 {
-
+    GmemMicOn,
+    GmeMicOff,
+    GmeMicEnalbe,
+    GmeMicDisable,
+    ConnectVoiceExRoom
 }
 
 public enum VRPointObjEventType

@@ -29,8 +29,10 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomServerGetUrl;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
+    public string nowRoomGMEroomExID;
     public string nowRoomAdminCMD;
     public string nowRoomPass;
+    public string nowRoomExEnabled;
     public string nowRoomGMEappKey;
     public int nowRoomMaxCount;
     public int nowRoomAeMaxCount;

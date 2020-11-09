@@ -26,7 +26,7 @@ namespace HutongGames.PlayMaker.Actions
                 isKOD = false,
             };
             MessageDispatcher.AddListener(VrDispMessageType.GetLocalCacheFile.ToString(), GetCacheFile);
-            MessageDispatcher.SendMessage(this,VrDispMessageType.SendCacheFile.ToString(), sendfile, 0);
+            MessageDispatcher.SendMessage(this,VrDispMessageType.SendCacheFile.ToString(), sendfile, 0.01f);
         }
         public override void OnExit()
         {
