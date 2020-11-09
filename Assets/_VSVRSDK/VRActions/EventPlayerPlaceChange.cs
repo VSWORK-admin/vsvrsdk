@@ -33,7 +33,7 @@ namespace HutongGames.PlayMaker.Actions
 
         void TelePortToMesh(IMessage msg){
             string dname = (string)msg.Data;
-            RecievePlaceMeshName = dname;
+            RecievePlaceMeshName.Value = dname;
             Fsm.Event(EventRecievePlaceMeshName);
         }
         void SelfPlaceTo(IMessage msg)

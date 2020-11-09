@@ -64,6 +64,7 @@ public enum VrDispMessageType
     // teleport
     TeleportTo,
     TelePortToMesh,
+    VRTelePortToMesh,
     //UIPointer & Teleporter status
     SelectorPointerStatusChange,
     TeleporterStatusChange,
