@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum WsMessageType
 {
     // 角色
@@ -15,6 +14,7 @@ public enum WsMessageType
     SendChangeObj, // WsChangeInfo
     RecieveChangeObj, // WsChangeInfo
     SendCChangeObj, // WsChangeInfo
+    SendAllCChangeObj,
     RecieveCChangeObj, // WsChangeInfo
     // admin
     SendMarkAdmin, // WsAdminMark
@@ -47,7 +47,12 @@ public enum WsMessageType
     SendUrlScene,
     RecieveAlist,
     RecieveCheckAvatar,
-    RecieveAuthFaild
+    RecieveAuthFaild,
+    SendSaveData,
+    SendGetData,
+    RecieveGetData,
+    SendChangeRoom,
+    RecieveChangeRoom
 }
 
 
@@ -86,6 +91,10 @@ public enum VrDispMessageType
     KODGetOneMov,
     KODGetOneVROrder,
     KODGetOneGlb,
+    KODGetOneTxt,
+    KODGetOneLikOrder,
+    KODGetOneCacheOrder,
+    KODGetTxtString,
     BigScreenSetPos,
     BigScreenShowImage,
     BigScreenPrepareVideo,
@@ -138,7 +147,11 @@ public enum VrDispMessageType
     InitVideoPlayer,
     ChangePipeLine,
     SetMenuRootPos,
-    CharactorEditing
+    CharactorEditing,
+    ConnectToNewChanel,
+    LoadGlbModels,
+    LoadGlbModelsDone,
+    AvatarSpeakStatusChange
 }
 
 
@@ -148,7 +161,8 @@ public enum VoiceDispMessageType
     GmeMicOff,
     GmeMicEnalbe,
     GmeMicDisable,
-    ConnectVoiceExRoom
+    ConnectVoiceExRoom,
+    ExitVoiceRoom
 }
 
 public enum VRPointObjEventType

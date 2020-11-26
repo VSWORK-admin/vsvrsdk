@@ -27,6 +27,7 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomID;
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
+    public string nowRoomChID;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
     public string nowRoomGMEroomExID;
@@ -101,7 +102,6 @@ public class mStaticThings : MonoBehaviour
     {
         instance = this;
         isAdmin = false;
-    
     }
 
     public int GetSortNumber(string wsid)

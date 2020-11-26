@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 namespace HutongGames.PlayMaker.Actions
 {
 
@@ -12,6 +13,9 @@ namespace HutongGames.PlayMaker.Actions
         public FsmArray AllAvatars;
         [ArrayEditor(VariableType.String)]
         public FsmArray ActiveAvatars;
+        [ArrayEditor(VariableType.String)]
+        public FsmArray ActiveNickNames;
+
         public override void OnEnter()
         {
             int sort;
@@ -23,6 +27,13 @@ namespace HutongGames.PlayMaker.Actions
                 sort = mStaticThings.I.GetSortNumber(mStaticThings.I.mAvatarID);
                 AllAvatars.stringValues = mStaticThings.AllStaticAvatarList.ToArray();
                 ActiveAvatars.stringValues = mStaticThings.AllActiveAvatarList.ToArray();
+                ActiveNickNames.Clear();
+                List<string> nicknames = new List<string>();
+                foreach (var item in mStaticThings.AllStaticAvatarsDic)
+                {
+                    nicknames.Add(item.Value.name);
+                }
+                ActiveNickNames.stringValues = nicknames.ToArray();
             }
             Sort.Value = sort;
             Finish();

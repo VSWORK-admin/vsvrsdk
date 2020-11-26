@@ -134,6 +134,26 @@ public class WsMediaFile
 }
 
 [Serializable]
+public class WsGlbMediaFile
+{
+    public string url;
+    public string sign;
+    public bool isscene;
+    public Transform LoadTrasform;
+}
+
+[Serializable]
+public class GlbSceneObjectFile
+{
+    public GameObject glbobj;
+    public string sign;
+    public bool isscene;
+    public Animation GlbAnination;
+    public List<string> clips = new List<string>();
+    public Transform LoadTrasform;
+}
+
+[Serializable]
 public class LocalCacheFile
 {
     public string path;
@@ -141,7 +161,6 @@ public class LocalCacheFile
     public string sign;
     public bool hasPrefix;
     public bool isKOD;
-
 }
 
 
@@ -152,6 +171,7 @@ public class ConnectAvatars
     public int sort;
     public List<WsAvatarFrame> sceneavatars;
     public WsSceneInfo nowscene;
+    public string chdata;
     public WsMediaFrame nowmedia;
     public WsBigScreen nowbigscreen;
 }
@@ -389,6 +409,19 @@ public class urporstandardOBJ{
     public Material UrpMat;
 }
 
+[Serializable]
+public class VRChanelRoom{
+    public string aid;
+    public string roomid;
+    public string wsid;
+}
+
+[Serializable]
+public class VRRootChanelRoom{
+    public string roomid;
+    public string voiceid;
+}
+
 public enum VROrderName
 {
     admin1,
@@ -614,6 +647,22 @@ public class VRUtils
 
     public static bool IsVrOrder(string ext){
         if(ext == "order"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static bool IsCacheOrder(string ext){
+        if(ext == "cache"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static bool IsLinkOrder(string ext){
+        if(ext == "link"){
             return true;
         }else{
             return false;
