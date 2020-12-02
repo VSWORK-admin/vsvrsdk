@@ -112,4 +112,37 @@ public class mStaticThings : MonoBehaviour
         return i < 0 ? cnt : i;
     }
 
+    public List<string> GetAllStaticAvatarList()
+    {
+        return AllStaticAvatarList;
+    }
+
+    public List<string> GetAllActiveAvatarList()
+    {
+        return AllActiveAvatarList;
+    }
+
+    public List<string> GetAllStaticAvatarsDicNames()
+    {
+        List<string> nicknames = new List<string>();
+        for(int i = 0;i<AllStaticAvatarList.Count;i++){
+            if(AllStaticAvatarsDic.ContainsKey(AllStaticAvatarList[i])){
+                nicknames.Add(AllStaticAvatarsDic[AllStaticAvatarList[i]].name);
+            }  
+        }
+
+        return nicknames;
+    }
+    public List<string> GetAllActiveAvatarsDicNames()
+    {
+        List<string> nicknames = new List<string>();
+        for(int i = 0;i<AllActiveAvatarList.Count;i++){
+            if(AllStaticAvatarsDic.ContainsKey(AllActiveAvatarList[i])){
+                nicknames.Add(AllStaticAvatarsDic[AllActiveAvatarList[i]].name);
+            }  
+        }
+
+        return nicknames;
+    }
+
 }

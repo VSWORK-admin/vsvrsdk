@@ -12,6 +12,8 @@ namespace HutongGames.PlayMaker.Actions
         [ArrayEditor(VariableType.String)]
         public FsmArray AllAvatars;
         [ArrayEditor(VariableType.String)]
+        public FsmArray AllAvatarNames;
+        [ArrayEditor(VariableType.String)]
         public FsmArray ActiveAvatars;
         [ArrayEditor(VariableType.String)]
         public FsmArray ActiveNickNames;
@@ -25,15 +27,18 @@ namespace HutongGames.PlayMaker.Actions
                 return;
             }else{
                 sort = mStaticThings.I.GetSortNumber(mStaticThings.I.mAvatarID);
-                AllAvatars.stringValues = mStaticThings.AllStaticAvatarList.ToArray();
-                ActiveAvatars.stringValues = mStaticThings.AllActiveAvatarList.ToArray();
-                ActiveNickNames.Clear();
-                List<string> nicknames = new List<string>();
-                foreach (var item in mStaticThings.AllStaticAvatarsDic)
-                {
-                    nicknames.Add(item.Value.name);
-                }
-                ActiveNickNames.stringValues = nicknames.ToArray();
+                AllAvatars.Resize(0);
+                AllAvatarNames.Resize(0);
+                ActiveAvatars.Resize(0);
+                ActiveNickNames.Resize(0);
+                AllAvatars.Values = mStaticThings.I.GetAllStaticAvatarList().ToArray().Clone() as object[];
+                AllAvatarNames.Values = mStaticThings.I.GetAllStaticAvatarsDicNames().ToArray().Clone() as object[];
+                ActiveAvatars.Values = mStaticThings.I.GetAllActiveAvatarList().ToArray().Clone() as object[];
+                ActiveNickNames.Values = mStaticThings.I.GetAllActiveAvatarsDicNames().ToArray().Clone() as object[];
+                AllAvatars.SaveChanges();
+                AllAvatarNames.SaveChanges();
+                ActiveAvatars.SaveChanges();
+                ActiveNickNames.SaveChanges();
             }
             Sort.Value = sort;
             Finish();
