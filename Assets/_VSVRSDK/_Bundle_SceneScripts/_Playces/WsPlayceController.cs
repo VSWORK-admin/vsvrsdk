@@ -96,7 +96,7 @@ public class WsPlayceController : MonoBehaviour
             yield break;
         }
         string str = request.downloadHandler.text;
-        //Debug.LogWarning(str);
+        //Debug.LogWarning("************************************" + str);
         WsPlaceMarkList nowwpm = JsonUtility.FromJson<WsPlaceMarkList>(str);
         InitConnectGroup(nowwpm);
     }

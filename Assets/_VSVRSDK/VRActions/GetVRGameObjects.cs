@@ -42,6 +42,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmBool IsDrawingenabled;
         public FsmString nowRoomExID;
         public FsmString nowRoomExEnabled;
+        public FsmString nowRoomChID;
         
         public override void OnEnter()
         {
@@ -96,6 +97,7 @@ namespace HutongGames.PlayMaker.Actions
                 IsDrawingenabled.Value = mStaticThings.I.isdrawingon;
                 nowRoomExID.Value = mStaticThings.I.nowRoomGMEroomExID;
                 nowRoomExEnabled.Value =  mStaticThings.I.nowRoomExEnabled;
+                nowRoomChID.Value = mStaticThings.I.nowRoomChID;
             }
         }
     }

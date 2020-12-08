@@ -177,6 +177,15 @@ public class ConnectAvatars
 }
 
 [Serializable]
+public class VRSendSaveData
+{
+    public string id;
+    public bool sall;
+    public string key;
+    public string value;
+}
+
+[Serializable]
 public class WsAdminMark
 {
     public string name;

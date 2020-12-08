@@ -81,6 +81,7 @@ public class mStaticThings : MonoBehaviour
     public bool enhide;
     public static string apikey = "";
     public static string apitoken = "";
+    public List<VRRootChanelRoom> LastIDLinkChanelRoomList = new List<VRRootChanelRoom>();
     public LanguageType NowLanguageType = LanguageType.English;
 
     public static Dictionary<string, WsAvatarFrame> AllStaticAvatarsDic = new Dictionary<string, WsAvatarFrame>();
