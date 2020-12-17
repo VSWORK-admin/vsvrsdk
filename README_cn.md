@@ -5,6 +5,8 @@
 ###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址:
 https://gitee.com/vswork_admin/vsvrdll
+#### 1.3 角色制作
+https://gitee.com/vswork_admin/vsvr_avatar
 
 ### 2. VSVRSDK 环境搭建
 #### 2.1 方式 A   

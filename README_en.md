@@ -5,6 +5,8 @@
 ###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on:
 https://gitee.com/vswork_admin/vsvrdll
+#### 1.3 AvatarMaker Project:
+https://gitee.com/vswork_admin/vsvr_avatar
 
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
