@@ -4,11 +4,11 @@
 #### 1.2 交互编程方式
 ###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址:
-gitee.com : https://gitee.com/vswork_admin/vsvrdll
-github.com : https://github.com/VSWORK-admin/vsvrdll
+> gitee.com : https://gitee.com/vswork_admin/vsvrdll
+> github.com : https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 角色制作
-gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
-github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
+> gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
+> github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
 
 ### 2. VSVRSDK 环境搭建
 #### 2.1 方式 A   
