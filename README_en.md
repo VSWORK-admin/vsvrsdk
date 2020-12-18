@@ -4,18 +4,23 @@
 #### 1.2 Interactive programming
 ###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on:
-https://gitee.com/vswork_admin/vsvrdll
+gitee.com : https://gitee.com/vswork_admin/vsvrdll
+github.com : https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 AvatarMaker Project:
-https://gitee.com/vswork_admin/vsvr_avatar
+gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
+github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
 
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
-Register and log in gitee.com ,  use Git or svn checkout the sdk project
+###### 2.1.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
 > Git ：https://gitee.com/vswork_admin/vsvrsdk.git
 
 > Svn： svn://gitee.com/vswork_admin/vsvrsdk
 
 > zip： https://gitee.com/vswork_admin/vsvrsdk
+
+###### 2.1.2  Check the sdk project on Github
+> https://github.com/VSWORK-admin/vsvrsdk
 
 #### 2.2 Type B    
 

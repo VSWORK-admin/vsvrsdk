@@ -4,18 +4,22 @@
 #### 1.2 交互编程方式
 ###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址:
-https://gitee.com/vswork_admin/vsvrdll
+gitee.com : https://gitee.com/vswork_admin/vsvrdll
+github.com : https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 角色制作
-https://gitee.com/vswork_admin/vsvr_avatar
+gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
+github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
 
 ### 2. VSVRSDK 环境搭建
 #### 2.1 方式 A   
-注册并登录 gitee.com ,   Git 或 svn 获取 或直接下载 zip工程包
+###### 2.1.1  注册并登录 gitee.com ,   Git 或 svn 获取 或直接下载 zip工程包
 > Git ：https://gitee.com/vswork_admin/vsvrsdk.git
 
 > Svn： svn://gitee.com/vswork_admin/vsvrsdk
 
 > zip： https://gitee.com/vswork_admin/vsvrsdk
+###### 2.1.2  注册并登录 github.com  check sdk工程
+> https://github.com/VSWORK-admin/vsvrsdk
 
 #### 2.2 方式 B    
 手动部署
