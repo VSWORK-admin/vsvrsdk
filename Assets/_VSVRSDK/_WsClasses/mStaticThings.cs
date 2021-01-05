@@ -89,7 +89,10 @@ public class mStaticThings : MonoBehaviour
     public static List<string> AllActiveAvatarList = new List<string>();
     public static Dictionary<string, WsAvatarFrameJian> DynClientAvatarsDic = new Dictionary<string, WsAvatarFrameJian>();
     private static mStaticThings instance;
-
+    public bool localroomserver = false;
+    public bool isfpsmoving = false;
+    public List<bool> movingmarklist = new List<bool>();
+    public string picoSNnumber;
 
     public static mStaticThings I
     {
