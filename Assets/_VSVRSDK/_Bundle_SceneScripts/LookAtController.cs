@@ -8,7 +8,7 @@ public class LookAtController : MonoBehaviour
     void Update()
     {
         if (mStaticThings.I == null) { return; }
-        if(mStaticThings.I.isVRApp && !mStaticThings.I.IsThirdCamera){
+        if(!mStaticThings.I.IsThirdCamera){
             transform.LookAt(mStaticThings.I.Maincamera);
         }else{
             transform.LookAt(mStaticThings.I.PCCamra);

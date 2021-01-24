@@ -147,4 +147,4 @@ Material:
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0.12918305, g: 1, b: 0, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}

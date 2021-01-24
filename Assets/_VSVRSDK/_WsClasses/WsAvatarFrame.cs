@@ -40,6 +40,7 @@ public class WsAvatarFrame
     public Quaternion wr;//WorldRot
     public Vector3 ws;//WorldScale
     public PoseFrameJian cp;//CurPose
+    public string cl;
 
     public WsAvatarFrameJian ToJian()
     {
@@ -51,7 +52,8 @@ public class WsAvatarFrame
             wp = wp,
             wr = wr,
             ws = ws,
-            cp = cp
+            cp = cp,
+            cl = cl
         };
         return newj;
     }
@@ -72,6 +74,7 @@ public class WsAvatarFrameJian
     public Quaternion wr;//WorldRot
     public Vector3 ws;//WorldScale
     public PoseFrameJian cp;//CurPose
+    public string cl;
 }
 
 
@@ -169,6 +172,7 @@ public class ConnectAvatars
 {
     public string wsid;
     public int sort;
+    public string cl;
     public List<WsAvatarFrame> sceneavatars;
     public WsSceneInfo nowscene;
     public string chdata;

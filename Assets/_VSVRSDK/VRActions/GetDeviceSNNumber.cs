@@ -4,16 +4,16 @@ namespace HutongGames.PlayMaker.Actions
 {
 
     [ActionCategory("VRActions")]
-    public class GetPICOSNNumber : FsmStateAction
+    public class GetDeviceSNNumber : FsmStateAction
     {
-        public FsmString PicoSN;
+        public FsmString DeviceSNnumber;
         public override void OnEnter()
         {
 
             if(mStaticThings.I == null){
                 return;
             }else{
-                PicoSN = mStaticThings.I.picoSNnumber;
+                DeviceSNnumber = mStaticThings.I.DeviceSNnumber;
             }
             Finish();
         }

@@ -151,7 +151,8 @@ public enum VrDispMessageType
     ConnectToNewChanel,
     LoadGlbModels,
     LoadGlbModelsDone,
-    AvatarSpeakStatusChange
+    AvatarSpeakStatusChange,
+    OpenAPKByPackagename
 }
 
 

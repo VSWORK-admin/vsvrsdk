@@ -87,18 +87,23 @@ public class WsPlayceController : MonoBehaviour
 
     IEnumerator SelfLoadScene()
     {
-        string url = mStaticThings.I.nowRoomServerGetUrl + "/placemark?apitoken="+mStaticThings.apitoken+"&socketid="+mStaticThings.I.mWsID;
-        UnityWebRequest request = UnityWebRequest.Get(@url);
-        yield return request.SendWebRequest();
-        if (request.error != null)
-        {
-            Debug.LogWarning(request.error);
-            yield break;
+        if(mStaticThings.I.nowRoomServerGetUrl.Contains("127.0.0.1")){
+            PlayceToGroup(StartGroup.name, true);
+        }else{
+            string url = mStaticThings.I.nowRoomServerGetUrl + "/placemark?apitoken="+mStaticThings.apitoken+"&socketid="+mStaticThings.I.mWsID;
+            UnityWebRequest request = UnityWebRequest.Get(@url);
+            yield return request.SendWebRequest();
+            if (request.error != null)
+            {
+                Debug.LogWarning(request.error);
+                yield break;
+            }
+            string str = request.downloadHandler.text;
+            //Debug.LogWarning("************************************" + str);
+            WsPlaceMarkList nowwpm = JsonUtility.FromJson<WsPlaceMarkList>(str);
+            InitConnectGroup(nowwpm);
         }
-        string str = request.downloadHandler.text;
-        //Debug.LogWarning("************************************" + str);
-        WsPlaceMarkList nowwpm = JsonUtility.FromJson<WsPlaceMarkList>(str);
-        InitConnectGroup(nowwpm);
+
     }
 
 

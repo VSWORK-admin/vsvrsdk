@@ -92,7 +92,8 @@ public class mStaticThings : MonoBehaviour
     public bool localroomserver = false;
     public bool isfpsmoving = false;
     public List<bool> movingmarklist = new List<bool>();
-    public string picoSNnumber;
+    public string DeviceSNnumber;
+    public string nowpencolor = "";
 
     public static mStaticThings I
     {
