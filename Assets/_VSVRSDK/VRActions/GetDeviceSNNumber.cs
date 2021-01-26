@@ -13,7 +13,7 @@ namespace HutongGames.PlayMaker.Actions
             if(mStaticThings.I == null){
                 return;
             }else{
-                DeviceSNnumber = mStaticThings.I.DeviceSNnumber;
+                DeviceSNnumber.Value = mStaticThings.I.DeviceSNnumber;
             }
             Finish();
         }

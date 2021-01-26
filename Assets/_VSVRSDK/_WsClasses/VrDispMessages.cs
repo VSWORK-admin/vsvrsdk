@@ -125,6 +125,7 @@ public enum VrDispMessageType
     CameraScreenSettingBegin,
     CameraScreenSettingEnd,
     CameraScreenSceneStart,
+    CameraScreenCameraSet,
     GetRemoteScenes,
     DownloadURLIDScene,
     DownloadingRemoteScene,
