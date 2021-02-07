@@ -170,6 +170,8 @@ namespace ILRuntime.Runtime.Enviorment
                     return InvocationTypes.Integer;
                 if (type == typeof(sbyte))
                     return InvocationTypes.Integer;
+                if (type == typeof(UIntPtr))
+                    return InvocationTypes.Integer;
                 else
                     throw new NotImplementedException(string.Format("Not supported type:{0}", type.FullName));
             }

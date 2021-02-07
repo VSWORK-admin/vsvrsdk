@@ -77,6 +77,15 @@ namespace ILRuntime.Runtime.Enviorment
             RegisterDelegateConvertor<Action<T1, T2, T3, T4>>(defaultConverter);
         }
 
+        public void RegisterMethodDelegate<T1, T2, T3, T4, T5>()
+        {
+            DelegateMapNode node = new Enviorment.DelegateManager.DelegateMapNode();
+            node.Adapter = new MethodDelegateAdapter<T1, T2, T3, T4, T5>();
+            node.ParameterTypes = new Type[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) };
+            methods.Add(node);
+            RegisterDelegateConvertor<Action<T1, T2, T3, T4, T5>>(defaultConverter);
+        }
+
         public void RegisterFunctionDelegate<TResult>()
         {
             DelegateMapNode node = new Enviorment.DelegateManager.DelegateMapNode();
@@ -120,6 +129,15 @@ namespace ILRuntime.Runtime.Enviorment
             node.ParameterTypes = new Type[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(TResult) };
             functions.Add(node);
             RegisterDelegateConvertor<Func<T1, T2, T3, T4, TResult>>(defaultConverter);
+        }
+
+        public void RegisterFunctionDelegate<T1, T2, T3, T4, T5, TResult>()
+        {
+            DelegateMapNode node = new Enviorment.DelegateManager.DelegateMapNode();
+            node.Adapter = new FunctionDelegateAdapter<T1, T2, T3, T4, T5, TResult>();
+            node.ParameterTypes = new Type[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(TResult) };
+            functions.Add(node);
+            RegisterDelegateConvertor<Func<T1, T2, T3, T4, T5, TResult>>(defaultConverter);
         }
 
         internal Delegate ConvertToDelegate(Type clrDelegateType, IDelegateAdapter adapter)

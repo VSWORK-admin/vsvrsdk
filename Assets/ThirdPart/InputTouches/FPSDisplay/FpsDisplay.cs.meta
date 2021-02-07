@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: eff8f89bad5a8ff4c8173f0b9016729b
+labels:
+- InputTouches
+- Touch
+- Input
+- Gesture
+- mobile
+- swipe
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

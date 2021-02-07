@@ -59,6 +59,16 @@ public class WsAvatarFrame
     }
 }
 
+public class PoseFrameJian
+{
+    public Vector3 hp;
+    public Quaternion hr;
+    public Vector3 hlp;
+    public Quaternion hlr;
+    public Vector3 hrp;
+    public Quaternion hrr;
+};
+
 [Serializable]
 public class WsAvatarFrameJian
 {
@@ -76,22 +86,6 @@ public class WsAvatarFrameJian
     public PoseFrameJian cp;//CurPose
     public string cl;
 }
-
-
-
-[Serializable]
-public class PoseFrameJian
-{
-    public Vector3 hp;
-    public Quaternion hr;
-    public Vector3 hlp;
-    public Quaternion hlr;
-    public Vector3 hrp;
-    public Quaternion hrr;
-};
-
-
-
 
 [Serializable]
 public class WsAvatarFrameList
@@ -442,6 +436,9 @@ public enum VROrderName
     fpsoff,
     cscene,
     cfile,
+    cavatar,
+    csystem,
+    clogin,
     selon,
     seloff,
     selopen,
@@ -616,7 +613,7 @@ public class VRUtils
 
         public static bool IsMOV(string ext)
     {
-        if (ext == "mov" || ext == "MOV" || ext == "mp4" || ext == "mkv")
+        if (ext == "mov" || ext == "MOV" || ext == "mp4" || ext == "mkv"|| ext == "m4v")
         {
             return true;
         }
@@ -660,6 +657,14 @@ public class VRUtils
 
     public static bool IsVrOrder(string ext){
         if(ext == "order"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+     public static bool IsPDF(string ext){
+        if(ext == "pdf"){
             return true;
         }else{
             return false;

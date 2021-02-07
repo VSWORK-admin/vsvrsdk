@@ -18,6 +18,11 @@ public class mStaticThings : MonoBehaviour
     public Transform LaserPoint;
     public Transform trackfix;
     public string now_ServerURL = "vr.vswork.vip";
+    public string sub_ServerURL = "eyouar.com";
+    public static string apiversion = "api2";
+    public static string userversion = "user2";
+    public static string serverhttp = "https://";
+    public static string urltokenfix = "";
     public string now_phone;
     public string now_pass;
     public string now_groupid;
@@ -94,6 +99,9 @@ public class mStaticThings : MonoBehaviour
     public List<bool> movingmarklist = new List<bool>();
     public string DeviceSNnumber;
     public string nowpencolor = "";
+    public bool IsUpdateDone = false;
+    public string GrouplinkedroomID ="";
+    public bool FirstLoadGroupRoom = true;
 
     public static mStaticThings I
     {

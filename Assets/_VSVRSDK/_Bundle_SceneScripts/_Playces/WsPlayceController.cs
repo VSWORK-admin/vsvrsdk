@@ -11,6 +11,7 @@ public class WsPlayceController : MonoBehaviour
 
     bool PlayceEnabled = false;
     VRPlayceDot[] vpdots;
+    bool isenabled = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class WsPlayceController : MonoBehaviour
         MessageDispatcher.AddListener(VrDispMessageType.DestroyWsAvatar.ToString(), DestroyWsAvatar);
         MessageDispatcher.AddListener(VrDispMessageType.SceneFirstConnectWS.ToString(), SceneFirstConnectWS);
         vpdots = GetComponentsInChildren<VRPlayceDot>();
+
 
         EnablePlaycesRender(false);
 
@@ -178,6 +180,7 @@ public class WsPlayceController : MonoBehaviour
 
     private void OnDestroy()
     {
+        isenabled = false;
         MessageDispatcher.RemoveListener(VrDispMessageType.VRPlaycePort.ToString(), VRPlaycePort);
         MessageDispatcher.RemoveListener(WsMessageType.RecievePlaceMark.ToString(), RecievePlaceMark);
         MessageDispatcher.RemoveListener(VrDispMessageType.AllPlaceTo.ToString(), AllPlaceTo);
@@ -290,6 +293,9 @@ public class WsPlayceController : MonoBehaviour
 
     void EnablePlaycesRender(bool enabled)
     {
+        if(!isenabled){
+            return;
+        }
         MeshRenderer[] ms = GetComponentsInChildren<MeshRenderer>();
         foreach (var item in ms)
         {
@@ -597,8 +603,11 @@ public class WsPlayceController : MonoBehaviour
         //Debug.LogWarning(wpm.id + "      " + mStaticThings.I.mWsID);
         if (wpm.id == mStaticThings.I.mAvatarID)
         {
+            if(mStaticThings.I.MainVRROOT == null){
+                return;
+            }
             bool ccenabled = false;
-            if(mStaticThings.I.MainVRROOT.GetComponent<CharacterController>()){
+            if( mStaticThings.I.MainVRROOT.GetComponent<CharacterController>()){
                 if(mStaticThings.I.MainVRROOT.GetComponent<CharacterController>().enabled){
                     ccenabled  =true;
                     mStaticThings.I.MainVRROOT.GetComponent<CharacterController>().enabled = false;

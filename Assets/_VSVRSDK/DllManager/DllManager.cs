@@ -77,8 +77,8 @@ public class DllManager : MonoBehaviour
         ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
 
         RegisterAdapter();
-		
-		RegisterDelegate();
+
+        RegisterDelegate();
     }
 
     unsafe void OnDllLoaded()
@@ -92,8 +92,8 @@ public class DllManager : MonoBehaviour
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         appdomain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
     }
-	
-	private void RegisterDelegate()
+
+    private void RegisterDelegate()
     {
         appdomain.DelegateManager.RegisterMethodDelegate<com.ootii.Messages.IMessage>();
 
@@ -110,6 +110,188 @@ public class DllManager : MonoBehaviour
             return new DG.Tweening.TweenCallback(() =>
             {
                 ((Action)act)();
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
+        appdomain.DelegateManager.RegisterMethodDelegate<ChargedInfo>();
+        appdomain.DelegateManager.RegisterMethodDelegate<DragInfo>();
+        appdomain.DelegateManager.RegisterMethodDelegate<SwipeInfo>();
+        appdomain.DelegateManager.RegisterMethodDelegate<PinchInfo>();
+        appdomain.DelegateManager.RegisterMethodDelegate<RotateInfo>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MultiTapHandler>((act) =>
+        {
+            return new IT_Gesture.MultiTapHandler((tap) =>
+            {
+                ((Action<Tap>)act)(tap);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.LongTapHandler>((act) =>
+        {
+            return new IT_Gesture.LongTapHandler((tap) =>
+            {
+                ((Action<Tap>)act)(tap);
+            });
+        });
+
+
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.ChargeStartHandler>((act) =>
+        {
+            return new IT_Gesture.ChargeStartHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.ChargingHandler>((act) =>
+        {
+            return new IT_Gesture.ChargingHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.ChargeEndHandler>((act) =>
+        {
+            return new IT_Gesture.ChargeEndHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DraggingStartHandler>((act) =>
+        {
+            return new IT_Gesture.DraggingStartHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DraggingHandler>((act) =>
+        {
+            return new IT_Gesture.DraggingHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DraggingEndHandler>((act) =>
+        {
+            return new IT_Gesture.DraggingEndHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFMultiTapHandler>((act) =>
+        {
+            return new IT_Gesture.MFMultiTapHandler((cInfo) =>
+            {
+                ((Action<Tap>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFLongTapHandler>((act) =>
+        {
+            return new IT_Gesture.MFLongTapHandler((cInfo) =>
+            {
+                ((Action<Tap>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFChargeStartHandler>((act) =>
+        {
+            return new IT_Gesture.MFChargeStartHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFChargingHandler>((act) =>
+        {
+            return new IT_Gesture.MFChargingHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFChargeEndHandler>((act) =>
+        {
+            return new IT_Gesture.MFChargeEndHandler((cInfo) =>
+            {
+                ((Action<ChargedInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFDraggingStartHandler>((act) =>
+        {
+            return new IT_Gesture.MFDraggingStartHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFDraggingHandler>((act) =>
+        {
+            return new IT_Gesture.MFDraggingHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MFDraggingEndHandler>((act) =>
+        {
+            return new IT_Gesture.MFDraggingEndHandler((cInfo) =>
+            {
+                ((Action<DragInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.SwipeStartHandler>((act) =>
+        {
+            return new IT_Gesture.SwipeStartHandler((cInfo) =>
+            {
+                ((Action<SwipeInfo>)act)(cInfo);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.SwipingHandler>((act) =>
+        {
+            return new IT_Gesture.SwipingHandler((cInfo) =>
+            {
+                ((Action<SwipeInfo>)act)(cInfo);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.SwipeEndHandler>((act) =>
+        {
+            return new IT_Gesture.SwipeEndHandler((cInfo) =>
+            {
+                ((Action<SwipeInfo>)act)(cInfo);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.SwipeHandler>((act) =>
+        {
+            return new IT_Gesture.SwipeHandler((cInfo) =>
+            {
+                ((Action<SwipeInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.PinchHandler>((act) =>
+        {
+            return new IT_Gesture.PinchHandler((cInfo) =>
+            {
+                ((Action<PinchInfo>)act)(cInfo);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.RotateHandler>((act) =>
+        {
+            return new IT_Gesture.RotateHandler((cInfo) =>
+            {
+                ((Action<RotateInfo>)act)(cInfo);
             });
         });
     }

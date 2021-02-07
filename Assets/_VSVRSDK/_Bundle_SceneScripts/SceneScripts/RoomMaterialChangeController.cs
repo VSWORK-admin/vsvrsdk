@@ -30,7 +30,7 @@ public class RoomMaterialChangeController : MonoBehaviour
     void RecieveChangeObj(IMessage msg)
     {
         WsChangeInfo newtchangeinfo = (WsChangeInfo)msg.Data;
-        Debug.LogWarning("ChangeObj :  " + newtchangeinfo.name + "   To : " + newtchangeinfo.changenum);
+        //Debug.LogWarning("ChangeObj :  " + newtchangeinfo.name + "   To : " + newtchangeinfo.changenum);
         if (newtchangeinfo.id != mStaticThings.I.mAvatarID)
         {
             if (newtchangeinfo.name == gameObject.name)
