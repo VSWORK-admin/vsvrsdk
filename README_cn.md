@@ -148,10 +148,15 @@ Virtual Reality Supported : False
 ###### 5.2. 资源检查
 > 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
 ###### 5.3. 打包平台选择
->Android平台所需场景文件 需要在AssetBundle Browser 中 BuildTartget 设置为 **Android**
->iOS 平台需要设置为 **iOS**
->Window平台运行场景需要设置为 **Standalone Windows**
->MacOS 平台运行需要设置为  **Standalone OSX Universal**
+
+- Android平台所需场景文件 需要在AssetBundle Browser 中 BuildTartget 设置为 **Android**
+
+- iOS 平台需要设置为 **iOS**
+
+- Window平台运行场景需要设置为 **Standalone Windows**
+
+- MacOS 平台运行需要设置为  **Standalone OSX Universal**
+
 **建议打开Unity的CacheServer ： Edit -> Preferences -> CacheServer -> Cache Server Mode  选择 Local， 以避免平台的切换导致的资源重复加载，节省不同平台assetbundle在同一个工程打包的时间。**
 ###### 5.4. 多人调试和使用
 > 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 

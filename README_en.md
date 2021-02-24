@@ -147,10 +147,13 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 ###### 5.2. Resource check
 > Open Window -> AssetBundle Browser to sort by Size, check to avoid redundant files and too large files (mainly too large images, you need to use external image editing software to change the image format, if there is an Alpha channel, it is recommended to change to png format, If there is no Alpha channel, it is recommended to change to jpg format)
 ###### 5.3. Packaging platform selection
->The scene file required by the Android platform needs to be set to **Android** on the Build Target of AssetBundle Browser.
->The running scene of the iOS platform needs to be set to **iOS**.
->The running scene of the Window platform needs to be set to **Standalone Windows**.
->The running scene of the MacOS platform needs to be set to **Standalone OSX Universal**.
+- The scene file required by the Android platform needs to be set to **Android** on the Build Target of AssetBundle Browser.
+
+- The running scene of the iOS platform needs to be set to **iOS**.
+
+- The running scene of the Window platform needs to be set to **Standalone Windows**.
+
+- The running scene of the MacOS platform needs to be set to **Standalone OSX Universal**.
 
 **It is recommended to open Unity's CacheServer: Edit -> Preferences -> CacheServer -> Cache Server Mode and select Local to avoid repeated loading of resources caused by platform switching, and save the time for assetbundles of different platforms to be packaged in the same project.**
 ###### 5.4. Multi-person debugging and use
