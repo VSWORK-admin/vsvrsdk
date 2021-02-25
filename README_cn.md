@@ -77,6 +77,10 @@ Virtual Reality Supported : False
 
 Windows:
 ```
+## Build Setting -> 
+TargetPlatform : Windows
+Architecture : x86_64 
+
 ## PlayerSetting -> OtherSettings: 
 ColorSpace : Linear
 AutoGraphics API for Windows : True 
@@ -92,6 +96,9 @@ Stereo Rendering Mode : SinglePass
 
 macOS:
 ```
+## Build Setting -> 
+TargetPlatform : Mac OS X
+
 ## PlayerSetting -> OtherSettings: 
 ColorSpace : Linear
 AutoGraphics API for Mac : True
@@ -162,13 +169,15 @@ Virtual Reality Supported : False
 > 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
 ```
 # LWRP 渲染管线 :  
-    安卓 : a_  (覆盖设备包括 ：Oculus quest， pico neo2， pico G2 ， 安卓手机端)
+    安卓 : a_  (覆盖设备包括 ：Oculus quest， pico neo2， pico G2 ，baidu VR ，IQUT VR, HTC Vive focus ， 安卓手机端)
+    iOS : i_  （覆盖设备包括 ：iphone ，ipad） 
     Windows : w_  （覆盖设备包括 ：Oculus Rift S , HTC VIVE， WMR ，Window 桌面端） 
+    MAC OS : m_  （覆盖设备包括 ：Mac OS 桌面端）
 # Unity Standard 渲染管线 ：
     安卓 ： b_ (覆盖设备包括 ： 华为VR眼镜)
 
 例如 ： 如果需要为华为VR眼镜打包，则需要在Standard 渲染管线设置场景，打包资源包名称 为  ceshi.scene, 则需要上传至资源管理器后台的资源包名称需加上前缀为 ： b_ceshi.scene
-如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   b_ceshi.scene   w_ceshi.scene
+如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   b_ceshi.scene   w_ceshi.scene   m_ceshi.scene
 ```
 
 

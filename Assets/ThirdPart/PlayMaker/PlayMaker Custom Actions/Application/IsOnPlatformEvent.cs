@@ -128,18 +128,7 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_IPHONE || UNITY_IOS
-					if (Enum.Equals(platforms[i],PlatformDependentFlags.UNITY_IPHONE ) )
-					{
-						UnityEngine.Debug.Log("---------- WE FIRE "+onEvent.Name);
-						 isOnIPhone = true;
-						return;
-					}
-					if( Enum.Equals(platforms[i],PlatformDependentFlags.UNITY_IOS ) )
-					{
-						UnityEngine.Debug.Log("---------- WE FIRE "+onEvent.Name);
-						 isOnIOS = true;
-						return;
-					}
+
 #endif
 
 #if UNITY_ANDROID

@@ -78,6 +78,10 @@ Virtual Reality Supported : False
 
 Windows:
 ```
+## Build Setting -> 
+TargetPlatform : Windows
+Architecture : x86_64 
+
 ## PlayerSetting -> OtherSettings: 
 ColorSpace : Linear
 AutoGraphics API for Windows : True 
@@ -93,6 +97,9 @@ Stereo Rendering Mode : SinglePass
 
 macOS:
 ```
+## Build Setting -> 
+TargetPlatform : Mac OS X
+
 ## PlayerSetting -> OtherSettings: 
 ColorSpace : Linear
 AutoGraphics API for Mac : True
@@ -160,8 +167,10 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 > Before uploading to the resource management background, you need to set the file name prefix for the bundle files required by different platforms
 ```
 # LWRP rendering pipeline:
-     Android: a_ (covered devices include: Oculus quest, pico neo2, pico G2, Android mobile terminal)
+     Android: a_ (covered devices include: Oculus quest, pico neo2, pico G2 ，baidu VR ，IQUT VR, HTC Vive focus, Android mobile terminal)
+     iOS: i_ (covered devices include: iPhone ， iPAD)
      Windows: w_ (covered devices include: Oculus Rift S, HTC VIVE, WMR, Window desktop)
+     MAC OS: m_ (covered devices include: Mac OS desktop)
 # Unity Standard rendering pipeline:
      Android: b_ (covered devices include: Huawei VR glasses)
 
