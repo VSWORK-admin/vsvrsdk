@@ -242,6 +242,17 @@ Input Event ： 探测的VR Input 事件 触发后执行的 Event
 Rcieved 2D Axis ：摇杆改变时返回 摇杆的2D位置
 Rcieved 1D Axis ： 握持键 和 扳机键 按动时返回 1D位置
 ```
+#### EventCustomVRInputRouter  ```事件```：VR Input 事件路由
+>使用示例：手柄按钮    头盔戴上取下等事件，比如使用摇杆左右控制某个UI切换下一页，头盔摘下后背景音乐声音变小 ，手柄抓握移动物体等
+```
+InputType： 需要探测的VR Input事件
+
+Message Object ： 用来接收信息的物体
+Fsm 2D Axis Name：摇杆改变时返回 摇杆的2D位置 的变量名称
+Fsm 1D Axis Name： 握持键 和 扳机键 按动时返回 1D位置 的变量名称
+Fsm Event Name： 触发事件的名称
+```
+
 #### EventPlayerPlaceChange  ```事件```：自身角色移动到位置点或位置面
 >使用实例 ： 人物移动到某个位置点时 门自动打开
 
@@ -315,7 +326,7 @@ LocalPath ：已缓存文件的的本地路径
 LocalUrl ： 已缓存文件的本地url（`File：//`+ 本地路径）
 ```
 
-#### GetUrlToLocalScene ```获取```： 通过URL缓存服务远程服务器中的场景
+#### GetUrlToLoadScene ```获取```： 通过URL缓存服务远程服务器中的场景
 >使用示例：在场景中加载另外的url链接场景
 ```
 HttpUrl : scene文件所在路径地址
@@ -326,6 +337,7 @@ HasPrefix ：是否根据设备自动获取所对应scene文件，比如 "a_xx.s
 GetLocalPath : 获取到场景成功
 GetLocalPathFaild : 获取到场景失败
 ```
+
 #### GetVRGameObjects ```获取``` ： 获取VR场景内相关参数
 >使用示例：获取左右手手柄位置，获取自己的昵称等配合其他模块完成功能
 ````
@@ -423,6 +435,15 @@ Server ： 远程服务器地址ID ： 场景ID
 IsNowServer ： 是否使用当前登录的远程服务器
 Update ： 是否仅更新场景而不加载
 ```
+#### GetUrlToLoadScene ```获取```： 加载自定义路径场景
+```
+HttpUrl：scene 文件的url地址，填写带有“a”前缀的scene完整路径
+IsURLSign：设置是否通过urltxt定义版本签名文件
+Sign ：版本签名，如果IsURLSign 勾选 则填写 txt文件的url完整路径
+SceneName ： 场景名称
+HasPrefix ：是否按不同平台加载不同的scene ，默认需要勾选
+```
+
 #### SetMaterialTextrueEveryFrame ```设置``` ： 每一帧为物体改变贴图，配合 RecieveBigScreenVideoPlayer 将视频播放的Texture更新到物体上
 #### SetVRBigScreen ```设置``` ： 将大屏幕其替换到某个位置
 #### SetVRInputField ```设置``` ： 将某个UI的InputField 设置为输入状态
@@ -454,9 +475,16 @@ FrameSend ： 发送帧速率	1 ： 以最高帧率发送 2： 以一半的帧�
 
 #### SetVRGameObject ```设置``` ：设置自身VR信息
 ```
-Aid  ： 设置角色ID
-Name ：改变头部名牌名称
-Hideavatar : 隐藏角色
+Aid  ： 设置角色ID  1. 字段可以设置为后台提供的字符串id 2. 字段可设置为 http 开头的 glb角色的完整路径并在glb后面添加配置参数
+    参数格式为：  ?info="glb角色类型"_"版本信息"_"头部的类型"  
+    glb角色类型 ： 1：半身角色  2:全身角色  t:任意glb模型
+    版本信息 : 填写不同的版本字符串 会重新缓存角色
+    头部类型 ：0：glb零点在地面  1：glb零点在头部，但只在y轴旋转 2：glb零点在头部，且旋转完全跟随头部
+    如果不更改则置空
+Name ：改变头部名牌名称，如果不更改则置空
+Hideavatar : 是否隐藏角色
+SetColor ： 是否改变画笔和激光笔颜色
+Pencolor ： 画笔的颜色
 ```
 #### SendChangeAvatar ```网络发送```  ： 向服务器发送 自身VR信息，与SetVRGameObject结合使用
 #### SetVRObjLoadPosition ```设置``` ：设置glb 场景和glb物体加载的位置
@@ -470,4 +498,23 @@ Url : string  视频流地址，或 远程视频地址 或缓存完成的视频�
 Vol ：float   声音大小 范围 0 - 100
 Isloop ： bool  是否循环播放（若是视频流则不勾选此项）
 Autostart : bool  是否自动播放 （如果不勾选自动播放，则视频只会Prepare准备，可以使用向ContorlObj发送SendMessage 消息来控制播放）
+```
+
+#### SetChanelChRoomID ```设置``` ：设置一个动作频道
+```
+ChRoomID ： 设置一个2-4位小写字母的一个roomid 如：“aa”，“abcd”， 如果此字段为空 则会进入 初始roomid
+```
+#### SetVoiceExRoomID ```设置``` ：设置一个语音频道
+```
+ExRoomID ： 设置一个2-4位小写字母的一个ExRoomID 如：“aa”，“abcd”， 如果此字段为空 则会进入 初始语音roomid
+```
+#### SetVoiceRoomExit ```设置``` ：退出语音频道
+```
+ExRoomID ： 设置一个2-4位小写字母的一个ExRoomID 如：“aa”，“abcd”， 如果此字段为空 则会进入 初始语音roomid
+```
+
+#### SetRootChanelChRoomID ```设置``` ：设置进入新的Root频道
+```
+RootRoomID ： 设置后台提供的RootRoomID
+RootVoiceID： 设置后台提供的RootVoiceID
 ```

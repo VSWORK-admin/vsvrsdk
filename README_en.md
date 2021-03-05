@@ -241,6 +241,17 @@ Input Event: The detected VR Input event is triggered and executed
 Rcieved 2D Axis: Return to the 2D position of the joystick when the joystick is changed
 Rcieved 1D Axis: Hold key and trigger key to return to 1D position when pressed
 ```
+#### EventCustomVRInputRouter ```Event```: VR Input event routing
+>Usage example: handle button, helmet on and off events, such as using the joystick to control a certain UI to switch to the next page, the background music sound becomes smaller after the helmet is removed, and the handle grips moving objects, etc.
+```
+InputType: VR Input event to be detected
+
+Message Object: The object used to receive information
+Fsm 2D Axis Name: The variable name that returns to the 2D position of the joystick when the joystick is changed
+Fsm 1D Axis Name: The name of the variable that returns to the 1D position when the hold key and trigger key are pressed
+Fsm Event Name: The name of the trigger event
+```
+
 #### EventPlayerPlaceChange ```Event```: own character moves to a location point or location surface
 >Use case: the door opens automatically when the character moves to a certain position
 
@@ -313,7 +324,7 @@ LocalPath: The local path of the cached file
 LocalUrl: The local url of the cached file (`File: //`+ local path)
 ```
 
-#### GetUrlToLocalScene ```Get```: Serving the scene in the remote server through URL cache
+#### GetUrlToLoadScene ```Get```: Serving scenes in remote servers through URL cache
 >Use example: Load another url link scene in the scene
 ```
 HttpUrl: The path address where the scene file is located
@@ -452,10 +463,18 @@ FrameSend: send frame rate 1: send at the highest frame rate 2: send at half the
 
 #### SetVRGameObject ```Settings```: Set your own VR information
 ```
-Aid: Set the role ID
-Name: Change the name of the head brand name
-Hideavatar: hide characters
+Aid: Set the role ID 1. The field can be set to the string id provided by the backend 2. The field can be set to the full path of the glb role starting with http and add configuration parameters after glb
+     The parameter format is: ?info="glb role type"_"version information"_"head type"
+     Glb role type: 1: half-length role 2: full-body role t: any glb model
+     Version information: Fill in a different version string and the role will be cached again
+     Head type: 0: glb zero point is on the ground 1: glb zero point is on the head, but only rotates on the y axis 2: glb zero point is on the head, and the rotation completely follows the head
+     Leave blank if not changed
+Name: Change the name of the head brand name, if you don’t change it, leave it blank
+Hideavatar: Whether to hide the character
+SetColor: Whether to change the color of the pen and laser pointer
+Pencolor: the color of the pen
 ```
+
 #### SendChangeAvatar ```Send on the Internet```: Send your own VR information to the server, used in conjunction with SetVRGameObject
 #### SetVRObjLoadPosition ```Settings```: Set the position of glb scene and glb object loading
 #### SetVRSystemMenuEnable ```Settings```: Set the display and hiding of the system menu
@@ -468,4 +487,22 @@ Url: string video stream address, or remote video address or local path address 
 Vol: Float sound size range 0-100
 Isloop: bool whether to play in a loop (if it is a video stream, uncheck this item)
 Autostart: bool whether to play automatically (if you don’t check auto play, the video will only be prepared by Prepare, you can use SendMessage to ContorlObj to control playback)
+```
+#### SetChanelChRoomID ```Settings```: Set an action channel
+```
+ChRoomID: Set a roomid with 2-4 lowercase letters, such as: "aa", "abcd", if this field is empty, it will enter the initial roomid
+```
+#### SetVoiceExRoomID ```Settings```: Set a voice channel
+```
+ExRoomID: Set an ExRoomID with 2-4 lowercase letters, such as: "aa", "abcd", if this field is empty, it will enter the initial voice roomid
+```
+#### SetVoiceRoomExit ```Settings```: Exit the voice channel
+```
+ExRoomID: Set an ExRoomID with 2-4 lowercase letters, such as: "aa", "abcd", if this field is empty, it will enter the initial voice roomid
+```
+
+#### SetRootChanelChRoomID ```Settings```: Set to enter a new Root channel
+```
+RootRoomID: Set the RootRoomID provided by the background
+RootVoiceID: Set the RootVoiceID provided by the background
 ```
