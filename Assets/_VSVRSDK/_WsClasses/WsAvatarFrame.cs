@@ -17,6 +17,21 @@ public enum LanguageType : byte
     Chinese,
     Korean,
     Japanese,
+    LangA,
+    LangB,
+    LangC,
+    LangD,
+    LangE,
+    LangF,
+    langG,
+    langH,
+    langI,
+    langJ,
+    langK,
+    langL,
+    langM,
+
+    langN
     
 }
 

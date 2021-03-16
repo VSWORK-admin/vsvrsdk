@@ -90,10 +90,11 @@ public enum VrDispMessageType
     KODGetOneScene,
     KODGetOneMov,
     KODGetOneVROrder,
+    KODGetOneVROrderString,
     KODGetOneGlb,
     KODGetOneTxt,
      KODGetOnePDF,
-    KODGetOneLikOrder,
+    KODGetOneLinkOrder,
     KODGetOneCacheOrder,
     KODGetTxtString,
     KODGetPDFPath,
@@ -155,7 +156,9 @@ public enum VrDispMessageType
     LoadGlbModels,
     LoadGlbModelsDone,
     AvatarSpeakStatusChange,
-    OpenAPKByPackagename
+    OpenAPKByPackagename,
+    CustomLocalMessage,
+    SetDeviceAutoport
 }
 
 

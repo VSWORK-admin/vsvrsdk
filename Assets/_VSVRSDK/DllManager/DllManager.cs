@@ -113,12 +113,38 @@ public class DllManager : MonoBehaviour
             });
         });
 
+        appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
         appdomain.DelegateManager.RegisterMethodDelegate<ChargedInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<DragInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<SwipeInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<PinchInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<RotateInfo>();
+
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.ShortTapHandler>((act) =>
+        {
+            return new IT_Gesture.ShortTapHandler((tap) =>
+            {
+                ((Action<Vector2>)act)(tap);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction(() =>
+            {
+                ((Action)act)();
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
+        {
+            return new IT_Gesture.DoubleTapHandler((tap) =>
+            {
+                ((Action<Vector2>)act)(tap);
+            });
+        });
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.MultiTapHandler>((act) =>
         {
