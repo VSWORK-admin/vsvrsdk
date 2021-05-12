@@ -26,6 +26,7 @@ ExportedObj/
 *.unityproj
 *.suo
 *.tmp
+
 *.user
 *.userprefs
 *.pidb
@@ -46,6 +47,8 @@ sysinfo.txt
 
 # Builds
 *.apk
+/*.csproj
+/*.sln
 
 # Crashlytics generated file
 crashlytics-build.properties
