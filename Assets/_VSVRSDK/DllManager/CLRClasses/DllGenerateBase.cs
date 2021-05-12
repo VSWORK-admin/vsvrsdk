@@ -57,14 +57,14 @@ public class DllGenerateBase
     {
 
     }
-    // public virtual void OnApplicationFocus(bool focus)
-    // {
+    public virtual void OnApplicationFocus(bool focus)
+    {
 
-    // }
-    // public virtual void OnApplicationPause(bool pause)
-    // {
+    }
+    public virtual void OnApplicationPause(bool pause)
+    {
 
-    // }
+    }
     public virtual void OnApplicationQuit()
     {
 

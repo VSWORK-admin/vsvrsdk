@@ -4,12 +4,16 @@ using UnityEngine;
 using com.ootii.Messages;
 public class ControllingObjectMark : MonoBehaviour
 {
-    Vector3 startscale;
-    Quaternion startrotation;
-    Vector3 startposition;
+    public Vector3 startscale;
+    public Quaternion startrotation;
+    public Vector3 startposition;
     void Start()
     {
         MessageDispatcher.AddListener(WsMessageType.RecieveMovingObj.ToString(), RecieveMovingObj);
+        SaveRTS();
+    }
+
+    public void SaveRTS(){
         startscale = transform.localScale;
         startrotation = transform.localRotation;
         startposition = transform.localPosition;

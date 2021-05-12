@@ -698,7 +698,7 @@ namespace ILRuntime.Runtime.Enviorment
         public bool CheckShouldInvokeBase(ILTypeInstance ins)
         {
             EnsureMethod(ins);
-            return method == null || invoking;
+           return method == null || method is CLRMethod || invoking;
         }
 
         protected void EnsureMethod(ILTypeInstance ins)

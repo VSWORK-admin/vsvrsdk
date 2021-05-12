@@ -148,20 +148,20 @@ public class GeneralDllBehavior : MonoBehaviour
             GenClass.OnAnimatorIK(layerIndex);
         }
     }
-    //private void OnApplicationFocus(bool focus)
-    //{
-    //    if (GenClass != null)
-    //    {
-    //        GenClass.OnApplicationFocus(focus);
-    //    }
-    //}
-    // private void OnApplicationPause(bool pause)
-    // {
-    //     if (GenClass != null)
-    //     {
-    //         GenClass.OnApplicationPause(pause);
-    //     }
-    // }
+    private void OnApplicationFocus(bool focus)
+    {
+       if (GenClass != null)
+       {
+           GenClass.OnApplicationFocus(focus);
+       }
+    }
+    private void OnApplicationPause(bool pause)
+    {
+        if (GenClass != null)
+        {
+            GenClass.OnApplicationPause(pause);
+        }
+    }
     private void OnApplicationQuit()
     {
         if (GenClass != null)

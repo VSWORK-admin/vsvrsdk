@@ -68,6 +68,7 @@ namespace ILRuntimeAdapter
         CrossBindingMethodInfo mOnWillRenderObject_58 = new CrossBindingMethodInfo("OnWillRenderObject");
         CrossBindingMethodInfo mOnServerInitialized_59 = new CrossBindingMethodInfo("OnServerInitialized");
         CrossBindingMethodInfo mOnDrawGizmosSelected_60 = new CrossBindingMethodInfo("OnDrawGizmosSelected");
+        CrossBindingMethodInfo<System.Boolean> mOnApplicationFocus_61 = new CrossBindingMethodInfo<System.Boolean>("OnApplicationFocus");
 
         static DllGenerateBaseAdapter Instance = null;
         public DllGenerateBaseAdapter()
@@ -208,14 +209,21 @@ namespace ILRuntimeAdapter
                 else
                     Instance.mOnAnimatorIK_11.Invoke(this.instance, layerIndex);
             }
+            public override void OnApplicationFocus(System.Boolean focus)
+            {
+                if (Instance.mOnApplicationFocus_61.CheckShouldInvokeBase(this.instance))
+                    base.OnApplicationFocus(focus);
+                else
+                    Instance.mOnApplicationFocus_61.Invoke(this.instance, focus);
+            }
 
-            // public override void OnApplicationPause(System.Boolean pause)
-            // {
-            //     if (mOnApplicationPause_12.CheckShouldInvokeBase(this.instance))
-            //         base.OnApplicationPause(pause);
-            //     else
-            //         mOnApplicationPause_12.Invoke(this.instance, pause);
-            // }
+            public override void OnApplicationPause(System.Boolean pause)
+            {
+                if (Instance.mOnApplicationPause_12.CheckShouldInvokeBase(this.instance))
+                    base.OnApplicationPause(pause);
+                else
+                    Instance.mOnApplicationPause_12.Invoke(this.instance, pause);
+            }
 
             public override void OnApplicationQuit()
             {

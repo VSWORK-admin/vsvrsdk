@@ -1122,8 +1122,10 @@ namespace ILRuntime.Runtime.Enviorment
                 ILIntepreter inteptreter = RequestILIntepreter();
                 return new InvocationContext(inteptreter, (ILMethod)m);
             }
-            else
-                throw new NotSupportedException("Cannot invoke CLRMethod");
+            else               
+            {
+                throw new NotSupportedException("Cannot invoke CLRMethod : " + m.Name);
+            }
         }
         internal IMethod GetMethod(object token, ILType contextType, ILMethod contextMethod, out bool invalidToken)
         {
