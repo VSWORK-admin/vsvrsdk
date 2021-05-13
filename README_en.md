@@ -11,9 +11,7 @@
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
 ###### 2.1.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
-> Git ：https://gitee.com/vswork_admin/vsvrsdk.git
-> Svn： svn://gitee.com/vswork_admin/vsvrsdk
-> zip： https://gitee.com/vswork_admin/vsvrsdk
+https://gitee.com/vswork_admin/vsvrsdk.git
 
 ## 2、Settings of Android and Windows in unity：
 
