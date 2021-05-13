@@ -5,39 +5,16 @@
 ###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址:
 > gitee.com : https://gitee.com/vswork_admin/vsvrdll
-
-> github.com : https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 角色制作
 > gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
 
-> github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
-
 ### 2. VSVRSDK 环境搭建
-#### 2.1 方式 A   
 ###### 2.1.1  注册并登录 gitee.com ,   Git 或 svn 获取 或直接下载 zip工程包
 > Git ：https://gitee.com/vswork_admin/vsvrsdk.git
 
 > Svn： svn://gitee.com/vswork_admin/vsvrsdk
 
 > zip： https://gitee.com/vswork_admin/vsvrsdk
-###### 2.1.2  注册并登录 github.com  check sdk工程
-> https://github.com/VSWORK-admin/vsvrsdk
-
-#### 2.2 方式 B    
-手动部署
-###### 2.2.1. 新建空工程
-###### 2.2.2. 插件 package manager 中 添加插件 ：
-```
-LightweightRP
-Asset Bundle Browser
-```
-###### 2.2.3. 设置渲染管线：
-Project Settings ： Scriptable Render Pipeline Settings 中 创建 LWRP 设置
-###### 2.2.4. 先导入第三方插件 然后导入   VSVR_SDK：
-
- >  必须导入的第三方插件 ： DOTween Pro、Event System - Dispatcher、 Playmaker  、Playmaker_CustomActions （PlayMaker第三方接口）
-
- >  可按需导入的第三方插件 ： BlendShape 、FinalIK、MagicaCloth、PathFinding，Unity Timeline ShaderGraph 
 
 ## 二、 unity3d 的 安卓 和 Windows设置：
 

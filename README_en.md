@@ -5,40 +5,15 @@
 ###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
 ###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on:
 > gitee.com : https://gitee.com/vswork_admin/vsvrdll
-
-> github.com : https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 AvatarMaker Project:
 > gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
-
-> github.com : https://github.com/VSWORK-admin/vsvr_avatarmaker
 
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
 ###### 2.1.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
 > Git ：https://gitee.com/vswork_admin/vsvrsdk.git
-
 > Svn： svn://gitee.com/vswork_admin/vsvrsdk
-
 > zip： https://gitee.com/vswork_admin/vsvrsdk
-
-###### 2.1.2  Check the sdk project on Github
-> https://github.com/VSWORK-admin/vsvrsdk
-
-#### 2.2 Type B    
-
-###### 2.2.1. New empty unity project
-###### 2.2.2. add plugins in package manager  ：
-```
-LightweightRP
-Asset Bundle Browser
-```
-###### 2.2.3. Set up the rendering pipeline：
-Project Settings ：Add Scriptable Render Pipeline Settings in Project
-###### 2.2.4. Import third-party plugins first, then import   VSVR_SDK：
-
- >  Third-party plugins that must be imported ： DOTween Pro、Event System - Dispatcher、 Playmaker  、Playmaker_CustomActions （PlayMaker Third party interface）
-
- >  Third-party plug-ins that can be imported on demand ： BlendShape 、FinalIK、MagicaCloth、PathFinding，Unity Timeline ShaderGraph 
 
 ## 2、Settings of Android and Windows in unity：
 
