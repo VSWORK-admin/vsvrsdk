@@ -12,7 +12,6 @@
 ###### 2.1.1  注册并登录 check到本地 或直接下载 zip工程包
 > https://gitee.com/vswork_admin/vsvrsdk.git
 
-
 ## 二、 unity3d 的 安卓 和 Windows设置：
 
 Android :
@@ -214,7 +213,7 @@ adminFalse： 支持切换为非主持人
 InputType： 需要探测的VR Input事件
 Input Event ： 探测的VR Input 事件 触发后执行的 Event 
 Rcieved 2D Axis ：摇杆改变时返回 摇杆的2D位置
-Rcieved 1D Axis ： 握持键 和 扳机键 按动时返回 1D位置
+Rcieved 1D Axis ： 握持键 和 确认键 按动时返回 1D位置
 ```
 #### EventCustomVRInputRouter  ```事件```：VR Input 事件路由
 >使用示例：手柄按钮    头盔戴上取下等事件，比如使用摇杆左右控制某个UI切换下一页，头盔摘下后背景音乐声音变小 ，手柄抓握移动物体等
@@ -223,7 +222,7 @@ InputType： 需要探测的VR Input事件
 
 Message Object ： 用来接收信息的物体
 Fsm 2D Axis Name：摇杆改变时返回 摇杆的2D位置 的变量名称
-Fsm 1D Axis Name： 握持键 和 扳机键 按动时返回 1D位置 的变量名称
+Fsm 1D Axis Name： 握持键 和 确认键 按动时返回 1D位置 的变量名称
 Fsm Event Name： 触发事件的名称
 ```
 
