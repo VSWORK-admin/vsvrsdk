@@ -3,15 +3,19 @@
 #### 1.1 unity version: use **unity2019.2.16** version
 #### 1.2 Interactive programming
 ###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
-###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on:
-> gitee.com : https://gitee.com/vswork_admin/vsvrdll
+###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on  or open  DllProject/Click_show_hideDemo::
+> https://gitee.com/vswork_admin/vsvrdll
+or
+> https://github.com/VSWORK-admin/vsvrdll
 #### 1.3 AvatarMaker Project:
 > gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
 
 ### 2. VSVRSDK Environment setup
 #### 2.1 Type A   
 ###### 2.1.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
-https://gitee.com/vswork_admin/vsvrsdk.git
+> https://gitee.com/vswork_admin/vsvrsdk
+or
+> https://github.com/VSWORK-admin/vsvrsdk
 
 ## 2、Settings of Android and Windows in unity：
 
