@@ -31,18 +31,17 @@ The code cannot directly inherit the MonoBehaviour class and must inherit the Dl
 
 #### 2.3 Generate bytecode
 ###### 2.3.1 Set generation event
-Fill in the command line of VisualStudio project ->'Dll_Project' property -> Generate event -> Event after generation
-```
-copy "$(TargetDir)$(ProjectName).dll" "$(ProjectDir)unitybytes\$(ProjectName)dll.bytes"
-copy "$(TargetDir)$(ProjectName).pdb" "$(ProjectDir)unitybytes\$(ProjectName)pdb.bytes"
-```
-
-Or change ```$(ProjectDir)unitybytes``` to the path of the scene in the Unity project directory, such as:
+In VisualStudio Project ->'Dll_Project' Properties -> Generate Event -> Post-Generation Event Command Line Fill in the absolute path of the project:
 ```
 copy "$(TargetDir)$(ProjectName).dll" "D:\vsvrsdk\Assets\Scenes\ILruntime_Example\$(ProjectName)dll.bytes"
 copy "$(TargetDir)$(ProjectName).pdb" "D:\vsvrsdk\Assets\Scenes\ILruntime_Example\$(ProjectName)pdb.bytes"
 ```
 
+Or create a ```DllProject``` folder in the root directory of the Unity project, place the project in this folder and assign the ```.bytes``` file to a relative directory such as:
+```
+copy "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\..\Assets\Scenes\ILruntime_Example\$(ProjectName)dll.bytes"
+copy "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\..\Assets\Scenes\ILruntime_Example\$(ProjectName)pdb.bytes"
+```
 ###### 2.3.1 Generate bytecode
 Solution configuration is set to ```Release```
 

@@ -31,16 +31,16 @@ public static void Main()
 
 #### 2.3 生成byte字节码
 ###### 2.3.1 设置生成事件
-在VisualStudio  项目->'Dll_Project'属性 -> 生成事件-> 生成后事件命令行 填写 
-```
-copy "$(TargetDir)$(ProjectName).dll" "$(ProjectDir)unitybytes\$(ProjectName)dll.bytes"
-copy "$(TargetDir)$(ProjectName).pdb" "$(ProjectDir)unitybytes\$(ProjectName)pdb.bytes"
-```
-
-或将 ```$(ProjectDir)unitybytes``` 改为 Unity工程目录中的场景所在路径 如：
+在VisualStudio  项目->'Dll_Project'属性 -> 生成事件-> 生成后事件命令行 填写 工程的绝对路径：
 ```
 copy "$(TargetDir)$(ProjectName).dll" "D:\vsvrsdk\Assets\Scenes\ILruntime_Example\$(ProjectName)dll.bytes"
 copy "$(TargetDir)$(ProjectName).pdb" "D:\vsvrsdk\Assets\Scenes\ILruntime_Example\$(ProjectName)pdb.bytes"
+```
+
+或在Unity工程根目录 创建 ```DllProject```  文件夹,将工程放置在此文件夹中 并将 ```.bytes``` 文件指定到 相对目录  如：
+```
+copy "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)..\..\Assets\Scenes\ILruntime_Example\$(ProjectName)dll.bytes"
+copy "$(TargetDir)$(ProjectName).pdb"  "$(SolutionDir)..\..\Assets\Scenes\ILruntime_Example\$(ProjectName)pdb.bytes"
 ```
 
 ###### 2.3.1 生成字节码
