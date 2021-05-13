@@ -51,6 +51,7 @@ copy "$(TargetDir)$(ProjectName).pdb" "D:\vsvrsdk\Assets\Scenes\ILruntime_Exampl
 
 生成后事件命令行配置为Unity工程目录中的场景所在路径 后生成的 字节码文件则自动会出现在 Unity场景所在路径内,若保持默认的  ```$(ProjectDir)unitybytes``` 则需要在生成后手动将 ```unitybytes``` 中的两个字节码文件拷贝到Unity工程内的场景所在目录。
 
+
 #### 2.4 Unity工程配置
 ###### 2.4.1 配置加载字节码
 将```DllManager.cs```组件拖入SDK场景任意物体中(**一个场景中只能存在一个```DllManager.cs```组件**),然后将```Dll_Projectdll.bytes```,```Dll_Projectpdb.bytes```分别拖入```DllAsset```,```PdbAsset```中
@@ -71,8 +72,6 @@ public List<GameObject> ShowObjs = new List<GameObject>();
 
 public override void Awake()
 {
-    base.Awake();
-
     ClickObjs.Clear();
     ShowObjs.Clear();
 
@@ -131,24 +130,21 @@ void RecieveCChangeObj(IMessage msg)
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
     MessageDispatcher.AddListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
     MessageDispatcher.RemoveListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
 }
 ```
 ###### 2.5.3 获取常用的物体
-```mStaticThings```类中有VR中常用的物体可以直接用```mStaticThins.I.xxx```单例获取
+```mStaticThings```类中有VR中常用的物体可以直接用```mStaticThins.I.xxx```单例获取，在使用之前先判断 ```mStaticThins.I```是否不为 ```null```
 
 比如在 ```Dll_Project.TestSetLeftHand```范例中，将一个球在Update中设置到左手手柄位置一直跟随：
 ```
 public override void Update()
 {
-    base.Update();
     if (mStaticThings.I != null) {
         BaseMono.ExtralDatas[0].Target.gameObject.transform.position = mStaticThings.I.LeftHand.position;
     }
@@ -161,15 +157,11 @@ public override void Update()
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
-
     MessageDispatcher.AddListener(VRPointObjEventType.VRPointClick.ToString(), GetPointEventType);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
-
     MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointClick.ToString(), GetPointEventType);
 }
 
@@ -188,15 +180,11 @@ void GetPointEventType(IMessage msg)
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
-
     MessageDispatcher.AddListener(CommonVREventType.VRRaw_RightTrigger.ToString(), GetVRInput);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
-
     MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_RightTrigger.ToString(), GetVRInput);
 }
 

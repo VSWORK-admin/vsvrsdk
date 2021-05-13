@@ -28,14 +28,11 @@ namespace Dll_Project
 
         public override void Init()
         {
-            base.Init();
-
             Debug.Log("Click_show_hideDemo Init !");
         }
 
         public override void Awake()
         {
-            base.Awake();
             Debug.Log("Click_show_hideDemo Awake !");
             ClickObjs.Clear();
             ShowObjs.Clear();
@@ -58,7 +55,6 @@ namespace Dll_Project
 
         public override void OnEnable()
         {
-            base.OnEnable();
             Debug.Log("Click_show_hideDemo OnEnable !");
             MessageDispatcher.AddListener(PointEventType.ToString(), GetPointEventType);
             MessageDispatcher.AddListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
@@ -66,8 +62,6 @@ namespace Dll_Project
 
         public override void OnDisable()
         {
-            base.OnDisable();
-
             MessageDispatcher.RemoveListener(PointEventType.ToString(), GetPointEventType);
             MessageDispatcher.RemoveListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
         }

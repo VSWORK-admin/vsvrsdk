@@ -71,8 +71,6 @@ public List<GameObject> ShowObjs = new List<GameObject>();
 
 public override void Awake()
 {
-    base.Awake();
-
     ClickObjs.Clear();
     ShowObjs.Clear();
 
@@ -131,24 +129,21 @@ Binding and unbinding receive information events:
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
     MessageDispatcher.AddListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
     MessageDispatcher.RemoveListener(WsMessageType.RecieveCChangeObj.ToString(), RecieveCChangeObj);
 }
 ```
 ###### 2.5.3 Get VR used objects
-There are objects commonly used in VR in the ```mStaticThings``` class, which can be obtained directly with ```mStaticThins.I.xxx``` singleton
+There are objects commonly used in VR in the ```mStaticThings``` class, which can be obtained directly with ```mStaticThins.I.xxx``` singleton ,please check ```mStaticThins.I``` is not ```null``` before use it
 
 For example, in the ```Dll_Project.TestSetLeftHand``` example, set a ball to the left-hand handle position in Update and follow:
 ```
 public override void Update()
 {
-    base.Update();
     if (mStaticThings.I != null) {
         BaseMono.ExtralDatas[0].Target.gameObject.transform.position = mStaticThings.I.LeftHand.position;
     }
@@ -160,15 +155,11 @@ Listen to the event whose string is "VRPointClick", and the event returns GameOb
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
-
     MessageDispatcher.AddListener(VRPointObjEventType.VRPointClick.ToString(), GetPointEventType);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
-
     MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointClick.ToString(), GetPointEventType);
 }
 
@@ -187,15 +178,11 @@ Listen to the event of ``ʻenum CommonVREventType.xxxx.ToString()```
 ```
 public override void OnEnable()
 {
-    base.OnEnable();
-
     MessageDispatcher.AddListener(CommonVREventType.VRRaw_RightTrigger.ToString(), GetVRInput);
 }
 
 public override void OnDisable()
 {
-    base.OnDisable();
-
     MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_RightTrigger.ToString(), GetVRInput);
 }
 
