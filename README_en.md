@@ -1,20 +1,10 @@
 ## 1、Environment setup
 ### 1. Development Environment
 #### 1.1 unity version: use **unity2019.2.16** version
-#### 1.2 Interactive programming
-###### 1.2.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
-###### 1.2.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project on  or open  DllProject/Click_show_hideDemo::
-> https://gitee.com/vswork_admin/vsvrdll
-
-or
-
-> https://github.com/VSWORK-admin/vsvrdll
-#### 1.3 AvatarMaker Project:
-> gitee.com : https://gitee.com/vswork_admin/vsvr_avatar
 
 ### 2. VSVRSDK Environment setup
-#### 2.1 Type A   
-###### 2.1.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
+
+#### 2.1 Register and log in gitee.com ,  use Git or svn checkout the sdk project
 > https://gitee.com/vswork_admin/vsvrsdk
 
 or
@@ -129,12 +119,23 @@ The camera will appear when the host clicks "Switch Camera", and you can use the
 ```
 Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is running, the script will automatically add ray interaction events for the child objects. If the width and height of the button are set by its parent, you need to manually add a suitable boxcollider to the button
 ```
-## 5、Scene packaging
-###### 5.1. Package name setting
+
+## 5、Interactive programming
+#### 5.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
+#### 5.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project or **DllProject/Click_show_hideDemo** in this project:
+> https://gitee.com/vswork_admin/vsvrdll
+
+or
+
+> https://github.com/VSWORK-admin/vsvrdll
+
+
+## 6、Scene packaging
+###### 6.1. Package name setting
 > Set AssetBundle for the scene that needs to be packaged ：et the name and suffix of the bundle (scene), or change the file suffix to .scene after packaging
-###### 5.2. Resource check
+###### 6.2. Resource check
 > Open Window -> AssetBundle Browser to sort by Size, check to avoid redundant files and too large files (mainly too large images, you need to use external image editing software to change the image format, if there is an Alpha channel, it is recommended to change to png format, If there is no Alpha channel, it is recommended to change to jpg format)
-###### 5.3. Packaging platform selection
+###### 6.3. Packaging platform selection
 - The scene file required by the Android platform needs to be set to **Android** on the Build Target of AssetBundle Browser.
 
 - The running scene of the iOS platform needs to be set to **iOS**.
@@ -144,7 +145,7 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 - The running scene of the MacOS platform needs to be set to **Standalone OSX Universal**.
 
 **It is recommended to open Unity's CacheServer: Edit -> Preferences -> CacheServer -> Cache Server Mode and select Local to avoid repeated loading of resources caused by platform switching, and save the time for assetbundles of different platforms to be packaged in the same project.**
-###### 5.4. Multi-person debugging and use
+###### 6.4. Multi-person debugging and use
 > Before uploading to the resource management background, you need to set the file name prefix for the bundle files required by different platforms
 ```
 # LWRP rendering pipeline:
@@ -160,15 +161,15 @@ If multiple devices need to be loaded at the same time, they need to be packaged
 ```
 
 
-## 6、VSVR supports 3D GLB format Rule description
+## 7、VSVR supports 3D GLB format Rule description
 
 > VSVR supports direct loading of GLB models, which can be uploaded to the VSVR background VR resource manager, and can be watched by multiple people in VR in real time. And rely on the VSVR SDK to perform personalized control operations on the GLB model. In the Glb_LoadAndControl_Example example, the manual dismantling of the GLB model by multiple people is completed, the laser pointer is picked up, the object is rotated, the distance of the object, the dynamic marking and other operations are completed.
 
-#### 6.1 glb format export:
-##### 6.1.1 Support 3DMAX, MAYA, C4D, Blender, Sketchup and other software, you need to install the glb format export plug-in, it is recommended to export the glb model through blender.
-##### 6.1.2 Support models within ```500,000``` faces (triangular faces), the size of the texture does not exceed ```2048*2048```, and the number of textures does not exceed ```20```
-#### 6.2. File and model name rules
-##### 6.2.1 File Naming
+#### 7.1 glb format export:
+##### 7.1.1 Support 3DMAX, MAYA, C4D, Blender, Sketchup and other software, you need to install the glb format export plug-in, it is recommended to export the glb model through blender.
+##### 7.1.2 Support models within ```500,000``` faces (triangular faces), the size of the texture does not exceed ```2048*2048```, and the number of textures does not exceed ```20```
+#### 7.2. File and model name rules
+##### 7.2.1 File Naming
 
 * Allow repeated loading:
      >Repeated loading is allowed by default (objects that allow repeated loading are allowed to be controlled by the handle by default
@@ -177,7 +178,7 @@ If multiple devices need to be loaded at the same time, they need to be packaged
      >Add ```_s``` in the name (after adding ```_s```, the objects in the scene cannot be controlled by default.
      If you need to control some of the objects, you need to add ``` _c_``` mark to the objects), such as: ```test_s.glb```
 
-##### 6.2.2 Object Naming
+##### 7.2.2 Object Naming
 
 * Meshcollier and placemark are added to objects by default to support moving characters to objects
 * Do not add meshcollider mark (laser pointer can pass through): ```_mm_```
@@ -189,24 +190,24 @@ If multiple devices need to be loaded at the same time, they need to be packaged
 * Load 0 points (spawn point): ```_zero_```
 * Scale mark: ```_scale_```
 
-## 7. VSVR supports flat format. Rule description
-#### 7.1 Picture format
-##### 7.1.1 Flat picture
+## 8. VSVR supports flat format. Rule description
+#### 8.1 Picture format
+##### 8.1.1 Flat picture
 The recommended format for large-screen demo images is ```jpg```, and the image size is recommended to be in the range of ```1280*720 - 1600*900```
-##### 7.1.2 Panorama picture
+##### 8.1.2 Panorama picture
 The recommended format for panoramic pictures is ```jpg```, and the picture size is recommended to be in the range of ```4096*2048 - 6000*3000```
-#### 7.2 Video format
+#### 8.2 Video format
 Recommended format for flat video : ```mp4``` Encoding: ```H.264``` The bit rate is recommended to be controlled in the range of ```4Mbps-6Mbps```
 Recommended format for panoramic video: ```mp4``` Encoding: ```H.264``` The bit rate is recommended to be controlled in the range of ```10Mbps-20Mbps```
-#### 7.3 Video stream format
+#### 8.3 Video stream format
 Video stream format supports ```rtmp``` ```rtsp``` ```hls``` protocol format video stream
 Write the video streaming address into a txt file, change the file suffix of ```.txt``` to ```.order``` and upload to the explorer, click to play
-#### 7.4 Video on-demand format
+#### 8.4 Video on-demand format
 Video on demand url support encoding ```h.264``` ```h.265``` format url on demand
 Write the video-on-demand url address into a txt file, change the suffix of ```.txt``` to ```.order``` and upload to the resource manager, click to play
 
 
-## 8、 VSVRSDK VRAction description
+## 9、 VSVRSDK VRAction description
 #### EventAdminChange ```Event```: detect the host change event
 >Usage example: Used to cooperate with switching some objects that only the host can see or operate, the operation panel automatically disappears after the host switches, etc.
 ```

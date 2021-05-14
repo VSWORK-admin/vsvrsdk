@@ -1,15 +1,6 @@
 ## 一、环境搭建
 ### 1. 开发环境
-#### 1.1 unity版本： 使用 **unity2019.2.16** 版本
-#### 1.2 交互编程方式
-###### 1.2.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
-###### 1.2.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址，或打开 DllProject/Click_show_hideDemo:
-> https://gitee.com/vswork_admin/vsvrdll
-
-或
-
-> https://github.com/VSWORK-admin/vsvrdll
-
+unity版本： 使用 **unity2019.2.16** 版本
 ### 2. VSVRSDK 环境搭建
 ###### 2.1.1  注册并登录 check到本地 或直接下载 zip工程包
 > https://gitee.com/vswork_admin/vsvrsdk
@@ -128,12 +119,23 @@ Virtual Reality Supported : False
 ```
 在 UGUI 的canvas 上添加 VRUISelectorProxy 脚本， 场景运行时 脚本会自动为子物体添加射线交互事件，若按钮的宽高是由其父物体设置的，则需要手动为按钮添加合适的boxcollider
 ```
-## 五、场景打包
-###### 5.1. 打包名称设置
+
+## 五、交互编程
+#### 5.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
+#### 5.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址，或打开 DllProject/Click_show_hideDemo:
+> https://gitee.com/vswork_admin/vsvrdll
+
+或
+
+> https://github.com/VSWORK-admin/vsvrdll
+
+
+## 六、场景打包
+###### 6.1. 打包名称设置
 > 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene），也可以打包后将文件后缀名改为 .scene 
-###### 5.2. 资源检查
+###### 6.2. 资源检查
 > 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
-###### 5.3. 打包平台选择
+###### 6.3. 打包平台选择
 
 - Android平台所需场景文件 需要在AssetBundle Browser 中 BuildTartget 设置为 **Android**
 
@@ -144,7 +146,7 @@ Virtual Reality Supported : False
 - MacOS 平台运行需要设置为  **Standalone OSX Universal**
 
 **建议打开Unity的CacheServer ： Edit -> Preferences -> CacheServer -> Cache Server Mode  选择 Local， 以避免平台的切换导致的资源重复加载，节省不同平台assetbundle在同一个工程打包的时间。**
-###### 5.4. 多人调试和使用
+###### 6.4. 多人调试和使用
 > 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
 ```
 # LWRP 渲染管线 :  
@@ -160,15 +162,15 @@ Virtual Reality Supported : False
 ```
 
 
-## 六、VSVR 支持 三维GLB格式 规则说明
+## 七、VSVR 支持 三维GLB格式 规则说明
 
 > VSVR 支持GLB模型直接加载，可将GLB模型上传至VSVR后台VR资源管理器中，并实时在VR中多人同步观看。并可依靠VSVR SDK对GLB模型进行个性化控制操作。在Glb_LoadAndControl_Example示例中完成了GLB模型的多人手动拆解，激光笔拿起，物体旋转，物体远近，动力学标记等操作。
 
-#### 6.1 glb格式导出：
-##### 6.1.1 支持 3DMAX 、MAYA、C4D、Blender、Sketchup 等软件，需要安装glb格式导出插件，建议通过blender导出glb模型。
-##### 6.1.2  支持模型50万面以内（三角面），贴图大小不超过 2048*2048，贴图数量不超过20张
-#### 6.2、文件和模型名称规则
-##### 6.2.1文件命名
+#### 7.1 glb格式导出：
+##### 7.1.1 支持 3DMAX 、MAYA、C4D、Blender、Sketchup 等软件，需要安装glb格式导出插件，建议通过blender导出glb模型。
+##### 7.1.2  支持模型50万面以内（三角面），贴图大小不超过 2048*2048，贴图数量不超过20张
+#### 7.2、文件和模型名称规则
+##### 7.2.1文件命名
 
 * 允许重复加载：
     >默认允许重复加载（允许重复加载的物体默认允许手柄抓握控制
@@ -177,7 +179,7 @@ Virtual Reality Supported : False
     >名称中加入 ```_s```  （添加 ```_s``` 后 场景内的物体默认不可以控制，
     如果需要控制其中部分物体 需要为物体添加``` _c_``` 标记 ）,如 ：```test_s.glb```
 
-##### 6.2.2 物体命名
+##### 7.2.2 物体命名
 
 * 物体默认添加 meshcollier 和 placemark 支持人物移动到物体上去
 * 不添加 meshcollider 标记（激光笔可以穿过）：```_mm_```
@@ -189,22 +191,23 @@ Virtual Reality Supported : False
 * 加载0点（出生点） ：```_zero_```
 * 缩放标记：```_scale_```
 
-## 七、 VSVR 支持 平面类格式 规则说明
-#### 7.1 图片格式
-##### 7.1.1平面图片
+## 八、 VSVR 支持 平面类格式 规则说明
+#### 8.1 图片格式
+##### 8.1.1平面图片
 大屏演示图片建议格式 ```jpg``` ，图片大小建议控制在 ```1280*720 -- 1600*900```范围
-##### 7.1.2全景图片
+##### 8.1.2全景图片
 全景图片建议格式 ```jpg``` ，图片大小建议控制在```4096*2048 -- 6000*3000```范围
-#### 7.2 视频格式
+#### 8.2 视频格式
 平面视频建议格式: ```mp4```  编码: ```H.264``` 码率建议控制在```4Mbps - 6Mbps```范围
 全景视频建议格式: ```mp4```  编码: ```H.264``` 码率建议控制在```10Mbps - 20Mbps```范围
-#### 7.3 视频流格式
+#### 8.3 视频流格式
 视频流格式支持 ```rtmp``` ```rtsp``` ```hls``` 协议格式视频流
 将视频流拉流地址写入到 txt 文件中，将```.txt```文件后缀改为 ```.order``` 上传至资源管理器，点击即可播放
-#### 7.4 视频在线点播格式
+#### 8.4 视频在线点播格式
 视频点播url支持 编码 ```h.264``` ```h.265``` 格式url点播 
 将视视频点播url地址写入到 txt 文件中，将```.txt```文件后缀改为 ```.order``` 上传至资源管理器，点击即可播放
-## 八、 VSVRSDK  VRAction 说明 
+
+## 九、 VSVRSDK  VRAction 说明 
 
 #### EventAdminChange  ```事件```：探测主持人改变事件
 >使用示例：用来配合切换只有主持人才能看到或操作的某些物体，主持人切换后操作面板自动消失等操作
