@@ -18,7 +18,7 @@
 
 > https://github.com/VSWORK-admin/vsvrsdk
 
-## 二、 unity3d 的 安卓 和 Windows设置：
+## 二、 unity3d 的 不同发布平台的设置需求：
 
 Android :
 ```

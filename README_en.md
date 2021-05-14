@@ -21,7 +21,7 @@ or
 
 > https://github.com/VSWORK-admin/vsvrsdk
 
-## 2、Settings of Android and Windows in unity：
+## 2、Settings for Different Platform in Unity3d：
 
 Android :
 ```
