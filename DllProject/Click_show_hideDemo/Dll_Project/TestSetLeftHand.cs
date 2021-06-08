@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Slate;
 
 namespace Dll_Project { 
     public class TestSetLeftHand : DllGenerateBase
@@ -17,7 +18,8 @@ namespace Dll_Project {
 
         public override void Start()
         {
-            Debug.Log("TestMessageDispatcher Start !");
+            BaseMono.ExtralDatas[1].Target.GetAddComponent<Cutscene>().Play();
+           Debug.Log("TestMessageDispatcher Start !");
         }
 
         public override void OnEnable()
