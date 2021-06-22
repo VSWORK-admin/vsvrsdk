@@ -42,6 +42,9 @@
     <Reference Include="LitJson">
       <HintPath>UnityDlls\LitJson.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>UnityDlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ootii">
       <HintPath>UnityDlls\ootii.dll</HintPath>
     </Reference>
