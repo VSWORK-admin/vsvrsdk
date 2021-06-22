@@ -8,20 +8,21 @@ public class BigScreenSelectController : MonoBehaviour
     public int ScreenAngle;
     bool pointed = false;
     public Vector3 startscale;
+
     // Start is called before the first frame update
     void Start()
     {
         startscale = transform.localScale;
         MessageDispatcher.AddListener(VRPointObjEventType.VRPointEnter.ToString(), VRPointEnter);
         MessageDispatcher.AddListener(VRPointObjEventType.VRPointExit.ToString(), VRPointExit);
-        MessageDispatcher.AddListener(CommonVREventType.VRCommitButtonClick.ToString(),VRCommitButtonClick);
+        MessageDispatcher.AddListener(CommonVREventType.VRRaw_RightTrigger.ToString(),VRCommitButtonClick);
     }
 
     private void OnDestroy()
     {
         MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointEnter.ToString(), VRPointEnter,true);
         MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointExit.ToString(), VRPointExit,true);
-        MessageDispatcher.RemoveListener(CommonVREventType.VRCommitButtonClick.ToString(),VRCommitButtonClick,true);
+        MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_RightTrigger.ToString(),VRCommitButtonClick,true);
     }
 
     void VRCommitButtonClick(IMessage msg){

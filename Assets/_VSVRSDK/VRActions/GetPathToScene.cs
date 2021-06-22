@@ -11,6 +11,8 @@ namespace HutongGames.PlayMaker.Actions
         public FsmString Path;
         public FsmString Sign;
         public FsmString SceneName;
+        public FsmString IconUrl;
+        public FsmString CryptAPI;
 
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -23,7 +25,9 @@ namespace HutongGames.PlayMaker.Actions
                         version = Sign.Value,
                         isremote = true,
                         isupdate = false,
-                        iskod = true
+                        icon = IconUrl.Value,
+                        iskod = true,
+                        cryptAPI = CryptAPI.Value
                     };
                     MessageDispatcher.SendMessage(false, VrDispMessageType.LoadLocalPathScene.ToString(), newscene, 0);
         }

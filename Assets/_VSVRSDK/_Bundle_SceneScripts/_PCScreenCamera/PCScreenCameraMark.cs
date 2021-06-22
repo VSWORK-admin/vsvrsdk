@@ -17,7 +17,7 @@ public class PCScreenCameraMark : MonoBehaviour
         startscale = transform.localScale;
         MessageDispatcher.AddListener(VRPointObjEventType.VRPointEnter.ToString(), VRPointEnter);
         MessageDispatcher.AddListener(VRPointObjEventType.VRPointExit.ToString(), VRPointExit);
-        MessageDispatcher.AddListener(CommonVREventType.VRCommitButtonClick.ToString(),VRClick);
+        MessageDispatcher.AddListener(CommonVREventType.VRRaw_RightTrigger.ToString(),VRClick);
     }
 
 
@@ -25,7 +25,7 @@ public class PCScreenCameraMark : MonoBehaviour
     {
         MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointEnter.ToString(), VRPointEnter,true);
         MessageDispatcher.RemoveListener(VRPointObjEventType.VRPointExit.ToString(), VRPointExit,true);
-        MessageDispatcher.RemoveListener(CommonVREventType.VRCommitButtonClick.ToString(),VRClick,true);
+        MessageDispatcher.RemoveListener(CommonVREventType.VRRaw_RightTrigger.ToString(),VRClick,true);
     }
 
 

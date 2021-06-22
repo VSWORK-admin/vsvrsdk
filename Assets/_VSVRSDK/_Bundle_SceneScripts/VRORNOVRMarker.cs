@@ -15,20 +15,29 @@ public class VRORNOVRMarker : MonoBehaviour
             if(mStaticThings.I.isVRApp){
                 foreach (var item in HideInVR)
                 {
-                    item.SetActive(false);
+                    if(item != null){
+                        item.SetActive(false);
+                    }
+                    
                 }
                 foreach (var item in ShowInVR)
                 {
+                    if(item != null){
                      item.SetActive(true);
+                    }
                 }
             }else{
                 foreach (var item in HideInNoVR)
                 {
+                    if(item != null){
                     item.SetActive(false);
+                    }
                 }
                 foreach (var item in ShowInNoVR)
                 {
+                    if(item != null){
                      item.SetActive(true);
+                    }
                 }
             }
         }

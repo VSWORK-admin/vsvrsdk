@@ -10,10 +10,13 @@ namespace HutongGames.PlayMaker.Actions
     {
         public FsmString Glb_url;
         public FsmString Glb_sign;
+        public FsmString Glb_Format;
         public FsmGameObject Glb_LoadTransform;
         public FsmBool Glb_isScene;
-
-
+        public FsmBool Glb_isSyncLoad;
+        public FsmBool GlbAutoPlay;
+        public FsmBool GlbAutoInit;
+       
         public FsmGameObject Load_GlbGameObject;
         [ArrayEditor(VariableType.String)]
         public FsmArray Load_GlbAnimationClips;
@@ -26,7 +29,11 @@ namespace HutongGames.PlayMaker.Actions
                 url = Glb_url.Value,
                 sign = Glb_sign.Value,
                 isscene = Glb_isScene.Value,
-                LoadTrasform = Glb_LoadTransform.Value.transform
+                format = Glb_Format.Value == ""?"glb":Glb_Format.Value,
+                LoadTrasform = Glb_LoadTransform.Value.transform,
+                isasyn = Glb_isSyncLoad.Value,
+                autoinit = GlbAutoInit.Value,
+                autoplay = GlbAutoPlay.Value
             };
             MessageDispatcher.SendMessage(this,VrDispMessageType.LoadGlbModels.ToString(),newloadglb,0);
             MessageDispatcher.AddListener(VrDispMessageType.LoadGlbModelsDone.ToString(), LoadGlbModelsDone);

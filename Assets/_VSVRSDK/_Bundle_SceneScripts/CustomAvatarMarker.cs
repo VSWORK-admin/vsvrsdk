@@ -17,7 +17,7 @@ public class CustomAvatarMarker : MonoBehaviour
     public Transform LaserStart;
 
     public Transform namepanel;
-    private void Update()
+    private void LateUpdate()
     {
 
         if (mStaticThings.I == null || mStaticThings.I.isVRApp)
@@ -41,7 +41,7 @@ public class CustomAvatarMarker : MonoBehaviour
                 enabledtrigger = false;
             }
 
-            if (Vector3.Distance(headroot.position, mStaticThings.I.PCCamra.position) < 0.1 * transform.lossyScale.x)
+            if (Vector3.Distance(headroot.position, mStaticThings.I.PCCamra.position) < 0.2 * transform.lossyScale.x)
             {
                 if (isenabled)
                 {

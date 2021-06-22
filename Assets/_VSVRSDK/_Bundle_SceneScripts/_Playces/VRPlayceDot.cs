@@ -32,7 +32,6 @@ public class VRPlayceDot : MonoBehaviour
         {
             Destroy(human);
             human = null;
-            Resources.UnloadUnusedAssets();
         }
 
         if (dotkind == PlayceDotKind.normal)
@@ -99,7 +98,7 @@ public class VRPlayceDot : MonoBehaviour
                     humanshadow.transform.localEulerAngles = new Vector3(0, mStaticThings.I.Maincamera.localEulerAngles.y, 0);
                     humanshadow.transform.localPosition = new Vector3(mStaticThings.I.Maincamera.localPosition.x, 0, mStaticThings.I.Maincamera.localPosition.z);
                 }
-                else if (mStaticThings.DynClientAvatarsDic.ContainsKey(nowhuamwsid))
+                else if (mStaticThings.DynClientAvatarsDic.ContainsKey(nowhuamwsid) && mStaticThings.DynClientAvatarsDic[nowhuamwsid].cp != null)
                 {
                     Vector3 rot = mStaticThings.DynClientAvatarsDic[nowhuamwsid].cp.hr.eulerAngles;
                     Vector3 pos = mStaticThings.DynClientAvatarsDic[nowhuamwsid].cp.hp;
@@ -123,7 +122,7 @@ public class VRPlayceDot : MonoBehaviour
 
                     humanshadow.transform.localPosition = new Vector3(lpos.x, 0, lpos.z);
                 }
-                else if (mStaticThings.DynClientAvatarsDic.ContainsKey(nowhuamwsid))
+                else if (mStaticThings.DynClientAvatarsDic.ContainsKey(nowhuamwsid)  && mStaticThings.DynClientAvatarsDic[nowhuamwsid].cp != null)
                 {
 
                     Vector3 hr = mStaticThings.DynClientAvatarsDic[nowhuamwsid].cp.hr.eulerAngles;

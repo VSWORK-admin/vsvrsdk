@@ -369,14 +369,6 @@ namespace ILRuntimeAdapter
                     Instance.mOnJointBreak2D_30.Invoke(this.instance, joint);
             }
 
-            public override void OnLevelWasLoaded(System.Int32 level)
-            {
-                if (Instance.mOnLevelWasLoaded_31.CheckShouldInvokeBase(this.instance))
-                    base.OnLevelWasLoaded(level);
-                else
-                    Instance.mOnLevelWasLoaded_31.Invoke(this.instance, level);
-            }
-
             public override void OnMouseDown()
             {
                 if (Instance.mOnMouseDown_32.CheckShouldInvokeBase(this.instance))

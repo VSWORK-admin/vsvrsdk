@@ -13,73 +13,43 @@ public class CustomFullBodyAvatarMarker : MonoBehaviour
     public Transform Defaltleft;
     public Transform Defaltright;
 
-    bool disabletrigger = false;
-    bool enabledtrigger = false;
-    bool isenabled = true;
     public Transform LaserStart;
     public Transform namepanel;
+    Vector3 lastpos;
+    public GameObject root;
+    public float checkdistance = 30f;
+    public float checktime = 0.2f;
+    public float forcesettime = 0.5f;
 
-    private void Update()
+    public bool forceset = false;
+
+    
+
+    private void OnEnable()
     {
-
-        if (mStaticThings.I == null || mStaticThings.I.isVRApp)
-        {
-            return;
-        }
-
-        if (mStaticThings.I.IsThirdCamera)
-        {
-            if (disabletrigger)
-            {
-                setenable(false);
-                isenabled = false;
-                disabletrigger = false;
-            }
-
-            if (enabledtrigger)
-            {
-                setenable(true);
-                isenabled = true;
-                enabledtrigger = false;
-            }
-
-            if (Vector3.Distance(headroot.position, mStaticThings.I.PCCamra.position) < 0.1 * transform.lossyScale.x)
-            {
-                if (isenabled)
-                {
-                    disabletrigger = true;
-                }
-            }
-            else
-            {
-                if (!isenabled)
-                {
-                    enabledtrigger = true;
-                }
-            }
-        }else{
-            if(!isenabled){
-                setenable(true);
-                isenabled = true;
-            }
-        }
-
-
+        InvokeRepeating("DetectDistance", 0, checktime);
     }
 
-    void setenable(bool en)
+    private void OnDisable()
     {
-        MeshRenderer[] ms = gameObject.GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer item in ms)
-        {
-            item.enabled = en;
-        }
+        CancelInvoke("DetectDistance");
+    }
 
-        SkinnedMeshRenderer[] sms = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer item in sms)
+    void DetectDistance()
+    {
+        float dist = Vector3.Distance(lastpos, transform.position);
+        lastpos = transform.position;
+        if (dist > checkdistance)
         {
-            item.enabled = en;
+            forceset = true;
+            if(IsInvoking("SetForcesetFalse")){
+                CancelInvoke("SetForcesetFalse");
+            }
+            Invoke("SetForcesetFalse",forcesettime);
         }
     }
 
+    void SetForcesetFalse(){
+        forceset = false;
+    }
 }

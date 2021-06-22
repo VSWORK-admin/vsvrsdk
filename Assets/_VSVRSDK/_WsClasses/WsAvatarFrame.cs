@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 public enum InfoColor
@@ -35,6 +36,40 @@ public enum LanguageType : byte
     
 }
 
+public enum CanvasWebviewActionType
+{
+    click,
+    scroll,
+    loadurl,
+    refresh,
+    back,
+    forward,
+    setres,
+    resize,
+    zoomin,
+    zoomout,
+    input
+}
+
+[Serializable]
+public class CanvasWebviewActionFrame
+{
+    public string id;
+    public string cname;
+    public CanvasWebviewActionType type;
+    public Vector2 v2;
+    public string str;
+    public float fl;
+
+}
+
+public enum BigScreenModeType{
+    screen,
+    web
+}
+
+
+
 [Serializable]
 public class WsAvatarFrame
 {
@@ -43,6 +78,7 @@ public class WsAvatarFrame
     public string wsid;//WsID
     //public string scene;//SceneName
     public WsSceneInfo scene;
+    public bool vr;
     public bool isremote;
     public bool ae;//avatar Enabled
     public string id;//Sys avatarID
@@ -74,6 +110,26 @@ public class WsAvatarFrame
     }
 }
 
+[Serializable]
+public class WsAvatarFrameJian
+{
+    public string id;//AvatarID
+    public string aid; 
+    public bool e;//SelEnable
+    public int m;//Mounted
+    public int p;//pose
+    public int lp;//left handpos
+    public int rp;//right handpos
+    public int l;//laser width
+    public int vol;
+    public bool vr;//Is VRapp
+    public Vector3 wp;//WorldPos
+    public Quaternion wr;//WorldRot
+    public Vector3 ws;//WorldScale
+    public PoseFrameJian cp;//CurPose
+    public string cl;
+}
+
 public class PoseFrameJian
 {
     public Vector3 hp;
@@ -85,27 +141,13 @@ public class PoseFrameJian
 };
 
 [Serializable]
-public class WsAvatarFrameJian
-{
-    public string id;//AvatarID
-    public string aid; 
-    public bool e;//SelEnable
-    public int m;//Mounted
-    public int lp;//left handpos
-    public int rp;//right handpos
-    public int l;//laser width
-    public int vol;
-    public Vector3 wp;//WorldPos
-    public Quaternion wr;//WorldRot
-    public Vector3 ws;//WorldScale
-    public PoseFrameJian cp;//CurPose
-    public string cl;
-}
-
-[Serializable]
 public class WsAvatarFrameList
 {
     public List<WsAvatarFrame> alist;
+    public WsSceneInfo nowscene;
+    public Dictionary<string,string> chdata;
+    public WsMediaFrame nowmedia;
+    public WsBigScreen nowbigscreen;
 }
 
 [Serializable]
@@ -123,6 +165,29 @@ public class WsMediaFrame
     public WsMediaPostKind pkind;
     public string towsid;
     public bool isupdate;
+}
+
+[Serializable]
+public class WsVoiceFrame
+{
+    public string id;
+    public string v;
+    public int ch;
+    public int fr;
+    public Vector3 v3;
+    public float l;
+    public bool z;
+}
+
+[Serializable]
+public class WsPicFrame
+{
+    public string id;
+    public string p;
+    public string tp;
+    public int w;
+    public int h;
+
 }
 
 public enum WsMediaPostKind
@@ -145,12 +210,17 @@ public class WsMediaFile
     public bool isupdate;
 }
 
+
 [Serializable]
 public class WsGlbMediaFile
 {
     public string url;
     public string sign;
     public bool isscene;
+    public bool autoplay;
+    public bool isasyn;
+    public string format;
+    public bool autoinit;
     public Transform LoadTrasform;
 }
 
@@ -160,9 +230,12 @@ public class GlbSceneObjectFile
     public GameObject glbobj;
     public string sign;
     public bool isscene;
+    public bool autoplay;
+    public bool isinited;
     public Animation GlbAnination;
     public List<string> clips = new List<string>();
     public Transform LoadTrasform;
+    public string errcode;
 }
 
 [Serializable]
@@ -175,6 +248,16 @@ public class LocalCacheFile
     public bool isKOD;
 }
 
+[Serializable]
+public class VRVoiceInitConfig
+{
+    public string appid;
+    public string appkey;
+    public string roomid;
+    public bool initPTT;
+    public string userid;
+}
+
 
 [Serializable]
 public class ConnectAvatars
@@ -184,7 +267,7 @@ public class ConnectAvatars
     public string cl;
     public List<WsAvatarFrame> sceneavatars;
     public WsSceneInfo nowscene;
-    public string chdata;
+    public Dictionary<string,string> chdata;
     public WsMediaFrame nowmedia;
     public WsBigScreen nowbigscreen;
 }
@@ -319,7 +402,10 @@ public class WsSceneInfo
     public bool isremote;
     public bool isupdate;
     public bool iskod;
+    public string icon;
     public WsMediaFile kod;
+    public string cryptAPI;
+    public int ckind;
 }
 
 public class URLIDSceneInfo
@@ -379,15 +465,37 @@ public class CameraScreenInfo
 public class WsProgressInfo{
     public string wsid;
     public string name;
+    public string sign;
     public float progress;
     public bool issceneload;
+}
+
+public class VRProgressInfo{
+    public string name;
+    public string sign;
+    public float progress;
+    public bool isdone;
 }
 
 public class UserSpeakInfo
 {
     public string id;
-    public bool isspeaking;
-    public string info;
+    public int status;
+}
+
+public class AudioRecodingInfo
+{
+    public int maxlenth;
+    public string speachlang;
+    public string translang;
+}
+
+public class AudioRecodingResult
+{
+    public int code;
+    public string fileid;
+    public string filePath;
+    public string result;
 }
 
 
@@ -443,6 +551,47 @@ public class VRRootChanelRoom{
     public string roomid;
     public string voiceid;
 }
+
+public class VRWsRemoteScene
+{
+    public string id { get; set; }
+    public string name { get; set; }
+    public string path { get; set; }
+    public string version { get; set; }
+    public string intro { get; set; }
+    public string icon { get; set; }
+    public string bundle { get; set; }
+    public string localpath { get; set; }
+}
+
+
+public class VRLoadSceneParam{
+    public VRWsRemoteScene localscene;
+    public bool iskod;
+    public WsMediaFile kodscene;
+    public bool isupdatesyse;
+    public bool ism ;
+}
+
+[Serializable]
+public class VRSaveRoomData{
+    public bool isclear;
+    public bool sall;
+    public bool forever;
+    public string key;
+    public string value;
+}
+
+public class VRGLBObjectData{
+    public GameObject result;
+    public AnimationClip[] ani;
+    public Transform loadtrans;
+    public string sign;
+    public bool isscene;
+}
+
+
+
 
 public enum VROrderName
 {
@@ -540,7 +689,9 @@ public enum VROrderName
     micenable,
     micdisable,
     camt,
-    camf
+    camf,
+    dismount,
+    enmount
 }
 
 
@@ -616,7 +767,7 @@ public class VRUtils
 
     public static bool IsSceneBundle(string ext)
     {
-        if (ext == "scene")
+        if (ext == "scene" )
         {
             return true;
         }
@@ -626,7 +777,18 @@ public class VRUtils
         }
     }
 
-        public static bool IsMOV(string ext)
+    public static bool IsXSceneBundle(string ext){
+        if (ext == "xscene")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool IsMOV(string ext)
     {
         if (ext == "mov" || ext == "MOV" || ext == "mp4" || ext == "mkv"|| ext == "m4v")
         {
@@ -680,6 +842,14 @@ public class VRUtils
 
      public static bool IsPDF(string ext){
         if(ext == "pdf"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static bool IsPPT3d(string ext){
+        if(ext == "vrppt"){
             return true;
         }else{
             return false;
@@ -754,5 +924,21 @@ public class VRUtils
         }
         return thisroomstring;
     }
+
+    public static long KB = 1024;  
+    public static long MB = KB * 1024;  
+    public static long GB = MB * 1024;  
+    
+    public static String displayFileSize(long size) {  
+        if (size >= GB) {  
+            return ((float)size / GB).ToString("F1") + " GB";  
+        } else if (size >= MB) {  
+            return ((float)size / MB).ToString("F1") + " MB";   
+        } else if (size >= KB) {  
+            return ((float)size / KB).ToString("F1")+ " KB";    
+        } else {  
+            return ((float)size).ToString("F1")+ " B";     
+        }  
+    } 
     
 }

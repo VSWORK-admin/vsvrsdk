@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
 
 public class mStaticThings : MonoBehaviour
 {
@@ -23,8 +24,6 @@ public class mStaticThings : MonoBehaviour
     public static string userversion = "user2";
     public static string serverhttp = "https://";
     public static string urltokenfix = "";
-    public string now_phone;
-    public string now_pass;
     public string now_groupid;
     public string now_ScenePrefix;
     public bool WsAvatarIsReady = false;
@@ -33,16 +32,32 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
     public string nowRoomChID;
+    public bool nowRoomVoiceUpEnabled;
+    public string nowRoomVoiceType;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
+    public bool nowRoomGMETxtEnabled;
+    public string nowRoomVoiceAPI;
+    public string nowRoomActionAPI;
+    public string nowRoomTBPAPI;
     public string nowRoomGMEroomExID;
     public string nowRoomAdminCMD;
     public string nowRoomPass;
+    public Dictionary<string,string> nowRoomSettings = new Dictionary<string, string>();
+    public Dictionary<string, string> AppVersionSettings = new Dictionary<string, string>();
+    public bool nowRoomMediaEnabled;
+    public string nowSceneLoadIcon;
+    public string nowSceneLoadName;
+    public bool IsAvatarVisibleOnLoading;
+    public int nowRoomEnable3dSound;
+    public int nowRoomGMEroomTeamID;
+    public int nowRoomVoiceRange;
     public string nowRoomExEnabled;
     public string nowRoomGMEappKey;
     public int nowRoomMaxCount;
     public int nowRoomAeMaxCount;
     public int nowMicVol;
+    public bool ischconnecting;
     public WsSceneInfo nowRoomLinkScene;
     public bool MicEnabled;
     public string mAvatarID;
@@ -54,6 +69,7 @@ public class mStaticThings : MonoBehaviour
     public WsSceneInfo mScene;
     public bool SelectorEnabled = false;
     public bool GMEconected = false;
+    public bool PTTconected = false;
     public string NowSelectedAvararid = "";
     public bool IsSelfJoinScene = false;
     public bool isVRApp = true;
@@ -86,6 +102,7 @@ public class mStaticThings : MonoBehaviour
     public bool enhide;
     public static string apikey = "";
     public static string apitoken = "";
+    public static JsonData userdata;
     public List<VRRootChanelRoom> LastIDLinkChanelRoomList = new List<VRRootChanelRoom>();
     public LanguageType NowLanguageType = LanguageType.English;
 
@@ -102,6 +119,26 @@ public class mStaticThings : MonoBehaviour
     public bool IsUpdateDone = false;
     public string GrouplinkedroomID ="";
     public bool FirstLoadGroupRoom = true;
+    public bool isfullweb = false;
+    public bool IsHideAllAvatar = false;
+    public float AvatarStaticHeight = 1.4f;
+    public float MaxHideDistance = 120f;
+    public float MaxAvatarMeshHideDistance = 80f;
+
+    public bool AirPlayEnabled = false;
+    public bool AirPlayIson = false;
+    public bool islogedin = false;
+    
+
+    public WsAvatarFrameList nowAvatarFrameList;
+
+    public List<string> ActionBlackList = new List<string>();
+    public List<string> VoiceBlackList = new List<string>();
+    public bool TeleportByDict = false;
+    public float TeleportDistance = 15f;
+    public Dictionary<string,string> TeleportDict = new Dictionary<string,string>();
+
+    public Vector3 PenPosFix = Vector3.zero;
 
     public static mStaticThings I
     {

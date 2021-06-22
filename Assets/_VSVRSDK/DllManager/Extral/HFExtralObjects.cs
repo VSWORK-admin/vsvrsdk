@@ -1,0 +1,16 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HFExtralObjects : MonoBehaviour
+{
+    public string Intro;
+    public ExtralObjects[] ObjList;
+}
+
+public class ExtralObjects
+{
+    public string Intro;
+    public UnityEngine.Object Target;
+    public ExtralObjects[] Info;
+}

@@ -52,7 +52,13 @@ public enum WsMessageType
     SendGetData,
     RecieveGetData,
     SendChangeRoom,
-    RecieveChangeRoom
+    RecieveChangeRoom,
+    SendCanvasView,
+    RecieveCanvasView,
+    SendVRVoice,
+    RecieveVRVoice,
+    SendVRPic,
+    RecieveVRPic
 }
 
 
@@ -93,7 +99,7 @@ public enum VrDispMessageType
     KODGetOneVROrderString,
     KODGetOneGlb,
     KODGetOneTxt,
-     KODGetOnePDF,
+    KODGetOnePDF,
     KODGetOneLinkOrder,
     KODGetOneCacheOrder,
     KODGetTxtString,
@@ -158,7 +164,28 @@ public enum VrDispMessageType
     AvatarSpeakStatusChange,
     OpenAPKByPackagename,
     CustomLocalMessage,
-    SetDeviceAutoport
+    SetDeviceAutoport,
+    KODGetOnePPT3D,
+    KODGetOneCommonFile,
+    KeyboardInput,
+    RoomConnectTimeOut,
+    SendCheckFile,
+    GetCheckFile,
+    SendCheckScene,
+    GetCheckScene,
+    ForceSystemMenuEnable,
+    WebCanvasClick,
+    AvatarInited,
+    HandTipsControl,
+    VRLoadSceneStart,
+    VRLoadSceneEnd,
+    VRGetCacheProgress,
+    VRDoRecieveCheckAvatarlist,
+    VRDoLoadOneMSceneDirect,
+    VRUserLeaveChanel,
+    VRTryToReLinkChanel,
+    LoadDefaultStartScene,
+    VRDoRecieveConnection
 }
 
 
@@ -169,7 +196,13 @@ public enum VoiceDispMessageType
     GmeMicEnalbe,
     GmeMicDisable,
     ConnectVoiceExRoom,
-    ExitVoiceRoom
+    ExitVoiceRoom,
+    OnStreamingSpeechComplete,
+    OnStreamingRecisRunning,
+    VoiceStartRecoding,
+    VoiceStopRecoding,
+    SetVRVoiceRange
+
 }
 
 public enum VRPointObjEventType
@@ -184,6 +217,24 @@ public enum HandModelType
     HandModelAll,
     HandModelLeft,
     HandModelRight
+}
+
+
+public enum VRVoiceModelEventType
+{
+    VRVoiceReEnterRoomEvent,
+    VRVoiceExitEvent,
+    VRVoiceInitEvent,
+
+    VRVoiceSetMicVolEvent,
+    VRVoiceSetMicMultEvent,
+    VRVoiceSetMicMulttempEvent,
+    
+    VRVoiceSetSpeakMultEvent,
+    VRVoiceSetSpeakMulttempEvent,
+    VRVoiceSetSpeakVolEvent,
+
+
 }
 
 public enum CommonVREventType

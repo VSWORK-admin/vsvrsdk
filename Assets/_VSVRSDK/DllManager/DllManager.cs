@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.Video;
 
 public class DllManager : MonoBehaviour
 {
@@ -120,6 +123,71 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<SwipeInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<PinchInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<RotateInfo>();
+
+          appdomain.DelegateManager.RegisterMethodDelegate<int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<bool, int, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, float, int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, bool>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, bool, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, string, int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, string, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, string, string, string, bool>();
+        appdomain.DelegateManager.RegisterMethodDelegate<BaseEventData>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,long>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,double>();
+        appdomain.DelegateManager.RegisterMethodDelegate<Texture2D>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int,int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<float>();
+        appdomain.DelegateManager.RegisterMethodDelegate<object,EventArgs>();
+        appdomain.DelegateManager.RegisterMethodDelegate<GameObject, AnimationClip[],Transform,string>();
+
+
+      appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.EventHandler>((action) =>
+        {
+            return new VideoPlayer.EventHandler((a) =>
+            {
+                ((Action<VideoPlayer>)action)(a);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.FrameReadyEventHandler>((action) =>
+        {
+            return new VideoPlayer.FrameReadyEventHandler((a,b) =>
+            {
+                ((Action<VideoPlayer,long>)action)(a,b);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.ErrorEventHandler>((action) =>
+        {
+            return new VideoPlayer.ErrorEventHandler((a,b) =>
+            {
+                ((Action<VideoPlayer,string>)action)(a,b);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.TimeEventHandler>((action) =>
+        {
+            return new VideoPlayer.TimeEventHandler((a,b) =>
+            {
+                ((Action<VideoPlayer,double>)action)(a,b);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object, ILRuntime.Runtime.Intepreter.ILTypeInstance>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<BaseEventData>>((action) =>
+        {
+            return new UnityAction<BaseEventData>((a) =>
+            {
+                ((System.Action<BaseEventData>)action)(a);
+            });
+        });
 
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.ShortTapHandler>((act) =>

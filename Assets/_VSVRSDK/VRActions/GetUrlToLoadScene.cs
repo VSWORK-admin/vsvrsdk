@@ -10,11 +10,14 @@ namespace HutongGames.PlayMaker.Actions
         public FsmString Sign;
         public FsmString SceneName;
         public FsmBool hasPrefix;
+        public FsmString RoomIconUrl;
         public FsmEvent GetLocalPath;
         public FsmEvent GetLocalPathFaild;
         public FsmString GetedSign;
         public FsmString LocalPath;
         public FsmString LocalUrl;
+        public FsmString CryptAPI;
+        public FsmInt CryptKind;
 
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -64,7 +67,10 @@ namespace HutongGames.PlayMaker.Actions
                         isremote = true,
                         isupdate = false,
                         iskod = true,
-                        kod=kodfile
+                        icon = RoomIconUrl.Value,
+                        kod=kodfile,
+                        cryptAPI =CryptAPI.Value,
+                        ckind = CryptKind.Value
                     };
                     MessageDispatcher.SendMessage(true, VrDispMessageType.LoadLocalPathScene.ToString(), newscene, 0);
                 }
