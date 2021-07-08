@@ -17,6 +17,7 @@
           "DOTweenPro": "1.0.0.0",
           "InputTouches": "0.0.0.0",
           "LitJson": "0.5.0.0",
+          "Newtonsoft.Json": "12.0.0.0",
           "ootii": "0.0.0.0",
           "PlayMaker": "1.6.0.0",
           "Siccity.GLTFUtility": "0.0.0.0",
@@ -150,6 +151,14 @@
           "LitJson.dll": {
             "assemblyVersion": "0.5.0.0",
             "fileVersion": "0.5.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
           }
         }
       },
@@ -704,6 +713,14 @@
             "fileVersion": "0.0.0.0"
           }
         }
+      },
+      "ILRuntime/0.0.0.0": {
+        "runtime": {
+          "ILRuntime.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
       }
     }
   },
@@ -758,6 +775,11 @@
       "sha512": ""
     },
     "LitJson/0.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/12.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1103,6 +1125,11 @@
       "sha512": ""
     },
     "UnityEngine.XRModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ILRuntime/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

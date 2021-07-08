@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateMode: 0
-  _defaultWrapMode: 1
+  _defaultWrapMode: 0
   _defaultStopMode: 0
   _playbackSpeed: 1
   _explicitActiveLayers: 0

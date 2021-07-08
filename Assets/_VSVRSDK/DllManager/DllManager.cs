@@ -8,7 +8,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
-
+using com.ootii.Messages;
+using UnityEngine.Timeline;
+using LitJson;
 public class DllManager : MonoBehaviour
 {
     public static ILRuntime.Runtime.Enviorment.AppDomain appdomain;
@@ -66,6 +68,7 @@ public class DllManager : MonoBehaviour
         {
             OnAssemblyLoadOver();
         }
+        MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
     }
 
     void InitializeILRuntime()
@@ -98,6 +101,13 @@ public class DllManager : MonoBehaviour
 
     private void RegisterDelegate()
     {
+        ///litjson
+        JsonMapper.RegisterExporter<float>((obj, writer) => writer.Write(obj.ToString()));
+        JsonMapper.RegisterImporter<string, float>(input => float.Parse(input));
+
+        JsonMapper.RegisterILRuntimeCLRRedirection(appdomain);
+
+        //messagedispach
         appdomain.DelegateManager.RegisterMethodDelegate<com.ootii.Messages.IMessage>();
 
         appdomain.DelegateManager.RegisterDelegateConvertor<com.ootii.Messages.MessageHandler>((act) =>
@@ -115,6 +125,23 @@ public class DllManager : MonoBehaviour
                 ((Action)act)();
             });
         });
+       
+       
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback<float>>((act) =>
+        {
+            return new DG.Tweening.TweenCallback<float>((a) =>
+            {
+                ((Action<float>)act)(a);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback<int>>((act) =>
+        {
+            return new DG.Tweening.TweenCallback<int>((a) =>
+            {
+                ((Action<int>)act)(a);
+            });
+        });
 
         appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
@@ -124,7 +151,7 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<PinchInfo>();
         appdomain.DelegateManager.RegisterMethodDelegate<RotateInfo>();
 
-          appdomain.DelegateManager.RegisterMethodDelegate<int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int>();
         appdomain.DelegateManager.RegisterMethodDelegate<int, string>();
         appdomain.DelegateManager.RegisterMethodDelegate<bool, int, string>();
         appdomain.DelegateManager.RegisterMethodDelegate<int, float, int>();
@@ -146,8 +173,16 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<object,EventArgs>();
         appdomain.DelegateManager.RegisterMethodDelegate<GameObject, AnimationClip[],Transform,string>();
 
+        appdomain.DelegateManager.RegisterMethodDelegate<Slate.Cutscene>();
+        appdomain.DelegateManager.RegisterMethodDelegate<Slate.Section>();
+        appdomain.DelegateManager.RegisterMethodDelegate<string, object>();
+        appdomain.DelegateManager.RegisterMethodDelegate<string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<object>();
+        
 
-      appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.EventHandler>((action) =>
+
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.EventHandler>((action) =>
         {
             return new VideoPlayer.EventHandler((a) =>
             {

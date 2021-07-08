@@ -10,10 +10,20 @@ public class ExtralData
 
     public ExtralData[] Info;
 }
+
+[System.Serializable]
+public class ExtralDataObj
+{
+    public string OtherData;
+    public UnityEngine.Object Target;
+
+    public ExtralData[] Info;
+}
 public class HFExtralData : MonoBehaviour
 {
     public string OtherData;
     public ExtralData[] ExtralDatas;
+    public ExtralDataObj[] ExtralDataObjs;
 }
 
 

@@ -18,8 +18,15 @@ namespace Dll_Project {
 
         public override void Start()
         {
-            BaseMono.ExtralDatas[1].Target.GetAddComponent<Cutscene>().Play();
+            BaseMono.ExtralDatas[1].Target.GetComponent<Cutscene>().Play();
+            Cutscene.OnCutsceneStopped += TestSetLeftHand_OnStop;
            Debug.Log("TestMessageDispatcher Start !");
+        }
+
+        private void TestSetLeftHand_OnStop(Cutscene scene)
+        {
+            scene.Play();
+            Debug.LogWarning(scene.name + "Restart");
         }
 
         public override void OnEnable()
