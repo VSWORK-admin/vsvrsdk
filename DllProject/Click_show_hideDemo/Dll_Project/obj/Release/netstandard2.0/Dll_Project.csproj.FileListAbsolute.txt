@@ -508,6 +508,4 @@ D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Rele
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.csproj.CopyComplete
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.dll
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.pdb
-D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\ILRuntime.dll
-D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\ILRuntime.pdb
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\Newtonsoft.Json.dll

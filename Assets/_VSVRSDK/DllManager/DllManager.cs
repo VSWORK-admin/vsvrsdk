@@ -9,8 +9,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
 using com.ootii.Messages;
+
 using UnityEngine.Timeline;
 using LitJson;
+
 public class DllManager : MonoBehaviour
 {
     public static ILRuntime.Runtime.Enviorment.AppDomain appdomain;
@@ -68,6 +70,7 @@ public class DllManager : MonoBehaviour
         {
             OnAssemblyLoadOver();
         }
+
         MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
     }
 
@@ -182,6 +185,7 @@ public class DllManager : MonoBehaviour
 
 
 
+
         appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.EventHandler>((action) =>
         {
             return new VideoPlayer.EventHandler((a) =>
@@ -233,13 +237,57 @@ public class DllManager : MonoBehaviour
             });
         });
 
-        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction>((act) =>
         {
-            return new UnityEngine.Events.UnityAction(() =>
+            return new UnityAction(() =>
             {
                 ((Action)act)();
             });
         });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<bool>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<bool>>((act) =>
+        {
+            return new UnityAction<bool>((arg0) =>
+            {
+                ((Action<bool>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<Single>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<Single>>((act) =>
+        {
+            return new UnityAction<Single>((arg0) =>
+            {
+                ((Action<Single>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<string>>((act) =>
+        {
+            return new UnityAction<string>((arg0) =>
+            {
+                ((Action<string>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<float>>((act) =>
+        {
+            return new UnityAction<float>((arg0) =>
+            {
+                ((Action<float>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<int>>((act) =>
+        {
+            return new UnityAction<int>((arg0) =>
+            {
+                ((Action<int>)act)(arg0);
+            });
+        });
+
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
         {

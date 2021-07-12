@@ -185,7 +185,8 @@ public enum VrDispMessageType
     VRUserLeaveChanel,
     VRTryToReLinkChanel,
     LoadDefaultStartScene,
-    VRDoRecieveConnection
+    VRDoRecieveConnection,
+    LoadVRBundleScenes,
 }
 
 

@@ -6,7 +6,7 @@ public class CustomSceneInit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (WsSceneLoader.I == null) { return; }
+        //if (GameManager.Instance.sceneLoader == null) { return; }
 
         if(skymat != null){
             RenderSettings.skybox = skymat;

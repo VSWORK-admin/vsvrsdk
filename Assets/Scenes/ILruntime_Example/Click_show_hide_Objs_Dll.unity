@@ -426,6 +426,7 @@ MonoBehaviour:
   - OtherData: 0
     Target: {fileID: 700419281}
     Info: []
+  ExtralDataObjs: []
 --- !u!65 &255582090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -927,6 +928,7 @@ MonoBehaviour:
   - OtherData: 1
     Target: {fileID: 304073391}
     Info: []
+  ExtralDataObjs: []
 --- !u!1 &651937110
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,8 +939,9 @@ GameObject:
   m_Component:
   - component: {fileID: 651937112}
   - component: {fileID: 651937111}
+  - component: {fileID: 651937113}
   m_Layer: 0
-  m_Name: Director Action Track
+  m_Name: Events Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,11 +959,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f3e2b7c54761e4293bc6878e935010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Events Track
   _color: {r: 1, g: 1, b: 1, a: 1}
   _active: 1
   _isLocked: 0
-  _actionClips: []
+  _actionClips:
+  - {fileID: 651937113}
   _customHeight: 300
   _icon: {fileID: 0}
 --- !u!4 &651937112
@@ -977,6 +981,23 @@ Transform:
   m_Father: {fileID: 1505892427}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651937113
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651937110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e7f64749fc59e41b446a03266369f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 7
+  _animationData:
+    _animatedParameters: []
+  message: efea
+  value: sss
 --- !u!1 &700419279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,8 +1039,8 @@ MonoBehaviour:
   - {fileID: 1505892426}
   - {fileID: 14152995}
   _length: 20
-  _viewTimeMin: -1
-  _viewTimeMax: 21
+  _viewTimeMin: -1.7942291
+  _viewTimeMax: 20.138834
 --- !u!4 &700419281
 Transform:
   m_ObjectHideFlags: 0
@@ -1185,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722d800dfb89f2f478ab0c81e5e9129c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 4.5200405
+  _startTime: 4
   _animationData:
     _animatedParameters: []
   _length: 0
@@ -1694,7 +1715,14 @@ MonoBehaviour:
   - {fileID: 1506671894}
   - {fileID: 1845479905}
   - {fileID: 651937111}
-  _sections: []
+  _sections:
+  - _UID: e2c98b28-633b-482d-b1a2-5d0a34898150
+    _name: Section1
+    _time: 5.9
+    _exitMode: 0
+    _loopCount: 0
+    _color: {r: 0, g: 0, b: 0, a: 0.3}
+    _colorizeBackground: 0
   _isCollapsed: 0
   _active: 1
   _isLocked: 0

@@ -10,7 +10,6 @@ public class ExtralData
 
     public ExtralData[] Info;
 }
-
 [System.Serializable]
 public class ExtralDataObj
 {

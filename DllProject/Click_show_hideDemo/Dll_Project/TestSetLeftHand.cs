@@ -20,7 +20,17 @@ namespace Dll_Project {
         {
             BaseMono.ExtralDatas[1].Target.GetComponent<Cutscene>().Play();
             Cutscene.OnCutsceneStopped += TestSetLeftHand_OnStop;
-           Debug.Log("TestMessageDispatcher Start !");
+            BaseMono.ExtralDatas[1].Target.GetComponent<Cutscene>().OnSectionReached += sectionreached;
+            BaseMono.ExtralDatas[1].Target.GetComponent<Cutscene>().OnGlobalMessageSend += GlobalMessageSend;
+            Debug.Log("TestMessageDispatcher Start !");
+        }
+
+        void GlobalMessageSend(string str, object obj) {
+            Debug.LogWarning(str  + " " + obj.GetType());
+        }
+
+        void sectionreached(Section sc) {
+            Debug.LogWarning(sc.time + "  " + sc.name);
         }
 
         private void TestSetLeftHand_OnStop(Cutscene scene)

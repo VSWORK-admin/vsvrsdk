@@ -9,6 +9,7 @@ public class GeneralDllBehavior : MonoBehaviour
 
     public string OtherData;
     public ExtralData[] ExtralDatas;
+    public ExtralDataObj[] ExtralDataObjs;
 
     private bool bInit = false;
     public DllGenerateBase DllClass
@@ -53,7 +54,17 @@ public class GeneralDllBehavior : MonoBehaviour
                 return;
             }
 
-            if (GenClass == null)
+            var adapter = transform.GetComponent<GeneralDllBehaviorAdapter>();
+
+            if(adapter != null)
+            {
+                ScriptClassName = adapter.ScriptClassName;
+                OtherData = adapter.OtherData;
+                ExtralDatas = adapter.ExtralDatas;
+                ExtralDataObjs = adapter.ExtralDataObjs;
+            }
+
+            if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
             {
                 GenClass = DllManager.appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
             }

@@ -32,6 +32,7 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
     public string nowRoomChID;
+    public string nowRoomStartChID;
     public bool nowRoomVoiceUpEnabled;
     public string nowRoomVoiceType;
     public string nowRoomGMEappID;
@@ -41,6 +42,7 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomActionAPI;
     public string nowRoomTBPAPI;
     public string nowRoomGMEroomExID;
+    public string nowRoomExChID;
     public string nowRoomAdminCMD;
     public string nowRoomPass;
     public Dictionary<string,string> nowRoomSettings = new Dictionary<string, string>();
