@@ -9,10 +9,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
 using com.ootii.Messages;
-
 using UnityEngine.Timeline;
 using LitJson;
-
 public class DllManager : MonoBehaviour
 {
     public static ILRuntime.Runtime.Enviorment.AppDomain appdomain;
@@ -70,7 +68,6 @@ public class DllManager : MonoBehaviour
         {
             OnAssemblyLoadOver();
         }
-
         MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
     }
 
@@ -104,6 +101,18 @@ public class DllManager : MonoBehaviour
 
     private void RegisterDelegate()
     {
+
+        RegisterVRFunction(appdomain.DelegateManager);
+
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, System.Int32>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Comparison<ILRuntime.Runtime.Intepreter.ILTypeInstance>>((act) =>
+        {
+            return new System.Comparison<ILRuntime.Runtime.Intepreter.ILTypeInstance>((x, y) =>
+            {
+                return ((Func<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, System.Int32>)act)(x, y);
+            });
+        });
         ///litjson
         JsonMapper.RegisterExporter<float>((obj, writer) => writer.Write(obj.ToString()));
         JsonMapper.RegisterImporter<string, float>(input => float.Parse(input));
@@ -146,6 +155,7 @@ public class DllManager : MonoBehaviour
             });
         });
 
+
         appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
         appdomain.DelegateManager.RegisterMethodDelegate<ChargedInfo>();
@@ -182,7 +192,6 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<string>();
         appdomain.DelegateManager.RegisterMethodDelegate<object>();
         
-
 
 
 
@@ -237,13 +246,14 @@ public class DllManager : MonoBehaviour
             });
         });
 
-        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction>((act) =>
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
         {
-            return new UnityAction(() =>
+            return new UnityEngine.Events.UnityAction(() =>
             {
                 ((Action)act)();
             });
         });
+
 
         appdomain.DelegateManager.RegisterMethodDelegate<bool>();
         appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<bool>>((act) =>
@@ -287,7 +297,6 @@ public class DllManager : MonoBehaviour
                 ((Action<int>)act)(arg0);
             });
         });
-
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
         {
@@ -471,6 +480,28 @@ public class DllManager : MonoBehaviour
                 ((Action<RotateInfo>)act)(cInfo);
             });
         });
+    }
+
+    private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
+    {
+        delegateManager.RegisterMethodDelegate<string, float, Vector2>();
+        delegateManager.RegisterMethodDelegate<string, GameObject>();
+        delegateManager.RegisterMethodDelegate<string, string, string>();
+        //delegateManager.RegisterMethodDelegate<string>();
+        delegateManager.RegisterMethodDelegate<WsPlaceMarkList>();
+        //delegateManager.RegisterMethodDelegate<bool>();
+        delegateManager.RegisterMethodDelegate<GameObject>();
+        delegateManager.RegisterMethodDelegate<Texture2D>();
+        delegateManager.RegisterMethodDelegate<GameObject, List<string>>();
+        //delegateManager.RegisterMethodDelegate<KodFileResult>();
+        delegateManager.RegisterMethodDelegate<bool, VRWsRemoteScene>();
+        delegateManager.RegisterMethodDelegate<VRWsRemoteScene>();
+        delegateManager.RegisterMethodDelegate<WsProgressInfo>();
+        delegateManager.RegisterMethodDelegate<string, Texture2D>();
+        delegateManager.RegisterMethodDelegate<Texture>();
+        delegateManager.RegisterMethodDelegate<WsChangeInfo>();
+        delegateManager.RegisterMethodDelegate<WsCChangeInfo>();
+        delegateManager.RegisterMethodDelegate<VRChanelRoom>();
     }
 
     private void OnDestroy()
