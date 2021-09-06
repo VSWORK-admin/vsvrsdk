@@ -7,7 +7,7 @@ public class ScreenZoomAndPanImage : MonoBehaviour
     public Transform ImageTarget;
     //private Transform targetP;
 
-    private float dist;
+    public float dist;
 
     private float panSpeedX;
     private float panSpeedY;
@@ -53,6 +53,7 @@ public class ScreenZoomAndPanImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!ImageTarget.gameObject.activeInHierarchy) return;
 
         ImageTarget.localScale = new Vector3(dist, dist, dist);
 
@@ -78,7 +79,7 @@ public class ScreenZoomAndPanImage : MonoBehaviour
     //called when one finger drag are detected
     void OnDragging(DragInfo dragInfo)
     {
-
+        if (!ImageTarget.gameObject.activeInHierarchy) return;
         //apply the DPI scaling
         dragInfo.delta /= IT_Gesture.GetDPIFactor();
         //vertical movement is corresponded to rotation in x-axis
@@ -90,6 +91,7 @@ public class ScreenZoomAndPanImage : MonoBehaviour
     //called when pinch is detected
     void OnPinch(PinchInfo pinfo)
     {
+        if (!ImageTarget.gameObject.activeInHierarchy) return;
         zoomSpeed -= pinfo.magnitude * zoomSpeedModifier / IT_Gesture.GetDPIFactor();
     }
 

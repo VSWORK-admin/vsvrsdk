@@ -155,6 +155,63 @@ public class DllManager : MonoBehaviour
             });
         });
 
+        //Dotween Setter
+        appdomain.DelegateManager.RegisterFunctionDelegate<Color>();
+        appdomain.DelegateManager.RegisterMethodDelegate<Color>();
+
+        appdomain.DelegateManager.RegisterFunctionDelegate<Vector3>();
+        appdomain.DelegateManager.RegisterMethodDelegate<Vector3>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<float>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOGetter<Color>>((act) =>
+        {
+            return new DG.Tweening.Core.DOGetter<Color>(() =>
+            {
+                return ((Func<Color>)act)();
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOGetter<float>>((act) =>
+        {
+            return new DG.Tweening.Core.DOGetter<float>(() =>
+            {
+                return ((Func<float>)act)();
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOGetter<Vector3>>((act) =>
+        {
+            return new DG.Tweening.Core.DOGetter<Vector3>(() =>
+            {
+                return ((Func<Vector3>)act)();
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Color>>((act) =>
+        {
+            return new DG.Tweening.Core.DOSetter<Color>((pNewValue) =>
+            {
+                ((Action<Color>)act)(pNewValue);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<float>>((act) =>
+        {
+            return new DG.Tweening.Core.DOSetter<float>((pNewValue) =>
+            {
+                ((Action<float>)act)(pNewValue);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Vector3>>((act) =>
+        {
+            return new DG.Tweening.Core.DOSetter<UnityEngine.Vector3>((pNewValue) =>
+            {
+                ((Action<UnityEngine.Vector3>)act)(pNewValue);
+            });
+        });
+
+
+
+
 
         appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
@@ -295,6 +352,30 @@ public class DllManager : MonoBehaviour
             return new UnityAction<int>((arg0) =>
             {
                 ((Action<int>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<Vector2>>((act) =>
+        {
+            return new UnityAction<Vector2>((arg0) =>
+            {
+                ((Action<Vector2>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<Vector3>>((act) =>
+        {
+            return new UnityAction<Vector3>((arg0) =>
+            {
+                ((Action<Vector3>)act)(arg0);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<Color>>((act) =>
+        {
+            return new UnityAction<Color>((arg0) =>
+            {
+                ((Action<Color>)act)(arg0);
             });
         });
 
@@ -480,6 +561,43 @@ public class DllManager : MonoBehaviour
                 ((Action<RotateInfo>)act)(cInfo);
             });
         });
+
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, int>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Comparison<ILRuntime.Runtime.Intepreter.ILTypeInstance>>((act) =>
+        {
+            return new System.Comparison<ILRuntime.Runtime.Intepreter.ILTypeInstance>((x, y) =>
+            {
+                return ((Func<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, int>)act)(x, y);
+            });
+        });
+
+
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, String>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, float>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, int>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, Vector3>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, Vector2>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, Color>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, bool>();
+
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>((arg0, arg1) =>
+            {
+                ((Action<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>)act)(arg0, arg1);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.String, UnityEngine.LogType>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Application.LogCallback>((act) =>
+        {
+            return new UnityEngine.Application.LogCallback((condition, stackTrace, type) =>
+            {
+                ((Action<System.String, System.String, UnityEngine.LogType>)act)(condition, stackTrace, type);
+            });
+        });
     }
 
     private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
@@ -515,5 +633,6 @@ public class DllManager : MonoBehaviour
 
         appdomain = null;
         _Instance = null;
+        StopAllCoroutines();
     }
 }

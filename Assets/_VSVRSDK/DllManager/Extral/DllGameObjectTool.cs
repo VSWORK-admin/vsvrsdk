@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public static class DllGameObjectTool
 {
 
@@ -48,7 +49,7 @@ public static class DllGameObjectTool
 
         for (int i = 0; i < scripts.Length; i++)
         {
-            if (scripts[i].ScriptClassName.Equals(type.Name))
+            if (scripts[i].ScriptClassName.Equals(type.FullName))
             {
                 return (T)scripts[i].DllClass;
             }
@@ -67,7 +68,7 @@ public static class DllGameObjectTool
 
         for (int i = 0; i < scripts.Length; i++)
         {
-            if (scripts[i].ScriptClassName.Equals(type.Name))
+            if (scripts[i].ScriptClassName.Equals(type.FullName))
             {
                 return (T)scripts[i].DllClass;
             }

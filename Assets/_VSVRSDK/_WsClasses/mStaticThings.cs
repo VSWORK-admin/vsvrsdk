@@ -32,8 +32,8 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
     public string nowRoomChID;
-    public string nowRoomStartChID;
     public bool nowRoomVoiceUpEnabled;
+    public string nowRoomStartChID;
     public string nowRoomVoiceType;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
