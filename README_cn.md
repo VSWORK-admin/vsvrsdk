@@ -122,13 +122,7 @@ Virtual Reality Supported : False
 
 ## 五、交互编程
 #### 5.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
-#### 5.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程地址，或打开 DllProject/Click_show_hideDemo:
-> https://gitee.com/vswork_admin/vsvrdll
-
-或
-
-> https://github.com/VSWORK-admin/vsvrdll
-
+#### 5.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程  DllProject/Click_show_hideDemo:
 
 ## 六、场景打包
 ###### 6.1. 打包名称设置

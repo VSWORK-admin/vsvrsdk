@@ -122,13 +122,7 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 
 ## 5、Interactive programming
 #### 5.1 Visual programming: Use ```Playmaker``` + ```VSVR Plamaker VRActions```
-#### 5.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project or **DllProject/Click_show_hideDemo** in this project:
-> https://gitee.com/vswork_admin/vsvrdll
-
-or
-
-> https://github.com/VSWORK-admin/vsvrdll
-
+#### 5.2 Code programming: Use ILruntime C# Script. For detailed instructions, please refer to the vsvrdll example project : **DllProject/Click_show_hideDemo**
 
 ## 6、Scene packaging
 ###### 6.1. Package name setting
