@@ -74,7 +74,6 @@ public enum VrDispMessageType
     ChangeObj,
     // teleport
     TeleportTo,
-    //移动到Mesh物体
     TelePortToMesh,
     VRTelePortToMesh,
     //UIPointer & Teleporter status
@@ -198,7 +197,10 @@ public enum VrDispMessageType
     VRAvatarPoseChange,
     VRAvatarLposeChange,
     VRAvatarRposeChange,
-    VRLoadAvatarDone
+    VRLoadAvatarDone,
+    VRScaleChange,
+    VRGetOneOrder
+
 }
 
 

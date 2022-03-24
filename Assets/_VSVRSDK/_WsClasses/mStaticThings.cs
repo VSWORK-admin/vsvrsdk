@@ -32,8 +32,8 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
     public string nowRoomChID;
-    public bool nowRoomVoiceUpEnabled;
     public string nowRoomStartChID;
+    public bool nowRoomVoiceUpEnabled;
     public string nowRoomVoiceType;
     public string nowRoomGMEappID;
     public string nowRoomGMEroomID;
@@ -127,11 +127,14 @@ public class mStaticThings : MonoBehaviour
     public float MaxHideDistance = 120f;
     public float MaxAvatarMeshHideDistance = 80f;
 
+    public float MinAvatarDistance = 0.3f;
+    public float NowFixMaxAvatarMeshHideDistance = 30f;
+    public int MaxAvatarMeshNumber = 20;
+
     public bool AirPlayEnabled = false;
     public bool AirPlayIson = false;
     public bool islogedin = false;
     
-
     public WsAvatarFrameList nowAvatarFrameList;
 
     public List<string> ActionBlackList = new List<string>();
@@ -141,7 +144,7 @@ public class mStaticThings : MonoBehaviour
     public Dictionary<string,string> TeleportDict = new Dictionary<string,string>();
 
     public Vector3 PenPosFix = Vector3.zero;
-
+    public string nowroomtoken = "";
     public static mStaticThings I
     {
         get

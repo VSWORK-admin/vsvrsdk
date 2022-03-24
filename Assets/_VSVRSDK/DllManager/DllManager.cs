@@ -9,8 +9,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
 using com.ootii.Messages;
+
 using UnityEngine.Timeline;
 using LitJson;
+
 public class DllManager : MonoBehaviour
 {
     public static ILRuntime.Runtime.Enviorment.AppDomain appdomain;
@@ -68,6 +70,7 @@ public class DllManager : MonoBehaviour
         {
             OnAssemblyLoadOver();
         }
+
         MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
     }
 
@@ -102,7 +105,6 @@ public class DllManager : MonoBehaviour
     private void RegisterDelegate()
     {
 
-        RegisterVRFunction(appdomain.DelegateManager);
 
         appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, System.Int32>();
 
@@ -155,10 +157,8 @@ public class DllManager : MonoBehaviour
             });
         });
 
-        //Dotween Setter
         appdomain.DelegateManager.RegisterFunctionDelegate<Color>();
         appdomain.DelegateManager.RegisterMethodDelegate<Color>();
-
         appdomain.DelegateManager.RegisterFunctionDelegate<Vector3>();
         appdomain.DelegateManager.RegisterMethodDelegate<Vector3>();
         appdomain.DelegateManager.RegisterFunctionDelegate<float>();
@@ -209,10 +209,6 @@ public class DllManager : MonoBehaviour
             });
         });
 
-
-
-
-
         appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
         appdomain.DelegateManager.RegisterMethodDelegate<ChargedInfo>();
@@ -249,6 +245,7 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<string>();
         appdomain.DelegateManager.RegisterMethodDelegate<object>();
         
+
 
 
 
@@ -303,14 +300,13 @@ public class DllManager : MonoBehaviour
             });
         });
 
-        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction>((act) =>
         {
-            return new UnityEngine.Events.UnityAction(() =>
+            return new UnityAction(() =>
             {
                 ((Action)act)();
             });
         });
-
 
         appdomain.DelegateManager.RegisterMethodDelegate<bool>();
         appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<bool>>((act) =>
@@ -378,6 +374,7 @@ public class DllManager : MonoBehaviour
                 ((Action<Color>)act)(arg0);
             });
         });
+
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
         {
@@ -598,13 +595,15 @@ public class DllManager : MonoBehaviour
                 ((Action<System.String, System.String, UnityEngine.LogType>)act)(condition, stackTrace, type);
             });
         });
+
+        RegisterVRFunction(appdomain.DelegateManager);
     }
 
     private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
     {
         delegateManager.RegisterMethodDelegate<string, float, Vector2>();
         delegateManager.RegisterMethodDelegate<string, GameObject>();
-        delegateManager.RegisterMethodDelegate<string, string, string>();
+        delegateManager.RegisterMethodDelegate<string, string,string>();
         //delegateManager.RegisterMethodDelegate<string>();
         delegateManager.RegisterMethodDelegate<WsPlaceMarkList>();
         //delegateManager.RegisterMethodDelegate<bool>();

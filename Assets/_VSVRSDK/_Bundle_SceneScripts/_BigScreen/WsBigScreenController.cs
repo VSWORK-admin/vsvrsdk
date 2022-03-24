@@ -15,6 +15,8 @@ public class WsBigScreenController : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+
+        if (StartBigScreen == null) return;
         int ScreenAngle = StartBigScreen.GetComponent<BigScreenSelectController>().ScreenAngle;
 
         WsBigScreen startscreen = new WsBigScreen()

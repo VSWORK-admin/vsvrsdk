@@ -54,7 +54,6 @@ public class ScreenZoomAndPanImage : MonoBehaviour
     void Update()
     {
         if (!ImageTarget.gameObject.activeInHierarchy) return;
-
         ImageTarget.localScale = new Vector3(dist, dist, dist);
 
         float x = ImageTarget.GetComponent<RectTransform>().anchoredPosition.x;

@@ -15,12 +15,12 @@ public class VRUISelectorProxy : MonoBehaviour
     // Start is called before the first frame update
     public void Init()
     {
-        Button[] buttons = GetComponentsInChildren<UnityEngine.UI.Button>();
+        Button[] buttons = GetComponentsInChildren<UnityEngine.UI.Button>(true);
         foreach (Button btn in buttons)
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.2f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();
@@ -33,25 +33,29 @@ public class VRUISelectorProxy : MonoBehaviour
 
         }
 
-        Collider[] cds = GetComponentsInChildren<Collider>();
-        if (IsSystemMenu)
+        Collider[] cds = GetComponentsInChildren<Collider>(true);
+
+        foreach (Collider cd in cds)
         {
-            foreach (Collider cd in cds)
+            if (IsSystemMenu)
             {
-                if(!cd.gameObject.GetComponent<VRUIsystemMenuMark>()){
+                if (!cd.gameObject.GetComponent<VRUIsystemMenuMark>())
+                {
                     cd.gameObject.AddComponent<VRUIsystemMenuMark>();
                 }
-                
+            }
+            if (!cd.gameObject.GetComponent<VRUISelectorMark>())
+            {
+                cd.gameObject.AddComponent<VRUISelectorMark>();
             }
         }
 
-
-        InputField[] inputfields = GetComponentsInChildren<UnityEngine.UI.InputField>();
+        InputField[] inputfields = GetComponentsInChildren<UnityEngine.UI.InputField>(true);
         foreach (InputField btn in inputfields)
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.2f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();
@@ -63,12 +67,12 @@ public class VRUISelectorProxy : MonoBehaviour
             }
         }
 
-        Toggle[] toggles = GetComponentsInChildren<UnityEngine.UI.Toggle>();
+        Toggle[] toggles = GetComponentsInChildren<UnityEngine.UI.Toggle>(true);
         foreach (Toggle btn in toggles)
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.2f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();

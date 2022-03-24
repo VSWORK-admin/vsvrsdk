@@ -92,7 +92,7 @@ public class WsPlayceController : MonoBehaviour
         if(mStaticThings.I.nowRoomServerGetUrl.Contains("127.0.0.1")){
             PlayceToGroup(StartGroup.name, true);
         }else{
-            string url = mStaticThings.I.nowRoomServerGetUrl + "/placemark?apitoken="+mStaticThings.apitoken+"&socketid="+mStaticThings.I.mWsID;
+            string url = mStaticThings.I.nowRoomServerGetUrl + "/placemark?apitoken="+mStaticThings.apitoken+"&socketid="+mStaticThings.I.mWsID + "&room=" + mStaticThings.I.nowRoomChID;
             UnityWebRequest request = UnityWebRequest.Get(@url);
             yield return request.SendWebRequest();
             if (request.error != null)
@@ -519,7 +519,7 @@ public class WsPlayceController : MonoBehaviour
         {
             if (item.id != mStaticThings.I.mAvatarID || ContainMyself)
             {
-                if (mStaticThings.AllActiveAvatarList.Contains(item.id))
+                if (mStaticThings.AllActiveAvatarList.Contains(item.id) && item.dname != null)
                 {
                     Transform target = Playces.Find(item.dname);
                     if (target != null)

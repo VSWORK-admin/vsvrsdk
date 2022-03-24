@@ -16,11 +16,6 @@ public class GeneralDllBehaviorAdapter : MonoBehaviour
         MessageDispatcher.AddListener("GeneralDllBehaviorAwake", OnDllAwake,true);
     }
 
-    public void OnDestroy()
-    {
-        MessageDispatcher.RemoveListener("GeneralDllBehaviorAwake", OnDllAwake, true);
-    }
-
     void OnDllAwake(IMessage msg)
     {
         gameObject.AddComponent<GeneralDllBehavior>();

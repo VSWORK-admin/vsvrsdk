@@ -140,6 +140,13 @@ public class PoseFrameJian
     public Quaternion hrr;
 };
 
+public class VRAvatarPoseData
+{
+    public int pose;
+    public int lpose;
+    public int rpose;
+}
+
 [Serializable]
 public class WsAvatarFrameList
 {
@@ -590,11 +597,7 @@ public class VRGLBObjectData{
     public bool isscene;
 }
 
-public class VRAvatarPoseData {
-    public int pose;
-    public int lpose;
-    public int rpose;
-}
+
 
 
 public enum VROrderName
@@ -695,7 +698,9 @@ public enum VROrderName
     camt,
     camf,
     dismount,
-    enmount
+    enmount,
+    serverinputon,
+    serverinputoff
 }
 
 

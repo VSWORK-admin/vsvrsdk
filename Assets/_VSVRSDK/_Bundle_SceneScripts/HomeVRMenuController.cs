@@ -23,7 +23,7 @@ public class HomeVRMenuController : MonoBehaviour
     public bool isSelfShow = true;
     private void Start()
     {
-        if (mStaticThings.I == null) { return; }
+        if (mStaticThings.I == null || canvas == null || cavasparent==null) { return; }
 
         lefthand = mStaticThings.I.LeftHand;
 
@@ -162,7 +162,7 @@ public class HomeVRMenuController : MonoBehaviour
     {
         if (mStaticThings.I == null) { return; }
         if (AdminControlOnly && !mStaticThings.I.isAdmin && !mStaticThings.I.sadmin) { return; }
-        if (!iscanvasshow)
+        if (!iscanvasshow && cavasparent != null)
         {
             if (cavasparent.activeSelf)
             {
