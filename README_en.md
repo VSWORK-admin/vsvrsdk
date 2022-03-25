@@ -1,6 +1,6 @@
 ## 1、Environment setup
 ### 1. Development Environment
-#### 1.1 unity version: use **unity2019.2.16** version
+#### 1.1 unity version: use **unity2019.2.16** or **unity2019.4.28**
 
 ### 2. VSVRSDK Environment setup
 
