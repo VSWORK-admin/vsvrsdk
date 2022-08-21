@@ -4,6 +4,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
+
+
+class savadataclass {
+   public string a;
+    public string b;
+    public string c;
+    public string d;
+}
 
 namespace Dll_Project
 {
@@ -29,6 +38,51 @@ namespace Dll_Project
         public override void Init()
         {
             Debug.Log("Click_show_hideDemo Init !");
+
+            MessageDispatcher.AddListener(CommonVREventType.VR_LUp.ToString(),(msg)=> {
+
+                WsChangeInfo wsinfo = new WsChangeInfo()
+                {
+                    id = mStaticThings.I.mAvatarID,
+                    name = "InfoLog",
+                    a = "Lup_xxxxxxxxx",
+                    b = InfoColor.green.ToString(),
+                    c = 5.ToString(),
+                };
+
+                MessageDispatcher.SendMessage(this, VrDispMessageType.SendInfolog.ToString(), wsinfo, 0);
+
+            });
+
+            MessageDispatcher.AddListener(CommonVREventType.VR_LDown.ToString(), (msg) => {
+
+                WsChangeInfo wsinfo = new WsChangeInfo()
+                {
+                    id = mStaticThings.I.mAvatarID,
+                    name = "InfoLog",
+                    a = "VR_LDown",
+                    b = InfoColor.green.ToString(),
+                    c = 5.ToString(),
+                };
+
+                MessageDispatcher.SendMessage(this, VrDispMessageType.SendInfolog.ToString(), wsinfo, 0);
+
+            });
+
+            MessageDispatcher.AddListener(CommonVREventType.VR_LLeft.ToString(), (msg) => {
+
+                WsChangeInfo wsinfo = new WsChangeInfo()
+                {
+                    id = mStaticThings.I.mAvatarID,
+                    name = "InfoLog",
+                    a = "VR_LLeft",
+                    b = InfoColor.green.ToString(),
+                    c = 5.ToString(),
+                };
+
+                MessageDispatcher.SendMessage(this, VrDispMessageType.SendInfolog.ToString(), wsinfo, 0);
+
+            });
         }
 
         public override void Awake()
@@ -141,6 +195,29 @@ namespace Dll_Project
 
                 MessageDispatcher.SendMessage(this, WsMessageType.SendCChangeObj.ToString(), wsinfo1, 0);
             }
+
+            savadataclass ad = new savadataclass();
+            ad.a = "aaaaaaaaaaaaa";
+            ad.b = mStaticThings.I.mAvatarID;
+            ad.c = "ssss";
+            ad.d = "1";
+
+            string json = JsonMapper.ToJson(ad);
+            //js["a"] = "aaaaaaaaaaaaa";
+            //js["b"] = mStaticThings.I.mAvatarID;
+            //js["c"] = "ssss";
+            //js["d"] = "1";
+
+
+            VRSaveRoomData changeInfo = new VRSaveRoomData
+            {
+                sall = false,
+                key = "aaaaaaaaaaaaa",
+                value = json
+            };
+            MessageDispatcher.SendMessage(this, WsMessageType.SendSaveData.ToString(), changeInfo, 0);
+
+
         }
 
 

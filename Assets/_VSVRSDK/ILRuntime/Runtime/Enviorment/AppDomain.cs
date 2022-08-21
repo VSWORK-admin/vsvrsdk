@@ -55,6 +55,30 @@ namespace ILRuntime.Runtime.Enviorment
         Dictionary<string, byte[]> references = new Dictionary<string, byte[]>();
         DebugService debugService;
 
+        public void Clear()
+        {
+            freeIntepreters.Clear();
+            intepreters.Clear();
+            crossAdaptors.Clear();
+            valueTypeBinders.Clear();
+            mapType.Clear();
+            clrTypeMapping.Clear();
+            mapTypeToken.Clear();
+            mapMethod.Clear();
+            mapString.Clear();
+            redirectMap.Clear();
+            fieldGetterMap.Clear();
+            fieldSetterMap.Clear();
+            fieldBindingMap.Clear();
+            memberwiseCloneMap.Clear();
+            createDefaultInstanceMap.Clear();
+            createArrayInstanceMap.Clear();
+            loadedAssemblies = null;
+            references.Clear();
+
+            dMgr.Clear();
+            dMgr = null;
+        }
         /// <summary>
         /// Determine if invoking unbinded CLR method(using reflection) is allowed
         /// </summary>

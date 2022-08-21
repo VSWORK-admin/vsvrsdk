@@ -501,7 +501,6 @@ D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Rele
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\UnityEngine.VRModule.xml
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\UnityEngine.WindModule.xml
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\UnityEngine.XRModule.xml
-D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.csprojAssemblyReference.cache
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.AssemblyInfoInputs.cache
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.AssemblyInfo.cs
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.csproj.CoreCompileInputs.cache
@@ -509,3 +508,5 @@ D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Rele
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.dll
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.pdb
 D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\bin\Release\netstandard2.0\Newtonsoft.Json.dll
+D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.csproj.AssemblyReference.cache
+D:\work\202007\VSVR\vsvrskd1\DllProject\Click_show_hideDemo\Dll_Project\obj\Release\netstandard2.0\Dll_Project.GeneratedMSBuildEditorConfig.editorconfig

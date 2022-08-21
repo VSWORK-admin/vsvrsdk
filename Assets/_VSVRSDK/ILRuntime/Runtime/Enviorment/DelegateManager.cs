@@ -19,6 +19,18 @@ namespace ILRuntime.Runtime.Enviorment
         Dictionary<Type, Func<Delegate, Delegate>> clrDelegates = new Dictionary<Type, Func<Delegate, Delegate>>(new ByReferenceKeyComparer<Type>());
         Func<Delegate, Delegate> defaultConverter;
         Enviorment.AppDomain appdomain;
+
+        public void Clear()
+        {
+            methods.Clear();
+            functions.Clear();
+            clrDelegates.Clear();
+            zeroParamMethodAdapter = null;
+            dummyAdapter = null;
+            defaultConverter = null;
+            appdomain = null;
+        }
+
         public DelegateManager(Enviorment.AppDomain appdomain)
         {
             this.appdomain = appdomain;

@@ -6,43 +6,31 @@ namespace ILRuntime.Runtime.Generated
 {
     class DllCLRBindings
     {
-
-
+        public static readonly List<string> blackTransformList = new List<string>
+        {
+            "_WsAvatarsRoot","_GlbRoot","_GlbSceneRoot","_GlbObjRoot","[DOTween]",
+            "MessageDispatcherStub","Dispatcher"
+        };
+        public static readonly List<string> whiteTransformRootList = new List<string>
+        {
+            "_WsAvatarsRoot","_GlbRoot"
+        };
+        public enum ObjectOpration
+        {
+            None = 0,
+            Delete,
+            Modified
+        }
         /// <summary>
         /// Initialize the CLR binding, please invoke this AFTER CLR Redirection registration
         /// </summary>
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
-            UnityEngine_Debug_Binding.Register(app);
-            UnityEngine_Component_Binding.Register(app);
-            UnityEngine_Object_Binding.Register(app);
-            HFExtralData_Binding.Register(app);
-            ExtralData_Binding.Register(app);
-            UnityEngine_GameObject_Binding.Register(app);
-            ILReflectionTool_Binding.Register(app);
-            System_Int32_Binding.Register(app);
-            System_String_Binding.Register(app);
-            UnityEngine_UI_Text_Binding.Register(app);
-            System_Diagnostics_Stopwatch_Binding.Register(app);
-            System_Int64_Binding.Register(app);
-            System_Double_Binding.Register(app);
-            UnityEngine_Random_Binding.Register(app);
-            UnityEngine_Vector3_Binding.Register(app);
-            UnityEngine_Quaternion_Binding.Register(app);
-            UnityEngine_Transform_Binding.Register(app);
-            System_DateTime_Binding.Register(app);
-            System_Random_Binding.Register(app);
-            System_Text_StringBuilder_Binding.Register(app);
-            System_Char_Binding.Register(app);
-            System_Object_Binding.Register(app);
-            System_Int32_Array2_Binding.Register(app);
-            System_Math_Binding.Register(app);
-            UnityEngine_Time_Binding.Register(app);
-            System_Single_Binding.Register(app);
-            System_Boolean_Binding.Register(app);
-            UnityEngine_Vector2_Binding.Register(app);
+            DLL_UnityEngine_Object_Binding.Register(app);
+            DLL_UnityEngine_GameObject_Binding.Register(app);
+            DLL_UnityEngine_Transform_Binding.Register(app);
+			DLL_UnityEngine_Application_Binding.Register(app);
 
-            ILRuntime.CLR.TypeSystem.CLRType __clrType = null;
         }
 
         /// <summary>
@@ -50,6 +38,65 @@ namespace ILRuntime.Runtime.Generated
         /// </summary>
         public static void Shutdown(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
+        }
+
+        public static bool CheckHasDontDestroyComponentInParent(UnityEngine.Object obj, ObjectOpration opration,string funcName)
+        {
+            if (obj as UnityEngine.GameObject != null)
+            {
+                UnityEngine.GameObject gameObject = obj as UnityEngine.GameObject;
+
+                if (DllCLRBindings.blackTransformList.Contains(gameObject.name))
+                {
+                    DllCLRBindings.ShowLogByType(DllCLRBindings.ObjectOpration.Modified, funcName);
+                    return true;
+                }
+                else if (DllCLRBindings.CheckHasDontDestroyComponent(gameObject, opration, funcName))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public static bool CheckHasDontDestroyComponent(UnityEngine.GameObject gameObject, ObjectOpration opration,string funcName)
+        {
+            UnityEngine.Transform RootTrans = null;
+
+            for (UnityEngine.Transform Trans = gameObject.transform; ;)
+            {
+                if (Trans.parent == null)
+                {
+                    RootTrans = Trans;
+                    break;
+                }
+                Trans = Trans.parent;
+            }
+
+            if(DllCLRBindings.whiteTransformRootList.Contains(RootTrans.gameObject.name))
+            {
+                return false;
+            }
+            if (RootTrans.GetComponent("DonotDesroyController") != null)
+            {
+                ShowLogByType(opration, funcName);
+
+                return true;
+            }
+            return false;
+        }
+
+        public static void ShowLogByType(ObjectOpration opration, string funcName)
+        {
+            switch (opration)
+            {
+                case ObjectOpration.Delete:
+                    UnityEngine.Debug.LogError("The fixed object of the main project cannot be deleted ! function : " + funcName);
+                    break;
+                case ObjectOpration.Modified:
+                    UnityEngine.Debug.LogError("The fixed object of the main project cannot be modified ! function : " + funcName);
+                    break;
+            }
         }
     }
 }

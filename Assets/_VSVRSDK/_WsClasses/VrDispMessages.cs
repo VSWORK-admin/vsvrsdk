@@ -199,8 +199,19 @@ public enum VrDispMessageType
     VRAvatarRposeChange,
     VRLoadAvatarDone,
     VRScaleChange,
-    VRGetOneOrder
-
+    VRGetOneOrder,
+    /// <summary>
+    /// 开始录制gif（参数类型：GifRecordData）
+    /// </summary>
+    StartRecordGif,
+    /// <summary>
+    /// 停止并保存录制的gif（无参数）
+    /// </summary>
+    StopAndSaveGif,
+    /// <summary>
+    /// 获取gif本地地址(参数:string 地址)
+    /// </summary>
+    SetGifLocalPath,
 }
 
 
@@ -297,4 +308,13 @@ public enum CommonVREventType
     VRRaw_X_ButtonDown,
     VRRaw_Y_ButtonDown,
     
+}
+
+public enum CloudRenderMessageType
+{
+    /// <summary>
+    /// 设置云渲染退出时发送的json数据（发送数据类型：string）
+    /// </summary>
+    CloudRender_SetExitData,
+
 }

@@ -200,4 +200,143 @@ void GetVRInput(IMessage msg)
     }
 }
 ```
-###### 2.5.6 其他事件和设置可以参考  vsvrsdk 工程内的  ```Assets/_VSVRSDK/VRActions``` 中的 playmaker 实现的案例模仿书写C#交互，VRActions功能在 vsvrsdk 工程的 README中有详细介绍
+###### 2.5.6 存储和读取缓存信息
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using com.ootii.Messages;
+
+namespace Dll_Project
+{
+    public class SaveAndGetDataDemo : DllGenerateBase
+    {
+    
+        public override void OnEnable()
+        {
+            //SendGetData 后 收取到信息 
+            MessageDispatcher.AddListener(WsMessageType.RecieveGetData.ToString(),RecieveGetData);
+
+        }
+        
+        public override void OnDisable()
+        {
+            MessageDispatcher.RemoveListener(WsMessageType.RecieveGetData.ToString(),RecieveGetData);
+        }
+        
+        //SendGetData 后 收取到信息 
+        void RecieveGetData(IMessage msg){
+            Dictionary<string,string> dic = msg.Data as Dictionary<string,string>;
+            foreach (var item in dic)
+            {
+                Debug.Log("GETDIC:   " +  item.Key + " : " + item.Value);
+            }
+        }
+    
+        int cnt = 0;
+        int cnt2 = 0;
+    
+    
+        public override void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                cnt++;
+    
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    
+                    key = "count_"+cnt,
+                    value = "value"
+                };
+                
+                //保存信息
+                MessageDispatcher.SendMessageData( WsMessageType.SendSaveData.ToString(), nd);
+    
+                //获取所有频道端保存的信息
+                MessageDispatcher.SendMessage(WsMessageType.SendGetData.ToString());
+            }
+            
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                cnt2++;
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "cxx_" + cnt2,
+                    value = "value"
+                };
+                
+                //保存信息
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                //获取Key 为 "CustomSavedData" 的 信息 
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "CustomSavedData"
+                };
+                
+                MessageDispatcher.SendMessageData(WsMessageType.SendGetData.ToString(),nd);
+            }
+            
+            
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                //获取所有以 "count_" 开头的key 的信息
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_"
+                };
+                
+                MessageDispatcher.SendMessageData(WsMessageType.SendGetData.ToString(),nd);
+            }
+    
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                //将所有以 "count_" 开头的key 的 value 设置成0
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_",
+                    value = "0"
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.Delete))
+            {
+            
+                //清除 key 为 "count_5" 的 key value
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "count_5",
+                    isclear = true
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.X))
+            {
+            
+                //清除所有 key 以 "count_" 开头的  key value
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_",
+                    isclear = true
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+        }
+    }
+}
+
+```
+###### 2.5.7 其他事件和设置可以参考  vsvrsdk 工程内的  ```Assets/_VSVRSDK/VRActions``` 中的 playmaker 实现的案例模仿书写C#交互，VRActions功能在 vsvrsdk 工程的 README中有详细介绍

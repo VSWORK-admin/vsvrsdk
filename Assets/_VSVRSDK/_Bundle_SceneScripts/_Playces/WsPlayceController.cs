@@ -12,6 +12,7 @@ public class WsPlayceController : MonoBehaviour
     bool PlayceEnabled = false;
     VRPlayceDot[] vpdots;
     bool isenabled = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,26 +23,16 @@ public class WsPlayceController : MonoBehaviour
         MessageDispatcher.AddListener(VrDispMessageType.TeleporterStatusChange.ToString(), TeleporterStatusChange);
 
         MessageDispatcher.AddListener(VrDispMessageType.DestroyWsAvatar.ToString(), DestroyWsAvatar);
-        MessageDispatcher.AddListener(VrDispMessageType.SceneFirstConnectWS.ToString(), SceneFirstConnectWS);
+        //MessageDispatcher.AddListener(VrDispMessageType.SceneFirstConnectWS.ToString(), SceneFirstConnectWS);
         vpdots = GetComponentsInChildren<VRPlayceDot>();
-
-
         EnablePlaycesRender(false);
-
         if (mStaticThings.I == null) { return; }
-        if (mStaticThings.I.IsSelfJoinScene)
-        {
-            mStaticThings.I.IsSelfJoinScene = false;
-            StartCoroutine(SelfLoadScene());
-        }
-        else
-        {
-            GoStartGroup();
-        }
+        Invoke("GoStartGroup", mStaticThings.I.Playwaittime);
     }
 
 
-    void GoStartGroup(){
+
+    public void GoStartGroup(){
             int sort = 0;
             int max = StartGroup.GetComponent<VRPlayceGroup>()._VRPlayceDots.Count - 1;
             if (mStaticThings.AllStaticAvatarsDic.Count > 1)
@@ -89,6 +80,7 @@ public class WsPlayceController : MonoBehaviour
 
     IEnumerator SelfLoadScene()
     {
+        yield return new WaitForSeconds(mStaticThings.I.Playwaittime);
         if(mStaticThings.I.nowRoomServerGetUrl.Contains("127.0.0.1")){
             PlayceToGroup(StartGroup.name, true);
         }else{
@@ -175,7 +167,6 @@ public class WsPlayceController : MonoBehaviour
                 return;
             }
         }
-
     }
 
     private void OnDestroy()
@@ -187,7 +178,7 @@ public class WsPlayceController : MonoBehaviour
         MessageDispatcher.RemoveListener(VrDispMessageType.TeleporterStatusChange.ToString(), TeleporterStatusChange);
 
         MessageDispatcher.RemoveListener(VrDispMessageType.DestroyWsAvatar.ToString(), DestroyWsAvatar);
-        MessageDispatcher.RemoveListener(VrDispMessageType.SceneFirstConnectWS.ToString(), SceneFirstConnectWS);
+        //MessageDispatcher.RemoveListener(VrDispMessageType.SceneFirstConnectWS.ToString(), SceneFirstConnectWS);
     }
 
 

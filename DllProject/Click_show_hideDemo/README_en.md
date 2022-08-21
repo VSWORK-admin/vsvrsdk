@@ -197,4 +197,142 @@ void GetVRInput(IMessage msg)
     }
 }
 ```
+###### 2.5.6 Save and Get CachedData
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using com.ootii.Messages;
+
+namespace Dll_Project
+{
+    public class SaveAndGetDataDemo : DllGenerateBase
+    {
+    
+        public override void OnEnable()
+        {
+            //When SendGetData 
+            MessageDispatcher.AddListener(WsMessageType.RecieveGetData.ToString(),RecieveGetData);
+        }
+        
+        public override void OnDisable()
+        {
+            MessageDispatcher.RemoveListener(WsMessageType.RecieveGetData.ToString(),RecieveGetData);
+        }
+        
+        //Recieve Message 
+        void RecieveGetData(IMessage msg){
+            Dictionary<string,string> dic = msg.Data as Dictionary<string,string>;
+            foreach (var item in dic)
+            {
+                Debug.Log("GETDIC:   " +  item.Key + " : " + item.Value);
+            }
+        }
+    
+        int cnt = 0;
+        int cnt2 = 0;
+    
+    
+        public override void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                cnt++;
+    
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    
+                    key = "count_"+cnt,
+                    value = "value"
+                };
+                
+                //Save Data
+                MessageDispatcher.SendMessageData( WsMessageType.SendSaveData.ToString(), nd);
+    
+                //Get All datas
+                MessageDispatcher.SendMessage(WsMessageType.SendGetData.ToString());
+            }
+            
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                cnt2++;
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "cxx_" + cnt2,
+                    value = "value"
+                };
+                
+                //save message
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                // get the message key is "CustomSavedData"
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "CustomSavedData"
+                };
+                
+                MessageDispatcher.SendMessageData(WsMessageType.SendGetData.ToString(),nd);
+            }
+            
+            
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                //get messages that the key is begin with "count_"
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_"
+                };
+                
+                MessageDispatcher.SendMessageData(WsMessageType.SendGetData.ToString(),nd);
+            }
+    
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                //set the value to '0' witch the key begin by "count_" 
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_",
+                    value = "0"
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.Delete))
+            {
+            
+                //clean the value witch key is "count_5"
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    key = "count_5",
+                    isclear = true
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.X))
+            {
+            
+                //clean all begin with "count_" 
+                VRSaveRoomData nd = new VRSaveRoomData
+                {
+                    sall = true,
+                    key = "count_",
+                    isclear = true
+                };
+    
+                MessageDispatcher.SendMessageData(WsMessageType.SendSaveData.ToString(), nd);
+            }
+        }
+    }
+}
+
+```
 ###### 2.5.6 For other events and settings, please refer to the case of playmaker in ``ʻAssets/_VSVRSDK/VRActions``` in the vsvrsdk project to imitate writing C# interaction. The VRActions function is in the README of the vsvrsdk project Detailed introduction

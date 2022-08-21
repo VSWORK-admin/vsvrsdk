@@ -1,6 +1,6 @@
 ## 1、Environment setup
 ### 1. Development Environment
-#### 1.1 unity version: use **unity2019.2.16** or **unity2019.4.28**
+#### 1.1 unity version: use **unity2019.4.28**
 
 ### 2. VSVRSDK Environment setup
 
@@ -30,7 +30,7 @@ Allow 'unsafe' Code : True
 ## PlayerSetting-> XR Settings:
 Virtual Reality Supported : True
 VirtualRealitySDKs : none
-Stereo Rendering Mode : Multiview
+Stereo Rendering Mode : SinglePass
 ```
 
 iOS:
@@ -83,8 +83,8 @@ Virtual Reality Supported : False
 ```
 
 ## 3、Scene setting
-###### 3.1. Use the LWRP rendering pipeline in the scene
-###### 3.2. The materials Shader in the scene use Lightweight Render Pipeline Shader 
+###### 3.1. Use the URP rendering pipeline in the scene
+###### 3.2. The materials Shader in the scene use URP Render Pipeline Shader 
 ###### 3.3. Try not to use real-time lights in the scene. The Light Probe Group needs to be added to the scene to provide light environment for dynamic objects.
 ###### 3.4. Use normal maps as little as possible in the scene, and use image sizes to avoid excessively large rendering resources
 
@@ -142,16 +142,16 @@ Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is runnin
 ###### 6.4. Multi-person debugging and use
 > Before uploading to the resource management background, you need to set the file name prefix for the bundle files required by different platforms
 ```
-# LWRP rendering pipeline:
-     Android: a_ (covered devices include: Oculus quest, pico neo2, pico G2 ，baidu VR ，IQUT VR, HTC Vive focus, Android mobile terminal)
+# URP rendering pipeline:
+     Android: a_ (covered devices include: Oculus quest, pico neo2, pico G2 ，baidu VR ， Android mobile terminal)
      iOS: i_ (covered devices include: iPhone ， iPAD)
      Windows: w_ (covered devices include: Oculus Rift S, HTC VIVE, WMR, Window desktop)
      MAC OS: m_ (covered devices include: Mac OS desktop)
-# Unity Standard rendering pipeline:
-     Android: b_ (covered devices include: Huawei VR glasses)
+# Unity HDRP rendering pipeline:
+     Android: b_ (covered devices include: Windows HDRP)
 
-For example: If you need to package bundle for Huawei VR glasses, you need to set the scene in the Standard rendering pipeline. The packaged resource package name is ceshi.scene, and the resource package name that needs to be uploaded to the resource manager backend must be prefixed with: b_ceshi.scene
-If multiple devices need to be loaded at the same time, they need to be packaged and named with the same file name, added with the corresponding prefix, and placed in the same file directory. Such as: a_ceshi.scene b_ceshi.scene w_ceshi.scene
+For example: If you need to package bundle for Android, you need to set the scene in the Standard rendering pipeline. The packaged resource package name is ceshi.scene, and the resource package name that needs to be uploaded to the resource manager backend must be prefixed with: a_ceshi.scene
+If multiple devices need to be loaded at the same time, they need to be packaged and named with the same file name, added with the corresponding prefix, and placed in the same file directory. Such as: a_ceshi.scene i_ceshi.scene w_ceshi.scene
 ```
 
 

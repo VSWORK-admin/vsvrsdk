@@ -1,6 +1,6 @@
 ## 一、环境搭建
 ### 1. 开发环境
-unity版本： 使用 **unity2019.2.16** 或 **unity2019.4.28**  版本
+unity版本： 使用 **unity2019.4.28**  版本
 ### 2. VSVRSDK 环境搭建
 ###### 2.1.1  注册并登录 check到本地 或直接下载 zip工程包
 > https://gitee.com/vswork_admin/vsvrsdk
@@ -28,7 +28,7 @@ Allow 'unsafe' Code : True
 ## PlayerSetting-> XR Settings:
 Virtual Reality Supported : True
 VirtualRealitySDKs : none
-Stereo Rendering Mode : Multiview
+Stereo Rendering Mode : SinglePass
 ```
 
 iOS:
@@ -83,8 +83,8 @@ Virtual Reality Supported : False
 
 
 ## 三、场景设置
-###### 3.1. 场景内使用LWRP渲染管线
-###### 3.2. 场景内的材质使用 Lightweight Render Pipline 中的Shader，不要使用Autodesk Interactive Shader
+###### 3.1. 场景内使用URP渲染管线
+###### 3.2. 场景内的材质使用  URP 中的Shader，不要使用Autodesk Interactive Shader
 ###### 3.3. 场景内尽量不使用实时灯光，场景中需要添加 Light Probe Group （光照探针）用来给动态物体提供光环境
 ###### 3.4. 场景内尽量少使用法线贴图，使用的图片大小尺寸避免过大造成渲染资源浪费
 
@@ -144,16 +144,16 @@ Virtual Reality Supported : False
 ###### 6.4. 多人调试和使用
 > 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
 ```
-# LWRP 渲染管线 :  
+# URP 渲染管线 :  
     安卓 : a_  (覆盖设备包括 ：Oculus quest， pico neo2， pico G2 ，baidu VR ，IQUT VR, HTC Vive focus ， 安卓手机端)
     iOS : i_  （覆盖设备包括 ：iphone ，ipad） 
     Windows : w_  （覆盖设备包括 ：Oculus Rift S , HTC VIVE， WMR ，Window 桌面端） 
     MAC OS : m_  （覆盖设备包括 ：Mac OS 桌面端）
-# Unity Standard 渲染管线 ：
-    安卓 ： b_ (覆盖设备包括 ： 华为VR眼镜)
+# Unity HDRP 渲染管线 ：
+    安卓 ： b_ (覆盖设备包括 ： WindowsHDRP)
 
-例如 ： 如果需要为华为VR眼镜打包，则需要在Standard 渲染管线设置场景，打包资源包名称 为  ceshi.scene, 则需要上传至资源管理器后台的资源包名称需加上前缀为 ： b_ceshi.scene
-如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   b_ceshi.scene   w_ceshi.scene   m_ceshi.scene
+例如 ： 如果需要安卓打包，则需要在Standard 渲染管线设置场景，打包资源包名称 为  ceshi.scene, 则需要上传至资源管理器后台的资源包名称需加上前缀为 ： a_ceshi.scene
+如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   i_ceshi.scene   w_ceshi.scene   m_ceshi.scene
 ```
 
 

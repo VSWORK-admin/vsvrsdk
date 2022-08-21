@@ -67,6 +67,16 @@ public enum BigScreenModeType{
     screen,
     web
 }
+[System.Serializable]
+public class PoseFrameJian
+{
+    public Vector3 hp;
+    public Quaternion hr;
+    public Vector3 hlp;
+    public Quaternion hlr;
+    public Vector3 hrp;
+    public Quaternion hrr;
+};
 
 
 
@@ -128,23 +138,6 @@ public class WsAvatarFrameJian
     public Vector3 ws;//WorldScale
     public PoseFrameJian cp;//CurPose
     public string cl;
-}
-
-public class PoseFrameJian
-{
-    public Vector3 hp;
-    public Quaternion hr;
-    public Vector3 hlp;
-    public Quaternion hlr;
-    public Vector3 hrp;
-    public Quaternion hrr;
-};
-
-public class VRAvatarPoseData
-{
-    public int pose;
-    public int lpose;
-    public int rpose;
 }
 
 [Serializable]
@@ -557,6 +550,9 @@ public class VRChanelRoom{
 public class VRRootChanelRoom{
     public string roomid;
     public string voiceid;
+    public string token;
+    public bool samescene = false;
+    public string loadingscene = "";
 }
 
 public class VRWsRemoteScene
@@ -597,7 +593,17 @@ public class VRGLBObjectData{
     public bool isscene;
 }
 
-
+public class GifRecordData
+{
+    public int width;
+    public int height;
+    /// <summary>
+    /// 1-30
+    /// </summary>
+    public int FramePerSecond;
+    public int TimeSecond;
+    public bool bRepeat;
+}
 
 
 public enum VROrderName

@@ -23,8 +23,8 @@ public class CustomFullBodyAvatarMarker : MonoBehaviour
 
     public bool forceset = false;
 
-    
 
+    private Transform animationAvatarNameRoot;
     private void OnEnable()
     {
         InvokeRepeating("DetectDistance", 0, checktime);
@@ -51,5 +51,34 @@ public class CustomFullBodyAvatarMarker : MonoBehaviour
 
     void SetForcesetFalse(){
         forceset = false;
+    }
+
+    public Transform GetNamePanelRoot()
+    {
+        Transform trnameheadroot = DefaltHead;
+        
+        if (animationAvatarNameRoot == null)
+        {
+            Transform trhead = null;
+            foreach(var v in transform.GetComponentsInChildren<Transform>())
+            {
+                if (v.name == "Head")
+                {
+                    trhead = v;
+                    break;
+                }
+            }
+            if (trhead != null)
+            {
+                GameObject root = new GameObject("NamePanel");
+                root.transform.SetParent(trhead);
+                root.transform.localPosition = Vector3.zero;
+                root.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                animationAvatarNameRoot = root.transform;
+            }
+        }
+        trnameheadroot = animationAvatarNameRoot;
+        
+        return trnameheadroot;
     }
 }

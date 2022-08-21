@@ -3,13 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Slate;
+using WebSocketSharp;
+using System.Net;
+using System.Threading;
+using UnityEditor.PackageManager;
 
 namespace Dll_Project { 
     public class TestSetLeftHand : DllGenerateBase
     {
+        WebSocket WSClient;
+
+
+        //Start a WebSocket Client
+        public void StartWSClient()
+        {
+            WSClient = new WebSocket("ws://127.0.0.1:4060");
+
+            WSClient.Connect();
+
+            WSClient.OnMessage += (sender, e) =>
+            {
+                Debug.Log("WSclient RecieveMessage : " + e.Data.ToString());
+            };
+
+            WSClient.OnClose += (sender, e) => {
+                //metricsws.Connect();
+            };
+            
+            WSClient.OnError += (sender, e) => {
+                //metricsws.Connect();
+            };
+        }
+
+
         public override void Init()
         {
-            Debug.Log("TestMessageDispatcher Init !");
+            //StartWSClient();
+            Debug.Log("TestMessageDispatcher Init !");  
         }
         public override void Awake()
         {
@@ -51,7 +81,7 @@ namespace Dll_Project {
 
         public override void Update()
         {
-            if (mStaticThings.I != null) {
+            if (mStaticThings.I != null && mStaticThings.I.isVRApp) {
                 BaseMono.ExtralDatas[0].Target.gameObject.transform.position = mStaticThings.I.LeftHand.position;
             }
         }

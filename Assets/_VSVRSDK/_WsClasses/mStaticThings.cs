@@ -28,10 +28,19 @@ public class mStaticThings : MonoBehaviour
     public string now_ScenePrefix;
     public bool WsAvatarIsReady = false;
     public bool AutoLogin;
+    /// <summary>
+    /// 当前频道id
+    /// </summary>
     public string nowRoomID;
     public string nowRoomServerUrl;
     public string nowRoomServerGetUrl;
+    /// <summary>
+    /// 当前频道名称（前缀名 + 频道房间名）
+    /// </summary>
     public string nowRoomChID;
+    /// <summary>
+    /// 当前频道前缀名
+    /// </summary>
     public string nowRoomStartChID;
     public bool nowRoomVoiceUpEnabled;
     public string nowRoomVoiceType;
@@ -42,6 +51,9 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomActionAPI;
     public string nowRoomTBPAPI;
     public string nowRoomGMEroomExID;
+    /// <summary>
+    /// 当前频道房间名（切换房间后有效）
+    /// </summary>
     public string nowRoomExChID;
     public string nowRoomAdminCMD;
     public string nowRoomPass;
@@ -76,6 +88,8 @@ public class mStaticThings : MonoBehaviour
     public bool IsSelfJoinScene = false;
     public bool isVRApp = true;
     public bool ismobile;
+    public bool isCloudRender = false;
+    public bool isCloudRenderMobile = false;
     public string nowGroupName;
     public string ThisKODfileUrl;
     public string ThisKODfileServer;
@@ -145,6 +159,11 @@ public class mStaticThings : MonoBehaviour
 
     public Vector3 PenPosFix = Vector3.zero;
     public string nowroomtoken = "";
+    public string mBodytype = "";
+    public float Playwaittime = 0.01f;
+    public bool UseDefaultLoadingScene = true;
+    public bool adminlaseronly = false;
+    public bool blocklaser = false;
     public static mStaticThings I
     {
         get

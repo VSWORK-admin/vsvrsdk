@@ -134,7 +134,7 @@ public class MonoBehaviourAdapter : CrossBindingAdaptor
                 mUpdateMethodGot = true;
             }
 
-            if (mStartMethod != null)
+            if (mUpdateMethod != null)
             {
                 appdomain.Invoke(mUpdateMethod, instance, null);
             }

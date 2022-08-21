@@ -9,9 +9,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
 using com.ootii.Messages;
-
+using WebSocketSharp;
 using UnityEngine.Timeline;
 using LitJson;
+
 
 public class DllManager : MonoBehaviour
 {
@@ -39,6 +40,30 @@ public class DllManager : MonoBehaviour
 
     void Start()
     {
+        if(appdomain != null)
+        {
+            appdomain.DebugService.StopDebugService();
+        }
+
+        if (fs != null)
+        {
+            fs.Close();
+            fs.Dispose();
+            fs = null;
+        }
+
+        if (p != null)
+        {
+            p.Close();
+            p.Dispose();
+            p = null;
+        }
+        if(appdomain != null)
+        {
+            appdomain.Clear();
+            appdomain = null;
+        }
+
         LoadILAssembly();
     }
 
@@ -72,6 +97,7 @@ public class DllManager : MonoBehaviour
         }
 
         MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+        appdomain.DebugService.StartDebugService(56001);
     }
 
     void InitializeILRuntime()
@@ -83,8 +109,16 @@ public class DllManager : MonoBehaviour
 
         appdomain.AllowUnboundCLRMethod = true;
 
+#if ILHotFix
         ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
-
+        ILRuntime.Runtime.Generated.Normal_CLRBindings.Initialize(appdomain);
+        ILRuntime.Runtime.Generated.System_CLRBindings.Initialize(appdomain);
+        ILRuntime.Runtime.Generated.NoNamespace_GenCLRBindings.Initialize(appdomain);
+        //ILRuntime.Runtime.Generated.WithNamespace_CLRBindings.Initialize(appdomain);
+        ILRuntime.Runtime.Generated.Modules_CLRBindings.Initialize(appdomain);
+#else
+        ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
+#endif
         RegisterAdapter();
 
         RegisterDelegate();
@@ -100,6 +134,7 @@ public class DllManager : MonoBehaviour
         appdomain.RegisterCrossBindingAdaptor(new DllGenerateBaseAdapter());
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         appdomain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new DllDragBaseAdapter());
     }
 
     private void RegisterDelegate()
@@ -596,7 +631,95 @@ public class DllManager : MonoBehaviour
             });
         });
 
+
         RegisterVRFunction(appdomain.DelegateManager);
+
+        RegisterMessageFunction(appdomain.DelegateManager);
+    }
+
+
+
+    private static void RegisterMessageFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
+    {
+        //mqtt
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribedEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribeEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnectEventArgs>();
+        delegateManager.RegisterMethodDelegate<object, EventArgs>();
+        delegateManager.RegisterMethodDelegate<GameObject, AnimationClip[], Transform, string>();
+
+        delegateManager.RegisterDelegateConvertor<uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishEventHandler>((action) =>
+        {
+            return new uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishEventHandler((a, b) =>
+            {
+                ((Action<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs>)action)(a, b);
+            });
+        });
+
+        delegateManager.RegisterDelegateConvertor<uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishedEventHandler>((action) =>
+        {
+            return new uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishedEventHandler((a, b) =>
+            {
+                ((Action<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs>)action)(a, b);
+            });
+        });
+
+        delegateManager.RegisterDelegateConvertor<uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgSubscribedEventHandler>((action) =>
+        {
+            return new uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgSubscribedEventHandler((a, b) =>
+            {
+                ((Action<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs>)action)(a, b);
+            });
+        });
+        delegateManager.RegisterDelegateConvertor<uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgUnsubscribedEventHandler>((action) =>
+        {
+            return new uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgUnsubscribedEventHandler((a, b) =>
+            {
+                ((Action<object, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribedEventArgs>)action)(a, b);
+            });
+        });
+
+        delegateManager.RegisterDelegateConvertor<uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgDisconnectEventHandler>((action) =>
+        {
+            return new uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgDisconnectEventHandler((a, b) =>
+            {
+                ((Action<object, EventArgs>)action)(a, b);
+            });
+        });
+
+
+        //websocket
+        delegateManager.RegisterMethodDelegate<System.Object, WebSocketSharp.MessageEventArgs>();
+        delegateManager.RegisterMethodDelegate<System.Object, WebSocketSharp.ErrorEventArgs>();
+        delegateManager.RegisterMethodDelegate<System.Object, WebSocketSharp.CloseEventArgs>();
+
+        delegateManager.RegisterDelegateConvertor<System.EventHandler<WebSocketSharp.MessageEventArgs>>((act) =>
+        {
+            return new System.EventHandler<WebSocketSharp.MessageEventArgs>((sender, e) =>
+            {
+                ((Action<System.Object, WebSocketSharp.MessageEventArgs>)act)(sender, e);
+            });
+        });
+
+        delegateManager.RegisterDelegateConvertor<System.EventHandler<WebSocketSharp.ErrorEventArgs>>((act) =>
+        {
+            return new System.EventHandler<WebSocketSharp.ErrorEventArgs>((sender, e) =>
+            {
+                ((Action<System.Object, WebSocketSharp.ErrorEventArgs>)act)(sender, e);
+            });
+        });
+
+        delegateManager.RegisterDelegateConvertor<System.EventHandler<WebSocketSharp.CloseEventArgs>>((act) =>
+        {
+            return new System.EventHandler<WebSocketSharp.CloseEventArgs>((sender, e) =>
+            {
+                ((Action<System.Object, WebSocketSharp.CloseEventArgs>)act)(sender, e);
+            });
+        });
     }
 
     private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
@@ -623,14 +746,26 @@ public class DllManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (fs != null)
-            fs.Close();
-        if (p != null)
-            p.Close();
-        fs = null;
-        p = null;
+        //if (fs != null)
+        //{
+        //    fs.Close();
+        //    fs.Dispose();
+        //    fs = null;
+        //}
 
-        appdomain = null;
+        //if (p != null)
+        //{
+        //    p.Close();
+        //    p.Dispose();
+        //    p = null;
+        //}
+
+        //GameManager.Instance.timerManager.doOnce(100, () =>
+        //{
+        //    appdomain.Clear();
+        //    appdomain = null;
+        //    _Instance = null;
+        //});
         _Instance = null;
         StopAllCoroutines();
     }

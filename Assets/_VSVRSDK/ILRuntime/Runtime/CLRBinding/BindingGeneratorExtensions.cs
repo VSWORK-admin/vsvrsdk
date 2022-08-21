@@ -55,13 +55,20 @@ namespace ILRuntime.Runtime.CLRBinding
                     }
                     else
                         ts = new Type[0];
-                    var prop = type.GetProperty(t[1], ts);
-                    if (prop == null)
+                    try
                     {
-                        return true;
+                        var prop = type.GetProperty(t[1], ts);
+                        if (prop == null)
+                        {
+                            return true;
+                        }
+                        if (prop.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
+                            return true;
                     }
-                    if (prop.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
-                        return true;
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
             if (i.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
@@ -69,7 +76,18 @@ namespace ILRuntime.Runtime.CLRBinding
             foreach (var j in param)
             {
                 if (j.ParameterType.IsPointer)
+                {
                     return true;
+                }
+                if(j.ParameterType != null)
+                {
+                    var pt = j.ParameterType.IsByRef ? j.ParameterType.GetElementType() : j.ParameterType;
+                    if(pt == typeof(System.IntPtr) || pt == typeof(System.UIntPtr))
+                    {
+                        return true;
+                    }
+                }
+
             }
             return false;
         }
@@ -200,6 +218,10 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     return "ptr_of_this_method->Value";
                 }
+                else if(type == typeof(IntPtr))
+                {
+                    return "new IntPtr(&ptr_of_this_method->Value)";
+                }
                 else if (type == typeof(long))
                 {
                     return "*(long*)&ptr_of_this_method->Value";
@@ -261,6 +283,12 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     sb.AppendLine("                        ___dst->ObjectType = ObjectTypes.Integer;");
                     sb.Append("                        ___dst->Value = @" + paramName);
+                    sb.AppendLine(";");
+                }
+                else if (type == typeof(IntPtr))
+                {
+                    sb.AppendLine("                        ___dst->ObjectType = ObjectTypes.Integer;");
+                    sb.Append("                        *(int*)&___dst->Value = @" + paramName);
                     sb.AppendLine(";");
                 }
                 else if (type == typeof(long))
@@ -374,6 +402,11 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     sb.AppendLine("            __ret->ObjectType = ObjectTypes.Integer;");
                     sb.AppendLine("            __ret->Value = result_of_this_method;");
+                }
+                else if (type == typeof(IntPtr))
+                {
+                    sb.AppendLine("            __ret->ObjectType = ObjectTypes.Integer;");
+                    sb.AppendLine("            *(int*)&__ret->Value = result_of_this_method.ToInt32();");
                 }
                 else if (type == typeof(long))
                 {
