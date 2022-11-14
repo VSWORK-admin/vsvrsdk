@@ -67,6 +67,7 @@ public enum BigScreenModeType{
     screen,
     web
 }
+
 [System.Serializable]
 public class PoseFrameJian
 {
@@ -77,8 +78,6 @@ public class PoseFrameJian
     public Vector3 hrp;
     public Quaternion hrr;
 };
-
-
 
 [Serializable]
 public class WsAvatarFrame
@@ -604,7 +603,6 @@ public class GifRecordData
     public int TimeSecond;
     public bool bRepeat;
 }
-
 
 public enum VROrderName
 {

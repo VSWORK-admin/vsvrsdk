@@ -569,6 +569,7 @@ namespace ILRuntime.Runtime.Generated
             System.String @url = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
+
             UnityEngine.Application.OpenURL(@url);
             
             return __ret;

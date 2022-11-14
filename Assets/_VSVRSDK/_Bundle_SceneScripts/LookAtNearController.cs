@@ -18,7 +18,7 @@ public class LookAtNearController : MonoBehaviour
         }
         else
         {
-            transform.LookAt(mStaticThings.I.Maincamera);
+            transform.LookAt(mStaticThings.I.GetCurrentMainCamera());
         }
 
         if (mStaticThings.I.isVRApp)

@@ -28,19 +28,11 @@ public class mStaticThings : MonoBehaviour
     public string now_ScenePrefix;
     public bool WsAvatarIsReady = false;
     public bool AutoLogin;
-    /// <summary>
-    /// 当前频道id
-    /// </summary>
     public string nowRoomID;
     public string nowRoomServerUrl;
+    public string oldRoomServerUrl;
     public string nowRoomServerGetUrl;
-    /// <summary>
-    /// 当前频道名称（前缀名 + 频道房间名）
-    /// </summary>
     public string nowRoomChID;
-    /// <summary>
-    /// 当前频道前缀名
-    /// </summary>
     public string nowRoomStartChID;
     public bool nowRoomVoiceUpEnabled;
     public string nowRoomVoiceType;
@@ -51,9 +43,6 @@ public class mStaticThings : MonoBehaviour
     public string nowRoomActionAPI;
     public string nowRoomTBPAPI;
     public string nowRoomGMEroomExID;
-    /// <summary>
-    /// 当前频道房间名（切换房间后有效）
-    /// </summary>
     public string nowRoomExChID;
     public string nowRoomAdminCMD;
     public string nowRoomPass;
@@ -164,6 +153,16 @@ public class mStaticThings : MonoBehaviour
     public bool UseDefaultLoadingScene = true;
     public bool adminlaseronly = false;
     public bool blocklaser = false;
+    public bool AutoSwitchtoThirdPerson = false;
+    public bool bThirdPersonMode = false;
+    public float nearClipPlane = 0.1f;
+    public float farClipPlane = 1000;
+    //第三人称摄像机
+    public Transform thirdPersonCamera;
+    //自己隐身，是否对自己可见
+    public bool bSelfHideVisible = true;
+    //分享玩家数据
+    public List<ScreenShareData> screenShareList = new List<ScreenShareData>();
     public static mStaticThings I
     {
         get
@@ -218,5 +217,12 @@ public class mStaticThings : MonoBehaviour
 
         return nicknames;
     }
-
+    public Transform GetCurrentMainCamera()
+    {
+        if (bThirdPersonMode)
+        {
+            return thirdPersonCamera;
+        }
+        return Maincamera;
+    }
 }

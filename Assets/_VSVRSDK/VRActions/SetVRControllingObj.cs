@@ -36,7 +36,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             WsMovingObj newMovingObj = msg.Data as WsMovingObj;
             if (mStaticThings.I == null) { return; }
-            if (newMovingObj.id != mStaticThings.I.mAvatarID && ControllingObj != null)
+            if (newMovingObj.id != mStaticThings.I.mAvatarID && ControllingObj != null && ControllingObj.Value != null)
             {
                 if (newMovingObj.name == ControllingObj.Value.name)
                 {

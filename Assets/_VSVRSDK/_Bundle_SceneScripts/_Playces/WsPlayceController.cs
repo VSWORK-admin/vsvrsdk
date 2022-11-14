@@ -619,8 +619,8 @@ public class WsPlayceController : MonoBehaviour
 
             foreach (var item in mStaticThings.I.VRCameras)
             {
-                item.nearClipPlane = target.lossyScale.x * 0.1f;
-                item.farClipPlane = target.lossyScale.x * 1000f;
+                item.nearClipPlane = target.lossyScale.x * mStaticThings.I.nearClipPlane;
+                item.farClipPlane = target.lossyScale.x * mStaticThings.I.farClipPlane;
             }
 
             if(ccenabled){

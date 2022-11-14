@@ -212,6 +212,14 @@ public enum VrDispMessageType
     /// 获取gif本地地址(参数:string 地址)
     /// </summary>
     SetGifLocalPath,
+    /// <summary>
+    /// 获取gif保存进度(参数:float 进度0-100)
+    /// </summary>
+    SetGifSaveProgress,
+    /// <summary>
+    /// 设置渲染质量，0，低；1，中；2，高；3，最高
+    /// </summary>
+    SetRenderQuality,
 }
 
 
@@ -316,5 +324,8 @@ public enum CloudRenderMessageType
     /// 设置云渲染退出时发送的json数据（发送数据类型：string）
     /// </summary>
     CloudRender_SetExitData,
-
+    /// <summary>
+    /// 设置云渲染发送开关声网功能（发送数据类型：bool）
+    /// </summary>
+    CloudRender_SetOpenAgora,
 }

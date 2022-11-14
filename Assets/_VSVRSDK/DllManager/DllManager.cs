@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.Video;
 using com.ootii.Messages;
-using WebSocketSharp;
+
 using UnityEngine.Timeline;
 using LitJson;
 
@@ -26,25 +26,57 @@ public class DllManager : MonoBehaviour
     }
     private static DllManager _Instance = null;
 
-    System.IO.MemoryStream fs;
-    System.IO.MemoryStream p;
+    internal static System.IO.MemoryStream fs;
+    internal static System.IO.MemoryStream p;
 
-    public event System.Action OnAssemblyLoadOver = null;
+    public static event System.Action OnAssemblyLoadOver = null;
 
     public ExtralData[] ExtralDatas;
 
+    internal static byte[] TestDll = null;
+    internal static byte[] TestPdb = null;
+
+    internal static bool bShowLoadDllBtn = true;
+    internal static bool bTestMode { get { return TestDll != null && TestPdb != null; } }
     private void Awake()
     {
         _Instance = this;
+
+        MessageDispatcher.AddListener("ConnectWSRoomByCloudRender", ConnectWSRoomByCloudRender, true);
+    }
+
+    private void ConnectWSRoomByCloudRender(IMessage rMessage)
+    {
+        if (mStaticThings.I != null && mStaticThings.I.isCloudRender)
+        {
+            appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+        }
     }
 
     void Start()
     {
-        if(appdomain != null)
+        bShowLoadDllBtn = false;
+#if ILHotFix
+
+        if (bTestMode)
+        {
+            OnDllLoaded();
+            return;
+        }
+
+        if (!VRPublishSettingController.I.bMultiInstance)
+        {
+            if (appdomain != null)
+            {
+                appdomain.DebugService.StopDebugService();
+            }
+        }
+#else
+        if (appdomain != null)
         {
             appdomain.DebugService.StopDebugService();
         }
-
+#endif
         if (fs != null)
         {
             fs.Close();
@@ -72,9 +104,15 @@ public class DllManager : MonoBehaviour
         LoadHotFixAssembly2(DllAsset.bytes, PdbAsset.bytes);
     }
 
-    void LoadHotFixAssembly2(byte[] dll, byte[] pdb)
+    internal static void LoadHotFixAssembly2(byte[] dll, byte[] pdb)
     {
         appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
+
+        if(bTestMode)
+        {
+            dll = TestDll;
+            pdb = TestPdb;
+        }
 
         fs = new MemoryStream(dll);
         p = new MemoryStream(pdb);
@@ -89,7 +127,8 @@ public class DllManager : MonoBehaviour
 
         InitializeILRuntime();
 
-        OnDllLoaded();
+        if(!bTestMode)
+            OnDllLoaded();
 
         if (OnAssemblyLoadOver != null)
         {
@@ -97,10 +136,17 @@ public class DllManager : MonoBehaviour
         }
 
         MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+#if ILHotFix
+        if (!VRPublishSettingController.I.bMultiInstance)
+        {
+            appdomain.DebugService.StartDebugService(56001);
+        }
+#else
         appdomain.DebugService.StartDebugService(56001);
+#endif
     }
 
-    void InitializeILRuntime()
+    static void InitializeILRuntime()
     {
 #if DEBUG && UNITY_EDITOR
         appdomain.UnityMainThreadID = System.Threading.Thread.CurrentThread.ManagedThreadId;
@@ -124,12 +170,23 @@ public class DllManager : MonoBehaviour
         RegisterDelegate();
     }
 
-    unsafe void OnDllLoaded()
+    unsafe static void OnDllLoaded()
     {
+#if ILHotFix
+        if(mStaticThings.I != null && mStaticThings.I.isCloudRender && GUIManager.Instance != null && GUIManager.Instance.bCRCacheScene)
+        {
+            //appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+        }
+        else
+        {
+            appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+        }
+#else
         appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+#endif
     }
 
-    private void RegisterAdapter()
+    private static void RegisterAdapter()
     {
         appdomain.RegisterCrossBindingAdaptor(new DllGenerateBaseAdapter());
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
@@ -137,7 +194,7 @@ public class DllManager : MonoBehaviour
         appdomain.RegisterCrossBindingAdaptor(new DllDragBaseAdapter());
     }
 
-    private void RegisterDelegate()
+    private static void RegisterDelegate()
     {
 
 
@@ -235,6 +292,7 @@ public class DllManager : MonoBehaviour
                 ((Action<float>)act)(pNewValue);
             });
         });
+
 
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Vector3>>((act) =>
         {
@@ -697,6 +755,14 @@ public class DllManager : MonoBehaviour
         delegateManager.RegisterMethodDelegate<System.Object, WebSocketSharp.ErrorEventArgs>();
         delegateManager.RegisterMethodDelegate<System.Object, WebSocketSharp.CloseEventArgs>();
 
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.EventHandler>((act) =>
+        {
+            return new System.EventHandler((sender, e) =>
+            {
+                ((Action<System.Object, System.EventArgs>)act)(sender, e);
+            });
+        });
+
         delegateManager.RegisterDelegateConvertor<System.EventHandler<WebSocketSharp.MessageEventArgs>>((act) =>
         {
             return new System.EventHandler<WebSocketSharp.MessageEventArgs>((sender, e) =>
@@ -742,10 +808,26 @@ public class DllManager : MonoBehaviour
         delegateManager.RegisterMethodDelegate<WsChangeInfo>();
         delegateManager.RegisterMethodDelegate<WsCChangeInfo>();
         delegateManager.RegisterMethodDelegate<VRChanelRoom>();
+
+        delegateManager.RegisterMethodDelegate<WsAvatarFrame>();
+        delegateManager.RegisterMethodDelegate<WsMovingObj>();
+        delegateManager.RegisterMethodDelegate<string, bool>();
+        delegateManager.RegisterMethodDelegate<Dictionary<string, string>>();
+        delegateManager.RegisterMethodDelegate<CommonVREventType, float, Vector2>();
+        delegateManager.RegisterMethodDelegate<VRPointObjEventType, GameObject>();
     }
 
     private void OnDestroy()
     {
+        MessageDispatcher.RemoveListener("ConnectWSRoomByCloudRender", ConnectWSRoomByCloudRender, true);
+
+        bShowLoadDllBtn = true;
+
+        if (bTestMode)
+        {
+            TestDll = null;
+            TestPdb = null;
+        }
         //if (fs != null)
         //{
         //    fs.Close();
@@ -764,9 +846,9 @@ public class DllManager : MonoBehaviour
         //{
         //    appdomain.Clear();
         //    appdomain = null;
-        //    _Instance = null;
         //});
         _Instance = null;
         StopAllCoroutines();
     }
+
 }
