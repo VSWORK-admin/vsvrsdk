@@ -15,16 +15,12 @@ or
 
 Android :
 ```
-## Build Setting -> 
-TextureCompression : ASTC 
-
 ## PlayerSetting -> OtherSettings:
 ColorSpace : Linear
 AutoGraphics API : false 
 GraphicsAPIs : OpenGLES3 
 LightmapEncoding : High Quality 
 LightmapStreaming Enabled : True 
-Minimum API Level : 24
 Allow 'unsafe' Code : True
 
 ## PlayerSetting-> XR Settings:
@@ -87,6 +83,7 @@ Virtual Reality Supported : False
 ###### 3.2. The materials Shader in the scene use URP Render Pipeline Shader 
 ###### 3.3. Try not to use real-time lights in the scene. The Light Probe Group needs to be added to the scene to provide light environment for dynamic objects.
 ###### 3.4. Use normal maps as little as possible in the scene, and use image sizes to avoid excessively large rendering resources
+###### 3.5. The pictures and lightmaps in the scene should be set to the minimum resolution before packaging, and Android and iOS should be set to ASTC 6x6 compression format
 
 ## 4、VR Setting
 ###### 4.1.Location point, location group, location surface
@@ -97,25 +94,19 @@ Virtual Reality Supported : False
 （4）Add meshcollider or boxcollider on a plane that allows free walking, and then add VRPlayceMeshMark script to the object.
 If the object is added to the child object of the _Playces object, the object will be hidden by default and will only appear when the position moves.
 ```
-###### 4.2.Third-person camera
-```
-(1) Drag _VSVRSDK-》_Bundle_Prefab-》CameraMark-》 _CameraScreens  into the scene and right-click to select unpack prefab completely
-(2) Set the initial third-person view camera and other cameras on the PCScreenCameraSceneController of _CameraScreens,
-The camera will appear when the host clicks "Switch Camera", and you can use the laser pointer to select the camera. You can also use SetVRScreenCamera in VRAction to switch cameras.
-```
-###### 4.3.Bigscreen
+###### 4.2.Bigscreen
 ```
 (1) Drag  _VSVRSDK-》 _Bundle_Prefab-》Bigscreen -》 _BigScreens into the scene and right-click to select unpack prefab completely
 (2) Set the initial position of the large screen and the initial state of the large screen on the WsBigScreenController of _BigScreens
 ```
-###### 4.4.Custom Scene Menu
+###### 4.3.Custom Scene Menu
 ```
 (1)  Drag _VSVRSDK-》_Bundle_Prefab-》_CustomSceneMenu into the scene and right-click to select unpack prefab completely
 (2) Set the way the buttons appear and hide on the HomeVRMenuController of _CustomSceneMenu
 (3) Button name: change_A_B_C_D means: broadcast A B C D message to other users when the button is clicked
 (4) Button name: placeto_G1 means: when the button is clicked, all users move to the G1 location group
 ```
-###### 4.5.Unity UGUI button and action
+###### 4.4.Unity UGUI button and action
 ```
 Add the VRUISelectorProxy script to the canvas of UGUI. When the scene is running, the script will automatically add ray interaction events for the child objects. If the width and height of the button are set by its parent, you need to manually add a suitable boxcollider to the button
 ```
