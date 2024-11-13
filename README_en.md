@@ -90,7 +90,7 @@ Virtual Reality Supported: False
 ## IV. VR Settings
 ###### 4.1 Position Points, Position Groups, Position Meshes
 ```
-(1) _VSVRSDK -> _Bundle_Prefab -> StartPointMarks -> _StartPoint Drag into the scene, then right-click and select unpack prefab completely.
+(1) _VSVRSDK -> _Bundle_Prefab ->  _StartPoint Drag into the scene.
 (2) Add a mesh collider or box collider to the plane where free movement is allowed, then add the VRPlayceMeshMark script to the object.
 ```
 

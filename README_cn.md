@@ -91,7 +91,7 @@ Virtual Reality Supported : False
 ## 四、VR设置
 ###### 4.1.位置点 、位置组 、位置面
 ```
-（1）_VSVRSDK -》 _Bundle_Prefab -》 StartPointMarks -》_StartPoint	拖入到场景中后鼠标右击 选择 unpack prefab completely
+（1）_VSVRSDK -》 _Bundle_Prefab -》 _StartPoint	拖入到场景中设置角色出生点
 （2）在允许自由走动的平面上 添加 meshcollider 或者 boxcollider 然后添加 VRPlayceMeshMark 脚本到该物体上。
 ```
 
