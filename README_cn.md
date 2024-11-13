@@ -100,12 +100,8 @@ Virtual Reality Supported : False
 在 UGUI 的canvas 上添加 VRUISelectorProxy 脚本， 场景运行时 脚本会自动为子物体添加射线交互事件，若按钮的宽高是由其父物体设置的，则需要手动为按钮添加合适的boxcollider
 ```
 
-## 五、交互编程
-#### 5.1 可视化编程 ： 使用```Playmaker``` + ```VSVR Plamaker VRActions```
-#### 5.2 代码编程 ： 使用ILruntime C# 脚本，使用说明详见 vsvrdll 示例工程  DllProject/Click_show_hideDemo:
-> https://gitee.com/vswork_admin/vsvrsdk/tree/master/DllProject/Click_show_hideDemo
 
-## 六、场景打包
+## 五、场景打包
 ###### 6.1. 打包名称设置
 > 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene），也可以打包后将文件后缀名改为 .scene 
 ###### 6.2. 资源检查
