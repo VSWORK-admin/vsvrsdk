@@ -130,7 +130,7 @@ namespace Slate
                 Undo.undoRedoPerformed += () => { ResetInteraction(); refreshDopeKeys = true; };
 
 #if UNITY_2018_3_OR_NEWER
-                UnityEditor.Experimental.SceneManagement.PrefabStage.prefabStageClosing += (stage) => { refreshDopeKeys = true; };
+                UnityEditor.SceneManagement.PrefabStage.prefabStageClosing += (stage) => { refreshDopeKeys = true; };
 #endif
             }
 

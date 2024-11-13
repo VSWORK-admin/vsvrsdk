@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,14 @@ using ILRuntime.Reflection;
 using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Stack;
 
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+using AutoList = System.Collections.Generic.List<object>;
+#else
+using AutoList = ILRuntime.Other.UncheckedList<object>;
+#endif
 namespace ILRuntime.CLR.TypeSystem
 {
-    public unsafe class CLRType : IType
+    public sealed unsafe class CLRType : IType
     {
         Type clrType;
         bool isPrimitive, isValueType, isEnum;
@@ -26,6 +32,7 @@ namespace ILRuntime.CLR.TypeSystem
         Dictionary<int, CLRFieldGetterDelegate> fieldGetterCache;
         Dictionary<int, CLRFieldSetterDelegate> fieldSetterCache;
         Dictionary<int, KeyValuePair<CLRFieldBindingDelegate, CLRFieldBindingDelegate>> fieldBindingCache;
+        StackObject defaultObject;
 
         Dictionary<int, int> fieldIdxMapping;
         IType[] orderedFieldTypes;
@@ -43,7 +50,10 @@ namespace ILRuntime.CLR.TypeSystem
         ILRuntimeWrapperType wraperType;
         ValueTypeBinder valueTypeBinder;
 
+        int valuetypeFieldCount, valuetypeManagedCount;
+        bool valuetypeSizeCalculated;
         int hashCode = -1;
+        int tIdx = -1;
         static int instance_id = 0x20000000;
 
         public Dictionary<int, FieldInfo> Fields
@@ -100,7 +110,35 @@ namespace ILRuntime.CLR.TypeSystem
             isPrimitive = clrType.IsPrimitive;
             isEnum = clrType.IsEnum;
             isValueType = clrType.IsValueType;
-            isDelegate = clrType.BaseType == typeof(MulticastDelegate);
+            isDelegate = clrType.BaseType == typeof(MulticastDelegate) || clrType == typeof(Delegate);
+            if (isPrimitive)
+            {
+                var t = TypeForCLR;
+                if (t == typeof(int) || t == typeof(uint) || t == typeof(short) || t == typeof(ushort) || t == typeof(byte) || t == typeof(sbyte) || t == typeof(char) || t == typeof(bool))
+                {
+                    defaultObject.ObjectType = ObjectTypes.Integer;
+                    defaultObject.Value = 0;
+                    defaultObject.ValueLow = 0;
+                }
+                else if (t == typeof(long) || t == typeof(ulong))
+                {
+                    defaultObject.ObjectType = ObjectTypes.Long;
+                    defaultObject.Value = 0;
+                    defaultObject.ValueLow = 0;
+                }
+                else if (t == typeof(float))
+                {
+                    defaultObject.ObjectType = ObjectTypes.Float;
+                    defaultObject.Value = 0;
+                    defaultObject.ValueLow = 0;
+                }
+                else if (t == typeof(double))
+                {
+                    defaultObject.ObjectType = ObjectTypes.Double;
+                    defaultObject.Value = 0;
+                    defaultObject.ValueLow = 0;
+                }
+            }
         }
 
         public bool IsGenericInstance
@@ -286,6 +324,24 @@ namespace ILRuntime.CLR.TypeSystem
             }
         }
 
+        public StackObject DefaultObject
+        {
+            get
+            {
+                return defaultObject;
+            }
+        }
+
+        public int TypeIndex
+        {
+            get
+            {
+                if (tIdx < 0)
+                    tIdx = appdomain.AllocTypeIndex(this);
+                return tIdx;
+            }
+        }
+
         public object PerformMemberwiseClone(object target)
         {
             if (memberwiseCloneDelegate == null)
@@ -296,7 +352,8 @@ namespace ILRuntime.CLR.TypeSystem
 
                     if (memberwiseClone != null)
                     {
-                        memberwiseCloneDelegate = (ref object t) => memberwiseClone.Invoke(t, null);
+                        var del = (Func<object, object>)Delegate.CreateDelegate(typeof(Func<object, object>), memberwiseClone);
+                        memberwiseCloneDelegate = (ref object t) => del(t);
                     }
                     else
                     {
@@ -352,7 +409,7 @@ namespace ILRuntime.CLR.TypeSystem
             return null;
         }
 
-        public bool CopyFieldToStack(int hash, object target, Runtime.Intepreter.ILIntepreter intp, ref StackObject* esp, IList<object> mStack)
+        public bool CopyFieldToStack(int hash, object target, Runtime.Intepreter.ILIntepreter intp, ref StackObject* esp, AutoList mStack)
         {
             if (fieldMapping == null)
                 InitializeFields();
@@ -368,7 +425,7 @@ namespace ILRuntime.CLR.TypeSystem
                 return false;
         }
 
-        public bool AssignFieldFromStack(int hash, ref object target, Runtime.Intepreter.ILIntepreter intp, StackObject* esp, IList<object> mStack)
+        public bool AssignFieldFromStack(int hash, ref object target, Runtime.Intepreter.ILIntepreter intp, StackObject* esp, AutoList mStack)
         {
             if (fieldMapping == null)
                 InitializeFields();
@@ -524,7 +581,7 @@ namespace ILRuntime.CLR.TypeSystem
             fieldMapping = new Dictionary<string, int>();
             fieldInfoCache = new Dictionary<int, FieldInfo>();
 
-            var fields = clrType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static);
+            var fields = clrType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static).ToList();
             int idx = 0;
             bool hasValueTypeBinder = ValueTypeBinder != null;
             if (hasValueTypeBinder)
@@ -533,8 +590,13 @@ namespace ILRuntime.CLR.TypeSystem
             }
             if (hasValueTypeBinder || isEnum)
             {
-                orderedFieldTypes = new IType[fields.Length];
+                orderedFieldTypes = new IType[fields.Count];
             }
+
+            fields.Sort((a, b) =>
+            {
+                return a.MetadataToken - b.MetadataToken;
+            });
             foreach (var i in fields)
             {
                 int hashCode = i.GetHashCode();
@@ -598,16 +660,40 @@ namespace ILRuntime.CLR.TypeSystem
 
             return -1;
         }
-        public IType FindGenericArgument(string key)
+
+        public IType FindGenericArgument ( string key )
         {
-            if (genericArguments != null)
+            var o = this.Generic ( key );
+            if ( o == null )
             {
-                foreach (var i in genericArguments)
+                var aGenericParameters = this.TypeForCLR.GetGenericArguments ();
+                if ( aGenericParameters !=null )
                 {
-                    if (i.Key == key)
-                        return i.Value;
+                    for ( int i = 0; i < aGenericParameters.Length; i++ )
+                    {
+                        if ( aGenericParameters [ i ].Name == key )
+                        {
+                            return this.Generic ( "!" + i );
+                        }
+                    }
                 }
             }
+            return o;
+        }
+
+        private IType Generic ( string key )
+        {
+            if ( this.genericArguments != null )
+            {
+                for ( int i = 0; i < this.genericArguments.Length; i++ )
+                {
+                    if ( this.genericArguments [ i ].Key == key )
+                    {
+                        return this.genericArguments [ i ].Value;
+                    }
+                }
+            }
+
             return null;
         }
         public IMethod GetMethod(string name, int paramCount, bool declaredOnly = false)
@@ -664,7 +750,7 @@ namespace ILRuntime.CLR.TypeSystem
                     if (q.IsGenericType)
                     {
                         var t1 = type.GetGenericTypeDefinition();
-                        var t2 = type.GetGenericTypeDefinition();
+                        var t2 = q.GetGenericTypeDefinition();
                         if (t1 == t2)
                         {
                             var argA = type.GetGenericArguments();
@@ -700,14 +786,16 @@ namespace ILRuntime.CLR.TypeSystem
             IMethod genericMethod = null;
             if (methods.TryGetValue(name, out lst))
             {
+                var paramCount = param.Count;
+
                 foreach (var i in lst)
                 {
-                    if (i.ParameterCount == param.Count)
+                    if (i.ParameterCount == paramCount)
                     {
                         bool match = true;
                         if (genericArguments != null && i.GenericParameterCount == genericArguments.Length)
                         {
-                            for (int j = 0; j < param.Count; j++)
+                            for (int j = 0; j < paramCount; j++)
                             {
                                 var p = i.Parameters[j].TypeForCLR;
                                 var q = param[j].TypeForCLR;
@@ -736,21 +824,22 @@ namespace ILRuntime.CLR.TypeSystem
                         }
                         else
                         {
+                            var iGenericArguments = i.GenericArguments;
                             if (genericArguments == null)
-                                match = i.GenericArguments == null;
+                                match = iGenericArguments == null;
                             else
                             {
-                                if (i.GenericArguments == null)
+                                if (iGenericArguments == null)
                                     match = false;
                                 else
-                                    match = i.GenericArguments.Length == genericArguments.Length;
+                                    match = iGenericArguments.Length == genericArguments.Length;
                             }
                             if (!match)
                                 continue;
-                            for (int j = 0; j < param.Count; j++)
+                            for (int j = 0; j < paramCount; j++)
                             {
-                                var typeA = param[j].TypeForCLR.IsByRef ? param[j].TypeForCLR.GetElementType() : param[j].TypeForCLR;
-                                var typeB = i.Parameters[j].TypeForCLR.IsByRef ? i.Parameters[j].TypeForCLR.GetElementType() : i.Parameters[j].TypeForCLR;
+                                var typeA = /*param[j].TypeForCLR.IsByRef ? param[j].TypeForCLR.GetElementType() : */param[j].TypeForCLR;
+                                var typeB = /*i.Parameters[j].TypeForCLR.IsByRef ? i.Parameters[j].TypeForCLR.GetElementType() : */i.Parameters[j].TypeForCLR;
 
                                 if (typeA != typeB)
                                 {
@@ -774,11 +863,11 @@ namespace ILRuntime.CLR.TypeSystem
 
                                 if (i.IsGenericInstance)
                                 {
-                                    if (i.GenericArguments.Length == genericArguments.Length)
+                                    if (iGenericArguments.Length == genericArguments.Length)
                                     {
                                         for (int j = 0; j < genericArguments.Length; j++)
                                         {
-                                            if (i.GenericArguments[j] != genericArguments[j])
+                                            if (iGenericArguments[j] != genericArguments[j])
                                             {
                                                 match = false;
                                                 break;
@@ -871,7 +960,27 @@ namespace ILRuntime.CLR.TypeSystem
                 {
                     args[i] = genericArguments[i].Value.TypeForCLR;
                 }
-                Type newType = clrType.MakeGenericType(args);
+
+                Type newType = null;
+#if UNITY_EDITOR || (DEBUG && !DISABLE_ILRUNTIME_DEBUG)
+                try
+                {
+#endif
+                    newType = clrType.MakeGenericType(args);
+#if UNITY_EDITOR || (DEBUG && !DISABLE_ILRUNTIME_DEBUG)
+                }
+                catch (Exception e)
+                {
+                    string argString = "";
+                    for (int i = 0; i < args.Length; i++)
+                    {
+                        argString += args[i].FullName + ", ";
+                    }
+
+                    argString = argString.Substring(0, argString.Length - 2);
+                    throw new Exception(string.Format("MakeGenericType failed : {0}<{1}>", clrType.FullName, argString));
+                }
+#endif
                 var res = new CLRType(newType, appdomain);
                 res.genericArguments = genericArguments;
 
@@ -938,6 +1047,44 @@ namespace ILRuntime.CLR.TypeSystem
         public IType ResolveGenericType(IType contextType)
         {
             throw new NotImplementedException();
+        }
+        public void GetValueTypeSize(out int fieldCout, out int managedCount)
+        {
+            if (!valuetypeSizeCalculated)
+            {
+                var cnt = TotalFieldCount;
+                valuetypeFieldCount = cnt + 1;
+                valuetypeManagedCount = 0;
+                for (int i = 0; i < cnt; i++)
+                {
+                    var it = OrderedFieldTypes[i] as CLRType;
+                    if (it.IsValueType)
+                    {
+                        if (!it.IsPrimitive && !it.IsEnum)
+                        {
+                            if (it.ValueTypeBinder != null)
+                            {
+                                int fSize, fmCnt;
+                                it.GetValueTypeSize(out fSize, out fmCnt);
+                                valuetypeFieldCount += fSize;
+                                valuetypeManagedCount += fmCnt;
+                            }
+                            else
+                            {
+                                valuetypeManagedCount++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        valuetypeManagedCount++;
+                    }
+                }
+
+                valuetypeSizeCalculated = true;
+            }
+            fieldCout = valuetypeFieldCount;
+            managedCount = valuetypeManagedCount;
         }
 
         public override int GetHashCode()

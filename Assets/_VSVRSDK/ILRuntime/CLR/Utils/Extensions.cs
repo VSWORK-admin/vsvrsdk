@@ -9,6 +9,7 @@ using ILRuntime.Other;
 using ILRuntime.Mono.Cecil;
 using ILRuntime.Runtime.Intepreter;
 using System.Reflection;
+using ILRuntime.Reflection;
 
 namespace ILRuntime.CLR.Utils
 {
@@ -96,7 +97,8 @@ namespace ILRuntime.CLR.Utils
             StringBuilder sb = new StringBuilder();
             List<string> ga;
             bool isArray;
-            Runtime.Enviorment.AppDomain.ParseGenericType(typename, out baseType, out ga, out isArray);
+            byte rank;
+            Runtime.Enviorment.AppDomain.ParseGenericType(typename, out baseType, out ga, out isArray, out rank);
             string baseTypeQualification = null;
             bool hasGA = ga != null && ga.Count > 0;
             if (baseType == argumentName)
@@ -110,6 +112,10 @@ namespace ILRuntime.CLR.Utils
             }
             else
             {
+                if (baseType.Contains("["))
+                {
+                    baseType = ReplaceGenericArgument(baseType, argumentName, argumentType, isGA);
+                }
                 bool isAssemblyQualified = baseType.Contains('=');
                 if (isGA && !hasGA && isAssemblyQualified)
                     sb.Append('[');
@@ -117,7 +123,7 @@ namespace ILRuntime.CLR.Utils
                 {
                     sb.Append('[');
                     baseTypeQualification = baseType.Substring(baseType.IndexOf(','));
-                    baseType = baseType.Substring(0, baseType.IndexOf(','));
+                    baseType = baseType.Substring(0, baseType.IndexOf(','));                    
                 }
                 sb.Append(baseType);
                 if (isGA && !hasGA && isAssemblyQualified)
@@ -143,7 +149,12 @@ namespace ILRuntime.CLR.Utils
                 sb.Append(']');
             }
             if (isArray)
-                sb.Append("[]");
+            {
+                sb.Append("[");
+                for (int i = 0; i < rank - 1; i++)
+                    sb.Append(",");
+                sb.Append("]");
+            }
             return sb.ToString();
         }
 
@@ -180,10 +191,21 @@ namespace ILRuntime.CLR.Utils
             return (pt.GetTypeFlags() & TypeFlags.IsValueType) != 0;
         }
 
+        public static TypeFlags GetTypeFlagsRecursive(this Type pt)
+        {
+            var res = GetTypeFlags(pt);
+            if ((res & TypeFlags.IsByRef) == TypeFlags.IsByRef)
+                res = GetTypeFlagsRecursive(pt.GetElementType());
+            return res;
+        }
+
         public static TypeFlags GetTypeFlags(this Type pt)
         {
             var result = TypeFlags.Default;
-
+            if(pt is ILRuntimeWrapperType)
+            {
+                pt = ((ILRuntimeWrapperType)pt).RealType;
+            }
             if (!typeFlags.TryGetValue(pt, out result))
             {
                 if (pt.IsPrimitive)
@@ -219,13 +241,18 @@ namespace ILRuntime.CLR.Utils
 
         public static object CheckCLRTypes(this Type pt, object obj)
         {
+            var typeFlags = GetTypeFlags(pt);
+            return CheckCLRTypes(pt, obj, typeFlags);
+        }
+
+        public static object CheckCLRTypes(this Type pt, object obj, TypeFlags typeFlags)
+        {
             if (obj == null)
                 return null;
 
-            var typeFlags = GetTypeFlags(pt);
-
-            if ((typeFlags & TypeFlags.IsPrimitive) != 0 && pt != typeof(int))
+            if ((typeFlags & TypeFlags.IsPrimitive) != 0)
             {
+                if (pt == typeof(int)) return obj;
                 if (pt == typeof(bool) && !(obj is bool))
                 {
                     obj = (int)obj == 1;
@@ -313,6 +340,13 @@ namespace ILRuntime.CLR.Utils
                     return false;
             }
             return true;
+        }
+
+        public static Type UnWrapper(this Type type)
+        {
+            if (type is ILRuntimeWrapperType)
+                return (type as ILRuntimeWrapperType).RealType;
+            return type;
         }
     }
 }

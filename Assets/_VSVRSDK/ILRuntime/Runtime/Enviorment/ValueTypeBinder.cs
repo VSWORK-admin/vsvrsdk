@@ -8,6 +8,11 @@ using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Intepreter;
 using ILRuntime.Runtime.Stack;
 
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+using AutoList = System.Collections.Generic.List<object>;
+#else
+using AutoList = ILRuntime.Other.UncheckedList<object>;
+#endif
 namespace ILRuntime.Runtime.Enviorment
 {
     public unsafe abstract class ValueTypeBinder
@@ -47,7 +52,7 @@ namespace ILRuntime.Runtime.Enviorment
                 case ObjectTypes.ValueTypeObjectReference:
                     {
                         var dst = ILIntepreter.ResolveReference(esp);
-                        var vb = ((CLRType)domain.GetType(dst->Value)).ValueTypeBinder as ValueTypeBinder<K>;
+                        var vb = ((CLRType)domain.GetTypeByIndex(dst->Value)).ValueTypeBinder as ValueTypeBinder<K>;
                         if (vb != null)
                         {
                             vb.CopyValueTypeToStack(ref ins, dst, mStack);
@@ -77,7 +82,7 @@ namespace ILRuntime.Runtime.Enviorment
                 case ObjectTypes.ValueTypeObjectReference:
                     {
                         var dst = ILIntepreter.ResolveReference(esp);
-                        var vb = ((CLRType)domain.GetType(dst->Value)).ValueTypeBinder as ValueTypeBinder<K>;
+                        var vb = ((CLRType)domain.GetTypeByIndex(dst->Value)).ValueTypeBinder as ValueTypeBinder<K>;
                         if (vb != null)
                         {
                             vb.AssignFromStack(ref ins, dst, mStack);
@@ -93,7 +98,6 @@ namespace ILRuntime.Runtime.Enviorment
     }
 
     public unsafe abstract class ValueTypeBinder<T> : ValueTypeBinder
-        where T : struct
     {
         public override unsafe void CopyValueTypeToStack(object ins, StackObject* ptr, IList<object> mStack)
         {
@@ -105,7 +109,7 @@ namespace ILRuntime.Runtime.Enviorment
 
         public override unsafe object ToObject(StackObject* esp, IList<object> managedStack)
         {
-            T obj = new T();
+            T obj = default(T);
             AssignFromStack(ref obj, esp, managedStack);
             return obj;
         }
@@ -124,7 +128,7 @@ namespace ILRuntime.Runtime.Enviorment
             }
             else
             {
-                value = (T)StackObject.ToObject(a, intp.AppDomain, mStack);
+                value = (T)StackObject.ToObject(a, intp.AppDomain, (AutoList)mStack);
                 if (shouldFree)
                     intp.Free(ptr_of_this_method);
             }

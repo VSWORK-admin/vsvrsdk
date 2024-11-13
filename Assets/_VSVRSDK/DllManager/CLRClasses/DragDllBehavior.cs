@@ -3,44 +3,104 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+#if ILHotFix
+[ILInject.ILInjectorAttribute(ILInject.InjectFlag.NoInject)]
+#endif
 public class DragDllBehavior : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    public string DllName = string.Empty;
     public string ScriptClassName = string.Empty;
 
     public string OtherData;
     public ExtralData[] ExtralDatas;
     public ExtralDataObj[] ExtralDataObjs;
+    public ExtralDataInfo[] ExtralDataInfos;
 
     private bool bInit = false;
     public DllDragBase DllClass
     {
         get
         {
-            if (DllManager.appdomain == null)
+            try
             {
-                Debug.LogError("Please init appdomain first !");
-                return null;
-            }
-
-            if (GenClass == null)
-            {
-                GenClass = DllManager.appdomain.Instantiate<DllDragBase>(ScriptClassName);
-            }
-
-            if (GenClass != null)
-            {
-                GenClass.BaseMono = this;
-
-                if (!bInit)
+                if (DllManager.appdomain == null)
                 {
-                    GenClass.Init();
+                    if(MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
+                    {
+                        if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                        {
+                            GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllDragBase>(ScriptClassName);
+                        }
 
-                    bInit = true;
+                        if (GenClass != null)
+                        {
+                            GenClass.BaseMono = this;
+
+                            //if (!bInit)
+                            {
+                                GenClass.Init();
+
+                                //bInit = true;
+                            }
+                        }
+
+                        return GenClass;
+                    }
+                    else
+                    {
+                        Debug.LogError("Please init appdomain first !");
+
+                        return null;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(DllName) && MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
+                {
+                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                    {
+                        GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllDragBase>(ScriptClassName);
+                    }
+
+                    if (GenClass != null)
+                    {
+                        GenClass.BaseMono = this;
+
+                        //if (!bInit)
+                        {
+                            GenClass.Init();
+
+                            //bInit = true;
+                        }
+                    }
+
+                    return GenClass;
+                }
+                else
+                {
+                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                    {
+                        GenClass = DllManager.appdomain.Instantiate<DllDragBase>(ScriptClassName);
+                    }
+
+                    if (GenClass != null)
+                    {
+                        GenClass.BaseMono = this;
+
+                        //if (!bInit)
+                        {
+                            GenClass.Init();
+
+                            //bInit = true;
+                        }
+                    }
+
+                    return GenClass;
                 }
             }
-
-            return GenClass;
+            catch(Exception e)
+            {
+                Debug.LogError("Error Init " + "DllName : " + DllName + "ScriptClassName : " + ScriptClassName + " gameObject.name : " + gameObject.name + "\r\n" + e.ToString());
+                return null;
+            }
         }
     }
 
@@ -51,32 +111,79 @@ public class DragDllBehavior : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         {
             if (DllManager.appdomain == null)
             {
-                Debug.LogError("Please init appdomain first !");
-                return;
-            }
-
-            if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-            {
-                GenClass = DllManager.appdomain.Instantiate<DllDragBase>(ScriptClassName);
-            }
-
-            if (GenClass != null)
-            {
-                GenClass.BaseMono = this;
-
-                if (!bInit)
+                if (MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
                 {
-                    GenClass.Init();
+                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                    {
+                        GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllDragBase>(ScriptClassName);
+                    }
 
-                    bInit = true;
+                    if (GenClass != null)
+                    {
+                        GenClass.BaseMono = this;
+
+                        //if (!bInit)
+                        {
+                            GenClass.Init();
+
+                            //bInit = true;
+                        }
+
+                        GenClass.Awake();
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Please init appdomain first !");
+                    return;
+                }
+            }
+            else if(!string.IsNullOrEmpty(DllName) && MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
+            {
+                if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                {
+                    GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllDragBase>(ScriptClassName);
                 }
 
-                GenClass.Awake();
+                if (GenClass != null)
+                {
+                    GenClass.BaseMono = this;
+
+                    //if (!bInit)
+                    {
+                        GenClass.Init();
+
+                        //bInit = true;
+                    }
+
+                    GenClass.Awake();
+                }
+            }
+            else
+            {
+                if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
+                {
+                    GenClass = DllManager.appdomain.Instantiate<DllDragBase>(ScriptClassName);
+                }
+
+                if (GenClass != null)
+                {
+                    GenClass.BaseMono = this;
+
+                    //if (!bInit)
+                    {
+                        GenClass.Init();
+
+                        //bInit = true;
+                    }
+
+                    GenClass.Awake();
+                }
             }
         }
         catch (Exception e)
         {
-            Debug.LogError(e.ToString());
+            Debug.LogError("Error Awake " + "DllName : " + DllName + "ScriptClassName : " + ScriptClassName + " gameObject.name : " + gameObject.name + "\r\n" + e.ToString());
         }
     }
     private void Start()

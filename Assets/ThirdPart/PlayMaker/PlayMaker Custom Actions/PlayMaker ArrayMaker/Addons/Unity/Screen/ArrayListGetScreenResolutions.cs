@@ -6,13 +6,13 @@
 // In this Action interface, link that GameObject in "arrayListObject" and input the reference name if defined. 
 // Note: You can directly reference that GameObject or store it in an Fsm variable or global Fsm variable
 using System;
-
+using System.Linq;
 using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("ArrayMaker/ArrayList")]
-	[Tooltip("Store all resolutions")]
+	[Tooltip("Store all resolutions, Also remove duplicates and sort them by width then height then refresh rate")]
 	public class ArrayListGetScreenResolutions : ArrayListActions
 	{
 	
@@ -22,6 +22,9 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("The gameObject with the PlayMaker ArrayList Proxy component")]
 		[CheckForComponent(typeof(PlayMakerArrayListProxy))]
 		public FsmOwnerDefault gameObject;
+
+		[Tooltip("If true, output will include refreshrates, else only width and height")]
+		public bool includeRefreshRate;
 		
 		[Tooltip("Author defined Reference of the PlayMaker ArrayList Proxy component ( necessary if several component coexists on the same GameObject")]
 		public FsmString reference;
@@ -29,7 +32,8 @@ namespace HutongGames.PlayMaker.Actions
 		public override void Reset()
 		{
 			gameObject = null;
-			reference = null;			
+			reference = null;
+			includeRefreshRate = true;
 		}
 
 		
@@ -49,10 +53,21 @@ namespace HutongGames.PlayMaker.Actions
 			
 			proxy.arrayList.Clear();
 			
-			Resolution[] resolutions = Screen.resolutions;
-	        foreach (Resolution res in resolutions) {
-				proxy.arrayList.Add(new Vector3(res.width,res.height,res.refreshRate));
-	        }
+			if (includeRefreshRate)
+			{
+				Resolution[] resolutions = Screen.resolutions.Distinct().OrderBy(x => x.width).ThenBy(x => x.height).ThenBy(x => x.refreshRate).ToArray();
+				foreach (Resolution res in resolutions)
+				{
+					proxy.arrayList.Add(new Vector3(res.width, res.height, res.refreshRate));
+				}
+			}else
+			{
+				Resolution[] resolutions = Screen.resolutions.Distinct().OrderBy(x => x.width).ThenBy(x => x.height).ToArray();
+				foreach (Resolution res in resolutions)
+				{
+					proxy.arrayList.Add(new Vector2(res.width, res.height));
+				}
+			}
 
 		}
 	}

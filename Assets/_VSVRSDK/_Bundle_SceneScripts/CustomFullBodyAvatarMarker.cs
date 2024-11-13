@@ -60,24 +60,45 @@ public class CustomFullBodyAvatarMarker : MonoBehaviour
         if (animationAvatarNameRoot == null)
         {
             Transform trhead = null;
-            foreach(var v in transform.GetComponentsInChildren<Transform>())
+            CustomAvatarHangingPoint hangingpoint = GetComponent<CustomAvatarHangingPoint>();
+            if (hangingpoint != null)
             {
-                if (v.name == "Head")
+                trhead = hangingpoint.head;
+            }
+            
+            if (trhead == null)
+            {
+                foreach (var v in transform.GetComponentsInChildren<Transform>())
                 {
-                    trhead = v;
-                    break;
+                    if (v.name == "Head")
+                    {
+                        trhead = v;
+                        break;
+                    }
                 }
             }
+            
             if (trhead != null)
             {
-                GameObject root = new GameObject("NamePanel");
-                root.transform.SetParent(trhead);
-                root.transform.localPosition = Vector3.zero;
-                root.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                animationAvatarNameRoot = root.transform;
+                string namepanelnode = "NamePanel";
+                Transform temp =  trhead.Find(namepanelnode);
+                if (temp == null)
+                {
+                    GameObject root = new GameObject(namepanelnode);
+                    root.transform.SetParent(trhead);
+                    root.transform.localPosition = Vector3.zero;
+                    root.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    animationAvatarNameRoot = root.transform;
+                }
+                else
+                {
+                    animationAvatarNameRoot = temp;
+                }
             }
         }
-        trnameheadroot = animationAvatarNameRoot;
+
+        if (animationAvatarNameRoot != null)
+            trnameheadroot = animationAvatarNameRoot;
         
         return trnameheadroot;
     }

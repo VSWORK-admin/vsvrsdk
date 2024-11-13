@@ -26,7 +26,7 @@ namespace ILRuntime.Reflection
         string name;
         FieldDefinition definition;
         Runtime.Enviorment.AppDomain appdomain;
-        object[] customAttributes;
+        Attribute[] customAttributes;
         Type[] attributeTypes;
 
         public IType ILFieldType { get { return fieldType; } }
@@ -73,7 +73,7 @@ namespace ILRuntime.Reflection
 
         void InitializeCustomAttribute()
         {
-            customAttributes = new object[definition.CustomAttributes.Count];
+            customAttributes = new Attribute[definition.CustomAttributes.Count];
             attributeTypes = new Type[customAttributes.Length];
             for (int i = 0; i < definition.CustomAttributes.Count; i++)
             {
@@ -81,7 +81,7 @@ namespace ILRuntime.Reflection
                 var at = appdomain.GetType(attribute.AttributeType, null, null);
                 try
                 {
-                    object ins = attribute.CreateInstance(at, appdomain);
+                    Attribute ins = attribute.CreateInstance(at, appdomain) as Attribute;
 
                     attributeTypes[i] = at.ReflectionType;
                     customAttributes[i] = ins;
@@ -154,15 +154,20 @@ namespace ILRuntime.Reflection
             if (customAttributes == null)
                 InitializeCustomAttribute();
 
-            List<object> res = new List<object>();
+            List<Attribute> res = new List<Attribute>();
             for (int i = 0; i < customAttributes.Length; i++)
             {
-                if (attributeTypes[i].Equals(attributeType))
+                if (attributeTypes[i].Equals(attributeType) || attributeTypes[i].IsSubclassOf(attributeType))
                 {
                     res.Add(customAttributes[i]);
                 }
             }
             return res.ToArray();
+        }
+
+        public override object GetRawConstantValue()
+        {
+            return definition.Constant;
         }
 
         public override object GetValue(object obj)
@@ -172,6 +177,8 @@ namespace ILRuntime.Reflection
                 ILTypeInstance ins;
                 if (isStatic)
                 {
+                    if (definition.HasConstant)
+                        return definition.Constant;
                     ins = ilType.StaticInstance;
                 }
                 else

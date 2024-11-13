@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using Siccity.GLTFUtility.Converters;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Scripting;
+using Newtonsoft.Json.Linq;
 
 namespace Siccity.GLTFUtility {
 	// https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#material
@@ -28,6 +29,7 @@ namespace Siccity.GLTFUtility {
 		public float alphaCutoff = 0.5f;
 		public bool doubleSided = false;
 		public Extensions extensions;
+		public JObject extras;
 
 		public class ImportResult {
 			public Material material;
@@ -38,12 +40,12 @@ namespace Siccity.GLTFUtility {
 			IEnumerator en = null;
 			// Load metallic-roughness materials
 			if (pbrMetallicRoughness != null) {
-				en = pbrMetallicRoughness.CreateMaterial(textures, alphaMode, shaderSettings, x => mat = x);
+				en = pbrMetallicRoughness.CreateMaterial(textures, alphaMode, doubleSided, shaderSettings, x => mat = x);
 				while (en.MoveNext()) { yield return null; };
 			}
 			// Load specular-glossiness materials
 			else if (extensions != null && extensions.KHR_materials_pbrSpecularGlossiness != null) {
-				en = extensions.KHR_materials_pbrSpecularGlossiness.CreateMaterial(textures, alphaMode, shaderSettings, x => mat = x);
+				en = extensions.KHR_materials_pbrSpecularGlossiness.CreateMaterial(textures, alphaMode, doubleSided, shaderSettings, x => mat = x);
 				while (en.MoveNext()) { yield return null; };
 			}
 			// Load fallback material
@@ -93,26 +95,9 @@ namespace Siccity.GLTFUtility {
 				while (en.MoveNext()) { yield return null; };
 			}
 
-
-			if(doubleSided){
-				mat.SetFloat("_Cull", 0.0f);
-			}
-
 			if (alphaMode == AlphaMode.MASK) {
 				mat.SetFloat("_AlphaCutoff", alphaCutoff);
-			}else if (alphaMode == AlphaMode.BLEND)
-            {
-                mat.SetOverrideTag("RenderType", "Transparent");
-                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-
-                mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-                mat.SetShaderPassEnabled("ShadowCaster", false);
-                mat.SetFloat("_Surface", 1.0f);
-                
-            }
-
+			}
 			mat.name = name;
 			onFinish(mat);
 		}
@@ -147,32 +132,44 @@ namespace Siccity.GLTFUtility {
 			public float roughnessFactor = 1f;
 			public TextureInfo metallicRoughnessTexture;
 
-			public IEnumerator CreateMaterial(GLTFTexture.ImportResult[] textures, AlphaMode alphaMode, ShaderSettings shaderSettings, Action<Material> onFinish) {
+			public IEnumerator CreateMaterial(GLTFTexture.ImportResult[] textures, AlphaMode alphaMode, bool bTwoSide, ShaderSettings shaderSettings, Action<Material> onFinish) {
 				// Shader
 				Shader sh = null;
+				if (alphaMode == AlphaMode.BLEND)
+				{
+					if (bTwoSide)
+					{
+						sh = shaderSettings.MetallicBlendTwoSide;
+					}
+					else
+					{
+						sh = shaderSettings.MetallicBlend;
+					}
+				}
+				else
+				{
+					if (bTwoSide)
+					{
+						sh = shaderSettings.MetallicTwoSide;
+					}
+					else
+					{
+						sh = shaderSettings.Metallic;
+					}
+				}
+				//if (alphaMode == AlphaMode.BLEND) sh = shaderSettings.MetallicBlend;
+				//else sh = shaderSettings.Metallic;
 				bool isurp = false;
-#if UNITY_2019_1_OR_NEWER
-				// LWRP support
-				if (GraphicsSettings.renderPipelineAsset){
+				if (GraphicsSettings.renderPipelineAsset)
+				{
 					isurp = true;
-					sh = GraphicsSettings.renderPipelineAsset.defaultShader;
-				} 
-#endif
-				if (sh == null) {
-					if (alphaMode == AlphaMode.BLEND) sh = shaderSettings.MetallicBlend;
-					else sh = shaderSettings.Metallic;
 				}
 
 				// Material
 				Material mat = new Material(sh);
 				mat.color = baseColorFactor;
 				mat.SetFloat("_Metallic", metallicFactor);
-				if(isurp){
-					mat.SetFloat("_Smoothness", 1 - roughnessFactor);
-				}else{
-					mat.SetFloat("_Roughness", roughnessFactor);
-				}
-				
+				mat.SetFloat("_Roughness",roughnessFactor);
 
 				// Assign textures
 				if (textures != null) {
@@ -199,10 +196,6 @@ namespace Siccity.GLTFUtility {
 						} else {
 							IEnumerator en = TryGetTexture(textures, metallicRoughnessTexture, true, tex => {
 								if (tex != null) {
-									if(isurp){
-										mat.SetFloat("_Smoothness", 1);
-									}
-									
 									mat.SetTexture("_MetallicGlossMap", tex);
 									mat.EnableKeyword("_METALLICGLOSSMAP");
 									if (metallicRoughnessTexture.extensions != null) {
@@ -216,14 +209,20 @@ namespace Siccity.GLTFUtility {
 				}
 
 				// After the texture and color is extracted from the glTFObject
-				if(isurp){
+				//if (mat.HasProperty("_BaseMap")) mat.SetTexture("_BaseMap", mat.mainTexture);
+				//if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", baseColorFactor);
+
+				if (isurp)
+				{
 					if (mat.HasProperty("_BaseMap")) mat.SetTexture("_BaseMap", mat.mainTexture);
 					if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", baseColorFactor);
-				}else{
+				}
+				else
+				{
 					if (mat.HasProperty("_MainTex")) mat.SetTexture("_MainTex", mat.mainTexture);
 					if (mat.HasProperty("_Color")) mat.SetColor("_Color", baseColorFactor);
 				}
-				
+
 				onFinish(mat);
 			}
 		}
@@ -240,17 +239,33 @@ namespace Siccity.GLTFUtility {
 			/// <summary> The specular-glossiness texture </summary>
 			public TextureInfo specularGlossinessTexture;
 
-			public IEnumerator CreateMaterial(GLTFTexture.ImportResult[] textures, AlphaMode alphaMode, ShaderSettings shaderSettings, Action<Material> onFinish) {
+			public IEnumerator CreateMaterial(GLTFTexture.ImportResult[] textures, AlphaMode alphaMode, bool bTwoSide, ShaderSettings shaderSettings, Action<Material> onFinish) {
 				// Shader
 				Shader sh = null;
-#if UNITY_2019_1_OR_NEWER
-				// LWRP support
-				if (GraphicsSettings.renderPipelineAsset) sh = GraphicsSettings.renderPipelineAsset.defaultShader;
-#endif
-				if (sh == null) {
-					if (alphaMode == AlphaMode.BLEND) sh = shaderSettings.SpecularBlend;
-					else sh = shaderSettings.Specular;
+				if (alphaMode == AlphaMode.BLEND)
+				{
+					if (bTwoSide)
+					{
+						sh = shaderSettings.SpecularBlendTwoSide;
+					}
+					else
+					{
+						sh = shaderSettings.SpecularBlend;
+					}
 				}
+				else
+				{
+					if (bTwoSide)
+					{
+						sh = shaderSettings.SpecularTwoSide;
+					}
+					else
+					{
+						sh = shaderSettings.Specular;
+					}
+				}
+				//if (alphaMode == AlphaMode.BLEND) sh = shaderSettings.SpecularBlend;
+				//else sh = shaderSettings.Specular;
 
 				// Material
 				Material mat = new Material(sh);

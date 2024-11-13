@@ -76,7 +76,7 @@ public partial class PlayMakerUtils {
 		case VariableType.GameObject:
 			fsmVar.GetValueFrom( (NamedVariable)fromFsm.Variables.GetFsmGameObject(fsmVar.variableName));
 			break;
-		#if PLAYMAKER_1_8
+		#if PLAYMAKER_1_8_OR_NEWER
 		case VariableType.Enum:
 			fsmVar.GetValueFrom( (NamedVariable)fromFsm.Variables.GetFsmEnum(fsmVar.variableName));
 			break;
@@ -129,7 +129,7 @@ public partial class PlayMakerUtils {
 				return fromFsm.Variables.GetFsmGameObject(_name).Value;
 			case VariableType.Object:
 				return fromFsm.Variables.GetFsmObject(_name).Value;
-			#if PLAYMAKER_1_8
+			#if PLAYMAKER_1_8_OR_NEWER
 			case VariableType.Enum:
 				return fromFsm.Variables.GetFsmEnum(_name).Value;
 			case VariableType.Array:
@@ -165,7 +165,7 @@ public partial class PlayMakerUtils {
 				return fsmVar.gameObjectValue;
 			case VariableType.Object:
 				return fsmVar.objectReference;
-			#if PLAYMAKER_1_8
+			#if PLAYMAKER_1_8_OR_NEWER
 			case VariableType.Enum:
 				return fsmVar.EnumValue;
 			case VariableType.Array:
@@ -176,7 +176,7 @@ public partial class PlayMakerUtils {
 
 		return null;
 	}
-	#if PLAYMAKER_1_8
+	#if PLAYMAKER_1_8_OR_NEWER
 	public static bool ApplyValueToFsmVar(Fsm fromFsm,FsmVar fsmVar, object[] value)
 	{
 		if (fromFsm==null)
@@ -279,7 +279,7 @@ public partial class PlayMakerUtils {
 				_target.Value = Vector3.zero;
 				
 			}
-			#if PLAYMAKER_1_8
+			#if PLAYMAKER_1_8_OR_NEWER
 			else if(fsmVar.Type == VariableType.Enum ){
 				FsmEnum _target= fromFsm.Variables.GetFsmEnum(fsmVar.variableName);
 				_target.ResetValue();
@@ -340,7 +340,7 @@ public partial class PlayMakerUtils {
 		case VariableType.Material:
 			storageType = typeof(Material);
 			break;
-		#if PLAYMAKER_1_8
+		#if PLAYMAKER_1_8_OR_NEWER
 		case VariableType.Enum:
 			storageType = typeof(System.Enum);
 			break;
@@ -358,7 +358,7 @@ public partial class PlayMakerUtils {
 			{
 				ok = true;
 			}
-			#if PLAYMAKER_1_8
+			#if PLAYMAKER_1_8_OR_NEWER
 			if (storageType.Equals(typeof(System.Enum))) // we are ok
 			{
 				ok = true;
@@ -480,7 +480,7 @@ public partial class PlayMakerUtils {
 			FsmVector3 _target= fromFsm.Variables.GetFsmVector3(fsmVar.variableName);
 			_target.Value = (Vector3)value;
 
-		#if PLAYMAKER_1_8
+		#if PLAYMAKER_1_8_OR_NEWER
 		}else if(value is System.Enum){ // valueType.BaseType == typeof(System.Enum)
 			FsmEnum _target= fromFsm.Variables.GetFsmEnum(fsmVar.variableName);
 			_target.Value = (System.Enum)value;

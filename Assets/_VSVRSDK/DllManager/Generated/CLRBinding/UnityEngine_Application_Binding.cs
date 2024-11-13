@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -570,8 +570,14 @@ namespace ILRuntime.Runtime.Generated
             __intp.Free(ptr_of_this_method);
 
 
-            UnityEngine.Application.OpenURL(@url);
-            
+            //if (VRPublishSettingController.I.PublishNetworkState == NetworkState.Cloud_Render)
+            //{
+            //    GUIManager.Instance.OpenUrl_CR(@url);
+            //}
+            //else
+            {
+                UnityEngine.Application.OpenURL(@url);
+            }
             return __ret;
         }
 

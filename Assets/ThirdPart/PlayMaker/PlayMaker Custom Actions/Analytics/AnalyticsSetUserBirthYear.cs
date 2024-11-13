@@ -37,7 +37,8 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			AnalyticsResult _result = Analytics.SetUserBirthYear(birthYear.Value);
+			AnalyticsResult _result = AnalyticsResult.AnalyticsDisabled;
+			//AnalyticsResult _result = Analytics.SetUserBirthYear(birthYear.Value);
 
 			if (!result.IsNone) {
 				result.Value = _result;

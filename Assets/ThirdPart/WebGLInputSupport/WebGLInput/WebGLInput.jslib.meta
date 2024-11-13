@@ -1,0 +1,44 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/ThridPart/WebGLInputSupport/WebGLInput/WebGLInput.jslib.meta
+guid: 7df541bf7b903fb45b24fab892876393
+========
+guid: 85df6ca778f272b46a388a0760ae55fb
+>>>>>>>> vsvr_1.9.9_wz2021.3.9New:PlatformData/Pico/PICO UnityXR Integration SDK v207/Runtime/Windows/x64/pxr_turtledove.dll.meta
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+<<<<<<<< HEAD:Assets/ThridPart/WebGLInputSupport/WebGLInput/WebGLInput.jslib.meta
+  isOverridable: 0
+========
+  isOverridable: 1
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+>>>>>>>> vsvr_1.9.9_wz2021.3.9New:PlatformData/Pico/PICO UnityXR Integration SDK v207/Runtime/Windows/x64/pxr_turtledove.dll.meta
+  platformData:
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  - first:
+      Facebook: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      WebGL: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

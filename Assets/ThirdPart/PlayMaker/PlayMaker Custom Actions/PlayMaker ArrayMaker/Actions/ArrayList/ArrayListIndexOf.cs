@@ -111,7 +111,7 @@ namespace HutongGames.PlayMaker.Actions
 					indexOfResult = PlayMakerUtils_Extensions.IndexOf(proxy.arrayList,item);
 				}
 			}catch(System.Exception e){
-				Debug.LogError(e.Message);
+				Debug.LogError(e.Message +" on "+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName);
 				Fsm.Event(failureEvent);
 				return;
 			}

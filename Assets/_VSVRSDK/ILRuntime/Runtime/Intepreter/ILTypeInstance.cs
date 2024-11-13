@@ -9,6 +9,11 @@ using ILRuntime.CLR.TypeSystem;
 using ILRuntime.Runtime.Stack;
 using ILRuntime.Runtime.Enviorment;
 
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+using AutoList = System.Collections.Generic.List<object>;
+#else
+using AutoList = ILRuntime.Other.UncheckedList<object>;
+#endif
 namespace ILRuntime.Runtime.Intepreter
 {
     public class ILTypeStaticInstance : ILTypeInstance
@@ -17,13 +22,12 @@ namespace ILRuntime.Runtime.Intepreter
         {
             this.type = type;
             fields = new StackObject[type.StaticFieldTypes.Length];
-            managedObjs = new List<object>(fields.Length);
+            managedObjs = new AutoList(fields.Length);
             for (int i = 0; i < fields.Length; i++)
             {
                 var ft = type.StaticFieldTypes[i];
-                var t = ft.TypeForCLR;
                 managedObjs.Add(null);
-                StackObject.Initialized(ref fields[i], i, t, ft, managedObjs);
+                StackObject.Initialized(ref fields[i], i, ft, managedObjs);
             }
             int idx = 0;
             foreach (var i in type.TypeDefinition.Fields)
@@ -33,6 +37,7 @@ namespace ILRuntime.Runtime.Intepreter
                     if (i.InitialValue != null && i.InitialValue.Length > 0)
                     {
                         fields[idx].ObjectType = ObjectTypes.Object;
+                        fields[idx].Value = idx;
                         managedObjs[idx] = i.InitialValue;
                     }
                     idx++;
@@ -49,6 +54,13 @@ namespace ILRuntime.Runtime.Intepreter
                 throw new NotSupportedException();
             this.type = type;
             fields = new StackObject[1];
+        }
+
+        public override ILTypeInstance Clone()
+        {
+            ILEnumTypeInstance ins = new ILEnumTypeInstance(type);
+            ins.fields[0] = fields[0];
+            return ins;
         }
 
         public override string ToString()
@@ -87,6 +99,11 @@ namespace ILRuntime.Runtime.Intepreter
                             if ((short)f.Constant == intVal)
                                 return f.Name;
                         }
+                        else if(f.Constant is long)
+                        {
+                            if ((long)f.Constant == longVal)
+                                return f.Name;
+                        }
                         else if (f.Constant is byte)
                         {
                             if ((byte)f.Constant == intVal)
@@ -121,8 +138,9 @@ namespace ILRuntime.Runtime.Intepreter
     {
         protected ILType type;
         protected StackObject[] fields;
-        protected IList<object> managedObjs;
+        protected AutoList managedObjs;
         object clrInstance;
+        ulong valueTypeMask;
         Dictionary<ILMethod, IDelegateAdapter> delegates;
 
         public ILType Type
@@ -151,7 +169,7 @@ namespace ILRuntime.Runtime.Intepreter
         /// </summary>
         public bool Boxed { get; set; }
 
-        public IList<object> ManagedObjects { get { return managedObjs; } }
+        public AutoList ManagedObjects { get { return managedObjs; } }
 
         public object CLRInstance { get { return clrInstance; } set { clrInstance = value; } }
 
@@ -163,8 +181,9 @@ namespace ILRuntime.Runtime.Intepreter
         {
             this.type = type;
             fields = new StackObject[type.TotalFieldCount];
-            managedObjs = new List<object>(fields.Length);
-            for (int i = 0; i < fields.Length; i++)
+            var cnt = fields.Length;
+            managedObjs = new AutoList(cnt);
+            for (int i = 0; i < cnt; i++)
             {
                 managedObjs.Add(null);
             }
@@ -261,6 +280,50 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
+        public unsafe void AssignFieldNoClone(int index, object value)
+        {
+            if (index < fields.Length && index >= 0)
+            {
+                fixed (StackObject* ptr = fields)
+                {
+                    StackObject* esp = &ptr[index];
+                    if (value != null)
+                    {
+                        var vt = value.GetType();
+                        if (vt.IsPrimitive)
+                        {
+                            ILIntepreter.UnboxObject(esp, value, managedObjs, type.AppDomain);
+                        }
+                        else if (vt.IsEnum)
+                        {
+                            esp->ObjectType = ObjectTypes.Integer;
+                            esp->Value = value.ToInt32();
+                            esp->ValueLow = 0;
+                        }
+                        else
+                        {
+
+                            esp->ObjectType = ObjectTypes.Object;
+                            esp->Value = index;
+                            managedObjs[index] = value;
+                        }
+                    }
+                    else
+                        *esp = StackObject.Null;
+                }
+            }
+            else
+            {
+                if (Type.FirstCLRBaseType != null && Type.FirstCLRBaseType is Enviorment.CrossBindingAdaptor)
+                {
+                    CLRType clrType = type.AppDomain.GetType(((Enviorment.CrossBindingAdaptor)Type.FirstCLRBaseType).BaseCLRType) as CLRType;
+                    clrType.SetFieldValue(index, ref clrInstance, value);
+                }
+                else
+                    throw new TypeLoadException();
+            }
+        }
+
         const int SizeOfILTypeInstance = 21;
         public unsafe int GetSizeInMemory(HashSet<object> traversedObj)
         {
@@ -348,14 +411,19 @@ namespace ILRuntime.Runtime.Intepreter
         {
             for (int i = 0; i < type.FieldTypes.Length; i++)
             {
+                var idx = type.FieldStartIndex + i;
                 var ft = type.FieldTypes[i];
-                StackObject.Initialized(ref fields[type.FieldStartIndex + i], type.FieldStartIndex + i, ft.TypeForCLR, ft, managedObjs);
+                if (ft.IsValueType && idx < 64)
+                {
+                    valueTypeMask |= (ulong)1 << idx;
+                }
+                StackObject.Initialized(ref fields[idx], idx, ft, managedObjs);
             }
             if (type.BaseType != null && type.BaseType is ILType)
                 InitializeFields((ILType)type.BaseType);
         }
 
-        internal unsafe void PushFieldAddress(int fieldIdx, StackObject* esp, IList<object> managedStack)
+        internal unsafe void PushFieldAddress(int fieldIdx, StackObject* esp, AutoList managedStack)
         {
             esp->ObjectType = ObjectTypes.FieldReference;
             esp->Value = managedStack.Count;
@@ -363,7 +431,7 @@ namespace ILRuntime.Runtime.Intepreter
             esp->ValueLow = fieldIdx;
         }
 
-        internal unsafe void PushToStack(int fieldIdx, StackObject* esp, ILIntepreter intp, IList<object> managedStack)
+        internal unsafe void PushToStack(int fieldIdx, StackObject* esp, ILIntepreter intp, AutoList managedStack)
         {
             if (fieldIdx < fields.Length && fieldIdx >= 0)
             {
@@ -374,29 +442,75 @@ namespace ILRuntime.Runtime.Intepreter
                 if (Type.FirstCLRBaseType != null && Type.FirstCLRBaseType is Enviorment.CrossBindingAdaptor)
                 {
                     CLRType clrType = intp.AppDomain.GetType(((Enviorment.CrossBindingAdaptor)Type.FirstCLRBaseType).BaseCLRType) as CLRType;
+                    var obj = clrType.GetFieldValue(fieldIdx, clrInstance);
+                    if (obj is CrossBindingAdaptorType)
+                        obj = ((CrossBindingAdaptorType)obj).ILInstance;
                     //if(!clrType.CopyFieldToStack(fieldIdx, clrInstance,))
-                    ILIntepreter.PushObject(esp, managedStack, clrType.GetFieldValue(fieldIdx, clrInstance));
+                    ILIntepreter.PushObject(esp, managedStack, obj);
                 }
                 else
                     throw new TypeLoadException();
             }
         }
 
-        unsafe void PushToStackSub(ref StackObject field, int fieldIdx, StackObject* esp, IList<object> managedStack, ILIntepreter intp)
+        internal unsafe void CopyToRegister(int fieldIdx,ref RegisterFrameInfo info, short reg)
+        {
+            if (fieldIdx < fields.Length && fieldIdx >= 0)
+            {
+                fixed(StackObject* ptr = fields)
+                {
+                    info.Intepreter.CopyToRegister(ref info, reg, &ptr[fieldIdx], managedObjs);
+                }
+            }
+            else
+            {
+                if (Type.FirstCLRBaseType != null && Type.FirstCLRBaseType is Enviorment.CrossBindingAdaptor)
+                {
+                    CLRType clrType = info.Intepreter.AppDomain.GetType(((Enviorment.CrossBindingAdaptor)Type.FirstCLRBaseType).BaseCLRType) as CLRType;
+                    var obj = clrType.GetFieldValue(fieldIdx, clrInstance);
+                    if (obj is CrossBindingAdaptorType)
+                        obj = ((CrossBindingAdaptorType)obj).ILInstance;
+                    ILIntepreter.AssignToRegister(ref info, reg, obj);
+                }
+                else
+                    throw new TypeLoadException();
+            }
+        }
+
+        bool NeedCheckFieldValueType(int fieldIdx)
+        {
+            return fieldIdx >= 64 || ((valueTypeMask & ((ulong)1 << fieldIdx)) != 0);
+        }
+
+        unsafe void PushToStackSub(ref StackObject field, int fieldIdx, StackObject* esp, AutoList managedStack, ILIntepreter intp)
         {
             if (field.ObjectType >= ObjectTypes.Object)
             {
                 var obj = managedObjs[fieldIdx];
-                if (obj != null)
+                if (obj != null && NeedCheckFieldValueType(fieldIdx))
                 {
-                    var ot = obj.GetType();
-                    ValueTypeBinder binder;
-                    if (ot.IsValueType && type.AppDomain.ValueTypeBinders.TryGetValue(ot, out binder))
+                    if (obj is ILTypeInstance)
                     {
-                        intp.AllocValueType(esp, binder.CLRType);
-                        var dst = ILIntepreter.ResolveReference(esp);
-                        binder.CopyValueTypeToStack(obj, dst, managedStack);
-                        return;
+                        ILTypeInstance ili = (ILTypeInstance)obj;
+                        if (ili.type != null && ili.type.IsValueType)
+                        {
+                            intp.AllocValueType(esp, ili.type);
+                            var dst = ILIntepreter.ResolveReference(esp);
+                            ili.CopyValueTypeToStack(dst, managedStack);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        var ot = obj.GetType();
+                        ValueTypeBinder binder;
+                        if (ot.IsValueType && type.AppDomain.ValueTypeBinders.TryGetValue(ot, out binder))
+                        {
+                            intp.AllocValueType(esp, binder.CLRType);
+                            var dst = ILIntepreter.ResolveReference(esp);
+                            binder.CopyValueTypeToStack(obj, dst, managedStack);
+                            return;
+                        }
                     }
                 }
                 *esp = field;
@@ -407,10 +521,10 @@ namespace ILRuntime.Runtime.Intepreter
                 *esp = field;
         }
 
-        internal unsafe void CopyValueTypeToStack(StackObject* ptr, IList<object> mStack)
+        internal unsafe void CopyValueTypeToStack(StackObject* ptr, AutoList mStack)
         {
             ptr->ObjectType = ObjectTypes.ValueTypeDescriptor;
-            ptr->Value = type.GetHashCode();
+            ptr->Value = type.TypeIndex;
             ptr->ValueLow = type.TotalFieldCount;
             for(int i = 0; i < fields.Length; i++)
             {
@@ -427,7 +541,7 @@ namespace ILRuntime.Runtime.Intepreter
                         {
                             var obj = managedObjs[i];
                             var dst = ILIntepreter.ResolveReference(val);
-                            var vt = type.AppDomain.GetType(dst->Value);
+                            var vt = type.AppDomain.GetTypeByIndex(dst->Value);
                             if (vt is ILType)
                             {
                                 ((ILTypeInstance)obj).CopyValueTypeToStack(dst, mStack);
@@ -450,7 +564,26 @@ namespace ILRuntime.Runtime.Intepreter
             InitializeFields(type);
         }
 
-        internal unsafe void AssignFromStack(int fieldIdx, StackObject* esp, Enviorment.AppDomain appdomain, IList<object> managedStack)
+        internal void InitializeField(int fieldIdx)
+        {
+            int curStart = type.FieldStartIndex;
+            ILType curType = type;
+            while(curType != null)
+            {
+                int maxIdx = curType.FieldStartIndex + curType.FieldTypes.Length;
+                if (fieldIdx < maxIdx && fieldIdx >= curType.FieldStartIndex)
+                {
+                    var ft = curType.FieldTypes[fieldIdx - curType.FieldStartIndex];
+                    StackObject.Initialized(ref fields[fieldIdx], fieldIdx, ft, managedObjs);
+                    return;
+                }
+                else
+                    curType = curType.BaseType as ILType;
+            }
+            throw new NotImplementedException();
+        }
+
+        internal unsafe void AssignFromStack(int fieldIdx, StackObject* esp, Enviorment.AppDomain appdomain, AutoList managedStack)
         {
             if (fieldIdx < fields.Length && fieldIdx >= 0)
                 AssignFromStackSub(ref fields[fieldIdx], fieldIdx, esp, managedStack);
@@ -467,7 +600,7 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        internal unsafe void AssignFromStack(StackObject* esp, Enviorment.AppDomain appdomain, IList<object> managedStack)
+        internal unsafe void AssignFromStack(StackObject* esp, Enviorment.AppDomain appdomain, AutoList managedStack)
         {
             StackObject* val = ILIntepreter.ResolveReference(esp);
             int cnt = val->ValueLow;
@@ -478,7 +611,7 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        unsafe void AssignFromStackSub(ref StackObject field, int fieldIdx, StackObject* esp, IList<object> managedStack)
+        unsafe void AssignFromStackSub(ref StackObject field, int fieldIdx, StackObject* esp, AutoList managedStack)
         {
             esp = ILIntepreter.GetObjectAndResolveReference(esp);
             field = *esp;
@@ -487,8 +620,12 @@ namespace ILRuntime.Runtime.Intepreter
                 case ObjectTypes.Object:
                 case ObjectTypes.ArrayReference:
                 case ObjectTypes.FieldReference:
+                    field.ObjectType = ObjectTypes.Object;
                     field.Value = fieldIdx;
-                    managedObjs[fieldIdx] = ILIntepreter.CheckAndCloneValueType(managedStack[esp->Value], Type.AppDomain);
+                    if (NeedCheckFieldValueType(fieldIdx))
+                        managedObjs[fieldIdx] = ILIntepreter.CheckAndCloneValueType(managedStack[esp->Value], Type.AppDomain);
+                    else
+                        managedObjs[fieldIdx] = managedStack[esp->Value];
                     break;
                 case ObjectTypes.ValueTypeObjectReference:
                     {
@@ -496,7 +633,7 @@ namespace ILRuntime.Runtime.Intepreter
                         field.ObjectType = ObjectTypes.Object;
                         field.Value = fieldIdx;
                         var dst = ILIntepreter.ResolveReference(esp);
-                        var vt = domain.GetType(dst->Value);
+                        var vt = domain.GetTypeByIndex(dst->Value);
                         if(vt is ILType)
                         {
                             var ins = managedObjs[fieldIdx];
@@ -562,7 +699,11 @@ namespace ILRuntime.Runtime.Intepreter
                             ILEnumTypeInstance enum2 = (ILEnumTypeInstance)obj;
                             if (enum1.type == enum2.type)
                             {
-                                var res = enum1.fields[0] == enum2.fields[0];
+                                bool res;
+                                if (enum1.fields[0].ObjectType == ObjectTypes.Integer)
+                                    res = enum1.fields[0].Value == enum2.fields[0].Value;
+                                else
+                                    res = enum1.fields[0] == enum2.fields[0];
                                 return res;
                             }
                             else
@@ -606,18 +747,18 @@ namespace ILRuntime.Runtime.Intepreter
                 return base.GetHashCode();
         }
 
-        public bool CanAssignTo(IType type)
+        public virtual bool CanAssignTo(IType type)
         {
             return this.type.CanAssignTo(type);
         }
 
-        public ILTypeInstance Clone()
+        public virtual ILTypeInstance Clone()
         {
             ILTypeInstance ins = new ILTypeInstance(type);
             for (int i = 0; i < fields.Length; i++)
             {
                 ins.fields[i] = fields[i];
-                ins.managedObjs[i] = ILIntepreter.CheckAndCloneValueType(managedObjs[i],Type.AppDomain);
+                ins.managedObjs[i] = ILIntepreter.CheckAndCloneValueType(managedObjs[i], Type.AppDomain);
             }
             return ins;
         }
@@ -625,7 +766,7 @@ namespace ILRuntime.Runtime.Intepreter
         internal IDelegateAdapter GetDelegateAdapter(ILMethod method)
         {
             if (delegates == null)
-                delegates = new Dictionary<ILMethod, IDelegateAdapter>();
+                return null;
 
             IDelegateAdapter res;
             if (delegates.TryGetValue(method, out res))
@@ -635,6 +776,9 @@ namespace ILRuntime.Runtime.Intepreter
 
         internal void SetDelegateAdapter(ILMethod method, IDelegateAdapter adapter)
         {
+            if (delegates == null)
+                delegates = new Dictionary<ILMethod, IDelegateAdapter>();
+
             if (!delegates.ContainsKey(method))
                 delegates[method] = adapter;
             else

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Siccity.GLTFUtility.Converters;
 using UnityEngine;
 using UnityEngine.Scripting;
+using Newtonsoft.Json.Linq;
 
 namespace Siccity.GLTFUtility {
 	// https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#animation
@@ -14,6 +15,7 @@ namespace Siccity.GLTFUtility {
 		[JsonProperty(Required = Required.Always)] public Channel[] channels;
 		[JsonProperty(Required = Required.Always)] public Sampler[] samplers;
 		public string name;
+		public JObject extras;
 
 #region Classes
 		// https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#animation-sampler
@@ -50,12 +52,18 @@ namespace Siccity.GLTFUtility {
 #endregion
 
 		public ImportResult Import(GLTFAccessor.ImportResult[] accessors, GLTFNode.ImportResult[] nodes, ImportSettings importSettings) {
+			bool multiRoots = nodes.Where(x => x.IsRoot).Count() > 1;
+
 			ImportResult result = new ImportResult();
 			result.clip = new AnimationClip();
 			result.clip.name = name;
+			result.clip.frameRate = importSettings.animationSettings.frameRate;
 
-			if (importSettings.useLegacyClips) {
-				result.clip.legacy = true;
+			result.clip.legacy = importSettings.animationSettings.useLegacyClips;
+
+			if (result.clip.legacy && importSettings.animationSettings.looping)
+			{
+				result.clip.wrapMode = WrapMode.Loop;
 			}
 
 			for (int i = 0; i < channels.Length; i++) {
@@ -67,7 +75,7 @@ namespace Siccity.GLTFUtility {
 				Sampler sampler = samplers[channel.sampler];
 
 				// Get interpolation mode
-				InterpolationMode interpolationMode = importSettings.interpolationMode;
+				InterpolationMode interpolationMode = importSettings.animationSettings.interpolationMode;
 				if (interpolationMode == InterpolationMode.ImportFromFile) {
 					interpolationMode = sampler.interpolation;
 				}
@@ -83,6 +91,12 @@ namespace Siccity.GLTFUtility {
 					if (node.parent.HasValue) node = nodes[node.parent.Value];
 					else node = null;
 				}
+
+				// If file has multiple root nodes, a new parent will be created for them as a final step of the import process. This parent fucks up the curve relative paths.
+				// Add node.transform.name to path if there are multiple roots. This is not the most elegant fix but it works.
+				// See GLTFNodeExtensions.GetRoot
+				if (multiRoots) relativePath = node.transform.name + "/" + relativePath;
+
 				System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 				float[] keyframeInput = accessors[sampler.input].ReadFloat().ToArray();
 				switch (channel.target.path) {
@@ -133,7 +147,56 @@ namespace Siccity.GLTFUtility {
 						result.clip.SetCurve(relativePath, typeof(Transform), "localScale.z", scaleZ);
 						break;
 					case "weights":
-						Debug.LogWarning("GLTFUtility: Morph weights in animation is not supported");
+						GLTFNode.ImportResult skinnedMeshNode = nodes[channel.target.node.Value];
+						SkinnedMeshRenderer skinnedMeshRenderer = skinnedMeshNode.transform.GetComponent<SkinnedMeshRenderer>();
+
+						int numberOfBlendShapes = skinnedMeshRenderer.sharedMesh.blendShapeCount;
+						AnimationCurve[] blendShapeCurves = new AnimationCurve[numberOfBlendShapes];
+						for(int j = 0; j < numberOfBlendShapes; ++j) {
+							blendShapeCurves[j] = new AnimationCurve();
+						}
+
+						float[] weights = accessors[sampler.output].ReadFloat().ToArray();
+						float[] weightValues = new float[keyframeInput.Length];
+
+						float[] previouslyKeyedValues = new float[numberOfBlendShapes];
+
+						// Reference for my future self:
+						// keyframeInput.Length = number of keyframes
+						// keyframeInput[ k ] = timestamp of keyframe
+						// weights.Length = number of keyframes * number of blendshapes
+						// weights[ j ] = actual animated weight of a specific blend shape
+						// (index into weights[] array accounts for keyframe index and blend shape index)
+
+						for(int k = 0; k < keyframeInput.Length; ++k) {
+							for(int j = 0; j < numberOfBlendShapes; ++j) {
+								int weightIndex = (k * numberOfBlendShapes) + j;
+								weightValues[k] = weights[weightIndex];
+
+								bool addKey = true;
+								if(importSettings.animationSettings.compressBlendShapeKeyFrames) {
+									if(k == 0 || !Mathf.Approximately(weightValues[k], previouslyKeyedValues[j])) {
+										if(k > 0) {
+											weightValues[k-1] = previouslyKeyedValues[j];
+											blendShapeCurves[j].AddKey(CreateKeyframe(k-1, keyframeInput, weightValues, x => x, interpolationMode));
+										}
+										addKey = true;
+										previouslyKeyedValues[j] = weightValues[k];
+									} else {
+										addKey = false;
+									}
+								}
+
+								if(addKey) {
+									blendShapeCurves[j].AddKey(CreateKeyframe(k, keyframeInput, weightValues, x => x, interpolationMode));
+								}
+							}
+						}
+
+						for(int j = 0; j < numberOfBlendShapes; ++j) {
+							string propertyName = "blendShape." + skinnedMeshRenderer.sharedMesh.GetBlendShapeName(j);
+							result.clip.SetCurve(relativePath, typeof(SkinnedMeshRenderer), propertyName, blendShapeCurves[j]);
+						}
 						break;
 				}
 			}

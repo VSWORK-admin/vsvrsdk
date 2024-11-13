@@ -16,11 +16,25 @@ public class ExtralDataObj
     public UnityEngine.Object Target;
     public ExtralDataObj[] Info;
 }
+[System.Serializable]
+public class ExtralDataInfo
+{
+    public string OtherData;
+    public string stringData;
+    public int intData;
+    public float floatData;
+    public Vector3[] vector3Data;
+    public AnimationCurve[] animationCurveData;
+    public Color[] colorData;
+
+    public ExtralDataInfo[] Info;
+}
 public class HFExtralData : MonoBehaviour
 {
     public string OtherData;
     public ExtralData[] ExtralDatas;
     public ExtralDataObj[] ExtralDataObjs;
+    public ExtralDataInfo[] ExtralDataInfos;
 }
 
 

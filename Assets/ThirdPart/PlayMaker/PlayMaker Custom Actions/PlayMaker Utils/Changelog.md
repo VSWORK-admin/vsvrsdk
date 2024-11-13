@@ -1,5 +1,12 @@
 #PlayMaker Utils Change log
 
+###1.6.2
+**Release Date:** 04/10/2019  
+
+
+**fixed**: fixed playmaker 1.9 support for enums ( used in `GetEventProperties` for example)
+
+
 ###1.6.1
 **Release Date:** 04/10/2019  
 

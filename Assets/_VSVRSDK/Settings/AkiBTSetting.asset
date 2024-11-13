@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d695fd362f77f7b43a1d43ab84982486, type: 3}
+  m_Name: AkiBTSetting
+  m_EditorClassIdentifier: 
+  settings:
+  - EditorName: test
+    ShowGroups: []
+    NotShowGroups: []
+    graphStyleSheet: {fileID: 7433441132597879392, guid: 69d1e9fcc9858ef48b9ae4f4b44d507f,
+      type: 3}
+    inspectorStyleSheet: {fileID: 7433441132597879392, guid: 9a4828d0693334d4fb1f8827a7a6fdbf,
+      type: 3}
+    nodeStyleSheet: {fileID: 7433441132597879392, guid: e5a62de0a6b6ec54885b3a17864868c1,
+      type: 3}
+  autoLayoutSiblingDistance: 50
+  autoSave: 0
+  lastPath: 
+  serviceData: {fileID: 0}

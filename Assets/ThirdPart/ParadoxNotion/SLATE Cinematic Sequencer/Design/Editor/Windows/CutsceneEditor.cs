@@ -301,7 +301,7 @@ namespace Slate
             Styles.Load();
 
 #if UNITY_2018_3_OR_NEWER
-            UnityEditor.Experimental.SceneManagement.PrefabStage.prefabStageClosing += (stage) => { if ( cutscene != null && stage.IsPartOfPrefabContents(cutscene.gameObject) ) { Stop(true); } };
+            UnityEditor.SceneManagement.PrefabStage.prefabStageClosing += (stage) => { if ( cutscene != null && stage.IsPartOfPrefabContents(cutscene.gameObject) ) { Stop(true); } };
 #endif
             UnityEditor.SceneManagement.EditorSceneManager.sceneSaving -= OnWillSaveScene;
             UnityEditor.SceneManagement.EditorSceneManager.sceneSaving += OnWillSaveScene;

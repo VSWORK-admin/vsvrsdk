@@ -179,7 +179,7 @@ namespace HutongGames.PlayMaker.Actions
 			try{
 				element = proxy.arrayList[nextItemIndex];
 			}catch(System.Exception e){
-				Debug.LogError(e.Message);
+				Debug.Log(e.Message +""+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName); 
 				Fsm.Event(failureEvent);
 				return;
 			}

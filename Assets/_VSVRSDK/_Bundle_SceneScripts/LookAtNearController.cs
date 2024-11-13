@@ -7,18 +7,27 @@ public class LookAtNearController : MonoBehaviour
     public GameObject enobj;
     public float distance;
     bool isenabled = true;
+
     // Update is called once per frame
     void Update()
     {
         if (mStaticThings.I == null) { return; }
         if (mStaticThings.I.IsThirdCamera)
         {
-
             transform.LookAt(mStaticThings.I.PCCamra);
         }
         else
         {
-            transform.LookAt(mStaticThings.I.GetCurrentMainCamera());
+            //更正名牌的方向为正对着相机，未加mStaticThings.I.GetCurrentMainCamera().up之前，名牌的旋转是不对的
+            if (mStaticThings.I.IsFliping)
+            {
+                transform.LookAt(mStaticThings.I.GetCurrentMainCamera(), mStaticThings.I.GetCurrentMainCamera().up);//自身的旋转角度 lcoal
+            }
+            else
+            {
+                transform.LookAt(mStaticThings.I.GetCurrentMainCamera(), -Physics.gravity);//自身的旋转角度 lcoal
+            }
+            
         }
 
         if (mStaticThings.I.isVRApp)
@@ -51,4 +60,6 @@ public class LookAtNearController : MonoBehaviour
 
 
     }
+
+   
 }

@@ -67,7 +67,7 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				proxy.arrayList.RemoveRange(index.Value,count.Value);
 			}catch(System.Exception e){
-				Debug.LogError(e.Message);
+				Debug.LogError(e.Message + " on "+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName);
 				Fsm.Event(failureEvent);
 			}
 

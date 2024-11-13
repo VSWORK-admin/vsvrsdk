@@ -355,7 +355,7 @@ namespace ILRuntime.Runtime.Enviorment
             EnsureMethod(instance);
             if (method != null)
             {
-                invoking = true;
+                invoking = true;                
                 TResult res = default(TResult);
                 try
                 {
@@ -570,7 +570,7 @@ namespace ILRuntime.Runtime.Enviorment
     public class CrossBindingMethodInfo<T, T2> : CrossBindingMethodInfo
     {
         static InvocationTypes[] piTypes = new InvocationTypes[]
-        {
+        { 
             InvocationContext.GetInvocationType<T>(),
             InvocationContext.GetInvocationType<T2>(),
         };
@@ -578,7 +578,7 @@ namespace ILRuntime.Runtime.Enviorment
 
 
         public delegate void InvocationDelegate(ILTypeInstance instance, T arg, T2 arg2);
-
+        
         public CrossBindingMethodInfo(string name)
             : base(name)
         {
@@ -698,7 +698,7 @@ namespace ILRuntime.Runtime.Enviorment
         public bool CheckShouldInvokeBase(ILTypeInstance ins)
         {
             EnsureMethod(ins);
-           return method == null || method is CLRMethod || invoking;
+            return method == null || invoking;
         }
 
         protected void EnsureMethod(ILTypeInstance ins)
@@ -729,13 +729,25 @@ namespace ILRuntime.Runtime.Enviorment
                 if (ReturnType != null)
                     rt = domain.GetType(ReturnType);
                 if (ilType.FirstCLRBaseType != null)
-                    baseMethod = ilType.FirstCLRBaseType.GetMethod(Name, param, null, rt);
+                    baseMethod = ilType.FirstCLRBaseType.BaseType.GetMethod(Name, param, null, rt);
+                if (ilType.FirstCLRInterface != null)
+                {
+                    var implements = ilType.FirstCLRInterface.Implements;
+                    for (int i = 0; i < implements.Length; i++)
+                    {
+                        baseMethod = implements[i].GetMethod(Name, param, null, rt);
+                        if (baseMethod != null)
+                            break;
+                    }
+                }
                 if (baseMethod == null)
                     method = ilType.GetMethod(Name, param, null, rt);
             }
             if (baseMethod != null)
             {
                 method = ins.Type.GetVirtualMethod(baseMethod);
+                if (method is CLRMethod)
+                    method = null;
             }
         }
 
@@ -745,8 +757,14 @@ namespace ILRuntime.Runtime.Enviorment
             if (method != null)
             {
                 invoking = true;
-                domain.Invoke(method, instance, null);
-                invoking = false;
+                try
+                {
+                    domain.Invoke(method, instance, null);
+                }
+                finally
+                {
+                    invoking = false;
+                }
             }
         }
     }

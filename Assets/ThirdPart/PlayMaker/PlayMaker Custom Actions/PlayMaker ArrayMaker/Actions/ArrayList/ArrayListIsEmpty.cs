@@ -38,6 +38,13 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Event sent if this arrayList is not empty")]
 		[UIHint(UIHint.FsmEvent)]
 		public FsmEvent isNotEmptyEvent;
+
+		[Tooltip("runs every frame")]
+		public bool everyFrame;
+
+		private PlayMakerArrayListProxy _proxy;
+
+		private bool _isEmpty;
 		
 		public override void Reset()
 		{
@@ -47,13 +54,30 @@ namespace HutongGames.PlayMaker.Actions
 			isEmpty = null;
 			isNotEmptyEvent = null;
 			isEmptyEvent = null;
+
+			everyFrame = false;
 		}
 		
 		public override void OnEnter()
 		{
-			PlayMakerArrayListProxy _proxy = GetArrayListProxyPointer(Fsm.GetOwnerDefaultTarget(gameObject),reference.Value,true);
+			ExecuteAction();
+
+			if (!everyFrame)
+			{
+				Finish();
+			}
+		}
+
+		public override void OnUpdate()
+		{
+			ExecuteAction();
+		}
+		
+		public void ExecuteAction()
+		{
+			 _proxy = GetArrayListProxyPointer(Fsm.GetOwnerDefaultTarget(gameObject),reference.Value,true);
 			
-			bool _isEmpty = _proxy.arrayList.Count==0;
+			_isEmpty = _proxy.arrayList.Count==0;
 			
 			isEmpty.Value = _isEmpty;
 			
@@ -63,8 +87,6 @@ namespace HutongGames.PlayMaker.Actions
 				Fsm.Event(isNotEmptyEvent);
 			}
 			
-			Finish();
 		}
-		
 	}
 }

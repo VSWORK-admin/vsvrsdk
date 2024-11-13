@@ -16,8 +16,9 @@ namespace ILRuntime.Reflection
         ILType dType;
         Mono.Cecil.PropertyDefinition definition;
         ILRuntime.Runtime.Enviorment.AppDomain appdomain;
+        ILRuntimeParameterInfo[] parameters;
 
-        object[] customAttributes;
+        Attribute[] customAttributes;
         Type[] attributeTypes;
 
         public ILMethod Getter
@@ -64,11 +65,18 @@ namespace ILRuntime.Reflection
             this.definition = definition;
             this.dType = dType;
             appdomain = dType.AppDomain;
+            parameters = new ILRuntimeParameterInfo[definition.Parameters.Count];
+            for (int i = 0; i < definition.Parameters.Count; i++)
+            {
+                var pd = definition.Parameters[i];
+                var parameterType = dType.AppDomain.GetType(pd.ParameterType, null, null);
+                parameters[i] = new ILRuntimeParameterInfo(pd, parameterType, this, appdomain);
+            }
         }
 
         void InitializeCustomAttribute()
         {
-            customAttributes = new object[definition.CustomAttributes.Count];
+            customAttributes = new Attribute[definition.CustomAttributes.Count];
             attributeTypes = new Type[customAttributes.Length];
             for (int i = 0; i < definition.CustomAttributes.Count; i++)
             {
@@ -76,7 +84,7 @@ namespace ILRuntime.Reflection
                 var at = appdomain.GetType(attribute.AttributeType, null, null);
                 try
                 {
-                    object ins = attribute.CreateInstance(at, appdomain);
+                    Attribute ins = attribute.CreateInstance(at, appdomain) as Attribute;
 
                     attributeTypes[i] = at.ReflectionType;
                     customAttributes[i] = ins;
@@ -141,6 +149,15 @@ namespace ILRuntime.Reflection
             }
         }
 
+        public ILRuntime.Mono.Cecil.TypeReference Definition
+        {
+            get
+            {
+                return definition.GetMethod != null ? definition.GetMethod.ReturnType : definition.SetMethod.Parameters[0].ParameterType;
+            }
+        }
+
+
         public override Type DeclaringType
         {
             get
@@ -202,7 +219,7 @@ namespace ILRuntime.Reflection
 
         public override ParameterInfo[] GetIndexParameters()
         {
-            return new ParameterInfo[0];
+            return parameters;
         }
 
         public override MethodInfo GetSetMethod(bool nonPublic)
@@ -252,6 +269,11 @@ namespace ILRuntime.Reflection
             }
             else
                 throw new ArgumentException("Index count mismatch");
+        }
+
+        public override string ToString()
+        {
+            return definition == null ? base.ToString() : definition.ToString();
         }
     }
 }

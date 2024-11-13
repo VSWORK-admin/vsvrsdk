@@ -20,7 +20,7 @@ public class VRUISelectorProxy : MonoBehaviour
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().rect.width, btn.GetComponent<RectTransform>().rect.height, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();
@@ -55,7 +55,7 @@ public class VRUISelectorProxy : MonoBehaviour
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().rect.width, btn.GetComponent<RectTransform>().rect.height, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();
@@ -72,7 +72,7 @@ public class VRUISelectorProxy : MonoBehaviour
         {
             if (!btn.gameObject.GetComponent<BoxCollider>())
             {
-                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().sizeDelta.x, btn.GetComponent<RectTransform>().sizeDelta.y, 0.02f);
+                btn.gameObject.AddComponent<BoxCollider>().size = new Vector3(btn.GetComponent<RectTransform>().rect.width, btn.GetComponent<RectTransform>().rect.height, 0.02f);
                 if (IsSystemMenu)
                 {
                     btn.gameObject.AddComponent<VRUIsystemMenuMark>();

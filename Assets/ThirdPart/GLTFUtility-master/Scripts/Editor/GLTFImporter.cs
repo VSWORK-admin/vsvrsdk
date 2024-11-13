@@ -1,4 +1,9 @@
-﻿using UnityEditor.Experimental.AssetImporters;
+﻿using UnityEditor;
+#if !UNITY_2020_2_OR_NEWER
+using UnityEditor.Experimental.AssetImporters;
+#else
+using UnityEditor.AssetImporters;
+#endif
 using UnityEngine;
 
 namespace Siccity.GLTFUtility {
@@ -12,8 +17,9 @@ namespace Siccity.GLTFUtility {
 			AnimationClip[] animations;
 			if (importSettings == null) importSettings = new ImportSettings();
 			GameObject root = Importer.LoadFromFile(ctx.assetPath, importSettings, out animations, Format.GLTF);
+
 			// Save asset
-			GLTFAssetUtility.SaveToAsset(root, animations, ctx);
+			GLTFAssetUtility.SaveToAsset(root, animations, ctx, importSettings);
 		}
 	}
 }

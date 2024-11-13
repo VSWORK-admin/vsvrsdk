@@ -78,7 +78,7 @@ namespace HutongGames.PlayMaker.Actions
 			try{
 				element = proxy.arrayList[atIndex.Value];
 			}catch(System.Exception e){
-				Debug.Log(e.Message);
+				Debug.Log(e.Message +""+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName); 
 				Fsm.Event(failureEvent);
 				return;
 			}

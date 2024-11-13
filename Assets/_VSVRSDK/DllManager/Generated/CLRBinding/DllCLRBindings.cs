@@ -6,11 +6,17 @@ namespace ILRuntime.Runtime.Generated
 {
     class DllCLRBindings
     {
+        /// <summary>
+        /// 物体黑名单（下面的物体本身禁止操作）
+        /// </summary>
         public static readonly List<string> blackTransformList = new List<string>
         {
             "_WsAvatarsRoot","_GlbRoot","_GlbSceneRoot","_GlbObjRoot","[DOTween]",
             "MessageDispatcherStub","Dispatcher"
         };
+        /// <summary>
+        /// 子物体白名单（下面的物体的子物体可以任意操作）
+        /// </summary>
         public static readonly List<string> whiteTransformRootList = new List<string>
         {
             "_WsAvatarsRoot","_GlbRoot"

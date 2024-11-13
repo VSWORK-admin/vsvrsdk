@@ -77,7 +77,7 @@ namespace HutongGames.PlayMaker.Actions
 
 				element = proxy.arrayList[index];
 			}catch(System.Exception e){
-				Debug.LogWarning(e.Message);
+				Debug.Log(e.Message +""+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName); 
 				Fsm.Event(failureEvent);
 				return;
 			}
@@ -88,7 +88,7 @@ namespace HutongGames.PlayMaker.Actions
 			
 			if (!ok)
 			{
-				Debug.LogWarning("ApplyValueToFsmVar failed");
+				Debug.LogWarning("ApplyValueToFsmVar failed on "+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName); 
 				Fsm.Event(failureEvent);
 				return;
 			}

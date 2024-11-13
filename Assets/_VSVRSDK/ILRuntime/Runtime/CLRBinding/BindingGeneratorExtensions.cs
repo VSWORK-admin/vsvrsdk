@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using ILRuntime.Runtime.Enviorment;
+using ILRuntime.CLR.Utils;
 
 namespace ILRuntime.Runtime.CLRBinding
 {
@@ -39,7 +40,7 @@ namespace ILRuntime.Runtime.CLRBinding
             {
                 string[] t = i.Name.Split('_');
                 if (t[0] == "add" || t[0] == "remove")
-                    return true;
+                    return false;
                 if (t[0] == "get" || t[0] == "set")
                 {
                     Type[] ts;
@@ -55,20 +56,13 @@ namespace ILRuntime.Runtime.CLRBinding
                     }
                     else
                         ts = new Type[0];
-                    try
+                    var prop = type.GetProperty(t[1], ts);
+                    if (prop == null)
                     {
-                        var prop = type.GetProperty(t[1], ts);
-                        if (prop == null)
-                        {
-                            return true;
-                        }
-                        if (prop.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
-                            return true;
+                        return true;
                     }
-                    catch
-                    {
-                        return false;
-                    }
+                    if (prop.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
+                        return true;
                 }
             }
             if (i.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length > 0)
@@ -76,18 +70,7 @@ namespace ILRuntime.Runtime.CLRBinding
             foreach (var j in param)
             {
                 if (j.ParameterType.IsPointer)
-                {
                     return true;
-                }
-                if(j.ParameterType != null)
-                {
-                    var pt = j.ParameterType.IsByRef ? j.ParameterType.GetElementType() : j.ParameterType;
-                    if(pt == typeof(System.IntPtr) || pt == typeof(System.UIntPtr))
-                    {
-                        return true;
-                    }
-                }
-
             }
             return false;
         }
@@ -104,6 +87,8 @@ namespace ILRuntime.Runtime.CLRBinding
                 var j = param[i];
                 if (j.IsOut && j.ParameterType.IsByRef)
                     sb.Append("out ");
+                else if (j.IsIn && j.ParameterType.IsByRef)
+                    sb.Append("in ");
                 else if (j.ParameterType.IsByRef)
                     sb.Append("ref ");
                 if (isMultiArr)
@@ -189,9 +174,13 @@ namespace ILRuntime.Runtime.CLRBinding
                         else
                             throw new NotSupportedException();
                     }
+                    else if (p.GetElementType().IsEnum)
+                    {
+                        sb.AppendLine(string.Format("            {0} @{1} = ({0})__intp.RetriveInt32(ptr_of_this_method, __mStack);", realClsName, name));
+                    }
                     else
                     {
-                        sb.AppendLine(string.Format("            {0} @{1} = ({0})typeof({0}).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack));", realClsName, name));
+                        sb.AppendLine(string.Format("            {0} @{1} = ({0})typeof({0}).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack), (CLR.Utils.Extensions.TypeFlags){2});", realClsName, name, (int)p.GetTypeFlagsRecursive()));
                     }
 
                 }
@@ -217,10 +206,6 @@ namespace ILRuntime.Runtime.CLRBinding
                 if (type == typeof(int))
                 {
                     return "ptr_of_this_method->Value";
-                }
-                else if(type == typeof(IntPtr))
-                {
-                    return "new IntPtr(&ptr_of_this_method->Value)";
                 }
                 else if (type == typeof(long))
                 {
@@ -271,7 +256,7 @@ namespace ILRuntime.Runtime.CLRBinding
             }
             else
             {
-                return string.Format("({0})typeof({0}).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack))", realClsName);
+                return string.Format("({0})typeof({0}).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags){1})", realClsName, (int)type.GetTypeFlagsRecursive());
             }
         }
 
@@ -283,12 +268,6 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     sb.AppendLine("                        ___dst->ObjectType = ObjectTypes.Integer;");
                     sb.Append("                        ___dst->Value = @" + paramName);
-                    sb.AppendLine(";");
-                }
-                else if (type == typeof(IntPtr))
-                {
-                    sb.AppendLine("                        ___dst->ObjectType = ObjectTypes.Integer;");
-                    sb.Append("                        *(int*)&___dst->Value = @" + paramName);
                     sb.AppendLine(";");
                 }
                 else if (type == typeof(long))
@@ -360,6 +339,12 @@ namespace ILRuntime.Runtime.CLRBinding
                 else
                     throw new NotImplementedException();
             }
+            else if(type.IsEnum)
+            {
+                sb.AppendLine("                        ___dst->ObjectType = ObjectTypes.Integer;");
+                sb.Append("                        ___dst->Value = (int)@" + paramName);
+                sb.AppendLine(";");
+            }
             else
             {
                 sb.Append(@"                        object ___obj = @");
@@ -402,11 +387,6 @@ namespace ILRuntime.Runtime.CLRBinding
                 {
                     sb.AppendLine("            __ret->ObjectType = ObjectTypes.Integer;");
                     sb.AppendLine("            __ret->Value = result_of_this_method;");
-                }
-                else if (type == typeof(IntPtr))
-                {
-                    sb.AppendLine("            __ret->ObjectType = ObjectTypes.Integer;");
-                    sb.AppendLine("            *(int*)&__ret->Value = result_of_this_method.ToInt32();");
                 }
                 else if (type == typeof(long))
                 {

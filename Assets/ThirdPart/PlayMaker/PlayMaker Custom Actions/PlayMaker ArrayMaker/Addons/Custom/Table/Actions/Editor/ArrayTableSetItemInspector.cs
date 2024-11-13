@@ -24,6 +24,8 @@ public class ArrayTableSetItemInspector : CustomActionEditor
 		} else {
 			EditField ("atColumn");
 		}
+		
+		EditField ("atRowIndex");
 
 		EditField("value");
 		EditField("failureEvent");

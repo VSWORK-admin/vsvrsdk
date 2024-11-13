@@ -1,5 +1,40 @@
 #ArrayMaker Change log
 
+###1.3.7
+**Release Date:** 28/04/2020  
+
+**Update**: added better logs on errors 
+
+###1.3.6
+**Release Date:** 14/03/2020  
+
+**New**: New action `ArrayListRaycastAll`  
+**New**: New action `ArrayListSendStringEventToGameObjects`  
+
+###1.3.5
+**Release Date:** 03/02/2020 
+
+**Fix:** `ArrayTableSetItem` and `ArrayTableGetItem` custom inspector fixed.
+
+###1.3.4
+**Release Date:** 20/12/2019  
+
+**Update:** `ArrayListGetScreenResolution` now features an option  to ignore refresh rate value
+
+###1.3.3
+**Release Date:** 18/10/2019  
+
+**New:** new action `ArrayListSendStringEventToGameObjects`
+
+**Update:** `ArrayListIsEmpty` now features an every frame option  
+
+###1.3.2
+**Release Date:** 08/10/2019  
+
+**Fix:**  `ArrayListGetScreenResolutions` now remove duplicates
+
+**Update:** `PlayMaker Utils` update  
+
 ###1.3.1
 **Release Date:** 05/06/2019  
 

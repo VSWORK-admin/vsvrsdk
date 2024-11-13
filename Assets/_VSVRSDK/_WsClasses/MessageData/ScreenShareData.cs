@@ -40,6 +40,13 @@ public class UserScreenShareReqData
     public string shareuserid;
     public bool bshare;
 }
+[Serializable]
+public class UserScreenShareReqExData
+{
+    public string shareuserid;
+    public bool bshare;
+    public int sharetype;
+}
 
 //指定屏幕显示某人分享画面
 [Serializable]

@@ -1,0 +1,43 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/ThridPart/WebGLInputSupport/WebGLInput/Mobile/WebGLInputMobile.jslib.meta
+guid: 4df3633103619754fb77d82a1d683868
+========
+guid: b24d21dfe1b19442387db084c6b15ad1
+>>>>>>>> vsvr_1.9.9_wz2021.3.9New:PlatformData/AgoraEngine/Plugins/Android/AgoraScreenShareExtension.aar.meta
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  isOverridable: 0
+  platformData:
+  - first:
+      Android: Android
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  - first:
+      Facebook: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      WebGL: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

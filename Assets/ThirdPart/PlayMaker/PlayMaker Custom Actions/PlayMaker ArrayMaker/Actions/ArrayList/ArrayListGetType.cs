@@ -84,7 +84,7 @@ namespace HutongGames.PlayMaker.Actions
 				}
 
 			}catch(System.Exception e){
-				Debug.Log(e.Message);
+				Debug.Log(e.Message +" on "+ Fsm.GameObjectName + "\nFsm: " + Fsm.Name + "\nState: " + Fsm.ActiveStateName);
 				Fsm.Event(failureEvent);
 				return;
 			}

@@ -82,7 +82,7 @@ namespace HutongGames.PlayMaker.Actions
 			_gpu_scale(src,width,height,mode);
 
 			Texture2D result = new Texture2D(width, height, TextureFormat.ARGB32, true);
-			result.Resize(width, height);
+			result.Reinitialize(width, height);
 			result.ReadPixels(texR,0,0,true);
 			result.Apply(true);
 			return result;                 

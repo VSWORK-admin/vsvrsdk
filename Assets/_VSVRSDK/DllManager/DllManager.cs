@@ -36,8 +36,18 @@ public class DllManager : MonoBehaviour
     internal static byte[] TestDll = null;
     internal static byte[] TestPdb = null;
 
+
+    public static byte[] CloudDll = null;
+    public static byte[] CloudPdb = null;
+
     internal static bool bShowLoadDllBtn = true;
     internal static bool bTestMode { get { return TestDll != null && TestPdb != null; } }
+    public static bool bCloudMode { get { return CloudDll != null && CloudPdb != null; } }
+
+    private static int _runType = 0;
+    public static int RunType { get { return _runType; } }
+
+    internal static int LoadedMode = 1;
     private void Awake()
     {
         _Instance = this;
@@ -47,10 +57,25 @@ public class DllManager : MonoBehaviour
 
     private void ConnectWSRoomByCloudRender(IMessage rMessage)
     {
-        if (mStaticThings.I != null && mStaticThings.I.isCloudRender)
+#if ILHotFix
+        if (mStaticThings.I != null && mStaticThings.I.isCloudRender && GUIManager.Instance != null && GUIManager.Instance.bCRCacheScene)
         {
             appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+
+#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+
+            _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
+
+            GameManager.Instance.timerManager.doOnce(100, () => {
+
+                if (VSVR_Debug.DebugManager.Instance != null)
+                {
+                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+                }
+            });
+#endif
         }
+#endif
     }
 
     void Start()
@@ -61,6 +86,27 @@ public class DllManager : MonoBehaviour
         if (bTestMode)
         {
             OnDllLoaded();
+			
+			if (OnAssemblyLoadOver != null)
+			{
+				OnAssemblyLoadOver();
+			}
+			
+			MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+			
+            return;
+        }
+        if (bCloudMode)
+        {
+            OnDllLoaded();
+            
+			if (OnAssemblyLoadOver != null)
+			{
+				OnAssemblyLoadOver();
+			}
+			
+			MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+            
             return;
         }
 
@@ -92,7 +138,7 @@ public class DllManager : MonoBehaviour
         }
         if(appdomain != null)
         {
-            appdomain.Clear();
+            appdomain.Dispose();
             appdomain = null;
         }
 
@@ -104,14 +150,31 @@ public class DllManager : MonoBehaviour
         LoadHotFixAssembly2(DllAsset.bytes, PdbAsset.bytes);
     }
 
-    internal static void LoadHotFixAssembly2(byte[] dll, byte[] pdb)
+    public static void LoadHotFixAssembly2(byte[] dll, byte[] pdb)
     {
         appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
-
+ 
         if(bTestMode)
         {
             dll = TestDll;
             pdb = TestPdb;
+#if ILHotFix
+            LoadedMode = (int)VSVR_Debug.RtcMsgDllLoadType.TestMode;
+#endif
+        }
+        else if (bCloudMode)
+        {
+            dll = CloudDll;
+            pdb = CloudPdb;
+#if ILHotFix
+            LoadedMode = (int)VSVR_Debug.RtcMsgDllLoadType.OnlineMode;
+#endif
+        }
+        else
+        {
+#if ILHotFix
+            LoadedMode = (int)VSVR_Debug.RtcMsgDllLoadType.InSceneMode;
+#endif
         }
 
         fs = new MemoryStream(dll);
@@ -127,15 +190,19 @@ public class DllManager : MonoBehaviour
 
         InitializeILRuntime();
 
-        if(!bTestMode)
-            OnDllLoaded();
-
-        if (OnAssemblyLoadOver != null)
+        if(!bTestMode && !bCloudMode)
         {
-            OnAssemblyLoadOver();
-        }
+            OnDllLoaded();
+			
+			if (OnAssemblyLoadOver != null)
+			{
+				OnAssemblyLoadOver();
+			}
+			
+			MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+		}
 
-        MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+
 #if ILHotFix
         if (!VRPublishSettingController.I.bMultiInstance)
         {
@@ -145,7 +212,51 @@ public class DllManager : MonoBehaviour
         appdomain.DebugService.StartDebugService(56001);
 #endif
     }
+    public static void UnLoadAssembly()
+    {
+        if (bTestMode)
+        {
+            TestDll = null;
+            TestPdb = null;
+        }
+        if (bCloudMode)
+        {
+            CloudDll = null;
+            CloudDll = null;
+        }
+#if ILHotFix
+        if (!VRPublishSettingController.I.bMultiInstance)
+        {
+            if (appdomain != null)
+            {
+                appdomain.DebugService.StopDebugService();
+            }
+        }
+#else
+        if (appdomain != null)
+        {
+            appdomain.DebugService.StopDebugService();
+        }
+#endif
+        if (fs != null)
+        {
+            fs.Close();
+            fs.Dispose();
+            fs = null;
+        }
 
+        if (p != null)
+        {
+            p.Close();
+            p.Dispose();
+            p = null;
+        }
+        if (appdomain != null)
+        {
+            appdomain.Dispose();
+            appdomain = null;
+        }
+    }
     static void InitializeILRuntime()
     {
 #if DEBUG && UNITY_EDITOR
@@ -154,20 +265,43 @@ public class DllManager : MonoBehaviour
         //这里做一些ILRuntime的注册，如委托适配器，值类型绑定等等
 
         appdomain.AllowUnboundCLRMethod = true;
-
 #if ILHotFix
+
+#if UNITY_STANDALONE_WIN
+
+        if(ILManager.Instance.bWindowsJit)
+        {
+            ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
+            appdomain.UseMainCLR(ILManager.appdomain);
+        }
+        else
+        {
+            ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
+            ILRuntime.Runtime.Generated.Normal_CLRBindings.Initialize(appdomain);
+            ILRuntime.Runtime.Generated.System_CLRBindings.Initialize(appdomain);
+            ILRuntime.Runtime.Generated.NoNamespace_GenCLRBindings.Initialize(appdomain);
+            ////ILRuntime.Runtime.Generated.WithNamespace_CLRBindings.Initialize(appdomain);
+            ILRuntime.Runtime.Generated.Modules_CLRBindings.Initialize(appdomain);
+        }
+#else
         ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
-        ILRuntime.Runtime.Generated.Normal_CLRBindings.Initialize(appdomain);
-        ILRuntime.Runtime.Generated.System_CLRBindings.Initialize(appdomain);
-        ILRuntime.Runtime.Generated.NoNamespace_GenCLRBindings.Initialize(appdomain);
-        //ILRuntime.Runtime.Generated.WithNamespace_CLRBindings.Initialize(appdomain);
-        ILRuntime.Runtime.Generated.Modules_CLRBindings.Initialize(appdomain);
+        appdomain.UseMainCLR(ILManager.appdomain);
+#endif
+
 #else
         ILRuntime.Runtime.Generated.DllCLRBindings.Initialize(appdomain);
 #endif
         RegisterAdapter();
 
         RegisterDelegate();
+
+#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Loaded;
+        if (VSVR_Debug.DebugManager.Instance != null)
+        {
+            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+        }
+#endif
     }
 
     unsafe static void OnDllLoaded()
@@ -180,6 +314,17 @@ public class DllManager : MonoBehaviour
         else
         {
             appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+
+#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+            _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
+            GameManager.Instance.timerManager.doOnce(100, () => {
+
+                if (VSVR_Debug.DebugManager.Instance != null)
+                {
+                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+                }
+            });
+#endif
         }
 #else
         appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
@@ -192,6 +337,10 @@ public class DllManager : MonoBehaviour
         appdomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         appdomain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
         appdomain.RegisterCrossBindingAdaptor(new DllDragBaseAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new DllActionBaseAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new DllCompositeBaseAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new DllConditionalBaseAdapter());
+        appdomain.RegisterCrossBindingAdaptor(new DllDecoratorBaseAdapter());
     }
 
     private static void RegisterDelegate()
@@ -220,7 +369,21 @@ public class DllManager : MonoBehaviour
         {
             return new com.ootii.Messages.MessageHandler((rMessage) =>
             {
-                ((Action<com.ootii.Messages.IMessage>)act)(rMessage);
+                try
+                {
+                    ((Action<com.ootii.Messages.IMessage>)act)(rMessage);
+                }
+                catch(Exception e)
+                {
+                    if(rMessage != null && rMessage.Type != null)
+                    {
+                        Debug.LogError("MessageHandler -> Debug.LogError : " + "rMessage.Type : " + rMessage.Type + "\r\n" + e);
+                    }
+                    else
+                    {
+                        Debug.LogError("MessageHandler -> Debug.LogError : " + "\r\n" + e);
+                    }   
+                }
             });
         });
 
@@ -293,6 +456,15 @@ public class DllManager : MonoBehaviour
             });
         });
 
+        //appdomain.DelegateManager.RegisterMethodDelegate<STTXVR.Net.WebResponse>();
+
+        //appdomain.DelegateManager.RegisterDelegateConvertor<STTXVR.Net.WebRequest.WebResponseCallback>((act) =>
+        //{
+        //    return new STTXVR.Net.WebRequest.WebResponseCallback((rMessage) =>
+        //    {
+        //        ((Action<STTXVR.Net.WebResponse>)act)(rMessage);
+        //    });
+        //});
 
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Vector3>>((act) =>
         {
@@ -689,7 +861,6 @@ public class DllManager : MonoBehaviour
             });
         });
 
-
         RegisterVRFunction(appdomain.DelegateManager);
 
         RegisterMessageFunction(appdomain.DelegateManager);
@@ -786,6 +957,31 @@ public class DllManager : MonoBehaviour
                 ((Action<System.Object, WebSocketSharp.CloseEventArgs>)act)(sender, e);
             });
         });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture2D>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.WebResponseData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<VSWorkSDK.Data.SDKWebResponseCallback>((act) =>
+        {
+            return new VSWorkSDK.Data.SDKWebResponseCallback((response) =>
+            {
+                ((Action<VSWorkSDK.Data.WebResponseData>)act)(response);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Transform>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VRVoiceInitConfig>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VRProgressInfo>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, System.Int32>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VRRootChanelRoom>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UserScreenShareReqData>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Int32, System.Int32>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, System.Double>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, global::CustomVideoPlayer>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, System.String>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::ConnectAvatars>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.RoomSycnData>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Collections.Generic.List<System.Object>>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::LocalCacheFile>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::UserScreenShareReqExData>();
     }
 
     private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
@@ -815,7 +1011,11 @@ public class DllManager : MonoBehaviour
         delegateManager.RegisterMethodDelegate<Dictionary<string, string>>();
         delegateManager.RegisterMethodDelegate<CommonVREventType, float, Vector2>();
         delegateManager.RegisterMethodDelegate<VRPointObjEventType, GameObject>();
+
+        delegateManager.RegisterFunctionDelegate<System.Boolean>();
     }
+
+
 
     private void OnDestroy()
     {
@@ -827,6 +1027,11 @@ public class DllManager : MonoBehaviour
         {
             TestDll = null;
             TestPdb = null;
+        }
+        if (bCloudMode)
+        {
+            CloudDll = null;
+            CloudPdb = null;
         }
         //if (fs != null)
         //{
@@ -848,6 +1053,14 @@ public class DllManager : MonoBehaviour
         //    appdomain = null;
         //});
         _Instance = null;
+
+#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Destory;
+        if (VSVR_Debug.DebugManager.Instance != null)
+        {
+            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+        }
+#endif
         StopAllCoroutines();
     }
 

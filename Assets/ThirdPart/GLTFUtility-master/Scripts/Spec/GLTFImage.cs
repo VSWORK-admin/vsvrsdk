@@ -58,10 +58,15 @@ namespace Siccity.GLTFUtility {
 							}
 							yield return null;
 						}
-
 						if (onProgress != null) onProgress(1f);
-
-						if (uwr.isNetworkError || uwr.isHttpError) {
+						
+#if UNITY_2020_2_OR_NEWER
+						if(uwr.result == UnityWebRequest.Result.ConnectionError ||
+							uwr.result == UnityWebRequest.Result.ProtocolError)
+#else
+						if(uwr.isNetworkError || uwr.isHttpError)
+#endif
+						{ 
 							Debug.LogError("GLTFImage.cs ToTexture2D() ERROR: " + uwr.error);
 						} else {
 							Texture2D tex = DownloadHandlerTexture.GetContent(uwr);
@@ -90,7 +95,8 @@ namespace Siccity.GLTFUtility {
 					for (int i = 0; i < images.Count; i++) {
 						string fullUri = directoryRoot + images[i].uri;
 						if (!string.IsNullOrEmpty(images[i].uri)) {
-							if (File.Exists(fullUri)) {
+							FileInfo fileinfo = new FileInfo(fullUri);
+							if (fileinfo.Exists) {
 								// If the file is found at fullUri, read it
 								byte[] bytes = File.ReadAllBytes(fullUri);
 								Result[i] = new ImportResult(bytes, fullUri);

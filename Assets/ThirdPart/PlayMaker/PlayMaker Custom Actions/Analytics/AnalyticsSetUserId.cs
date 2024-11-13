@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine.Analytics;
@@ -38,7 +38,8 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			AnalyticsResult _result = Analytics.SetUserId(userId.Value);
+			AnalyticsResult _result = AnalyticsResult.AnalyticsDisabled;
+			//AnalyticsResult _result = Analytics.SetUserId(userId.Value);
 
 			if (!result.IsNone) {
 				result.Value = _result;

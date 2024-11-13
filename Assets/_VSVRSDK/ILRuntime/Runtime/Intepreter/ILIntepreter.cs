@@ -12,10 +12,14 @@ using ILRuntime.Runtime.Intepreter.OpCodes;
 using ILRuntime.Runtime.Debugger;
 using ILRuntime.CLR.Utils;
 using ILRuntime.Other;
-
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+using AutoList = System.Collections.Generic.List<object>;
+#else
+using AutoList = ILRuntime.Other.UncheckedList<object>;
+#endif
 namespace ILRuntime.Runtime.Intepreter
 {
-    public unsafe class ILIntepreter
+    public unsafe partial class ILIntepreter
     {
         Enviorment.AppDomain domain;
         RuntimeStack stack;
@@ -46,7 +50,7 @@ namespace ILRuntime.Runtime.Intepreter
         {
             //Clear old debug state
             ClearDebugState();
-#if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
+#if DEBUG && !NO_PROFILER
             if(domain.UnityMainThreadID == Thread.CurrentThread.ManagedThreadId)
             {
                 mainthreadLock = true;
@@ -80,7 +84,7 @@ namespace ILRuntime.Runtime.Intepreter
         }
         public object Run(ILMethod method, object instance, object[] p)
         {
-            IList<object> mStack = stack.ManagedStack;
+            AutoList mStack = stack.ManagedStack;
             int mStackBase = mStack.Count;
             StackObject* esp = stack.StackBase;
             stack.ResetValueTypePointer();
@@ -92,23 +96,26 @@ namespace ILRuntime.Runtime.Intepreter
                     throw new NullReferenceException("instance should not be null!");
                 esp = PushObject(esp, mStack, instance);
             }
-            esp = PushParameters(method, esp, p);
+            bool useRegister = method.ShouldUseRegisterVM;
+            esp = PushParameters(method, esp, p, useRegister);
             bool unhandledException;
-            esp = Execute(method, esp, out unhandledException);
+            if (useRegister)
+                esp = ExecuteR(method, esp, out unhandledException);
+            else
+                esp = Execute(method, esp, out unhandledException);
             object result = method.ReturnType != domain.VoidType ? method.ReturnType.TypeForCLR.CheckCLRTypes(StackObject.ToObject((esp - 1), domain, mStack)) : null;
             //ClearStack
-#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
-            ((List<object>)mStack).RemoveRange(mStackBase, mStack.Count - mStackBase);
-#else
-            ((UncheckedList<object>)mStack).RemoveRange(mStackBase, mStack.Count - mStackBase);
-#endif
+            mStack.RemoveRange(mStackBase, mStack.Count - mStackBase);
             return result;
         }
         internal StackObject* Execute(ILMethod method, StackObject* esp, out bool unhandledException)
         {
+            allowUnboundCLRMethod = domain.AllowUnboundCLRMethod;
+#if DEBUG
             if (method == null)
                 throw new NullReferenceException();
-#if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
+#endif
+#if DEBUG && !NO_PROFILER
             if (System.Threading.Thread.CurrentThread.ManagedThreadId == AppDomain.UnityMainThreadID)
 
 #if UNITY_5_5_OR_NEWER
@@ -125,11 +132,13 @@ namespace ILRuntime.Runtime.Intepreter
             StackObject* v2 = frame.LocalVarPointer + 1;
             StackObject* v3 = frame.LocalVarPointer + 1 + 1;
             StackObject* v4 = Add(frame.LocalVarPointer, 3);
+            Exception lastCaughtEx = null;
             int finallyEndAddress = 0;
+            var ehs = method.ExceptionHandler;
 
             esp = frame.BasePointer;
             var arg = Minus(frame.LocalVarPointer, method.ParameterCount);
-            IList<object> mStack = stack.ManagedStack;
+            AutoList mStack = stack.ManagedStack;
             int paramCnt = method.ParameterCount;
             if (method.HasThis)//this parameter is always object reference
             {
@@ -149,7 +158,7 @@ namespace ILRuntime.Runtime.Intepreter
             IType type;
             Type clrType;
             int intVal;
-
+            ILTypeInstance instance;
             //Managed Stack reserved for arguments(In case of starg)
             for (int i = 0; i < paramCnt; i++)
             {
@@ -190,13 +199,20 @@ namespace ILRuntime.Runtime.Intepreter
             {
                 var v = method.Variables[i];
                 bool isEnum = false;
-                if (v.VariableType is Mono.Cecil.TypeDefinition td)
+                var vt = v.VariableType;
+                IType t;
+                if (vt.IsGenericParameter)
                 {
-                    isEnum = ((Mono.Cecil.TypeDefinition)td).IsEnum;
+                    t = method.FindGenericArgument(vt.Name);
                 }
-                if (v.VariableType.IsValueType && !v.VariableType.IsPrimitive && !isEnum)
+                else
                 {
-                    var t = AppDomain.GetType(v.VariableType, method.DeclearingType, method);
+                    t = AppDomain.GetType(v.VariableType, method.DeclearingType, method);
+                }
+                isEnum = t.IsEnum;
+                
+                if (!t.IsByRef && t.IsValueType && !t.IsPrimitive && !isEnum)
+                {
                     if (t is ILType)
                     {
                         //var obj = ((ILType)t).Instantiate(false);
@@ -227,9 +243,8 @@ namespace ILRuntime.Runtime.Intepreter
                 }
                 else
                 {
-                    if (v.VariableType.IsPrimitive || isEnum)
+                    if (t.IsPrimitive || isEnum)
                     {
-                        var t = AppDomain.GetType(v.VariableType, method.DeclearingType, method);
                         var loc = Add(v1, i);
                         StackObject.Initialized(loc, t);
                     }
@@ -263,7 +278,7 @@ namespace ILRuntime.Runtime.Intepreter
                         code = ip->Code;
                         switch (code)
                         {
-                            #region Arguments and Local Variable
+#region Arguments and Local Variable
                             case OpCodeEnum.Ldarg_0:
                                 CopyToStack(esp, arg, mStack);
                                 esp++;
@@ -299,7 +314,7 @@ namespace ILRuntime.Runtime.Intepreter
                                 {
                                     a = Add(arg, ip->TokenInteger);
                                     val = esp - 1;
-                                    int idx = a->Value;
+                                    intVal = a->Value;
                                     bool isObj = a->ObjectType >= ObjectTypes.Object;
                                     if (val->ObjectType >= ObjectTypes.Object)
                                     {
@@ -329,13 +344,25 @@ namespace ILRuntime.Runtime.Intepreter
                                         }
                                         else
                                         {
-                                            *a = *val;
-                                            if (isObj)
+                                            if (val->ObjectType == ObjectTypes.ValueTypeObjectReference)
                                             {
-                                                a->Value = idx;
-                                                if (val->ObjectType == ObjectTypes.Null)
+                                                if (isObj)
                                                 {
-                                                    mStack[a->Value] = null;
+                                                    mStack[a->Value] = StackObject.ToObject(val, domain, mStack);
+                                                }
+                                                else
+                                                    throw new NotSupportedException();
+                                            }
+                                            else
+                                            {
+                                                *a = *val;
+                                                if (isObj)
+                                                {
+                                                    a->Value = intVal;
+                                                    if (val->ObjectType == ObjectTypes.Null)
+                                                    {
+                                                        mStack[a->Value] = null;
+                                                    }
                                                 }
                                             }
                                         }
@@ -347,8 +374,8 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Stloc_0:
                                 {
                                     esp--;
-                                    int idx = locBase;
-                                    StLocSub(esp, v1, bp, idx, mStack);
+                                    intVal = locBase;
+                                    StLocSub(esp, v1, intVal, mStack);
                                 }
                                 break;
                             case OpCodeEnum.Ldloc_0:
@@ -358,8 +385,8 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Stloc_1:
                                 {
                                     esp--;
-                                    int idx = locBase + 1;
-                                    StLocSub(esp, v2, bp, idx, mStack);
+                                    intVal = locBase + 1;
+                                    StLocSub(esp, v2, intVal, mStack);
                                 }
                                 break;
                             case OpCodeEnum.Ldloc_1:
@@ -369,8 +396,8 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Stloc_2:
                                 {
                                     esp--;
-                                    int idx = locBase + 2;
-                                    StLocSub(esp, v3, bp, idx, mStack);
+                                    intVal = locBase + 2;
+                                    StLocSub(esp, v3, intVal, mStack);
                                     break;
                                 }
                             case OpCodeEnum.Ldloc_2:
@@ -380,9 +407,9 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Stloc_3:
                                 {
                                     esp--;
-                                    int idx = locBase + 3;
+                                    intVal = locBase + 3;
 
-                                    StLocSub(esp, v4, bp, idx, mStack);
+                                    StLocSub(esp, v4, intVal, mStack);
                                 }
                                 break;
                             case OpCodeEnum.Ldloc_3:
@@ -394,8 +421,8 @@ namespace ILRuntime.Runtime.Intepreter
                                 {
                                     esp--;
                                     var v = Add(frame.LocalVarPointer, ip->TokenInteger);
-                                    int idx = locBase + ip->TokenInteger;
-                                    StLocSub(esp, v, bp, idx, mStack);
+                                    intVal = locBase + ip->TokenInteger;
+                                    StLocSub(esp, v, intVal, mStack);
                                 }
                                 break;
                             case OpCodeEnum.Ldloc:
@@ -424,20 +451,14 @@ namespace ILRuntime.Runtime.Intepreter
                                             {
                                                 var t = AppDomain.GetType(ip->TokenInteger);
                                                 obj = mStack[objRef->Value];
-                                                var idx = objRef->ValueLow;
+                                                intVal = objRef->ValueLow;
                                                 Free(objRef);
-                                                LoadFromArrayReference(obj, idx, objRef, t, mStack);
+                                                LoadFromArrayReference(obj, intVal, objRef, t, mStack);
                                             }
                                             break;
                                         case ObjectTypes.StackObjectReference:
                                             {
-                                                objRef2 = GetObjectAndResolveReference(objRef);
-                                                *objRef = *objRef2;
-                                                if (objRef->ObjectType >= ObjectTypes.Object)
-                                                {
-                                                    objRef->Value = mStack.Count;
-                                                    mStack.Add(mStack[objRef2->Value]);
-                                                }
+                                                CopyToStack(objRef, GetObjectAndResolveReference(objRef), mStack);
                                             }
                                             break;
                                         case ObjectTypes.FieldReference:
@@ -523,7 +544,12 @@ namespace ILRuntime.Runtime.Intepreter
                                                     }
                                                     else
                                                     {
-                                                        *objRef = *val;
+                                                        if (val->ObjectType == ObjectTypes.Null && objRef->ObjectType == ObjectTypes.Object)
+                                                        {
+                                                            mStack[objRef->Value] = null;
+                                                        }
+                                                        else
+                                                            *objRef = *val;
                                                     }
                                                 }
                                             }
@@ -567,9 +593,9 @@ namespace ILRuntime.Runtime.Intepreter
                                     esp = esp - 1 - 1;
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Load Constants
+#region Load Constants
                             case OpCodeEnum.Ldc_I4_M1:
                                 esp->Value = -1;
                                 esp->ObjectType = ObjectTypes.Integer;
@@ -666,18 +692,37 @@ namespace ILRuntime.Runtime.Intepreter
                                     {
                                         case ObjectTypes.FieldReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromFieldReference(instance, idx, dst, mStack);
+                                                LoadFromFieldReference(obj, intVal, dst, mStack);
                                             }
                                             break;
                                         case ObjectTypes.ArrayReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromArrayReference(instance, idx, dst, instance.GetType().GetElementType(), mStack);
+                                                LoadFromArrayReference(obj, intVal, dst, obj.GetType().GetElementType(), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                var t = AppDomain.GetType(val->Value);
+                                                int idx = val->ValueLow;
+                                                Free(dst);
+                                                if (t is ILType)
+                                                {
+                                                    ((ILType)t).StaticInstance.PushToStack(idx, dst, this, mStack);
+                                                }
+                                                else
+                                                {
+                                                    if (!((CLRType)t).CopyFieldToStack(idx, null, this, ref dst, mStack))
+                                                    {
+                                                        obj = ((CLRType)t).GetFieldValue(idx, null);
+                                                        PushObject(dst, mStack, obj);
+                                                    }
+                                                }
                                             }
                                             break;
                                         default:
@@ -698,18 +743,37 @@ namespace ILRuntime.Runtime.Intepreter
                                     {
                                         case ObjectTypes.FieldReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromFieldReference(instance, idx, dst, mStack);
+                                                LoadFromFieldReference(obj, intVal, dst, mStack);
                                             }
                                             break;
                                         case ObjectTypes.ArrayReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromArrayReference(instance, idx, dst, instance.GetType().GetElementType(), mStack);
+                                                LoadFromArrayReference(obj, intVal, dst, obj.GetType().GetElementType(), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                var t = AppDomain.GetType(val->Value);
+                                                intVal = val->ValueLow;
+                                                Free(dst);
+                                                if (t is ILType)
+                                                {
+                                                    ((ILType)t).StaticInstance.PushToStack(intVal, dst, this, mStack);
+                                                }
+                                                else
+                                                {
+                                                    if (!((CLRType)t).CopyFieldToStack(intVal, null, this, ref dst, mStack))
+                                                    {
+                                                        obj = ((CLRType)t).GetFieldValue(intVal, null);
+                                                        PushObject(dst, mStack, obj);
+                                                    }
+                                                }
                                             }
                                             break;
                                         default:
@@ -729,18 +793,37 @@ namespace ILRuntime.Runtime.Intepreter
                                     {
                                         case ObjectTypes.FieldReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromFieldReference(instance, idx, dst, mStack);
+                                                LoadFromFieldReference(obj, intVal, dst, mStack);
                                             }
                                             break;
                                         case ObjectTypes.ArrayReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromArrayReference(instance, idx, dst, instance.GetType().GetElementType(), mStack);
+                                                LoadFromArrayReference(obj, intVal, dst, obj.GetType().GetElementType(), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                var t = AppDomain.GetType(val->Value);
+                                                intVal = val->ValueLow;
+                                                Free(dst);
+                                                if (t is ILType)
+                                                {
+                                                    ((ILType)t).StaticInstance.PushToStack(intVal, dst, this, mStack);
+                                                }
+                                                else
+                                                {
+                                                    if (!((CLRType)t).CopyFieldToStack(intVal, null, this, ref dst, mStack))
+                                                    {
+                                                        obj = ((CLRType)t).GetFieldValue(intVal, null);
+                                                        PushObject(dst, mStack, obj);
+                                                    }
+                                                }
                                             }
                                             break;
                                         default:
@@ -761,18 +844,37 @@ namespace ILRuntime.Runtime.Intepreter
                                     {
                                         case ObjectTypes.FieldReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromFieldReference(instance, idx, dst, mStack);
+                                                LoadFromFieldReference(obj, intVal, dst, mStack);
                                             }
                                             break;
                                         case ObjectTypes.ArrayReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromArrayReference(instance, idx, dst, instance.GetType().GetElementType(), mStack);
+                                                LoadFromArrayReference(obj, intVal, dst, obj.GetType().GetElementType(), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                var t = AppDomain.GetType(val->Value);
+                                                intVal = val->ValueLow;
+                                                Free(dst);
+                                                if (t is ILType)
+                                                {
+                                                    ((ILType)t).StaticInstance.PushToStack(intVal, dst, this, mStack);
+                                                }
+                                                else
+                                                {
+                                                    if (!((CLRType)t).CopyFieldToStack(intVal, null, this, ref dst, mStack))
+                                                    {
+                                                        obj = ((CLRType)t).GetFieldValue(intVal, null);
+                                                        PushObject(dst, mStack, obj);
+                                                    }
+                                                }
                                             }
                                             break;
                                         default:
@@ -792,18 +894,37 @@ namespace ILRuntime.Runtime.Intepreter
                                     {
                                         case ObjectTypes.FieldReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromFieldReference(instance, idx, dst, mStack);
+                                                LoadFromFieldReference(obj, intVal, dst, mStack);
                                             }
                                             break;
                                         case ObjectTypes.ArrayReference:
                                             {
-                                                var instance = mStack[val->Value];
-                                                var idx = val->ValueLow;
+                                                obj = mStack[val->Value];
+                                                intVal = val->ValueLow;
                                                 Free(dst);
-                                                LoadFromArrayReference(instance, idx, dst, instance.GetType().GetElementType(), mStack);
+                                                LoadFromArrayReference(obj, intVal, dst, obj.GetType().GetElementType(), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                var t = AppDomain.GetType(val->Value);
+                                                intVal = val->ValueLow;
+                                                Free(dst);
+                                                if (t is ILType)
+                                                {
+                                                    ((ILType)t).StaticInstance.PushToStack(intVal, dst, this, mStack);
+                                                }
+                                                else
+                                                {
+                                                    if (!((CLRType)t).CopyFieldToStack(intVal, null, this, ref dst, mStack))
+                                                    {
+                                                        obj = ((CLRType)t).GetFieldValue(intVal, null);
+                                                        PushObject(dst, mStack, obj);
+                                                    }
+                                                }
                                             }
                                             break;
                                         default:
@@ -838,6 +959,30 @@ namespace ILRuntime.Runtime.Intepreter
                                                 StoreValueToArrayReference(dst, val, mStack[dst->Value].GetType().GetElementType(), mStack);
                                             }
                                             break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                type = AppDomain.GetType(dst->Value);
+                                                intVal = dst->ValueLow;
+                                                if (type != null)
+                                                {
+                                                    if (type is ILType)
+                                                    {
+                                                        ILType t = type as ILType;
+                                                        t.StaticInstance.AssignFromStack(intVal, val, AppDomain, mStack);
+                                                    }
+                                                    else
+                                                    {
+                                                        CLRType t = type as CLRType;
+                                                        var f = t.GetField(intVal);
+                                                        obj = null;
+                                                        if (!((CLRType)t).AssignFieldFromStack(intVal, ref obj, this, val, mStack))
+                                                            t.SetStaticFieldValue(intVal, f.FieldType.CheckCLRTypes(CheckAndCloneValueType(StackObject.ToObject(val, domain, mStack), domain)));
+                                                    }
+                                                }
+                                                else
+                                                    throw new TypeLoadException();
+                                            }
+                                            break;
                                         default:
                                             {
                                                 dst->Value = val->Value;
@@ -865,6 +1010,29 @@ namespace ILRuntime.Runtime.Intepreter
                                         case ObjectTypes.ArrayReference:
                                             {
                                                 StoreValueToArrayReference(dst, val, typeof(long), mStack);
+                                            }
+                                            break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                type = AppDomain.GetType(dst->Value);
+                                                intVal = dst->ValueLow;
+                                                if (type != null)
+                                                {
+                                                    if (type is ILType)
+                                                    {
+                                                        ILType t = type as ILType;
+                                                        t.StaticInstance.AssignFromStack(intVal, val, AppDomain, mStack);
+                                                    }
+                                                    else
+                                                    {
+                                                        CLRType t = type as CLRType;
+                                                        obj = null;
+                                                        if (!((CLRType)t).AssignFieldFromStack(intVal, ref obj, this, val, mStack))
+                                                            t.SetStaticFieldValue(intVal, typeof(long).CheckCLRTypes(CheckAndCloneValueType(StackObject.ToObject(val, domain, mStack), domain)));
+                                                    }
+                                                }
+                                                else
+                                                    throw new TypeLoadException();
                                             }
                                             break;
                                         default:
@@ -898,6 +1066,29 @@ namespace ILRuntime.Runtime.Intepreter
                                                 StoreValueToArrayReference(dst, val, typeof(double), mStack);
                                             }
                                             break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                type = AppDomain.GetType(dst->Value);
+                                                intVal = dst->ValueLow;
+                                                if (type != null)
+                                                {
+                                                    if (type is ILType)
+                                                    {
+                                                        ILType t = type as ILType;
+                                                        t.StaticInstance.AssignFromStack(intVal, val, AppDomain, mStack);
+                                                    }
+                                                    else
+                                                    {
+                                                        CLRType t = type as CLRType;
+                                                        obj = null;
+                                                        if (!((CLRType)t).AssignFieldFromStack(intVal, ref obj, this, val, mStack))
+                                                            t.SetStaticFieldValue(intVal, typeof(double).CheckCLRTypes(CheckAndCloneValueType(StackObject.ToObject(val, domain, mStack), domain)));
+                                                    }
+                                                }
+                                                else
+                                                    throw new TypeLoadException();
+                                            }
+                                            break;
                                         default:
                                             {
                                                 dst->Value = val->Value;
@@ -929,6 +1120,30 @@ namespace ILRuntime.Runtime.Intepreter
                                                 StoreValueToArrayReference(dst, val, typeof(object), mStack);
                                             }
                                             break;
+                                        case ObjectTypes.StaticFieldReference:
+                                            {
+                                                type = AppDomain.GetType(dst->Value);
+                                                intVal = dst->ValueLow;
+                                                if (type != null)
+                                                {
+                                                    if (type is ILType)
+                                                    {
+                                                        ILType t = type as ILType;
+                                                        t.StaticInstance.AssignFromStack(intVal, val, AppDomain, mStack);
+                                                    }
+                                                    else
+                                                    {
+                                                        CLRType t = type as CLRType;
+                                                        var f = t.GetField(intVal);
+                                                        obj = null;
+                                                        if (!((CLRType)t).AssignFieldFromStack(intVal, ref obj, this, val, mStack))
+                                                            t.SetStaticFieldValue(intVal, f.FieldType.CheckCLRTypes(CheckAndCloneValueType(StackObject.ToObject(val, domain, mStack), domain)));
+                                                    }
+                                                }
+                                                else
+                                                    throw new TypeLoadException();
+                                            }
+                                            break;
                                         default:
                                             {
                                                 switch (val->ObjectType)
@@ -954,9 +1169,9 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Ldstr:
                                 esp = PushObject(esp, mStack, AppDomain.GetString(ip->TokenLong));
                                 break;
-                            #endregion
+#endregion
 
-                            #region Althemetics
+#region Althemetics
                             case OpCodeEnum.Add:
                                 {
                                     b = esp - 1;
@@ -1275,9 +1490,9 @@ namespace ILRuntime.Runtime.Intepreter
                                     }
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Control Flows
+#region Control Flows
                             case OpCodeEnum.Ret:
                                 returned = true;
                                 break;
@@ -1712,15 +1927,12 @@ namespace ILRuntime.Runtime.Intepreter
                             case OpCodeEnum.Leave:
                             case OpCodeEnum.Leave_S:
                                 {
-                                    if (method.ExceptionHandler != null)
+                                    if (ehs != null)
                                     {
                                         ExceptionHandler eh = null;
 
-                                        int addr = ip->TokenInteger;
-                                        var sql = from e in method.ExceptionHandler
-                                                  where addr == e.HandlerEnd + 1 && e.HandlerType == ExceptionHandlerType.Finally || e.HandlerType == ExceptionHandlerType.Fault
-                                                  select e;
-                                        eh = sql.FirstOrDefault();
+                                        int addr = (int)(ip - ptr);
+                                        eh = FindExceptionHandlerByBranchTarget(addr, ip->TokenInteger, ehs);
                                         if (eh != null)
                                         {
                                             finallyEndAddress = ip->TokenInteger;
@@ -1733,9 +1945,25 @@ namespace ILRuntime.Runtime.Intepreter
                                 }
                             case OpCodeEnum.Endfinally:
                                 {
-                                    ip = ptr + finallyEndAddress;
-                                    finallyEndAddress = 0;
-                                    continue;
+                                    if (finallyEndAddress < 0)
+                                    {
+                                        unhandledException = true;
+                                        finallyEndAddress = 0;
+                                        throw lastCaughtEx;
+                                    }
+                                    else
+                                    {
+                                        intVal = (int)(ip - ptr);
+                                        var eh = FindExceptionHandlerByBranchTarget(intVal, finallyEndAddress, ehs);
+                                        if (eh != null)
+                                        {
+                                            ip = ptr + eh.HandlerStart;
+                                            continue;
+                                        }
+                                        ip = ptr + finallyEndAddress;
+                                        finallyEndAddress = 0;
+                                        continue;
+                                    }
                                 }
                             case OpCodeEnum.Call:
                             case OpCodeEnum.Callvirt:
@@ -1760,12 +1988,34 @@ namespace ILRuntime.Runtime.Intepreter
                                             bool processed = false;
                                             if (m.IsDelegateInvoke)
                                             {
-                                                var instance = StackObject.ToObject((Minus(esp, m.ParameterCount + 1)), domain, mStack);
-                                                if (instance is IDelegateAdapter)
+                                                obj = StackObject.ToObject((Minus(esp, m.ParameterCount + 1)), domain, mStack);
+                                                if (obj is IDelegateAdapter)
                                                 {
-                                                    esp = ((IDelegateAdapter)instance).ILInvoke(this, esp, mStack);
+                                                    esp = ((IDelegateAdapter)obj).ILInvoke(this, esp, mStack);
                                                     processed = true;
                                                 }
+                                            }
+                                            else if (ilm.IsEventAdd)
+                                            {
+                                                objRef = PrepareEventHandler(esp, ilm, mStack, out instance);
+
+                                                esp = CLRRedirections.DelegateCombine(this, objRef, mStack, null, false);
+                                                obj = StackObject.ToObject(esp - 1, domain, mStack);
+                                                instance[ilm.EventFieldIndex] = obj;
+                                                Free(esp - 1);
+                                                esp--;
+                                                processed = true;
+                                            }
+                                            else if (ilm.IsEventRemove)
+                                            {
+                                                objRef = PrepareEventHandler(esp, ilm, mStack, out instance);
+
+                                                esp = CLRRedirections.DelegateRemove(this, objRef, mStack, null, false);
+                                                obj = StackObject.ToObject(esp - 1, domain, mStack);
+                                                instance[ilm.EventFieldIndex] = obj;
+                                                Free(esp - 1);
+                                                esp--;
+                                                processed = true;
                                             }
                                             if (!processed)
                                             {
@@ -1777,7 +2027,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                     if (objRef->ObjectType == ObjectTypes.ValueTypeObjectReference)
                                                     {
                                                         dst = ILIntepreter.ResolveReference(objRef);
-                                                        var ft = domain.GetType(dst->Value) as ILType;
+                                                        var ft = domain.GetTypeByIndex(dst->Value) as ILType;
                                                         ilm = ft.GetVirtualMethod(ilm) as ILMethod;
                                                     }
                                                     else
@@ -1788,7 +2038,13 @@ namespace ILRuntime.Runtime.Intepreter
                                                         ilm = ((ILTypeInstance)obj).Type.GetVirtualMethod(ilm) as ILMethod;
                                                     }
                                                 }
-                                                esp = Execute(ilm, esp, out unhandledException);
+                                                if (ilm.ShouldUseRegisterVM)
+                                                {
+                                                    PrepareRegisterCallStack(esp, mStack, ilm);
+                                                    esp = ExecuteR(ilm, esp, out unhandledException);
+                                                }
+                                                else
+                                                    esp = Execute(ilm, esp, out unhandledException);
                                                 ValueTypeBasePointer = bp;
                                                 if (unhandledException)
                                                     returned = true;
@@ -1800,10 +2056,26 @@ namespace ILRuntime.Runtime.Intepreter
                                             bool processed = false;
                                             if (cm.IsDelegateInvoke)
                                             {
-                                                var instance = StackObject.ToObject((Minus(esp, cm.ParameterCount + 1)), domain, mStack);
-                                                if (instance is IDelegateAdapter)
+                                                obj = StackObject.ToObject((Minus(esp, cm.ParameterCount + 1)), domain, mStack);
+                                                if (obj is IDelegateAdapter)
                                                 {
-                                                    esp = ((IDelegateAdapter)instance).ILInvoke(this, esp, mStack);
+                                                    if (cm.IsDelegateDynamicInvoke)
+                                                    {
+                                                        arrRef = esp - 1;
+                                                        object[] objArr = StackObject.ToObject(arrRef, domain, mStack) as object[];
+                                                        Free(arrRef);
+                                                        if (objArr != null)
+                                                        {
+                                                            if (objArr.Length != cm.ParameterCount)
+                                                                throw new ArgumentException(string.Format("{0}.{1} has {2} arguments, but got {3}", cm.DeclearingType.FullName, cm.Name, cm.ParameterCount, objArr.Length));
+                                                            esp = arrRef;
+                                                            for (intVal = 0; intVal < objArr.Length; intVal++)
+                                                            {
+                                                                esp = PushObject(esp, mStack, objArr[intVal], cm.Parameters[intVal] == domain.ObjectType);
+                                                            }
+                                                        }
+                                                    }
+                                                    esp = ((IDelegateAdapter)obj).ILInvoke(this, esp, mStack);
                                                     processed = true;
                                                 }
                                             }
@@ -1812,14 +2084,31 @@ namespace ILRuntime.Runtime.Intepreter
                                             {
                                                 var redirect = cm.Redirection;
                                                 if (redirect != null)
-                                                    esp = redirect(this, esp, mStack, cm, false);
+                                                {
+                                                    try
+                                                    {
+                                                        esp = redirect(this, esp, mStack, cm, false);
+                                                    }
+                                                    catch(Exception e)
+                                                    {
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                                                        var stacktrace = this.AppDomain.DebugService.GetStackTrace(this);
+
+                                                        UnityEngine.Debug.LogError(stacktrace);
+                                                        throw new NotSupportedException(stacktrace + "\r\n" +
+                                                            e.Message);
+#else
+                                                        UnityEngine.Debug.LogError("Debug.LogError : " + e);
+#endif
+                                                    }
+                                                }                                             
                                                 else
                                                 {
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
                                                     if (!allowUnboundCLRMethod)
                                                         throw new NotSupportedException(cm.ToString() + " is not bound!");
 #endif
-#if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
+#if DEBUG && !NO_PROFILER
                                                     if (System.Threading.Thread.CurrentThread.ManagedThreadId == AppDomain.UnityMainThreadID)
 
 #if UNITY_5_5_OR_NEWER
@@ -1829,7 +2118,7 @@ namespace ILRuntime.Runtime.Intepreter
 #endif
 #endif
                                                     object result = cm.Invoke(this, esp, mStack);
-#if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
+#if DEBUG && !NO_PROFILER
                                                     if (System.Threading.Thread.CurrentThread.ManagedThreadId == AppDomain.UnityMainThreadID)
 #if UNITY_5_5_OR_NEWER
                                                         UnityEngine.Profiling.Profiler.EndSample();
@@ -1862,16 +2151,16 @@ namespace ILRuntime.Runtime.Intepreter
                                     }
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region FieldOperation
+#region FieldOperation
                             case OpCodeEnum.Stfld:
                                 {
                                     objRef = GetObjectAndResolveReference(esp - 1 - 1);
                                     if (objRef->ObjectType == ObjectTypes.ValueTypeObjectReference)
                                     {
                                         dst = ILIntepreter.ResolveReference(objRef);
-                                        var ft = domain.GetType(dst->Value);
+                                        var ft = domain.GetTypeByIndex(dst->Value);
                                         if (ft is ILType)
                                             CopyToValueTypeField(dst, (int)ip->TokenLong, esp - 1, mStack);
                                         else
@@ -1883,9 +2172,13 @@ namespace ILRuntime.Runtime.Intepreter
 
                                         if (obj != null)
                                         {
+                                            instance = null;
                                             if (obj is ILTypeInstance)
+                                                instance = obj as ILTypeInstance;
+                                            else if (obj is CrossBindingAdaptorType)
+                                                instance = (obj as CrossBindingAdaptorType).ILInstance;
+                                            if (instance != null)
                                             {
-                                                ILTypeInstance instance = obj as ILTypeInstance;
                                                 val = esp - 1;
                                                 instance.AssignFromStack((int)ip->TokenLong, val, AppDomain, mStack);
                                             }
@@ -1947,7 +2240,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                             case ObjectTypes.ValueTypeObjectReference:
                                                                 {
                                                                     dst = ILIntepreter.ResolveReference(objRef);
-                                                                    var ct = domain.GetType(dst->Value) as CLRType;
+                                                                    var ct = domain.GetTypeByIndex(dst->Value) as CLRType;
                                                                     var binder = ct.ValueTypeBinder;
                                                                     binder.CopyValueTypeToStack(obj, dst, mStack);
                                                                 }
@@ -1976,7 +2269,7 @@ namespace ILRuntime.Runtime.Intepreter
                                     if (objRef->ObjectType == ObjectTypes.ValueTypeObjectReference)
                                     {
                                         dst = ILIntepreter.ResolveReference(objRef);
-                                        var ft = domain.GetType(dst->Value);
+                                        var ft = domain.GetTypeByIndex(dst->Value);
                                         if (ft is ILType)
                                             val = Minus(dst, (int)ip->TokenLong + 1);
                                         else
@@ -2015,11 +2308,13 @@ namespace ILRuntime.Runtime.Intepreter
                                         Free(ret);
                                         if (obj != null)
                                         {
+                                            instance = null;
                                             if (obj is ILTypeInstance)
-                                            {
-                                                ILTypeInstance instance = obj as ILTypeInstance;
+                                                instance = obj as ILTypeInstance;
+                                            else if (obj is CrossBindingAdaptorType)
+                                                instance = (obj as CrossBindingAdaptorType).ILInstance;
+                                            if (instance != null)
                                                 instance.PushToStack((int)ip->TokenLong, ret, this, mStack);
-                                            }
                                             else
                                             {
                                                 //var t = obj.GetType();
@@ -2075,7 +2370,7 @@ namespace ILRuntime.Runtime.Intepreter
                                         {
                                             if (obj is ILTypeInstance)
                                             {
-                                                ILTypeInstance instance = obj as ILTypeInstance;
+                                                instance = obj as ILTypeInstance;
                                                 instance.PushFieldAddress((int)ip->TokenLong, esp - 1, mStack);
                                             }
                                             else
@@ -2226,9 +2521,9 @@ namespace ILRuntime.Runtime.Intepreter
                                     esp = PushObject(objRef, mStack, m);
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Compare
+#region Compare
                             case OpCodeEnum.Ceq:
                                 {
                                     StackObject* obj1 = esp - 1 - 1;
@@ -2395,12 +2690,12 @@ namespace ILRuntime.Runtime.Intepreter
                                         esp = PushZero(esp - 1 - 1);
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Initialization & Instantiation
+#region Initialization & Instantiation
                             case OpCodeEnum.Newobj:
                                 {
-                                    IMethod m = domain.GetMethod(ip->TokenInteger);
+                                   IMethod m = domain.GetMethod(ip->TokenInteger);
                                     if (m is ILMethod)
                                     {
                                         type = m.DeclearingType as ILType;
@@ -2417,21 +2712,31 @@ namespace ILRuntime.Runtime.Intepreter
                                             Free(esp - 1 - 1);
                                             esp = esp - 1 - 1;
                                             object dele;
-                                            if (mi is ILMethod)
+                                            var ilMethod = mi as ILMethod;
+                                            if (ilMethod != null)
                                             {
                                                 if (ins != null)
                                                 {
-                                                    dele = ((ILTypeInstance)ins).GetDelegateAdapter((ILMethod)mi);
+                                                    dele = ((ILTypeInstance) ins).GetDelegateAdapter(ilMethod);
                                                     if (dele == null)
-                                                        dele = domain.DelegateManager.FindDelegateAdapter((ILTypeInstance)ins, (ILMethod)mi);
+                                                    {
+                                                        var invokeMethod = type.GetMethod("Invoke", mi.ParameterCount);
+                                                        if (invokeMethod == null && ilMethod.IsExtend)
+                                                        {
+                                                            invokeMethod = type.GetMethod("Invoke", mi.ParameterCount - 1);
+                                                        }
+                                                        dele = domain.DelegateManager.FindDelegateAdapter(
+                                                            (ILTypeInstance) ins, ilMethod, invokeMethod);
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    if (((ILMethod)mi).DelegateAdapter == null)
+                                                    if (ilMethod.DelegateAdapter == null)
                                                     {
-                                                        ((ILMethod)mi).DelegateAdapter = domain.DelegateManager.FindDelegateAdapter(null, (ILMethod)mi);
+                                                        var invokeMethod = type.GetMethod("Invoke", mi.ParameterCount);
+                                                        ilMethod.DelegateAdapter = domain.DelegateManager.FindDelegateAdapter(null, ilMethod, invokeMethod);
                                                     }
-                                                    dele = ((ILMethod)mi).DelegateAdapter;
+                                                    dele = ilMethod.DelegateAdapter;
                                                 }
                                             }
 
@@ -2443,12 +2748,27 @@ namespace ILRuntime.Runtime.Intepreter
                                         }
                                         else
                                         {
-                                            a = esp - m.ParameterCount;
+                                            intVal = m.ParameterCount;
+                                            a = esp - intVal;
                                             obj = null;
-                                            bool isValueType = type.IsValueType;
+                                            bool isValueType = type.IsValueType;                                            
+                                            ILIntepreter tmpIntp;
+                                            AutoList tmStack;
+                                            if (isValueType && intVal > 0)
+                                            {
+                                                tmpIntp = domain.RequestILIntepreter();
+                                                tmpIntp.stack.ResetValueTypePointer();
+                                                esp = tmpIntp.stack.StackBase;
+                                                tmStack = tmpIntp.stack.ManagedStack;
+                                            }
+                                            else
+                                            {
+                                                tmpIntp = this;
+                                                tmStack = mStack;
+                                            }
                                             if (isValueType)
                                             {
-                                                stack.AllocValueType(esp, type);
+                                                tmpIntp.stack.AllocValueType(esp, type);
                                                 objRef = esp + 1;
                                                 objRef->ObjectType = ObjectTypes.StackObjectReference;
                                                 *(long*)&objRef->Value = (long)esp;
@@ -2457,28 +2777,45 @@ namespace ILRuntime.Runtime.Intepreter
                                             else
                                             {
                                                 obj = ((ILType)type).Instantiate(false);
-                                                objRef = PushObject(esp, mStack, obj);//this parameter for constructor
+                                                objRef = PushObject(esp, tmStack, obj);//this parameter for constructor
                                             }
                                             esp = objRef;
-                                            for (int i = 0; i < m.ParameterCount; i++)
+                                            for (int i = 0; i < intVal; i++)
                                             {
-                                                CopyToStack(esp, a + i, mStack);
+                                                tmpIntp.CopyToStack(esp, a + i, mStack, tmStack);
                                                 esp++;
                                             }
-                                            esp = Execute((ILMethod)m, esp, out unhandledException);
-                                            for (int i = m.ParameterCount - 1; i >= 0; i--)
+                                            if (((ILMethod)m).ShouldUseRegisterVM)
+                                            {
+                                                PrepareRegisterCallStack(esp, tmStack, (ILMethod)m);
+                                                esp = tmpIntp.ExecuteR((ILMethod)m, esp, out unhandledException);
+                                            }
+                                            else
+                                                esp = tmpIntp.Execute((ILMethod)m, esp, out unhandledException);
+
+                                            ValueTypeBasePointer = bp;
+                                            for (int i = intVal - 1; i >= 0; i--)
                                             {
                                                 Free(Add(a, i));
                                             }
-                                            ValueTypeBasePointer = bp;
                                             if (isValueType)
                                             {
-                                                var ins = objRef - 1 - 1;
-                                                *a = *ins;
+                                                if (intVal > 0)
+                                                {
+                                                    stack.AllocValueType(a, type);
+                                                    CopyStackValueType(esp - 1, a, tmpIntp.stack.ManagedStack, mStack);
+                                                    domain.FreeILIntepreter(tmpIntp);
+                                                }
+                                                else
+                                                {
+                                                    var ins = objRef - 1 - 1;
+                                                    *a = *ins;
+                                                }
                                                 esp = a + 1;
                                             }
                                             else
                                                 esp = PushObject(a, mStack, obj);//new constructedObj
+                                            
                                         }
                                         if (unhandledException)
                                             returned = true;
@@ -2506,22 +2843,10 @@ namespace ILRuntime.Runtime.Intepreter
                                                 Free(esp - 1 - 1);
                                                 esp = esp - 1 - 1;
                                                 object dele;
-                                                if (mi is ILMethod)
+                                                var ilMethod = mi as ILMethod;
+                                                if (ilMethod != null)
                                                 {
-                                                    if (ins != null)
-                                                    {
-                                                        dele = ((ILTypeInstance)ins).GetDelegateAdapter((ILMethod)mi);
-                                                        if (dele == null)
-                                                            dele = domain.DelegateManager.FindDelegateAdapter((ILTypeInstance)ins, (ILMethod)mi);
-                                                    }
-                                                    else
-                                                    {
-                                                        if (((ILMethod)mi).DelegateAdapter == null)
-                                                        {
-                                                            ((ILMethod)mi).DelegateAdapter = domain.DelegateManager.FindDelegateAdapter(null, (ILMethod)mi);
-                                                        }
-                                                        dele = ((ILMethod)mi).DelegateAdapter;
-                                                    }
+                                                    dele = domain.DelegateManager.FindDelegateAdapter((CLRType)cm.DeclearingType, (ILTypeInstance)ins, ilMethod);
                                                 }
                                                 else
                                                 {
@@ -2535,9 +2860,30 @@ namespace ILRuntime.Runtime.Intepreter
                                             {
                                                 var redirect = cm.Redirection;
                                                 if (redirect != null)
-                                                    esp = redirect(this, esp, mStack, cm, true);
+                                                {
+                                                    try
+                                                    {
+                                                        esp = redirect(this, esp, mStack, cm, true);
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                                                        var stacktrace = this.AppDomain.DebugService.GetStackTrace(this);
+
+                                                        UnityEngine.Debug.LogError(stacktrace);
+                                                        throw new NotSupportedException(stacktrace + "\r\n" +
+                                                            e.Message);
+#else
+                                                        UnityEngine.Debug.LogError("Debug.LogError : " + e);
+#endif
+                                                    }
+                                                }
                                                 else
                                                 {
+#if DEBUG && !DISABLE_ILRUNTIME_DEBUG
+                                                    if (!allowUnboundCLRMethod)
+                                                        throw new NotSupportedException(cm.ToString() + " is not bound!");
+#endif
                                                     object result = cm.Invoke(this, esp, mStack, true);
                                                     int paramCount = cm.ParameterCount;
                                                     for (int i = 1; i <= paramCount; i++)
@@ -2644,7 +2990,7 @@ namespace ILRuntime.Runtime.Intepreter
 
                                                 //esp = PushObject(esp - 1, mStack, ins);
                                             }
-                                            else
+                                            else if(objRef2->ObjectType != ObjectTypes.ValueTypeObjectReference)
                                             {
                                                 object res = RetriveObject(objRef2, mStack);
                                                 //Free(objRef);
@@ -2671,7 +3017,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                 objRef->Value = insIdx;
                                                 //esp = PushObject(esp - 1, mStack, tt.CheckCLRTypes(StackObject.ToObject(obj, AppDomain, mStack)));
                                             }
-                                            else
+                                            else if (objRef2->ObjectType != ObjectTypes.ValueTypeObjectReference)
                                             {
                                                 object res = RetriveObject(objRef2, mStack);
                                                 //Free(objRef);
@@ -2950,7 +3296,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                 if (objRef->ObjectType == ObjectTypes.ValueTypeObjectReference)
                                                 {
                                                     dst = ILIntepreter.ResolveReference(objRef);
-                                                    var vt = domain.GetType(dst->Value);
+                                                    var vt = domain.GetTypeByIndex(dst->Value);
                                                     if (vt != type)
                                                         throw new InvalidCastException();
                                                     object ins = ((CLRType)vt).ValueTypeBinder.ToObject(dst, mStack);
@@ -3088,11 +3434,18 @@ namespace ILRuntime.Runtime.Intepreter
                                                 throw new TypeLoadException();
                                         }
                                         else
-                                            throw new NullReferenceException();
+                                        {
+                                            //Nothing to do with null
+                                            
+                                        }
                                     }
                                     else if (objRef->ObjectType < ObjectTypes.StackObjectReference)
                                     {
                                         //Nothing to do with primitive types
+                                    }
+                                    else if (objRef->ObjectType == ObjectTypes.ValueTypeObjectReference)
+                                    {
+                                        //Nothing to do with ValueTypeReference
                                     }
                                     else
                                         throw new InvalidCastException();
@@ -3111,6 +3464,14 @@ namespace ILRuntime.Runtime.Intepreter
                                             {
                                                 case ObjectTypes.Null:
                                                     throw new NullReferenceException();
+                                                case ObjectTypes.Integer:
+                                                case ObjectTypes.Float:
+                                                    objRef->Value = 0;
+                                                    break;
+                                                case ObjectTypes.Long:
+                                                case ObjectTypes.Double:
+                                                    *(long*)&objRef->Value = 0;
+                                                    break;
                                                 case ObjectTypes.ValueTypeObjectReference:
                                                     stack.ClearValueTypeObject(type, ILIntepreter.ResolveReference(objRef));
                                                     break;
@@ -3121,7 +3482,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                         {
                                                             if (obj is ILTypeInstance)
                                                             {
-                                                                ILTypeInstance instance = obj as ILTypeInstance;
+                                                                instance = obj as ILTypeInstance;
                                                                 instance.Clear();
                                                             }
                                                             else
@@ -3134,15 +3495,15 @@ namespace ILRuntime.Runtime.Intepreter
                                                 case ObjectTypes.ArrayReference:
                                                     {
                                                         var arr = mStack[objRef->Value] as Array;
-                                                        var idx = objRef->ValueLow;
-                                                        obj = arr.GetValue(idx);
+                                                        intVal = objRef->ValueLow;
+                                                        obj = arr.GetValue(intVal);
                                                         if (obj == null)
-                                                            arr.SetValue(it.Instantiate(), idx);
+                                                            arr.SetValue(it.Instantiate(), intVal);
                                                         else
                                                         {
                                                             if (obj is ILTypeInstance)
                                                             {
-                                                                ILTypeInstance instance = obj as ILTypeInstance;
+                                                                instance = obj as ILTypeInstance;
                                                                 instance.Clear();
                                                             }
                                                             else
@@ -3157,7 +3518,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                         {
                                                             if (obj is ILTypeInstance)
                                                             {
-                                                                ILTypeInstance instance = obj as ILTypeInstance;
+                                                                instance = obj as ILTypeInstance;
                                                                 var tar = instance[objRef->ValueLow] as ILTypeInstance;
                                                                 if (tar != null)
                                                                     tar.Clear();
@@ -3204,7 +3565,7 @@ namespace ILRuntime.Runtime.Intepreter
                                                     break;
                                                 case ObjectTypes.FieldReference:
                                                     {
-                                                        var instance = mStack[objRef->Value] as ILTypeInstance;
+                                                        instance = mStack[objRef->Value] as ILTypeInstance;
                                                         instance.AssignFromStack(objRef->ValueLow, esp, AppDomain, mStack);
                                                     }
                                                     break;
@@ -3225,12 +3586,98 @@ namespace ILRuntime.Runtime.Intepreter
                                         {
                                             stack.ClearValueTypeObject(type, ILIntepreter.ResolveReference(objRef));
                                         }
+                                        else if (objRef->ObjectType == ObjectTypes.FieldReference)
+                                        {
+                                            instance = mStack[objRef->Value] as ILTypeInstance;
+                                            if (instance != null)
+                                            {
+                                                instance.InitializeField(objRef->ValueLow);
+                                            }
+                                            else
+                                                throw new NotImplementedException();
+                                        }
                                         else if (type.IsPrimitive)
                                             StackObject.Initialized(objRef, type);
+                                        else
+                                        {
+                                            if (!type.IsValueType)
+                                            {
+                                                if (objRef->ObjectType >= ObjectTypes.Object)
+                                                    mStack[objRef->Value] = null;
+                                                else
+                                                    PushNull(objRef);
+                                            }
+                                            else
+                                            {
+                                                if (objRef->ObjectType >= ObjectTypes.Object)
+                                                    mStack[objRef->Value] = ((CLRType)type).CreateDefaultInstance();
+                                            }
+                                        }
                                     }
 
                                     Free(esp - 1);
                                     esp--;
+                                }
+                                break;
+                            case OpCodeEnum.Castclass:
+                                {
+                                    objRef = esp - 1;
+                                    var oriRef = objRef;
+                                    type = domain.GetType(ip->TokenInteger);
+                                    if (type != null)
+                                    {
+                                        objRef = GetObjectAndResolveReference(objRef);
+                                        if (objRef->ObjectType <= ObjectTypes.Double)
+                                        {
+                                            if (objRef->ObjectType != ObjectTypes.Null)
+                                                throw new NotImplementedException();
+                                            else
+                                            {
+                                                //Nothing to do with null
+                                            }
+                                        }
+                                        else
+                                        {
+                                            obj = RetriveObject(objRef, mStack);
+                                            Free(oriRef);
+
+                                            if (obj != null)
+                                            {
+                                                if (obj is ILTypeInstance)
+                                                {
+                                                    if (((ILTypeInstance)obj).CanAssignTo(type))
+                                                    {
+                                                        esp = PushObject(oriRef, mStack, obj);
+                                                    }
+                                                    else
+                                                    {
+                                                        throw new InvalidCastException(string.Format("Cannot Cast {0} to {1}", ((ILTypeInstance)obj).Type.FullName, type.FullName));
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (type.TypeForCLR.IsAssignableFrom(obj.GetType()))
+                                                    {
+                                                        esp = PushObject(oriRef, mStack, obj, true);
+                                                    }
+                                                    else
+                                                    {
+                                                        throw new InvalidCastException(string.Format("Cannot Cast {0} to {1}", obj.GetType().FullName, type.FullName));
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+#if !DEBUG || DISABLE_ILRUNTIME_DEBUG
+                                                    oriRef->ObjectType = ObjectTypes.Null;
+                                                    oriRef->Value = -1;
+                                                    oriRef->ValueLow = 0;
+#endif
+                                            }
+                                        }
+                                    }
+                                    else
+                                        throw new NullReferenceException();
                                 }
                                 break;
                             case OpCodeEnum.Isinst:
@@ -3345,9 +3792,9 @@ namespace ILRuntime.Runtime.Intepreter
                                         throw new NullReferenceException();
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Array
+#region Array
                             case OpCodeEnum.Newarr:
                                 {
                                     var cnt = (esp - 1);
@@ -3479,7 +3926,8 @@ namespace ILRuntime.Runtime.Intepreter
                                     var idx = esp - 1;
                                     arrRef = esp - 1 - 1;
                                     Array arr = mStack[arrRef->Value] as Array;
-                                    obj = arr.GetValue(idx->Value);
+                                    ILTypeInstance[] arr2 = arr as ILTypeInstance[];
+                                    obj = arr2 != null ? arr2[idx->Value] : arr.GetValue(idx->Value); 
                                     if (obj is CrossBindingAdaptorType)
                                         obj = ((CrossBindingAdaptorType)obj).ILInstance;
                                     Free(esp - 1);
@@ -3488,7 +3936,7 @@ namespace ILRuntime.Runtime.Intepreter
                                     if (obj is ILTypeInstance)
                                     {
                                         ILTypeInstance ins = (ILTypeInstance)obj;
-                                        if (ins.Type.IsValueType && !ins.Boxed)
+                                        if (!(ins is DelegateAdapter) && ins.Type.IsValueType && !ins.Boxed)
                                         {
                                             AllocValueType(arrRef, ins.Type);
                                             dst = ILIntepreter.ResolveReference(arrRef);
@@ -3816,9 +4264,9 @@ namespace ILRuntime.Runtime.Intepreter
                                     esp--;
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Conversion
+#region Conversion
                             case OpCodeEnum.Conv_U1:
                             case OpCodeEnum.Conv_Ovf_U1:
                             case OpCodeEnum.Conv_Ovf_U1_Un:
@@ -4118,9 +4566,9 @@ namespace ILRuntime.Runtime.Intepreter
                                     }
                                 }
                                 break;
-                            #endregion
+#endregion
 
-                            #region Stack operation
+#region Stack operation
                             case OpCodeEnum.Pop:
                                 {
                                     Free(esp - 1);
@@ -4146,7 +4594,7 @@ namespace ILRuntime.Runtime.Intepreter
                                     esp++;
                                 }
                                 break;
-                            #endregion
+#endregion
 
                             case OpCodeEnum.Throw:
                                 {
@@ -4156,9 +4604,12 @@ namespace ILRuntime.Runtime.Intepreter
                                     esp--;
                                     throw ex;
                                 }
+                            case OpCodeEnum.Rethrow:
+                                {
+                                    throw lastCaughtEx;
+                                }
                             case OpCodeEnum.Nop:
                             case OpCodeEnum.Volatile:
-                            case OpCodeEnum.Castclass:
                             case OpCodeEnum.Readonly:
                                 break;
                             default:
@@ -4168,14 +4619,14 @@ namespace ILRuntime.Runtime.Intepreter
                     }
                     catch (Exception ex)
                     {
-                        if (method.ExceptionHandler != null)
+                        if (ehs != null)
                         {
                             int addr = (int)(ip - ptr);
-                            var eh = GetCorrespondingExceptionHandler(method, ex, addr, ExceptionHandlerType.Catch, true);
+                            var eh = GetCorrespondingExceptionHandler(ehs, ex, addr, ExceptionHandlerType.Catch, true);
 
                             if (eh == null)
                             {
-                                eh = GetCorrespondingExceptionHandler(method, ex, addr, ExceptionHandlerType.Catch, false);
+                                eh = GetCorrespondingExceptionHandler(ehs, ex, addr, ExceptionHandlerType.Catch, false);
                             }
                             if (eh != null)
                             {
@@ -4184,7 +4635,7 @@ namespace ILRuntime.Runtime.Intepreter
                                     ILRuntimeException ire = (ILRuntimeException)ex;
                                     var inner = ire.InnerException;
                                     inner.Data["ThisInfo"] = ire.ThisInfo;
-                                    inner.Data["StackTrace"] = ire.StackTrace;
+                                    inner.Data["StackTrace"] = inner.Data.Contains("StackTrace") ? string.Format("{0}\n--- End of stack trace from previous location ---\n{1}", ire.StackTrace, inner.Data["StackTrace"]) : ire.StackTrace;
                                     inner.Data["LocalInfo"] = ire.LocalInfo;
                                     ex = inner;
                                 }
@@ -4195,7 +4646,7 @@ namespace ILRuntime.Runtime.Intepreter
                                         ex.Data["ThisInfo"] = debugger.GetThisInfo(this);
                                     else
                                         ex.Data["ThisInfo"] = "";
-                                    ex.Data["StackTrace"] = debugger.GetStackTrace(this);
+                                    ex.Data["StackTrace"] = ex.Data.Contains("StackTrace") ? string.Format("{0}\n--- End of stack trace from previous location ---\n{1}", debugger.GetStackTrace(this), ex.Data["StackTrace"]) : debugger.GetStackTrace(this);
                                     ex.Data["LocalInfo"] = debugger.GetLocalVariableInfo(this);
                                 }
                                 //Clear call stack
@@ -4209,8 +4660,28 @@ namespace ILRuntime.Runtime.Intepreter
                                         esp--;
                                     }
                                 }
+                                lastCaughtEx = ex;
                                 esp = PushObject(esp, mStack, ex);
                                 unhandledException = false;
+                                var eh2 = FindExceptionHandlerByBranchTarget(addr, eh.HandlerStart, ehs);
+                                if (eh2 != null)
+                                {
+                                    finallyEndAddress = eh.HandlerStart;
+                                    ip = ptr + eh2.HandlerStart;
+                                    continue;
+                                }
+                                ip = ptr + eh.HandlerStart;
+                                continue;
+                            }
+
+                            eh = GetCorrespondingExceptionHandler(ehs, null, addr, ExceptionHandlerType.Fault, false);
+                            if(eh == null)
+                                eh = GetCorrespondingExceptionHandler(ehs, null, addr, ExceptionHandlerType.Finally, false);
+                            if(eh != null)
+                            {
+                                unhandledException = false;
+                                finallyEndAddress = -1;
+                                lastCaughtEx = ex is ILRuntimeException ? ex : new ILRuntimeException(ex.Message, this, method, ex);
                                 ip = ptr + eh.HandlerStart;
                                 continue;
                             }
@@ -4232,7 +4703,7 @@ namespace ILRuntime.Runtime.Intepreter
                     }
                 }
             }
-#if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
+#if DEBUG && !NO_PROFILER
             if (System.Threading.Thread.CurrentThread.ManagedThreadId == AppDomain.UnityMainThreadID)
 #if UNITY_5_5_OR_NEWER
                 UnityEngine.Profiling.Profiler.EndSample();
@@ -4244,15 +4715,119 @@ namespace ILRuntime.Runtime.Intepreter
             return stack.PopFrame(ref frame, esp);
         }
 
+        StackObject* PrepareEventHandler(StackObject* esp, ILMethod ilm, AutoList mStack, out ILTypeInstance instance)
+        {
+            instance = null;
+            StackObject* objRef;
+            var dele = StackObject.ToObject(esp - 1, domain, mStack);
+            Free(esp - 1);
+            if (ilm.IsStatic)
+            {
+                instance = ((ILType)ilm.DeclearingType).StaticInstance;
+                objRef = esp - 1;
+            }
+            else
+            {
+                objRef = esp - 2;
+                instance = StackObject.ToObject(objRef, domain, mStack) as ILTypeInstance;
+                Free(objRef);
+            }
+            var obj = instance[ilm.EventFieldIndex];
+
+            objRef = PushObject(objRef, mStack, obj);
+            objRef = PushObject(objRef, mStack, dele);
+            return objRef;
+        }
+        ExceptionHandler FindExceptionHandlerByBranchTarget(int addr, int branchTarget, ExceptionHandler[] ehs)
+        {
+            ExceptionHandler eh = null;
+            for (int i = 0; i < ehs.Length; i++)
+            {
+                var e = ehs[i];
+                if (addr >= e.TryStart && addr <= e.TryEnd && (branchTarget < e.TryStart || branchTarget > e.TryEnd) && e.HandlerType == ExceptionHandlerType.Finally)
+                {
+                    if (eh == null || e.TryStart > eh.TryStart)
+                        eh = e;
+                }
+            }
+            return eh;
+        }
+
+        void RelocateValueTypeManagedObj(StackObject* esp, AutoList mStack, ref int curIdx)
+        {
+            StackObject* descripter = ResolveReference(esp);
+            for (int i = descripter->ValueLow; i > 0; i--)
+            {
+                StackObject* cur = descripter - i;
+                if (cur->ObjectType >= ObjectTypes.Object)
+                {
+                    mStack[curIdx] = mStack[cur->Value];
+                    cur->Value = curIdx;
+                    curIdx--;
+                }
+                else
+                {
+                    if (cur->ObjectType == ObjectTypes.ValueTypeObjectReference)
+                    {
+                        RelocateValueTypeManagedObj(cur, mStack, ref curIdx);
+                    }
+                }
+            }
+        }
+
+        void PrepareRegisterCallStack(StackObject* esp, AutoList mStack, ILMethod method)
+        {
+            var pCnt = method.HasThis ? method.ParameterCount + 1 : method.ParameterCount;
+            StackObject* basePointer = esp - pCnt;
+            int existing = 0;
+            for (int i = 0; i < pCnt; i++)
+            {
+                StackObject* cur = basePointer + i;
+                if (cur->ObjectType < ObjectTypes.Object)
+                {
+                    mStack.Add(null);
+                }
+                else
+                    existing++;
+            }
+            if (existing > 0)
+            {
+                int curIdx = mStack.Count - 1;
+                for (int i = pCnt - 1; i >= 0; i--)
+                {
+                    StackObject* cur = basePointer + i;
+                    if (cur->ObjectType >= ObjectTypes.Object)
+                    {
+                        mStack[curIdx] = mStack[cur->Value];
+                        cur->Value = curIdx;
+                    }
+                    else
+                    {
+                        if (cur->ObjectType == ObjectTypes.Null)
+                        {
+                            cur->ObjectType = ObjectTypes.Object;
+                            cur->Value = curIdx;
+                        }
+                        else if (cur->ObjectType == ObjectTypes.ValueTypeObjectReference)
+                        {
+                            RelocateValueTypeManagedObj(cur, mStack, ref curIdx);
+                        }
+                        mStack[curIdx] = null;
+                    }
+                    curIdx--;
+                }
+            }
+        }
+
         void DumpStack(StackObject* esp)
         {
             AppDomain.DebugService.DumpStack(esp, stack);
         }
 
-        void CloneStackValueType(StackObject* src, StackObject* dst, IList<object> mStack)
+        void CloneStackValueType(StackObject* src, StackObject* dst, AutoList mStack)
         {
             StackObject* descriptor = ILIntepreter.ResolveReference(src);
-            stack.AllocValueType(dst, AppDomain.GetType(descriptor->Value));
+            stack.AllocValueType(dst, AppDomain.GetTypeByIndex(descriptor->Value));
             StackObject* dstDescriptor = ILIntepreter.ResolveReference(dst);
             int cnt = descriptor->ValueLow;
             for (int i = 0; i < cnt; i++)
@@ -4264,34 +4839,65 @@ namespace ILRuntime.Runtime.Intepreter
 
         bool CanCastTo(StackObject* src, StackObject* dst)
         {
-            var sType = AppDomain.GetType(src->Value);
-            var dType = AppDomain.GetType(dst->Value);
-
+            var sType = AppDomain.GetTypeByIndex(src->Value);
+            var dType = AppDomain.GetTypeByIndex(dst->Value);
             return sType.CanAssignTo(dType);
+
         }
 
-        void CopyStackValueType(StackObject* src, StackObject* dst, IList<object> mStack)
+        bool CanCopyStackValueType(StackObject* src, StackObject* dst)
+        {
+            if (src->ObjectType == ObjectTypes.ValueTypeObjectReference && dst->ObjectType == ObjectTypes.ValueTypeObjectReference)
+            {
+                StackObject* descriptor = ILIntepreter.ResolveReference(src);
+                StackObject* dstDescriptor = ILIntepreter.ResolveReference(dst);
+                return CanCastTo(descriptor, dstDescriptor);
+            }
+            else
+                return false;
+        }
+#if DEBUG
+        public void CopyStackValueType(StackObject* src, StackObject* dst, AutoList mStack, bool noCheck = false)
+#else
+        public void CopyStackValueType(StackObject* src, StackObject* dst, AutoList mStack)
+#endif
+        {
+#if DEBUG
+            CopyStackValueType(src, dst, mStack, mStack, noCheck);
+#else
+            CopyStackValueType(src, dst, mStack, mStack);
+#endif
+        }
+#if DEBUG
+        public void CopyStackValueType(StackObject* src, StackObject* dst, AutoList mStack, AutoList dstmStack, bool noCheck = false)
+#else
+        public void CopyStackValueType(StackObject* src, StackObject* dst, AutoList mStack, AutoList dstmStack)
+#endif
         {
             StackObject* descriptor = ILIntepreter.ResolveReference(src);
             StackObject* dstDescriptor = ILIntepreter.ResolveReference(dst);
+#if DEBUG
             if (!CanCastTo(descriptor, dstDescriptor))
                 throw new InvalidCastException();
+#endif
             int cnt = descriptor->ValueLow;
             for (int i = 0; i < cnt; i++)
             {
                 StackObject* srcVal = Minus(descriptor, i + 1);
                 StackObject* dstVal = Minus(dstDescriptor, i + 1);
-                if (srcVal->ObjectType != dstVal->ObjectType)
+#if DEBUG
+                if (!noCheck && srcVal->ObjectType != dstVal->ObjectType)
                     throw new NotSupportedException();
-                switch (dstVal->ObjectType)
+#endif
+                switch (srcVal->ObjectType)
                 {
                     case ObjectTypes.Object:
                     case ObjectTypes.ArrayReference:
                     case ObjectTypes.FieldReference:
-                        mStack[dstVal->Value] = mStack[srcVal->Value];
+                        dstmStack[dstVal->Value] = mStack[srcVal->Value];
                         break;
                     case ObjectTypes.ValueTypeObjectReference:
-                        CopyStackValueType(srcVal, dstVal, mStack);
+                        CopyStackValueType(srcVal, dstVal, mStack, dstmStack);
                         break;
                     default:
                         *dstVal = *srcVal;
@@ -4300,7 +4906,7 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        void CopyValueTypeToStack(StackObject* dst, object ins, IList<object> mStack)
+        void CopyValueTypeToStack(StackObject* dst, object ins, AutoList mStack)
         {
             if (ins is ILTypeInstance)
             {
@@ -4314,13 +4920,13 @@ namespace ILRuntime.Runtime.Intepreter
                 }
                 else
                 {
-                    var vb = ((CLRType)domain.GetType(dst->Value)).ValueTypeBinder;
+                    var vb = ((CLRType)domain.GetTypeByIndex(dst->Value)).ValueTypeBinder;
                     vb.CopyValueTypeToStack(ins, dst, mStack);
                 }
             }
         }
 
-        void CopyToValueTypeField(StackObject* obj, int idx, StackObject* val, IList<object> mStack)
+        void CopyToValueTypeField(StackObject* obj, int idx, StackObject* val, AutoList mStack)
         {
             StackObject* dst = Minus(obj, idx + 1);
             switch (val->ObjectType)
@@ -4363,7 +4969,7 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        void StLocSub(StackObject* esp, StackObject* v, StackObject* bp, int idx, IList<object> mStack)
+        void StLocSub(StackObject* esp, StackObject* v, int idx, AutoList mStack)
         {
             switch (esp->ObjectType)
             {
@@ -4386,7 +4992,7 @@ namespace ILRuntime.Runtime.Intepreter
                         else
                         {
                             var dst = ILIntepreter.ResolveReference(v);
-                            var ct = domain.GetType(dst->Value) as CLRType;
+                            var ct = domain.GetTypeByIndex(dst->Value) as CLRType;
                             var binder = ct.ValueTypeBinder;
                             binder.CopyValueTypeToStack(obj, dst, mStack);
                         }
@@ -4414,8 +5020,12 @@ namespace ILRuntime.Runtime.Intepreter
                     break;
             }
         }
-
+        [Obsolete]
         public object RetriveObject(StackObject* esp, IList<object> mStack)
+        {
+            return RetriveObject(esp, (AutoList)mStack);
+        }
+        public object RetriveObject(StackObject* esp, AutoList mStack)
         {
             StackObject* objRef = GetObjectAndResolveReference(esp);
             if (objRef->ObjectType == ObjectTypes.Null)
@@ -4471,7 +5081,7 @@ namespace ILRuntime.Runtime.Intepreter
             return obj;
         }
 
-        public int RetriveInt32(StackObject* esp, IList<object> mStack)
+        public int RetriveInt32(StackObject* esp, AutoList mStack)
         {
             StackObject* objRef = GetObjectAndResolveReference(esp);
             if (objRef->ObjectType == ObjectTypes.Null)
@@ -4516,7 +5126,7 @@ namespace ILRuntime.Runtime.Intepreter
                             res = ((int[])arr)[idx];
                         else
                         {
-                            res = (int)arr.GetValue(idx);
+                            res = (int)Convert.ToInt32(arr.GetValue(idx));
                         }
                     }
                     break;
@@ -4547,7 +5157,7 @@ namespace ILRuntime.Runtime.Intepreter
             return res;
         }
 
-        public long RetriveInt64(StackObject* esp, IList<object> mStack)
+        public long RetriveInt64(StackObject* esp, AutoList mStack)
         {
             StackObject* objRef = GetObjectAndResolveReference(esp);
             if (objRef->ObjectType == ObjectTypes.Null)
@@ -4625,7 +5235,7 @@ namespace ILRuntime.Runtime.Intepreter
             return res;
         }
 
-        public float RetriveFloat(StackObject* esp, IList<object> mStack)
+        public float RetriveFloat(StackObject* esp, AutoList mStack)
         {
             StackObject* objRef = GetObjectAndResolveReference(esp);
             if (objRef->ObjectType == ObjectTypes.Null)
@@ -4703,7 +5313,7 @@ namespace ILRuntime.Runtime.Intepreter
             return res;
         }
 
-        public double RetriveDouble(StackObject* esp, IList<object> mStack)
+        public double RetriveDouble(StackObject* esp, AutoList mStack)
         {
             StackObject* objRef = GetObjectAndResolveReference(esp);
             if (objRef->ObjectType == ObjectTypes.Null)
@@ -4786,7 +5396,9 @@ namespace ILRuntime.Runtime.Intepreter
             if (obj == null)
                 arr.SetValue(null, idx);
             else
+            {
                 arr.SetValue(arr.GetType().GetElementType().CheckCLRTypes(obj), idx);
+            }
         }
 
         void StoreIntValueToArray(Array arr, StackObject* val, StackObject* idx)
@@ -4858,12 +5470,12 @@ namespace ILRuntime.Runtime.Intepreter
             throw new NotImplementedException();
         }
 
-        ExceptionHandler GetCorrespondingExceptionHandler(ILMethod method, object obj, int addr, ExceptionHandlerType type, bool explicitMatch)
+        ExceptionHandler GetCorrespondingExceptionHandler(ExceptionHandler[] eh, object obj, int addr, ExceptionHandlerType type, bool explicitMatch)
         {
             ExceptionHandler res = null;
             int distance = int.MaxValue;
             Exception ex = obj is ILRuntimeException ? ((ILRuntimeException)obj).InnerException : obj as Exception;
-            foreach (var i in method.ExceptionHandler)
+            foreach (var i in eh)
             {
                 if (i.HandlerType == type)
                 {
@@ -4884,7 +5496,7 @@ namespace ILRuntime.Runtime.Intepreter
             return res;
         }
 
-        void LoadFromFieldReference(object obj, int idx, StackObject* dst, IList<object> mStack)
+        void LoadFromFieldReference(object obj, int idx, StackObject* dst, AutoList mStack)
         {
             if (obj is ILTypeInstance)
             {
@@ -4898,7 +5510,7 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        void StoreValueToFieldReference(ref object obj, int idx, StackObject* val, IList<object> mStack)
+        void StoreValueToFieldReference(ref object obj, int idx, StackObject* val, AutoList mStack)
         {
             if (obj is ILTypeInstance)
             {
@@ -4916,13 +5528,13 @@ namespace ILRuntime.Runtime.Intepreter
             }
         }
 
-        void LoadFromArrayReference(object obj, int idx, StackObject* objRef, IType t, IList<object> mStack)
+        void LoadFromArrayReference(object obj, int idx, StackObject* objRef, IType t, AutoList mStack, int managedIdx = -1)
         {
             var nT = t.TypeForCLR;
-            LoadFromArrayReference(obj, idx, objRef, nT, mStack);
+            LoadFromArrayReference(obj, idx, objRef, nT, mStack, managedIdx);
         }
 
-        void LoadFromArrayReference(object obj, int idx, StackObject* objRef, Type nT, IList<object> mStack)
+        void LoadFromArrayReference(object obj, int idx, StackObject* objRef, Type nT, AutoList mStack, int managedIdx = -1)
         {
             if (nT.IsPrimitive)
             {
@@ -5000,19 +5612,27 @@ namespace ILRuntime.Runtime.Intepreter
             {
                 Array arr = obj as Array;
                 objRef->ObjectType = ObjectTypes.Object;
-                objRef->Value = mStack.Count;
-                mStack.Add(arr.GetValue(idx));
+                if (managedIdx >= 0)
+                {
+                    objRef->Value = managedIdx;
+                    mStack[managedIdx] = arr.GetValue(idx);
+                }
+                else
+                {
+                    objRef->Value = mStack.Count;
+                    mStack.Add(arr.GetValue(idx));
+                }
                 objRef->ValueLow = 0;
             }
         }
 
-        void StoreValueToArrayReference(StackObject* objRef, StackObject* val, IType t, IList<object> mStack)
+        void StoreValueToArrayReference(StackObject* objRef, StackObject* val, IType t, AutoList mStack)
         {
             var nT = t.TypeForCLR;
             StoreValueToArrayReference(objRef, val, nT, mStack);
         }
 
-        void StoreValueToArrayReference(StackObject* objRef, StackObject* val, Type nT, IList<object> mStack)
+        void StoreValueToArrayReference(StackObject* objRef, StackObject* val, Type nT, AutoList mStack)
         {
             if (nT.IsPrimitive)
             {
@@ -5067,12 +5687,14 @@ namespace ILRuntime.Runtime.Intepreter
             else
             {
                 Array arr = mStack[objRef->Value] as Array;
-                arr.SetValue(mStack[val->Value], objRef->ValueLow);
+                arr.SetValue(StackObject.ToObject(val, domain, mStack), objRef->ValueLow);
             }
         }
 
         bool CheckExceptionType(IType catchType, object exception, bool explicitMatch)
         {
+            if (catchType == null)
+                return true;
             if (catchType is CLRType)
             {
                 if (explicitMatch)
@@ -5105,9 +5727,9 @@ namespace ILRuntime.Runtime.Intepreter
                 return esp;
         }
 
-        StackObject* PushParameters(IMethod method, StackObject* esp, object[] p)
+        StackObject* PushParameters(IMethod method, StackObject* esp, object[] p, bool useRegister)
         {
-            IList<object> mStack = stack.ManagedStack;
+            AutoList mStack = stack.ManagedStack;
             var plist = method.Parameters;
             int pCnt = plist != null ? plist.Count : 0;
             int pCnt2 = p != null ? p.Length : 0;
@@ -5123,29 +5745,36 @@ namespace ILRuntime.Runtime.Intepreter
                     object obj = p[i];
                     if (obj is CrossBindingAdaptorType)
                         obj = ((CrossBindingAdaptorType)obj).ILInstance;
-                    esp = ILIntepreter.PushObject(esp, mStack, obj, isBox);
+                    var res = ILIntepreter.PushObject(esp, mStack, obj, isBox);
+                    if (esp->ObjectType < ObjectTypes.Object && useRegister)
+                        mStack.Add(null);
+                    esp = res;
                 }
             }
             return esp;
         }
+        public void CopyToStack(StackObject* dst, StackObject* src, AutoList mStack)
+        {
+            CopyToStack(dst, src, mStack, mStack);
+        }
 
-        public void CopyToStack(StackObject* dst, StackObject* src, IList<object> mStack)
+        void CopyToStack(StackObject* dst, StackObject* src, AutoList mStack, AutoList dstmStack)
         {
             if (src->ObjectType == ObjectTypes.ValueTypeObjectReference)
             {
                 var descriptor = ResolveReference(src);
-                var t = domain.GetType(descriptor->Value);
+                var t = domain.GetTypeByIndex(descriptor->Value);
                 AllocValueType(dst, t);
-                CopyStackValueType(src, dst, mStack);
+                CopyStackValueType(src, dst, mStack, dstmStack);
             }
             else
             {
                 *dst = *src;
                 if (dst->ObjectType >= ObjectTypes.Object)
                 {
-                    dst->Value = mStack.Count;
+                    dst->Value = dstmStack.Count;
                     var obj = mStack[src->Value];
-                    mStack.Add(obj);
+                    dstmStack.Add(obj);
                 }
             }
         }
@@ -5210,13 +5839,21 @@ namespace ILRuntime.Runtime.Intepreter
             return esp + 1;
         }
 
+        [Obsolete]
         public static void UnboxObject(StackObject* esp, object obj, IList<object> mStack = null, Enviorment.AppDomain domain = null)
+        {
+            UnboxObject(esp, obj, (AutoList)mStack, domain);
+        }
+
+        public static void UnboxObject(StackObject* esp, object obj, AutoList mStack = null, Enviorment.AppDomain domain = null)
         {
             if (esp->ObjectType == ObjectTypes.ValueTypeObjectReference && domain != null)
             {
                 var dst = ILIntepreter.ResolveReference(esp);
-                var vt = domain.GetType(dst->Value);
+                var vt = domain.GetTypeByIndex(dst->Value);
 
+                if (obj == null)//Nothing to do
+                    return;
                 if (obj is ILTypeInstance)
                 {
                     var ins = (ILTypeInstance)obj;
@@ -5231,6 +5868,10 @@ namespace ILRuntime.Runtime.Intepreter
                 {
                     ((CLRType)vt).ValueTypeBinder.CopyValueTypeToStack(obj, dst, mStack);
                 }
+            }
+            else if(obj == null)
+            {
+                return;
             }
             else if (obj is int)
             {
@@ -5292,11 +5933,21 @@ namespace ILRuntime.Runtime.Intepreter
                 esp->ObjectType = ObjectTypes.Integer;
                 esp->Value = (sbyte)obj;
             }
+            else if (obj is Enum)
+            {
+                esp->ObjectType = ObjectTypes.Integer;
+                esp->Value = Convert.ToInt32(obj);
+            }
             else
                 throw new NotImplementedException();
         }
 
+        [Obsolete]
         public static StackObject* PushObject(StackObject* esp, IList<object> mStack, object obj, bool isBox = false)
+        {
+            return PushObject(esp, (AutoList)mStack, obj, isBox);
+        }
+        public static StackObject* PushObject(StackObject* esp, AutoList mStack, object obj, bool isBox = false)
         {
             if (obj != null)
             {

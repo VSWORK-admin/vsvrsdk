@@ -24,8 +24,10 @@ public class ArrayTableGetItemInspector : CustomActionEditor
 		} else {
 			EditField ("atColumn");
 		}
+		
+		EditField ("atRowIndex");
 
-		EditField("result");
+		EditField("value");
 		EditField("failureEvent");
 		
 		return GUI.changed;
