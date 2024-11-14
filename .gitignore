@@ -57,3 +57,4 @@ Assembly-CSharp.csproj
 /*.sln
 .vsconfig
 ILruntimeSample/Dll_Project/obj
+ILruntimeSample/Dll_Project/bin
