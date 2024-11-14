@@ -5,6 +5,7 @@
 
 >编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，建议使用VisualStudio编写。
 
+>VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_v2.7.3.zip
 ### 二. 使用步骤
 #### 2.1 入口函数
 代码 从```Dll_Project.DllMain``` 类的 ```Main()``` 函数开始执行, 对应的c#文件为 ```/Dll_Project/DllMain.cs```，入口函数中将2.4.2中配置的脚本进行初始化操作（将脚本所在gameobject启用），如示例中操作：
@@ -24,7 +25,7 @@ public static void Main()
 ```
 #### 2.2 交互逻辑代码编写
 ###### 2.2.1 创建脚本文件
-在```/Dll_Project/DllMain.cs```文件同目录下创建```*.cs```文件，文件命名于class命名相同，如工程示例中的```Click_show_hideDemo``` (**位置在 vsvrsdk 工程/Assets/Scenes/ILruntime_Example/Click_show_hide_Objs_Dll**)
+在```/Dll_Project/DllMain.cs```文件同目录下创建```*.cs```文件，文件命名于class命名相同，如工程示例中的```ClickDemo``` (**位置在 vsvrsdk 工程/Assets/Scenes/ILruntimeSample/**)
 
 ###### 2.2.2 继承类
 代码中不能直接继承MonoBehaviour类必须继承DllGenerateBase包装类作为替代
