@@ -1,0 +1,1 @@
+search_result['310']=["topic_0000000000000162.html","VSEngine.RequestPdfRenderPlayerPageCount Method","请求PDF文件总页数\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfPageCount"];

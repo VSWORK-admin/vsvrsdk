@@ -1,0 +1,1 @@
+c['10']=[['11',"GenerateLightmapInfo() Method","topic_0000000000000079.html",0],['12',"GenerateLightmapInfo(GameObject, List\u003cRendererInfo\u003e, List\u003cTexture2D\u003e, List\u003cTexture2D\u003e) Method","topic_000000000000007A.html",0]];

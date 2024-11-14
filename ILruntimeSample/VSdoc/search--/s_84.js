@@ -1,0 +1,1 @@
+search_result['84']=["topic_0000000000000086.html","OnEventReceiveRoomSyncData Event","接收场景数据同步事件\r\n调用SendRoomSyncData 向房间内的其他用户同步数据，房间内所有人都将接收到\r\nRoomSycnData 一般 a: 存放自定义消息的key 用于区别不同的消息"];

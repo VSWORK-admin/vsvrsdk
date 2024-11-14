@@ -1,0 +1,1 @@
+search_result['307']=["topic_000000000000015F.html","VSEngine.LoadSwitchRoomChannelFile Method","通过加载资源管理器文件切换频道\r\n比如文件内容是 linkroom,a270d4b8-025c-4666-a7af-e5e7ee194657,vbqrpayi\r\na270d4b8-025c-4666-a7af-e5e7ee194657 频道ID\r\nvbqrpayi 语音ID"];

@@ -1,0 +1,1 @@
+search_result['118']=["topic_00000000000000A8.html","OnEventRoomConnectClose Event","房间关闭事件回调\r\n参数string 服务器地址"];

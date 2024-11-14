@@ -1,0 +1,1 @@
+search_result['505']=["topic_0000000000000225.html","VSEngine.GetAllAvatarData Method","获取当前频道房间内的所有人物数据字典（key 为avatarID）"];

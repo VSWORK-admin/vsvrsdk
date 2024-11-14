@@ -1,0 +1,1 @@
+search_result['110']=["topic_00000000000000A0.html","OnEventReceiveVideoCurrentTime Event","接收视频当前播放时长\r\nRequestVideoCurrentTime 触发回调\r\n参数GameObject为视频控制器"];

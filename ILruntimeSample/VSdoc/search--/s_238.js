@@ -1,0 +1,1 @@
+search_result['238']=["topic_000000000000011E.html","VSEngine.MakeSelfActionUnderControl Method","人物脱离系统控制 系统不再控制人物走、跑、跳、转向等\r\n一般用于SDK自己控制人物，比如瞬移"];

@@ -1,0 +1,1 @@
+search_result['482']=["topic_000000000000020E.html","VSEngine.IsAdmin Method","判断是否为管理员"];

@@ -1,0 +1,1 @@
+search_result['500']=["topic_0000000000000220.html","VSEngine.IsPanoramaMode Method","判断是否为全景模式"];

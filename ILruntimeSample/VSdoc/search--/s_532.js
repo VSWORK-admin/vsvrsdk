@@ -1,0 +1,1 @@
+search_result['532']=["topic_0000000000000240.html","VSEngine.IsAdminUserLaserPenOnly Method","判断是否仅管理员打开激光笔"];

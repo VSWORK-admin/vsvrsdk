@@ -1,0 +1,1 @@
+search_result['98']=["topic_0000000000000094.html","OnEventBigScreenRecieveRTSP Event","大屏幕接收到RTSP推流事件\r\n大屏播放推流请求回调，推流地址一般存放在order文件，LoadBigScreenOrderFile请求order文件后触发回调\r\n参数是推流地址"];

@@ -1,0 +1,1 @@
+search_result['120']=["topic_00000000000000AA.html","OnEventRoomConnectNewChannel Event","房间连接到新的频道"];

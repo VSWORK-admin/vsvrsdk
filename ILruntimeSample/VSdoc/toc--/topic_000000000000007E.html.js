@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['14',"VSWorkSDK Namespace","topic_000000000000007B.html"],['15',"Tools Class","topic_000000000000007C.html"],['16',"Methods","topic_000000000000007C_methods--.html"],['17',"ASTCByteToTexture Method","topic_000000000000007E.html"]];

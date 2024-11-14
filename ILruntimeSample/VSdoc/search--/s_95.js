@@ -1,0 +1,1 @@
+search_result['95']=["topic_0000000000000091.html","OnEventSelfAdminStatusChanged Event","自己admin状态改变事件"];

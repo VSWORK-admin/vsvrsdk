@@ -1,0 +1,1 @@
+search_result['309']=["topic_0000000000000161.html","VSEngine.ShowPdfRenderPlayerPage Method","显示PDF指定页的内容\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];

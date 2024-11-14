@@ -1,0 +1,1 @@
+search_result['483']=["topic_000000000000020F.html","VSEngine.IsSAmin Method","判断是否为助理管理员"];

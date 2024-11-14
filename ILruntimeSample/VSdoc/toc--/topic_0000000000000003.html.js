@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['539',"VSWorkSDK.Data Namespace","topic_0000000000000000.html"],['543',"WebResponseData Class","topic_0000000000000002.html"],['544',"Methods","topic_0000000000000002_methods--.html"],['545',"Dispose Method","topic_0000000000000003.html"]];
