@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <members>
+    <assembly>
+      <name>UnityEngine.AutoStreamingModule</name>
+    </assembly>
+    <member name="A:UnityEngine.AutoStreamingModule">
+      <summary>
+        <para>The AutoStreaming module implements the resource auto-streaming feature in Unity.</para>
+      </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qeI9UR6d1DPEg538O8jYug0cxZEszyIBjIDyXNl8BYdO3MtJ8qJ4f6++7t3i6gbvve39iHeQlTV8z75Kgp3SbA==",
+  "success": true,
+  "projectFilePath": "F:\\work\\20210525\\vsvrskd1\\ILruntimeSample\\Dll_Project\\Dll_Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
