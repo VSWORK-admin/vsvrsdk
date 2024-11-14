@@ -1,8 +1,5 @@
-﻿
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using VSWorkSDK;
 using VSWorkSDK.Data;
@@ -13,17 +10,9 @@ namespace Dll_Project
     {
         public VRPointObjEventType PointEventType = VRPointObjEventType.VRPointClick;
 
-
-        public GameObject ClickedObj;
-
         private Tweener tween;
-
-        public string clickedName = string.Empty;
-
-        public string Recieve_A = string.Empty;
-        public string Recieve_B = string.Empty;
-
         private bool isZoomIn = false;
+
         public override void Init()
         {
             Debug.Log("Click_Demo Init !");
@@ -32,88 +21,69 @@ namespace Dll_Project
         public override void Awake()
         {
             Debug.Log("Click_Demo Awake !");
-    
-            VSEngine.Instance.OnEventPointClickHandler += GetPointEventType;
-            VSEngine.Instance.OnEventReceiveRoomSyncData += RecieveCChangeObj;
+
+            VSEngine.Instance.OnEventPointClickHandler += OnPointClick;
+            VSEngine.Instance.OnEventReceiveRoomSyncData += OnReceiveRoomSyncData;
         }
 
         public override void OnDestroy()
         {
             base.OnDestroy();
-            VSEngine.Instance.OnEventPointClickHandler -= GetPointEventType;
-            VSEngine.Instance.OnEventReceiveRoomSyncData -= RecieveCChangeObj;
+            VSEngine.Instance.OnEventPointClickHandler -= OnPointClick;
+            VSEngine.Instance.OnEventReceiveRoomSyncData -= OnReceiveRoomSyncData;
         }
 
-        public override void OnEnable()
+        private void OnPointClick(GameObject obj)
         {
-            Debug.Log("Click_Demo OnEnable !");
+            if (obj.name.Contains("Cube"))
+            {
+                HandlePointedObject(obj);
+            }
         }
 
-        public override void OnDisable()
+        private void HandlePointedObject(GameObject obj)
         {
-        }
- 
-        void GetPointEventType(GameObject obj)
-        {
-            ClickedObj = obj;
-            Debug.Log("VSEngine GetPointEventType + name = " + obj.name);
-            HandleGetPointedObj();
-        }
-        void HandleGetPointedObj()
-        {
-            clickedName = ClickedObj.name + "has clicked !XXX";
-            
-            VSEngine.Instance.ShowRoomMarqueeLog(clickedName, InfoColor.green,5,false);
-            string version = VSEngine.Instance.GetApiVersion();
-            string appname = VSEngine.Instance.GetAppName();
-            Debug.Log("VSEngine version " + version + " appname " + appname);
+            string clickedName = $"{obj.name} has clicked!";
+            Debug.Log($"VSEngine GetPointEventType + name = {obj.name}");
+
+            VSEngine.Instance.ShowRoomMarqueeLog(clickedName, InfoColor.green, 5, false);
+            LogEngineInfo();
 
             isZoomIn = !isZoomIn;
             RoomSycnData roomSycnData = new RoomSycnData()
             {
                 a = "GameObjectScaleChange",
-                b = ClickedObj.name,
+                b = obj.name,
                 c = isZoomIn.ToString()
             };
             VSEngine.Instance.SendRoomSyncData(roomSycnData);
         }
 
-        void RecieveCChangeObj(RoomSycnData rinfo)
+        private void LogEngineInfo()
         {
-           
-
-            HandleCChangeObj(rinfo);
+            string version = VSEngine.Instance.GetApiVersion();
+            string appname = VSEngine.Instance.GetAppName();
+            Debug.Log($"VSEngine version {version} appname {appname}");
         }
-        void HandleCChangeObj(RoomSycnData rinfo)
+
+        private void OnReceiveRoomSyncData(RoomSycnData data)
         {
-            switch (rinfo.a)
+            if (data.a == "GameObjectScaleChange" && GameObject.Find(data.b) != null)
             {
-                case "GameObjectScaleChange":
-                    GameObject gameObject = GameObject.Find(rinfo.b);
-                    if (gameObject!=null)
-                    {
-                        if (bool.TryParse(rinfo.c,out isZoomIn))
-                        {
-                            if (isZoomIn)
-                            {
-                                tween = gameObject.GetComponent<Transform>().DOScale(Vector3.one * 2, 0.5f);
-
-                                tween.SetAutoKill(true);
-                            }
-                            else
-                            {
-                                tween = gameObject.GetComponent<Transform>().DOScale(Vector3.one , 0.5f);
-
-                                tween.SetAutoKill(true);
-                            }
-                        }
-                       
-                    }
-                    break;
-                default:
-                    break;
+                HandleScaleChange(data);
             }
         }
- 
+
+        private void HandleScaleChange(RoomSycnData data)
+        {
+            GameObject gameObject = GameObject.Find(data.b);
+            if (gameObject != null && bool.TryParse(data.c, out isZoomIn))
+            {
+                Transform transform = gameObject.GetComponent<Transform>();
+                Vector3 targetScale = isZoomIn ? Vector3.one * 2 : Vector3.one;
+
+                tween = transform.DOScale(targetScale, 0.5f).SetAutoKill(true);
+            }
+        }
     }
 }
