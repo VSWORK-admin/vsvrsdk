@@ -5,7 +5,7 @@
 
 >编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，建议使用VisualStudio编写。
 
->VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_v2.7.3.zip
+>VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVR-DevTools_v2.7.3.zip
 ### 二. 使用步骤
 #### 2.1 入口函数
 代码 从```Dll_Project.DllMain``` 类的 ```Main()``` 函数开始执行, 对应的c#文件为 ```/Dll_Project/DllMain.cs```，入口函数中将2.4.2中配置的脚本进行初始化操作（将脚本所在gameobject启用），如示例中操作：
