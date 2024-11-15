@@ -6,6 +6,7 @@
 >When writing VSVR interaction logic, check out this project locally and write VSVR C# interaction code in this project. It is recommended to use Visual Studio for coding.
 
 >VSVRDevTool Download：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVR-DevTools_v2.7.3.zip
+>Scene encryption tool Download: https://oss.vswork.vip/Files/vsvr/VSVRCryptTool1.0.zip
 ### II. Usage Steps
 #### 2.1 Entry Function
 The code starts execution from the `Main()` function of the class `Dll_Project.DllMain`. The corresponding C# file is `/Dll_Project/DllMain.cs`. The entry function initializes the script configured in 2.4.2 (activates the GameObject where the script resides), as shown in the example:
