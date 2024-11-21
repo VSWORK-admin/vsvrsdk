@@ -366,10 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DllAsset: {fileID: 4900000, guid: e5834890f7598784f964c0ddcfe10716, type: 3}
   PdbAsset: {fileID: 4900000, guid: 12b77fd8cada88a4294232dbe793cc98, type: 3}
-  ExtralDatas:
-  - OtherData: 
-    Target: {fileID: 2130483640}
-    Info: []
+  ExtralDatas: []
 --- !u!4 &865786793
 Transform:
   m_ObjectHideFlags: 0
@@ -582,7 +579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2130483640
 Transform:
   m_ObjectHideFlags: 0
@@ -607,12 +604,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2130483639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74af9bbbfe3551548aaee3b69c41979d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0257796cf75dc4440b270f5635dab715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DllName: 
   ScriptClassName: Dll_Project.ClickDemo
   OtherData: 
-  ExtralDatas: []
+  ExtralDatas:
+  - OtherData: 
+    Target: {fileID: 2130483640}
+    Info: []
   ExtralDataObjs: []
-  ExtralDataInfos: []
+  ExtralDataInfos:
+  - OtherData: 
+    stringData: 
+    intData: 0
+    floatData: 0
+    vector3Data: []
+    animationCurveData: []
+    colorData: []
+    Info: []
+  bListenAwake: 0
