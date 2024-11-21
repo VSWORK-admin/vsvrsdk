@@ -56,3 +56,12 @@ In the Init method, get the first element of the ExtralDatas array obtained from
             Debug.Log("Click_Demo Init!");
         }
 ```
+
+#### 2.5 Debugging with Breakpoints
+
+###### 2.5.1 Install plugin
+In Visual Studio, go to Extensions -> Manage Extensions, search for "ILRuntime" and install the ILRuntime Debugger plugin.
+
+###### 2.5.2 Start Debugging
+
+Click on Debug -> Attach to ILRuntime, then specify the address and port by setting RemoteHost: 127.0.0.1:56001 and click Attach.

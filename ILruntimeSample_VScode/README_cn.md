@@ -70,3 +70,26 @@
             Debug.Log("Click_Demo Init !");
         }
 ```
+
+
+#### 2.5  Debug 断点调试
+
+在VScode 中 安装  ILRuntime Debug 插件，插件地址：https://marketplace.visualstudio.com/items?itemName=liiir.ilruntime-debug
+
+创建launch.json 文件，文件内容如下：
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "ilruntime",
+            "request": "launch",
+            "name": "Attach to ILRuntime",
+            "address": "127.0.0.1:56001",
+            "debug": true,
+            "stopOnEntry": true
+        }
+    ]
+}
+```
+在VSVRDevTool进入场景后 开启调试模式，可以打断点进行调试。

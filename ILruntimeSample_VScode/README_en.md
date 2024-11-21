@@ -68,3 +68,25 @@ public override void Init()
     Debug.Log("Click_Demo Init !");
 }
 ```
+
+#### 2.5 Debugging with Breakpoints
+
+Install the ILRuntime Debug plugin in VScode. Plugin URL: https://marketplace.visualstudio.com/items?itemName=liiir.ilruntime-debug
+
+Create a `launch.json` file with the following content:
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "ilruntime",
+            "request": "launch",
+            "name": "Attach to ILRuntime",
+            "address": "127.0.0.1:56001",
+            "debug": true,
+            "stopOnEntry": true
+        }
+    ]
+}
+```
+Enter the scene in VSVRDevTool, enable debug mode, and you can set breakpoints for debugging.

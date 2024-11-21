@@ -60,3 +60,13 @@ copy "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\..\Assets\Scenes\ILrunti
             Debug.Log("Click_Demo Init !");
         }
 ```
+
+#### 2.5  Debug 断点调试
+
+###### 2.5.1 安装插件
+在VisualStudio 中 扩展 -》管理扩展   搜索 ilruntime 安装  ILRuntime Debugger 插件
+
+###### 2.5.2 开启调试
+
+点击 调试 -》Attach to ILRuntime 点击 指定地址与端口  设置 RemoteHost ： 127.0.0.1:56001  点击 Attach
+
