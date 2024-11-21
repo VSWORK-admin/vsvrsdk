@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "ilruntime",
+            "request": "launch",
+            "name": "Attach to ILRuntime",
+            "address": "127.0.0.1:56001",
+            "debug": true,
+            "stopOnEntry": true
+        }
+    ]
+}
