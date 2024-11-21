@@ -23,9 +23,12 @@ namespace Dll_Project
         // 重写Init方法，进行初始化操作
         public override void Init()
         {
-            targetTransform = BaseMono.ExtralDatas[0].Target;//获取unity中Inspector 窗口中拖入的物体对象
+            if(BaseMono.ExtralDatas.Length > 0){
+                targetTransform = BaseMono.ExtralDatas[0].Target;//获取unity中Inspector 窗口中拖入的物体对象
+                Debug.Log("ExtraDataTargetName： " + targetTransform.name);
+            }
+            
             Debug.Log("Click_Demo Init !");
-            Debug.Log("ExtraDataTargetName： " + targetTransform.name);
         }
 
         // 重写Awake方法，在对象激活时调用
