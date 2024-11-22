@@ -90,3 +90,7 @@ Create a `launch.json` file with the following content:
 }
 ```
 Enter the scene in VSVRDevTool, enable debug mode, and you can set breakpoints for debugging.
+
+#### 2.6 AI-Assisted Development
+
+Install the Marscode plugin in VScode to assist with AI development.
