@@ -5,7 +5,8 @@
 
 >When writing VSVR interaction logic, check this project locally and write the VSVR C# interaction code in this project. It is recommended to use Visual Studio for coding.
 
->Download VSVRDevTool: https://oss.vswork.vip/Files/vsvr/2.7.3/VSVR-DevTools_v2.7.3.zip
+>Download VSVRDevTool: https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_v2.7.3_3.zip
+
 >Download Scene Package Encryption Tool: https://oss.vswork.vip/Files/vsvr/VSVRCryptTool1.0.zip
 
 ### 2. Usage Steps
