@@ -5,7 +5,8 @@
 
 >编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，建议使用VisualStudio编写。
 
->VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVR-DevTools_v2.7.3.zip
+>VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_v2.7.3_3.zip
+
 >场景包加密工具 下载 ：https://oss.vswork.vip/Files/vsvr/VSVRCryptTool1.0.zip
 ### 二. 使用步骤
 #### 2.1 交互逻辑代码编写
