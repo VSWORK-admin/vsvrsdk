@@ -88,25 +88,19 @@ Virtual Reality Supported : False
 ###### 3.4. 场景内尽量少使用法线贴图，使用的图片大小尺寸避免过大造成渲染资源浪费
 ###### 3.5. 场景内的图片和光照贴图尽可能的在打包之前设置到最小分辨率，Android 和 iOS 设置为 ASTC 6x6 压缩格式
 
-## 四、VR设置
+## 四、出生点 和 场景内的物体设置
 ###### 4.1.位置点 、位置组 、位置面
 ```
 （1）_VSVRSDK -》 _Bundle_Prefab -》 _StartPoint	拖入到场景中设置角色出生点
 （2）在允许自由走动的平面上 添加 meshcollider 或者 boxcollider 然后添加 VRPlayceMeshMark 脚本到该物体上。
 ```
 
-###### 4.2.Unity UGUI 按钮与交互
-```
-在 UGUI 的canvas 上添加 VRUISelectorProxy 脚本， 场景运行时 脚本会自动为子物体添加射线交互事件，若按钮的宽高是由其父物体设置的，则需要手动为按钮添加合适的boxcollider
-```
-
-
 ## 五、场景打包
-###### 6.1. 打包名称设置
+###### 5.1. 打包名称设置
 > 将需要打包的场景设置AssetBundle ：设置bundle的名称和后缀（scene），也可以打包后将文件后缀名改为 .scene 
-###### 6.2. 资源检查
+###### 5.2. 资源检查
 > 打开 Window -》 AssetBundle Browser	以Size排序 ，检查避免出现多余的文件和过大的文件（主要是过大的图片，需要使用外部图片编辑软件改变图片格式，如果有Alpha通道则建议改为png格式，如果没有Alpha通道则建议改为jpg格式）
-###### 6.3. 打包平台选择
+###### 5.3. 打包平台选择
 
 - Android平台所需场景文件 需要在AssetBundle Browser 中 BuildTartget 设置为 **Android**
 
@@ -117,17 +111,17 @@ Virtual Reality Supported : False
 - MacOS 平台运行需要设置为  **Standalone OSX Universal**
 
 **建议打开Unity的CacheServer ： Edit -> Preferences -> CacheServer -> Cache Server Mode  选择 Local， 以避免平台的切换导致的资源重复加载，节省不同平台assetbundle在同一个工程打包的时间。**
-###### 6.4. 多人调试和使用
-> 在上传至资源管理后台之前 需要为不同平台所需bundle文件设置文件名前缀 
-```
-# URP 渲染管线 :  
-    安卓 : a_  (覆盖设备包括 ：Oculus quest， pico neo2， pico G2 ，baidu VR ，IQUT VR, HTC Vive focus ， 安卓手机端)
-    iOS : i_  （覆盖设备包括 ：iphone ，ipad） 
-    Windows : w_  （覆盖设备包括 ：Oculus Rift S , HTC VIVE， WMR ，Window 桌面端） 
-    MAC OS : m_  （覆盖设备包括 ：Mac OS 桌面端）
-# Unity HDRP 渲染管线 ：
-    安卓 ： b_ (覆盖设备包括 ： WindowsHDRP)
 
-例如 ： 如果需要安卓打包，则需要在Standard 渲染管线设置场景，打包资源包名称 为  ceshi.scene, 则需要上传至资源管理器后台的资源包名称需加上前缀为 ： a_ceshi.scene
-如多种设备需要同时加载，则需要各自打包命名成相同文件名称，并加入对应前缀，放置到同一文件目录下即可。 如 ： a_ceshi.scene   i_ceshi.scene   w_ceshi.scene   m_ceshi.scene
+
+## 六、交互编程 和 代码调试
+> 支持使用 VScode  或者 Visual Studio  进行开发，开发语言 ：C#。
+
+示例工程和说明文档(gitee)： 
+- VScode：https://gitee.com/vswork_admin/vsvrsdk/tree/master/ILruntimeSample_VScode
+- Visual Studio ： https://gitee.com/vswork_admin/vsvrsdk/tree/master/ILruntimeSample_VisualStudio
+
+示例工程和说明文档(github)： 
+- VScode：https://github.com/VSWORK-admin/vsvrsdk/tree/master/ILruntimeSample_VScode
+- Visual Studio ： https://github.com/VSWORK-admin/vsvrsdk/tree/master/ILruntimeSample_VisualStudio
+
 ```
