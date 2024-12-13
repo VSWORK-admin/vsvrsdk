@@ -3,7 +3,7 @@
 ### 一. 用途
 >工程为VSVR SDK拓展工程，用于生成VSVR交互SDK所需的bytes字节码。
 
->编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，建议使用VisualStudio编写。
+>编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码。
 
 >VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_2.7.3.6.zip
 
@@ -86,14 +86,14 @@
             "type": "ilruntime",
             "request": "launch",
             "name": "Attach to ILRuntime",
-            "address": "127.0.0.1:56001",
+            "address": "127.0.0.1:5600X",
             "debug": true,
             "stopOnEntry": true
         }
     ]
 }
 ```
-在VSVRDevTool进入场景后 开启调试模式，可以打断点进行调试。
+在VSVRDevTool进入场景后 开启调试模式，可以打断点进行调试，每次运行调试的端口会从：56001-56100递增改变，如果需要断点则需要更改launch.json的对应的端口，端口可在VSVRDevTool看到。
 
 #### 2.6  AI辅助开发
 

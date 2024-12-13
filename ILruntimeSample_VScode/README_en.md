@@ -3,7 +3,7 @@
 ### 1. Purpose
 >The project is an extension project for the VSVR SDK, used to generate the bytecode required by the VSVR interaction SDK.
 
->When writing VSVR interaction logic, check this project locally and write the VSVR C# interaction code in this project. It is recommended to use Visual Studio for coding.
+>When writing VSVR interaction logic, check this project locally and write the VSVR C# interaction code in this project. 
 
 >Download VSVRDevTool: https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_2.7.3.6.zip
 
@@ -90,7 +90,7 @@ Create a `launch.json` file with the following content:
     ]
 }
 ```
-Enter the scene in VSVRDevTool, enable debug mode, and you can set breakpoints for debugging.
+After entering the scene in VSVRDevTool, you can enable debug mode to set breakpoints for debugging. The port used for debugging will incrementally change from 56001 to 56100 with each run. If you need to set breakpoints, you'll need to change the corresponding port in launch.json. You can view the port number in VSVRDevTool.
 
 #### 2.6 AI-Assisted Development
 

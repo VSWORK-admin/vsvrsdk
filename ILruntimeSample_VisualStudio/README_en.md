@@ -65,4 +65,5 @@ In Visual Studio, go to Extensions -> Manage Extensions, search for "ILRuntime" 
 
 ###### 2.5.2 Start Debugging
 
-Click on Debug -> Attach to ILRuntime, then specify the address and port by setting RemoteHost: 127.0.0.1:56001 and click Attach.
+Click on Debug -> Attach to ILRuntime, then specify the address and port by setting RemoteHost: 127.0.0.1:5600x and click Attach.
+Each time you rerun a scene, the debug port will change from 56001-56100. After running the scene, the port number will be displayed in the VSVRDevTool debugging window.

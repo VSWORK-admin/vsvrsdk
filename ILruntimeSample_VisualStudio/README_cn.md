@@ -3,7 +3,7 @@
 ### 一. 用途
 >工程为VSVR SDK拓展工程，用于生成VSVR交互SDK所需的bytes字节码。
 
->编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，建议使用VisualStudio编写。
+>编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码，使用VisualStudio编写。
 
 >VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_2.7.3.6.zip
 
@@ -65,9 +65,8 @@ copy "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)..\..\Assets\Scenes\ILrunti
 #### 2.5  Debug 断点调试
 
 ###### 2.5.1 安装插件
-在VisualStudio 中 扩展 -》管理扩展   搜索 ilruntime 安装  ILRuntime Debugger 插件
+在 Visual Studio 中，进入 扩展 -> 管理扩展，搜索 "ILRuntime" 并安装 ILRuntime 调试器插件。
 
-###### 2.5.2 开启调试
+###### 2.5.2 开始调试
 
-点击 调试 -》Attach to ILRuntime 点击 指定地址与端口  设置 RemoteHost ： 127.0.0.1:56001  点击 Attach
-
+点击 调试 -> 附加到 ILRuntime，然后通过设置 RemoteHost: 127.0.0.1:5600x 来指定地址和端口，并点击附加。每次重新运行场景时，调试端口将从 56001-56100 之间变化。在运行场景后，端口号将在 VSVRDevTool 调试窗口中显示。
