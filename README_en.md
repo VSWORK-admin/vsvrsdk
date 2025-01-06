@@ -82,10 +82,11 @@ Virtual Reality Supported : False
 
 ## 3. Scene Settings
 ###### 3.1. Use URP rendering pipeline in the scene
-###### 3.2. Use shaders from URP for materials in the scene; avoid using other shaders
-###### 3.3. Avoid using real-time lighting in the scene; add Light Probe Group to provide a light environment for dynamic objects
-###### 3.4. Minimize the use of normal maps in the scene; avoid oversized images which can waste rendering resources
-###### 3.5. Set images and lightmaps to the smallest resolution before packaging; for Android and iOS, use ASTC 6x6 compression format
+###### 3.2. No other third-party plugins can be introduced within the scene, except for VRSDK. Other plugins need to be removed during packaging
+###### 3.3. Use shaders from URP for materials in the scene; avoid using other shaders
+###### 3.4. Avoid using real-time lighting in the scene; add Light Probe Group to provide a light environment for dynamic objects
+###### 3.5. Minimize the use of normal maps in the scene; avoid oversized images which can waste rendering resources
+###### 3.6. Set images and lightmaps to the smallest resolution before packaging; for Android and iOS, use ASTC 6x6 compression format
 
 ## 4. Start Point Settings
 ###### 4.1. Position Points, Position Groups, Position Planes
