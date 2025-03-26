@@ -41,12 +41,13 @@ namespace VSWorkSDK.Data
         public string vr_user_phone;
         public string vr_user_country;
     }
-    public class GaussianModelData
-    {
-        public string url;
-        public string md5;
-        public bool blocal;
-        public GameObject root;
-        public string extralparam;
-    }
+   
+}
+public class GaussianModelData
+{
+    public string url;
+    public string md5;
+    public bool blocal;
+    public GameObject root;
+    public string extralparam;
 }
