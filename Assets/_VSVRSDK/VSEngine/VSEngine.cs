@@ -661,6 +661,23 @@ namespace VSWorkSDK
         /// 返回加载模型进度
         /// </summary>
         public event Action<string> OnEventLoadModelProgress;
+        /// <summary>
+        /// 网页点击输入框
+        /// </summary>
+        public event Action<bool> OnEventWebClickInputField;
+
+        /// <summary>
+        /// RTC中人员加入频道
+        /// </summary>
+        public event Action<string> OnEventWebRtcAvatarJoinScene;
+        /// <summary>
+        /// 会议模式下切换完音频输入回调
+        /// </summary>
+        public event Action OnEventWebRtcHideAudioChangeResult;
+        /// <summary>
+        /// 场景加载结束回调
+        /// </summary>
+        public event Action OnEventLoadSceneFinish;
         #endregion
 
         #region API
@@ -685,7 +702,23 @@ namespace VSWorkSDK
         /// <summary>
         /// 获取应用内热更扩展的数据
         /// </summary>
-        /// <param name="key">数据请求的key</param>
+        /// <param name="key">数据请求的key
+        /// 有参数的传JSON格式例{"key" : key,"userID":"3000180124"}
+        /// 获取指定人物手柄位置{"key" : "GetAvatarHands","userid":"3000180124"}  返回值为 Transform[]  0为左手 1为右手
+        /// 获取根据人物ID获取人物所处平台 {"key" : "GetPlatformBasedOnAvatarID","userid":"3000180124"}  返回值 string 安卓"a" 苹果"i" Windows"w" Mac"m" VR"v"云端"c"
+        /// 无参数的传字符串 
+        /// 获取当前声网频道用户  AgoraVoiceUser  值为list<string> or Null
+        /// 获取人物当前位置  GetAvatarIpose 获取人物的当前姿态  返回值为Int    Idle = 1 << 0, Walk = 1 << 1, Run = 1 << 2,  Jump = 1 << 3, Sit = 1 << 4,  Stand = 1 << 5,         //站起  WalkLeft = 1 << 6,      //左走WalkRight = 1 << 7,WalkBack = 1 << 8,      //后退RunBack = 1 << 9,TurnLeft = 1 << 10,     //左转TurnRight = 1 << 11,RunLeft = 1 << 12,       RunRight = 1 << 13,CustomAction = 1 << 14,   //自定义动作Dancing = 1 << 15,        //跳舞FlipAni = 1 << 16,        //空间翻转TurnPause = 1 << 17       //旋转角度过小 停在旋转中
+        /// 获取本机器上可用摄像头的信息  GetCameraInfo   返回值时JSON字符串
+        /// 是否使用空间笔 IsUseSpacePen 返回值时Bool
+        /// 获取空间笔的分享状态 getRtcSharingState  返回值为 bool 
+        /// 获取主工程的Canvas SystemUICanvas  返回值时Canvas
+        /// 获取当前频道的组织ID列表 GetChannelGroups  返回值为string[]
+        /// 获取缓存文件的本地保存根目录 GetCacheFileLocalPathRoot  返回值为String
+        /// 获取人物的音量变化列表 AvatarMicStatusDic  返回值为 Dictionary<string, int> string时人物ID，int 是音量
+        /// 获取会议模式的音频输入选择页面是否输入 GetRtcSelectAudioPanel 返回值为Bool 
+        /// 获取网页登录传入的信息 GetWebLoginUserData 返回值为String 
+        /// </param>
         /// <returns>请求的数据</returns>
         public extern object GetSystemData(string key);
         /// <summary>
@@ -2952,8 +2985,142 @@ namespace VSWorkSDK
         /// </summary>
         /// <returns></returns>
         public extern string GetCameraDeviceInfo();
-
-
+        /// <summary>
+        /// 关闭场景加载结束的黑色渐变遮罩
+        /// </summary>
+        public extern void CloseSceneLoadBlackGradientMask(float delay = 0);
+       /// <summary>
+       /// 设置第一人称的摄像机位置
+       /// </summary>
+       /// <param name="x"></param>
+       /// <param name="y"></param>
+       /// <param name="z"></param>
+       /// <param name="animation">是直接切换还是有摄像机切换的过程动画</param>
+       /// <param name="duration">切换动画的播放时长</param>
+       /// <param name="delay"></param>
+        public extern void SetFirstPersonCameraPosition(float x, float y, float z, bool animation, float duration, float delay = 0);
+        /// <summary>
+        /// 设置第一人称的摄像机旋转
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="animation">是直接切换还是有摄像机切换的过程动画</param>
+        /// <param name="duration">切换动画的播放时长</param>
+        /// <param name="delay"></param>
+        public extern void SetFirstPersonCameraRotate(float x, float y, float z, bool animation, float duration, float delay = 0);
+        /// <summary>
+        /// 删除主工程的物体
+        /// </summary>
+        /// <param name="targetObject">目标物体</param>
+        /// <param name="delay"></param>
+        public extern void SDKDestroyMainObject(GameObject targetObject, float delay);
+        /// <summary>
+        /// 切换Rtc分享摄像机
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="Delay"></param>
+        public extern void ChangeRtcShareCamera(Camera camera, float Delay = 0);
+        /// <summary>
+        /// 是否禁用VR按钮的键值
+        /// </summary>
+        /// <param name="setButtonEnable">键值字典，例禁用手柄Y键：{VRRaw_Y_ButtonDown，flase}</param>
+        /// <param name="delay"></param>
+        public extern void DisableVRButtonKeyCode(Dictionary<string, bool> setButtonEnable, float delay = 0);
+        /// <summary>
+        /// 设置VR端遥感行走时的黑色遮罩显示或隐藏
+        /// </summary>
+        /// <param name="isShow"></param>
+        /// <param name="delay"></param>
+        public extern void SetVrStickMoveMaskShowORHide(bool isShow, float delay = 0);
+        /// <summary>
+        /// 设置VR端遥感移动的速度
+        /// </summary>
+        /// <param name="speed">默认值参考值是0.04f</param>
+        /// <param name="delay"></param>
+        public extern void SetVrStickMoveSpeed(float speed = 0.04f, float delay = 0);
+        /// <summary>
+        /// 用系统APP打开文件
+        /// </summary>
+        /// <param name="filePath">文件地址</param>
+        /// <param name="delay"></param>
+        public extern void OpenFileBySystemApp(string filePath, float delay = 0);
+        /// <summary>
+        /// 是否开启跳跃功能
+        /// </summary>
+        /// <param name="bJump"></param>
+        /// <param name="delay"></param>
+        public extern void JumpControlEnabled(bool bJump, float delay = 0);
+        /// <summary>
+        /// 是否打开主工程的菜单页面
+        /// </summary>
+        /// <param name="isopen"></param>
+        /// <param name="delay"></param>
+        public extern void OpenMainMenuPanel(bool isopen, float delay = 0);
+        /// <summary>
+        /// 空间回退时是否要记录人物的位置
+        /// </summary>
+        /// <param name="Postion"></param>
+        /// <param name="quaternion"></param>
+        /// <param name="Scale"></param>
+        /// <param name="delay"></param>
+        public extern void RecodeCallBackSceneAvatarPOS(Vector3 Postion, Quaternion quaternion, Vector3 Scale, float delay = 0);
+        /// <summary>
+        /// 会议模式中打开音频切换的页面
+        /// </summary>
+        /// <param name="isOpen"></param>
+        /// <param name="Delay"></param>
+        public extern void OpenAudioChangePanel(bool isOpen, float Delay = 0);
+        /// <summary>
+        /// 会议模式中显示或隐藏音频切换的Toggle
+        /// </summary>
+        /// <param name="isOpen"></param>
+        /// <param name="Delay"></param>
+        public extern void WebRtcShowOrHideAudioChangeToggle(bool isOpen, float Delay = 0);
+        /// <summary>
+        /// 开启绿幕直播
+        /// </summary>
+        /// <param name="Type"> webCamera 0  ,CameraShare 1   ,Video 2</param>
+        /// <param name="UserID"></param>
+        /// <param name="delay"></param>
+        public extern void StartLiveBroadcast(int Type, string UserID, float delay = 0);
+        /// <summary>
+        /// 关闭绿幕直播
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <param name="delay"></param>
+        public extern void StopLiveBroadcast(string UserID, float delay = 0);
+        /// <summary>
+        /// 设置直播位置
+        /// </summary>
+        /// <param name="fixedTransform">把绿幕放到指定位置</param>
+        /// <param name="offset">偏移</param>
+        /// <param name="lookForward"></param>
+        /// <param name="expandjson">额外的数据</param>
+        /// <param name="delay"></param>
+        public extern void SetLiveBroadcastPos(Transform fixedTransform, Vector3 offset, bool lookForward, string expandjson, float delay = 0);
+        /// <summary>
+        /// 开启调节绿幕位置旋转缩放的三维轴
+        /// </summary>
+        /// <param name="bSET"></param>
+        /// <param name="delay"></param>
+        public extern void EnableSetDeckardChromaGizmo(bool bSET, float delay = 0);
+        /// <summary>
+        /// 开启会议模式大屏分享页面
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <param name="delay"></param>
+        public extern void OpenWebrtcBigScreenSharePanel(string UserID, float delay = 0);
+        /// <summary>
+        /// 关闭会议模式大屏分享页面
+        /// </summary>
+        public extern void CloseWebrtcBigScreenSharePanel();
+        /// <summary>
+        /// 设置会议模式的人员分享页面的开启和关闭
+        /// </summary>
+        /// <param name="IsOpen"></param>
+        /// <param name="delay"></param>
+        public extern void SetPersonnelControlPanel(bool IsOpen, float delay = 0);
 #pragma warning restore CS0626
         #endregion
     }
