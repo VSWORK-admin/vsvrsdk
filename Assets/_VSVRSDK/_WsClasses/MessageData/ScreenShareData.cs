@@ -57,5 +57,86 @@ public class SetupScreenShareView
     public bool bforcechange;
     public bool bshow;
 }
-
+//当前单个分享数据
+[Serializable]
+public class SceneVersionData
+{ /// <summary>
+  /// 
+  /// </summary>
+    public string id { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string vr_scenes_version { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int type_num { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int prog_type { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int pdb_version { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string pdb_url { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string pdb_time { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int dll_version { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string dll_url { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string dll_time { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int scenes_version { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string vr_scenes_id { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string create_at { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string update_at { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public int _version { get; set; }
+    /// <summary>
+    /// 东莞CIO1.3.0
+    /// </summary>
+    public string notes { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string changed_by { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string json_url { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public string is_del { get; set; }
+    public int vr_scenes_type { get; set; }
+    public string vr_scenes_typestr { get; set; }
+}
 

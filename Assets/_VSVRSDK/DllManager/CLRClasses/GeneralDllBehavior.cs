@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using com.ootii.Messages;
 #if ILHotFix
 [ILInject.ILInjectorAttribute(ILInject.InjectFlag.NoInject)]
 #endif
 public class GeneralDllBehavior : MonoBehaviour
 {
+    [HideInInspector]
     public string DllName = string.Empty;
     public string ScriptClassName = string.Empty;
 
@@ -16,205 +18,83 @@ public class GeneralDllBehavior : MonoBehaviour
     public ExtralDataInfo[] ExtralDataInfos;
 
     private bool bInit = false;
+    private bool executeEnableFunFail = false;
+    private bool executeStartFunFail = false;
     public DllGenerateBase DllClass
     {
         get
         {
-            try
+            //兼容老版本写法
+            if (string.IsNullOrEmpty(ScriptClassName))
             {
-                if (DllManager.appdomain == null && !string.IsNullOrEmpty(DllName))
+                GeneralDllBehaviorAdapter adpter = GetComponent<GeneralDllBehaviorAdapter>();
+                if (adpter != null)
                 {
-                    if (MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
-                    {
-                        if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-                        {
-                            GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
-                        }
-
-                        if (GenClass != null)
-                        {
-                            GenClass.BaseMono = this;
-
-                            //if (!bInit)
-                            {
-                                GenClass.Init();
-
-                                //bInit = true;
-                            }
-                        }
-
-                        return GenClass;
-                    }
-                    else
-                    {
-                        Debug.LogError("Please init appdomain first !");
-                        return null;
-                    }
-                }
-                else if(!string.IsNullOrEmpty(DllName) && MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
-                {
-                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-                    {
-                        GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
-                    }
-
-                    if (GenClass != null)
-                    {
-                        GenClass.BaseMono = this;
-
-                        //if (!bInit)
-                        {
-                            GenClass.Init();
-
-                            //bInit = true;
-                        }
-                    }
-
-                    return GenClass;
-                }
-                else
-                {
-                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-                    {
-                        GenClass = DllManager.appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
-                    }
-
-                    if (GenClass != null)
-                    {
-                        GenClass.BaseMono = this;
-
-                        //if (!bInit)
-                        {
-                            GenClass.Init();
-
-                            //bInit = true;
-                        }
-                    }
-
-                    return GenClass;
+                    DllName = adpter.DllName;
+                    ScriptClassName = adpter.ScriptClassName;
                 }
             }
-            catch(Exception e)
-            {
-                Debug.LogError("Error Init " + "DllName : " + DllName + "ScriptClassName : " + ScriptClassName + " gameObject.name : " + gameObject.name + "\r\n" + e.ToString());
-                return null;
-            }
+            Instantiate();
+            return GenClass;
         }
     }
 
     private DllGenerateBase GenClass = null;
     private void Awake()
     {
+        Instantiate();
+    }
+    public void Instantiate()
+    {
+        if (GenClass != null) return;
+        if (string.IsNullOrEmpty(ScriptClassName)) return;
+        //Debug.Log($"GeneralDllBehavior Instantiate dllname:{DllName} scriptname:{ScriptClassName}");
         try
         {
-            if (DllManager.appdomain == null && !string.IsNullOrEmpty(DllName))
+            if (!string.IsNullOrEmpty(DllName))
             {
                 if (MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
-                {
-                    var adapter = transform.GetComponent<GeneralDllBehaviorAdapter>();
-
-                    if (adapter != null)
-                    {
-                        ScriptClassName = adapter.ScriptClassName;
-                        OtherData = adapter.OtherData;
-                        ExtralDatas = adapter.ExtralDatas;
-                        ExtralDataObjs = adapter.ExtralDataObjs;
-                        ExtralDataInfos = adapter.ExtralDataInfos;
-                    }
-
-                    if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-                    {
-                        GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
-                    }
-
-                    if (GenClass != null)
-                    {
-                        GenClass.BaseMono = this;
-
-                        //if (!bInit)
-                        {
-                            GenClass.Init();
-
-                            //bInit = true;
-                        }
-
-                        GenClass.Awake();
-                    }
-                }
-                else
-                {
-                    Debug.LogError("Please init appdomain first !");
-                    return;
-                }
-            }
-            else if (!string.IsNullOrEmpty(DllName) && MultiDllManager.Instance != null && MultiDllManager.Instance.AllDllInstance.ContainsKey(DllName))
-            {
-                var adapter = transform.GetComponent<GeneralDllBehaviorAdapter>();
-
-                if (adapter != null)
-                {
-                    ScriptClassName = adapter.ScriptClassName;
-                    OtherData = adapter.OtherData;
-                    ExtralDatas = adapter.ExtralDatas;
-                    ExtralDataObjs = adapter.ExtralDataObjs;
-                    ExtralDataInfos = adapter.ExtralDataInfos;
-                }
-
-                if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
                 {
                     GenClass = MultiDllManager.Instance.AllDllInstance[DllName].appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
                 }
 
-                if (GenClass != null)
-                {
-                    GenClass.BaseMono = this;
-
-                    //if (!bInit)
-                    {
-                        GenClass.Init();
-
-                        //bInit = true;
-                    }
-
-                    GenClass.Awake();
-                }
+                OnScriptInited();
             }
             else
             {
-                var adapter = transform.GetComponent<GeneralDllBehaviorAdapter>();
-
-                if (adapter != null)
-                {
-                    ScriptClassName = adapter.ScriptClassName;
-                    OtherData = adapter.OtherData;
-                    ExtralDatas = adapter.ExtralDatas;
-                    ExtralDataObjs = adapter.ExtralDataObjs;
-                    ExtralDataInfos = adapter.ExtralDataInfos;
-                }
-
-                if (GenClass == null && !string.IsNullOrEmpty(ScriptClassName))
-                {
+                if (DllManager.appdomain != null)
                     GenClass = DllManager.appdomain.Instantiate<DllGenerateBase>(ScriptClassName);
-                }
 
-                if (GenClass != null)
-                {
-                    GenClass.BaseMono = this;
-
-                    //if (!bInit)
-                    {
-                        GenClass.Init();
-
-                        //bInit = true;
-                    }
-
-                    GenClass.Awake();
-                }
+                OnScriptInited();
             }
         }
         catch (Exception e)
         {
-            Debug.LogError("Error Awake " + "DllName : " + DllName + "ScriptClassName : " + ScriptClassName + " gameObject.name : " + gameObject.name + "\r\n" + e.ToString());
+            Debug.LogError("DebugLog.Exception Awake " + "DllName : " + DllName + "ScriptClassName : " + ScriptClassName + " gameObject.name : " + gameObject.name + "\r\n" + e.ToString());
+        }
+    }
+    private void OnScriptInited()
+    {
+        if (GenClass != null)
+        {
+            GenClass.BaseMono = this;
+
+            //if (!bInit)
+            {
+                GenClass.Init();
+            }
+
+            GenClass.Awake();
+            if (executeEnableFunFail)
+            {
+                executeEnableFunFail = false;
+                GenClass.OnEnable();
+            }
+            if (executeStartFunFail)
+            {
+                executeStartFunFail = false;
+                GenClass.Start();
+            }
         }
     }
     private void Start()
@@ -223,12 +103,20 @@ public class GeneralDllBehavior : MonoBehaviour
         {
             GenClass.Start();
         }
+        else
+        {
+            executeStartFunFail = true;
+        }
     }
     private void OnEnable()
     {
         if (GenClass != null)
         {
             GenClass.OnEnable();
+        }
+        else
+        {
+            executeEnableFunFail = true;
         }
     }
     private void OnDisable()
@@ -237,6 +125,7 @@ public class GeneralDllBehavior : MonoBehaviour
         {
             GenClass.OnDisable();
         }
+        executeEnableFunFail = false;
     }
 
     private void Update()
@@ -264,6 +153,8 @@ public class GeneralDllBehavior : MonoBehaviour
     {
         if (GenClass != null)
         {
+            if (DllName.IsNullOrEmpty())
+                MessageDispatcher.SendMessage(GenClass, VrDispMessageType.SDKScriptDestroyed.ToString(), ScriptClassName, 0);
             GenClass.OnDestroy();
         }
     }
@@ -290,10 +181,10 @@ public class GeneralDllBehavior : MonoBehaviour
     }
     private void OnApplicationFocus(bool focus)
     {
-       if (GenClass != null)
-       {
-           GenClass.OnApplicationFocus(focus);
-       }
+        if (GenClass != null)
+        {
+            GenClass.OnApplicationFocus(focus);
+        }
     }
     private void OnApplicationPause(bool pause)
     {

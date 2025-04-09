@@ -678,6 +678,10 @@ namespace VSWorkSDK
         /// 场景加载结束回调
         /// </summary>
         public event Action OnEventLoadSceneFinish;
+        /// <summary>
+        /// Sdk内部消息调用
+        /// </summary>
+        public event Action<string, List<object>> OnEventSDKExpandEvent;
         #endregion
 
         #region API
@@ -699,6 +703,15 @@ namespace VSWorkSDK
         /// <param name="sender">接口参数</param>
         /// <param name="delay">延迟调用 秒</param>
         public extern void SendSystemExpandEvent(string eventname, List<object> eventparam, object sender, float delay = 0);
+        /// <summary>
+        /// 扩展事件（用于SDK内部调用消息）
+        /// 该方法相关的回调事件为：<see cref="VSWorkSDK.VSEngine.OnEventSDKExpandEvent">OnEventSystemExpandEvent</see>
+        /// </summary>
+        /// <param name="eventname">事件接口名</param>
+        /// <param name="eventparam">接口参数</param>
+        /// <param name="sender">接口参数</param>
+        /// <param name="delay">延迟调用 秒</param>
+        public extern void SendSDKExpandEvent(string eventname, List<object> eventparam, object sender, float delay = 0);
         /// <summary>
         /// 获取应用内热更扩展的数据
         /// </summary>
@@ -3121,6 +3134,7 @@ namespace VSWorkSDK
         /// <param name="IsOpen"></param>
         /// <param name="delay"></param>
         public extern void SetPersonnelControlPanel(bool IsOpen, float delay = 0);
+
 #pragma warning restore CS0626
         #endregion
     }

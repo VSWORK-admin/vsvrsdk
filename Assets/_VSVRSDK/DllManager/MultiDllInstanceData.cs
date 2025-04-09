@@ -13,6 +13,8 @@ using com.ootii.Messages;
 using UnityEngine.Timeline;
 using LitJson;
 using System.Linq;
+using VSWorkSDK;
+using VSWorkSDK.Data;
 
 public class MultiDllInstanceData
 {
@@ -84,7 +86,7 @@ public class MultiDllInstanceData
                 OnAssemblyLoadOver();
             }
 
-            MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+            MessageDispatcher.SendMessageData("GeneralDllBehaviorAwake",DllName);
             return;
         }
 #endif
@@ -99,24 +101,24 @@ public class MultiDllInstanceData
             OnAssemblyLoadOver();
         }
 
-        MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+        MessageDispatcher.SendMessageData("GeneralDllBehaviorAwake", DllName);
     }
 
     unsafe void OnDllLoaded()
     {
-        appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
+        appdomain.Invoke("Dll_Project.DllMain", "Main", null, DllName);
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+        //#if ILHotFix && DEBUG
 
-        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
-        GameManager.Instance.timerManager.doOnce(100, () => {
+        //        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
+        //        GameManager.Instance.timerManager.doOnce(100, () => {
 
-            if (VSVR_Debug.DebugManager.Instance != null)
-            {
-                VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
-            }
-        });
-#endif
+        //            if (VSVR_Debug.DebugManager.Instance != null)
+        //            {
+        //                VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
+        //            }
+        //        });
+        //#endif
     }
 
     private void LoadILAssembly()
@@ -181,7 +183,7 @@ public class MultiDllInstanceData
             LoadedMode = (int)VSVR_Debug.RtcMsgDllLoadType.TestMode;
 #endif
         }
-        else if(bOnlineMode)
+        else if (bOnlineMode)
         {
             dll = OnlineDll;
             pdb = OnlinePdb;
@@ -205,7 +207,7 @@ public class MultiDllInstanceData
         }
         catch
         {
-            Debug.LogError("加载热更DLL失败，请确保已经通过VS打开Assets/Samples/ILRuntime/1.6/Demo/HotFix_Project/HotFix_Project.sln编译过热更DLL");
+            Debug.LogError("DebugLog.Exception 加载热更DLL失败，请确保已经通过VS打开Assets/Samples/ILRuntime/1.6/Demo/HotFix_Project/HotFix_Project.sln编译过热更DLL");
         }
 
         InitializeILRuntime();
@@ -220,17 +222,17 @@ public class MultiDllInstanceData
                 OnAssemblyLoadOver();
             }
 
-            MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+            MessageDispatcher.SendMessageData("GeneralDllBehaviorAwake", DllName);
         }
 
-#if ILHotFix
-        if (!VRPublishSettingController.I.bMultiInstance)
-        {
-            appdomain.DebugService.StartDebugService(DebugPort);
-        }
-#else
-        appdomain.DebugService.StartDebugService(DebugPort);
-#endif
+        //#if ILHotFix
+        //        if (!VRPublishSettingController.I.bMultiInstance)
+        //        {
+        //            appdomain.DebugService.StartDebugService(DebugPort);
+        //        }
+        //#else
+        //        appdomain.DebugService.StartDebugService(DebugPort);
+        //#endif
     }
     internal void UnLoadAssembly()
     {
@@ -276,13 +278,13 @@ public class MultiDllInstanceData
             appdomain.Dispose();
             appdomain = null;
         }
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
-        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Destory;
-        if (VSVR_Debug.DebugManager.Instance != null)
-        {
-            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
-        }
-#endif
+        //#if ILHotFix && DEBUG
+        //        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Destory;
+        //        if (VSVR_Debug.DebugManager.Instance != null)
+        //        {
+        //            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
+        //        }
+        //#endif
     }
     void InitializeILRuntime()
     {
@@ -323,7 +325,7 @@ public class MultiDllInstanceData
                 ILRuntime.Runtime.Generated.Normal_CLRBindings.Initialize(appdomain);
                 ILRuntime.Runtime.Generated.System_CLRBindings.Initialize(appdomain);
                 ILRuntime.Runtime.Generated.NoNamespace_GenCLRBindings.Initialize(appdomain);
-                ////ILRuntime.Runtime.Generated.WithNamespace_CLRBindings.Initialize(appdomain);
+                ILRuntime.Runtime.Generated.WithNamespace_CLRBindings.Initialize(appdomain);
                 ILRuntime.Runtime.Generated.Modules_CLRBindings.Initialize(appdomain);
             }
         }
@@ -355,13 +357,13 @@ public class MultiDllInstanceData
 
         RegisterDelegate();
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
-        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Loaded;
-        if (VSVR_Debug.DebugManager.Instance != null)
-        {
-            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
-        }
-#endif
+        //#if ILHotFix && DEBUG
+        //        _runType = (int)VSVR_Debug.RtcMsgDllRunType.Loaded;
+        //        if (VSVR_Debug.DebugManager.Instance != null)
+        //        {
+        //            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg(DllName, DebugPort, LoadedMode, _runType);
+        //        }
+        //#endif
     }
     private void RegisterAdapter()
     {
@@ -405,13 +407,14 @@ public class MultiDllInstanceData
                 }
                 catch (Exception e)
                 {
+                    string methodname = act != null && act.Target != null ? act.Target.ToString() : "";
                     if (rMessage != null && rMessage.Type != null)
                     {
-                        Debug.LogError("MessageHandler -> Debug.LogError : " + "rMessage.Type : " + rMessage.Type + "\r\n" + e);
+                        Debug.LogError("DebugLog.Exception Exception : " + "rMessage.Type : " + rMessage.Type + " funtion : " + methodname + "\r\n" + e);
                     }
                     else
                     {
-                        Debug.LogError("MessageHandler -> Debug.LogError : " + "\r\n" + e);
+                        Debug.LogError("DebugLog.Exception Exception : " + " funtion : " + methodname + "\r\n" + e);
                     }
                 }
             });
@@ -439,6 +442,14 @@ public class MultiDllInstanceData
             return new DG.Tweening.TweenCallback<int>((a) =>
             {
                 ((Action<int>)act)(a);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<WebResponseData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<SDKWebResponseCallback>((act) =>
+        {
+            return new SDKWebResponseCallback((a) =>
+            {
+                ((Action<WebResponseData>)act)(a);
             });
         });
 
@@ -486,15 +497,7 @@ public class MultiDllInstanceData
             });
         });
 
-        //appdomain.DelegateManager.RegisterMethodDelegate<STTXVR.Net.WebResponse>();
-
-        //appdomain.DelegateManager.RegisterDelegateConvertor<STTXVR.Net.WebRequest.WebResponseCallback>((act) =>
-        //{
-        //    return new STTXVR.Net.WebRequest.WebResponseCallback((rMessage) =>
-        //    {
-        //        ((Action<STTXVR.Net.WebResponse>)act)(rMessage);
-        //    });
-        //});
+     
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Vector3>>((act) =>
         {
             return new DG.Tweening.Core.DOSetter<UnityEngine.Vector3>((pNewValue) =>
@@ -538,7 +541,7 @@ public class MultiDllInstanceData
         appdomain.DelegateManager.RegisterMethodDelegate<string, object>();
         appdomain.DelegateManager.RegisterMethodDelegate<string>();
         appdomain.DelegateManager.RegisterMethodDelegate<object>();
-
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject>();
 
 
 
@@ -668,7 +671,13 @@ public class MultiDllInstanceData
                 ((Action<Color>)act)(arg0);
             });
         });
-
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<UnityEngine.Texture2D>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<UnityEngine.Texture2D>((data) =>
+            {
+                ((Action<UnityEngine.Texture2D>)act)(data);
+            });
+        });
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
         {
@@ -890,11 +899,37 @@ public class MultiDllInstanceData
             });
         });
 
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.String, System.Int32, System.Char, System.Char>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UI.InputField.OnValidateInput>((act) =>
+        {
+            return new UnityEngine.UI.InputField.OnValidateInput((text, charIndex, addedChar) =>
+            {
+                return ((Func<System.String, System.Int32, System.Char, System.Char>)act)(text, charIndex, addedChar);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture2D>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Threading.ParameterizedThreadStart>((act) =>
+        {
+            return new System.Threading.ParameterizedThreadStart((obj) =>
+            {
+                ((Action<System.Object>)act)(obj);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Threading.ThreadStart>((act) =>
+        {
+            return new System.Threading.ThreadStart(() =>
+            {
+                ((Action)act)();
+            });
+        });
 
         RegisterVRFunction(appdomain.DelegateManager);
 
         RegisterMessageFunction(appdomain.DelegateManager);
+
     }
+
+
 
     private void RegisterMessageFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
     {
@@ -985,7 +1020,6 @@ public class MultiDllInstanceData
                 ((Action<System.Object, WebSocketSharp.CloseEventArgs>)act)(sender, e);
             });
         });
-        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture2D>();
         appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.WebResponseData>();
         appdomain.DelegateManager.RegisterDelegateConvertor<VSWorkSDK.Data.SDKWebResponseCallback>((act) =>
         {
@@ -1008,6 +1042,12 @@ public class MultiDllInstanceData
         appdomain.DelegateManager.RegisterMethodDelegate<global::ConnectAvatars>();
         appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.RoomSycnData>();
         appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Collections.Generic.List<System.Object>>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::LocalCacheFile>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::GlbSceneObjectFile>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::UserScreenShareReqExData>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Int32>();
+        appdomain.DelegateManager.RegisterMethodDelegate<GaussianModelData>();
+
     }
 
     private void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
@@ -1020,6 +1060,7 @@ public class MultiDllInstanceData
         //delegateManager.RegisterMethodDelegate<bool>();
         delegateManager.RegisterMethodDelegate<GameObject>();
         delegateManager.RegisterMethodDelegate<Texture2D>();
+        delegateManager.RegisterMethodDelegate<Cubemap>();
         delegateManager.RegisterMethodDelegate<GameObject, List<string>>();
         //delegateManager.RegisterMethodDelegate<KodFileResult>();
         delegateManager.RegisterMethodDelegate<bool, VRWsRemoteScene>();
@@ -1039,5 +1080,7 @@ public class MultiDllInstanceData
         delegateManager.RegisterMethodDelegate<Dictionary<string, string>>();
         delegateManager.RegisterMethodDelegate<CommonVREventType, float, Vector2>();
         delegateManager.RegisterMethodDelegate<VRPointObjEventType, GameObject>();
+
+        delegateManager.RegisterFunctionDelegate<System.Boolean>();
     }
 }

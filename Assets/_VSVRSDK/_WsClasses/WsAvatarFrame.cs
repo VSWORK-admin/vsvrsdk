@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Text;
+
 public enum InfoColor
 {
     black,
@@ -178,7 +180,14 @@ public class WsAvatarFrame
     /// 当前人物的激光笔颜色
     /// </summary>
     public string cl;
-
+    /// <summary>
+    /// 身份信息 （普通 0 ，云渲染 1 , rct 2）
+    /// </summary>
+    public int identity;
+    /// <summary>
+    /// 拓展数据 JSON格式
+    /// </summary>
+    public string expandjson;
     public WsAvatarFrameJian ToJian()
     {
         WsAvatarFrameJian newj = new WsAvatarFrameJian
@@ -190,7 +199,8 @@ public class WsAvatarFrame
             wr = wr,
             ws = ws,
             cp = cp,
-            cl = cl
+            cl = cl,
+            expandjson = expandjson
         };
         return newj;
     }
@@ -261,6 +271,10 @@ public class WsAvatarFrameJian
     /// 当前画笔颜色
     /// </summary>
     public string cl;
+    /// <summary>
+    /// 拓展数据 JSON格式
+    /// </summary>
+    public string expandjson;
 }
 
 [Serializable]
@@ -1005,7 +1019,7 @@ public class CustomVideoPlayer
     /// <summary>
     /// 播放器播放类型默认为UMP插件
     /// </summary>
-    public VideoPlayerKind videoPlayerKind= VideoPlayerKind.UMP;
+    public VideoPlayerKind videoPlayerKind = VideoPlayerKind.UMP;
     /// <summary>
     /// 用来渲染的物体
     /// </summary>
@@ -1193,6 +1207,30 @@ public class LoadAvatarOBJ
     public string aid;
     public GameObject avatarModel;
 }
+/// <summary>
+/// FFmpeg录制视频数据
+/// </summary>
+[Serializable]
+public class FfmpegCapture
+{
+    /// <summary>
+    /// 推流地址
+    /// </summary>
+    /// 
+    public string saveVideoName;
+    public string rtmpPath;
+    public int videoWidth;
+    public int videoHight;
+    public int frameRate;
+    public RenderTexture SourceCameraTexture;
+}
+public enum WebDragMode
+{
+    DragToScroll = 0,
+    DragWithinPage = 1,
+    Disabled = 2,
+    none
+}
 public enum VROrderName
 {
     admin1,
@@ -1332,18 +1370,19 @@ public class VRUtils
 
     public static string GetMD5(string msg)
     {
-        MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-        byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
-        byte[] md5Data = md5.ComputeHash(data, 0, data.Length);
-        md5.Clear();
-
-        string destString = "";
-        for (int i = 0; i < md5Data.Length; i++)
+        using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
         {
-            destString += System.Convert.ToString(md5Data[i], 16).PadLeft(2, '0');
+            byte[] data = Encoding.UTF8.GetBytes(msg);
+            byte[] md5Data = md5.ComputeHash(data, 0, data.Length);
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < md5Data.Length; i++)
+            {
+                sb.Append(md5Data[i].ToString("x2"));
+            }
+
+            return sb.ToString();
         }
-        destString = destString.PadLeft(32, '0');
-        return destString;
     }
 
 

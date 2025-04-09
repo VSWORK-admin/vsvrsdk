@@ -16,6 +16,7 @@ using System.Linq;
 
 public class MultiDllInstance : MonoBehaviour
 {
+    [HideInInspector]
     public string DllName = string.Empty;
 
     public TextAsset DllAsset;
@@ -23,8 +24,14 @@ public class MultiDllInstance : MonoBehaviour
 
     public ExtralData[] ExtralDatas;
 
+    private MultiDllInstanceData instanceData;
     private void Awake()
     {
+        DllName = gameObject.name;
+        instanceData = new MultiDllInstanceData(DllName);
+        MultiDllManager.Instance.RegisterDllInstance(instanceData);
+        DllName = instanceData.DllName;
+        SetScriptDllName();
     }
 
     private IEnumerator Start()
@@ -32,14 +39,32 @@ public class MultiDllInstance : MonoBehaviour
         yield return new WaitForSeconds(0.06f);
         if (DllAsset != null && PdbAsset != null)
         {
-            MultiDllManager.Instance.LoadOnlineDllAssembly(new MultiDllInstanceData(DllName), MultiDllManager.MultiDllLoadType.None);
+            MultiDllManager.Instance.LoadOnlineDllAssembly(instanceData, MultiDllManager.MultiDllLoadType.None);
             MultiDllManager.Instance.PrepareBindSceneAssemblyStart(DllName, DllAsset, PdbAsset, ExtralDatas);
         }
     }
-
+    private void SetScriptDllName()
+    {
+        GeneralDllBehaviorAdapter[] dlladapters = gameObject.GetComponentsInChildren<GeneralDllBehaviorAdapter>(true);
+        if (dlladapters != null)
+        {
+            foreach (var adapter in dlladapters)
+            {
+                adapter.DllName = DllName;
+            }
+        }
+        GeneralDllBehavior[] dllbehaviors = gameObject.GetComponentsInChildren<GeneralDllBehavior>(true);
+        if (dllbehaviors != null)
+        {
+            foreach (var behavior in dllbehaviors)
+            {
+                behavior.DllName = DllName;
+            }
+        }
+    }
     private void OnDestroy()
     {
-        if(MultiDllManager.Instance != null)
+        if (MultiDllManager.Instance != null)
             MultiDllManager.Instance.UnloadAssemblyByName(DllName);
 
         StopAllCoroutines();

@@ -42,7 +42,7 @@ public class MultiDllManager : MonoBehaviour
     private void OnUserLeaveChanel(IMessage rMessage)
     {
         UnloadAllAssembly();
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+#if ILHotFix && DEBUG
         if(VSVR_Debug.DebugManager.Instance != null)
         {
             VSVR_Debug.RtcMsgSingle rtcMsgSingle = new VSVR_Debug.RtcMsgSingle();
@@ -78,47 +78,47 @@ public class MultiDllManager : MonoBehaviour
             Debug.LogError("PrepareBindSceneAssemblyStart error ! dllname : " + dllName);
         }
     }
-    public void LoadOnlineDllAssembly(MultiDllInstanceData multiDllInstance, MultiDllLoadType loadType,bool callMainByDefault = true)
+    public void RegisterDllInstance(MultiDllInstanceData multiDllInstance)
+    {
+        if (AllDllInstance.ContainsKey(multiDllInstance.DllName))
+        {
+            int maxcount = 0;
+            foreach (var v in AllDllInstance)
+            {
+                if (v.Key.Contains(multiDllInstance.DllName))
+                {
+                    string[] splits = v.Key.Split("_");
+                    int count = 0;
+                    if (splits != null && splits.Length >= 2)
+                    {
+                        int.TryParse(splits[1], out count);
+                    }
+                    if (count > maxcount)
+                        maxcount = count;
+                }
+            }
+            maxcount += 1;
+            multiDllInstance.DllName = multiDllInstance.DllName + "_" + maxcount.ToString();
+        }
+        multiDllInstance.DebugPort = GetDebugPort();
+        AllDllInstance.Add(multiDllInstance.DllName, multiDllInstance);
+    }
+    public void LoadOnlineDllAssembly(MultiDllInstanceData multiDllInstance, MultiDllLoadType loadType, bool callMainByDefault = true)
     {
         if (multiDllInstance == null) return;
-
-        if (!AllDllInstance.ContainsKey(multiDllInstance.DllName))
-        {
-            multiDllInstance.DebugPort = GetDebugPort();
-            AllDllInstance.Add(multiDllInstance.DllName, multiDllInstance);
-        }
-        else
-        {
-            switch (loadType)
-            {
-                case MultiDllLoadType.OnlineMode:
-                    {
-                        AllDllInstance[multiDllInstance.DllName].OnlineDll = multiDllInstance.OnlineDll;
-                        AllDllInstance[multiDllInstance.DllName].OnlinePdb = multiDllInstance.OnlinePdb;
-                    }
-                    break;
-                case MultiDllLoadType.TestMode:
-                    {
-                        AllDllInstance[multiDllInstance.DllName].TestDll = multiDllInstance.TestDll;
-                        AllDllInstance[multiDllInstance.DllName].TestPdb = multiDllInstance.TestPdb;
-                    }
-                    break;
-                default:
-                    {
-                        AllDllInstance[multiDllInstance.DllName] = multiDllInstance;
-                    }
-                    break;
-            }
-        }
-
 
         multiDllInstance.bDefaultCallMain = callMainByDefault;
 
         switch (loadType)
         {
+            case MultiDllLoadType.None:
+                {
+
+                }
+                break;
             case MultiDllLoadType.OnlineMode:
                 {
-                    if(multiDllInstance.bTestMode)
+                    if (multiDllInstance.bTestMode)
                     {
                         multiDllInstance.OnTestModeLoaded();
                     }
@@ -129,15 +129,17 @@ public class MultiDllManager : MonoBehaviour
                 }
                 break;
             case MultiDllLoadType.TestMode:
-                multiDllInstance.LoadTestAssembly();
+                {
+                    multiDllInstance.LoadTestAssembly();
+                }
                 break;
         }
     }
     public void UnloadAllAssembly()
     {
-        foreach(var item in AllDllInstance)
+        foreach (var item in AllDllInstance)
         {
-            if(item.Value != null)
+            if (item.Value != null)
             {
                 item.Value.UnLoadAssembly();
             }
@@ -152,10 +154,6 @@ public class MultiDllManager : MonoBehaviour
             multiDllInstanceData.UnLoadAssembly();
 
             AllDllInstance.Remove(dllName);
-        }
-        else
-        {
-            Debug.LogError("UnloadAssemblyByName error ! dllname : " + dllName);
         }
     }
     private void OnDestroy()

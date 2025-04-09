@@ -236,6 +236,8 @@ public enum VrDispMessageType
     ChangeNamePanelColor,
     /// <summary>
     SDKScriptDestroyed,
+    VRGetCacheToLoadProgress,
+    NetworkConnectState,  //网络连接状态  
 }
 
 public enum PDFPlugingOrder
@@ -531,4 +533,8 @@ public enum CloudRenderMessageType
     /// 设置云渲染发送开关摇杆功能（发送数据类型：bool）
     /// </summary>
     CloudRender_SetOpenOrCloseJoystick,
+    /// <summary>
+    /// 设置云渲染跳转小程序（发送数据类型：string）
+    /// </summary>
+    CloudRender_JumpToMiniProgram,
 }

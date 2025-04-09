@@ -43,11 +43,3 @@ namespace VSWorkSDK.Data
     }
    
 }
-public class GaussianModelData
-{
-    public string url;
-    public string md5;
-    public bool blocal;
-    public GameObject root;
-    public string extralparam;
-}

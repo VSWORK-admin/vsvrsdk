@@ -12,7 +12,10 @@ using com.ootii.Messages;
 
 using UnityEngine.Timeline;
 using LitJson;
-
+using VSWorkSDK;
+using VSWorkSDK.Data;
+using UnityEngine.Rendering;
+using System.Threading;
 
 public class DllManager : MonoBehaviour
 {
@@ -48,6 +51,17 @@ public class DllManager : MonoBehaviour
     public static int RunType { get { return _runType; } }
 
     internal static int LoadedMode = 1;
+
+    /// <summary>
+    /// 调试端口号
+    /// </summary>
+    public static int DebugPort = 56001;
+    private static int portCount = 0;
+    private static int GetDebugPort()
+    {
+        Interlocked.Increment(ref portCount);
+        return 56001 + portCount;
+    }
     private void Awake()
     {
         _Instance = this;
@@ -58,11 +72,11 @@ public class DllManager : MonoBehaviour
     private void ConnectWSRoomByCloudRender(IMessage rMessage)
     {
 #if ILHotFix
-        if (mStaticThings.I != null && mStaticThings.I.isCloudRender && GUIManager.Instance != null && GUIManager.Instance.bCRCacheScene)
+        if (mStaticThings.I != null && mStaticThings.I.isCloudRender && CloudRenderManager.Instance != null && CloudRenderManager.Instance.IsCacheScene())
         {
             appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+#if ILHotFix && DEBUG
 
             _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
 
@@ -70,7 +84,7 @@ public class DllManager : MonoBehaviour
 
                 if (VSVR_Debug.DebugManager.Instance != null)
                 {
-                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", DebugPort, LoadedMode, _runType);
                 }
             });
 #endif
@@ -136,7 +150,7 @@ public class DllManager : MonoBehaviour
             p.Dispose();
             p = null;
         }
-        if(appdomain != null)
+        if (appdomain != null)
         {
             appdomain.Dispose();
             appdomain = null;
@@ -153,8 +167,8 @@ public class DllManager : MonoBehaviour
     public static void LoadHotFixAssembly2(byte[] dll, byte[] pdb)
     {
         appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
- 
-        if(bTestMode)
+
+        if (bTestMode)
         {
             dll = TestDll;
             pdb = TestPdb;
@@ -185,31 +199,31 @@ public class DllManager : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("加载热更DLL失败，请确保已经通过VS打开Assets/Samples/ILRuntime/1.6/Demo/HotFix_Project/HotFix_Project.sln编译过热更DLL");
+            Debug.LogError("DebugLog.Exception 加载热更DLL失败，请确保已经通过VS打开Assets/Samples/ILRuntime/1.6/Demo/HotFix_Project/HotFix_Project.sln编译过热更DLL");
         }
 
         InitializeILRuntime();
 
-        if(!bTestMode && !bCloudMode)
+        if (!bTestMode && !bCloudMode)
         {
             OnDllLoaded();
-			
-			if (OnAssemblyLoadOver != null)
-			{
-				OnAssemblyLoadOver();
-			}
-			
-			MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
-		}
 
+            if (OnAssemblyLoadOver != null)
+            {
+                OnAssemblyLoadOver();
+            }
 
+            MessageDispatcher.SendMessage("GeneralDllBehaviorAwake");
+        }
+
+        DebugPort = GetDebugPort();
 #if ILHotFix
         if (!VRPublishSettingController.I.bMultiInstance)
         {
-            appdomain.DebugService.StartDebugService(56001);
+            appdomain.DebugService.StartDebugService(DebugPort);
         }
 #else
-        appdomain.DebugService.StartDebugService(56001);
+        appdomain.DebugService.StartDebugService(DebugPort);
 #endif
     }
     public static void UnLoadAssembly()
@@ -295,11 +309,11 @@ public class DllManager : MonoBehaviour
 
         RegisterDelegate();
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+#if ILHotFix && DEBUG
         _runType = (int)VSVR_Debug.RtcMsgDllRunType.Loaded;
         if (VSVR_Debug.DebugManager.Instance != null)
         {
-            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+            VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", DebugPort, LoadedMode, _runType);
         }
 #endif
     }
@@ -307,7 +321,7 @@ public class DllManager : MonoBehaviour
     unsafe static void OnDllLoaded()
     {
 #if ILHotFix
-        if(mStaticThings.I != null && mStaticThings.I.isCloudRender && GUIManager.Instance != null && GUIManager.Instance.bCRCacheScene)
+        if(mStaticThings.I != null && mStaticThings.I.isCloudRender && CloudRenderManager.Instance != null && CloudRenderManager.Instance.IsCacheScene())
         {
             //appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
         }
@@ -315,13 +329,13 @@ public class DllManager : MonoBehaviour
         {
             appdomain.Invoke("Dll_Project.DllMain", "Main", null, null);
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+#if ILHotFix && DEBUG
             _runType = (int)VSVR_Debug.RtcMsgDllRunType.Running;
             GameManager.Instance.timerManager.doOnce(100, () => {
 
                 if (VSVR_Debug.DebugManager.Instance != null)
                 {
-                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", 56001, LoadedMode, _runType);
+                    VSVR_Debug.DebugManager.Instance.SendDllInfoMsg("", DebugPort, LoadedMode, _runType);
                 }
             });
 #endif
@@ -345,8 +359,6 @@ public class DllManager : MonoBehaviour
 
     private static void RegisterDelegate()
     {
-
-
         appdomain.DelegateManager.RegisterFunctionDelegate<ILRuntime.Runtime.Intepreter.ILTypeInstance, ILRuntime.Runtime.Intepreter.ILTypeInstance, System.Int32>();
 
         appdomain.DelegateManager.RegisterDelegateConvertor<System.Comparison<ILRuntime.Runtime.Intepreter.ILTypeInstance>>((act) =>
@@ -373,16 +385,17 @@ public class DllManager : MonoBehaviour
                 {
                     ((Action<com.ootii.Messages.IMessage>)act)(rMessage);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    if(rMessage != null && rMessage.Type != null)
+                    string methodname = act != null && act.Target != null ? act.Target.ToString() : "";
+                    if (rMessage != null && rMessage.Type != null)
                     {
-                        Debug.LogError("MessageHandler -> Debug.LogError : " + "rMessage.Type : " + rMessage.Type + "\r\n" + e);
+                        Debug.LogError("DebugLog.Exception Exception : " + "rMessage.Type : " + rMessage.Type + " funtion : " + methodname + "\r\n" + e);
                     }
                     else
                     {
-                        Debug.LogError("MessageHandler -> Debug.LogError : " + "\r\n" + e);
-                    }   
+                        Debug.LogError("DebugLog.Exception Exception : " + " funtion : " + methodname + "\r\n" + e);
+                    }
                 }
             });
         });
@@ -394,8 +407,8 @@ public class DllManager : MonoBehaviour
                 ((Action)act)();
             });
         });
-       
-       
+
+
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback<float>>((act) =>
         {
             return new DG.Tweening.TweenCallback<float>((a) =>
@@ -411,13 +424,21 @@ public class DllManager : MonoBehaviour
                 ((Action<int>)act)(a);
             });
         });
+        appdomain.DelegateManager.RegisterMethodDelegate<WebResponseData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<SDKWebResponseCallback>((act) =>
+        {
+            return new SDKWebResponseCallback((a) =>
+            {
+                ((Action<WebResponseData>)act)(a);
+            });
+        });
 
         appdomain.DelegateManager.RegisterFunctionDelegate<Color>();
         appdomain.DelegateManager.RegisterMethodDelegate<Color>();
         appdomain.DelegateManager.RegisterFunctionDelegate<Vector3>();
         appdomain.DelegateManager.RegisterMethodDelegate<Vector3>();
         appdomain.DelegateManager.RegisterFunctionDelegate<float>();
-
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject>();
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOGetter<Color>>((act) =>
         {
             return new DG.Tweening.Core.DOGetter<Color>(() =>
@@ -456,16 +477,6 @@ public class DllManager : MonoBehaviour
             });
         });
 
-        //appdomain.DelegateManager.RegisterMethodDelegate<STTXVR.Net.WebResponse>();
-
-        //appdomain.DelegateManager.RegisterDelegateConvertor<STTXVR.Net.WebRequest.WebResponseCallback>((act) =>
-        //{
-        //    return new STTXVR.Net.WebRequest.WebResponseCallback((rMessage) =>
-        //    {
-        //        ((Action<STTXVR.Net.WebResponse>)act)(rMessage);
-        //    });
-        //});
-
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<Vector3>>((act) =>
         {
             return new DG.Tweening.Core.DOSetter<UnityEngine.Vector3>((pNewValue) =>
@@ -495,21 +506,21 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<int, string, string, string, bool>();
         appdomain.DelegateManager.RegisterMethodDelegate<BaseEventData>();
         appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer>();
-        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,long>();
-        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,string>();
-        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer,double>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer, long>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer, string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<VideoPlayer, double>();
         appdomain.DelegateManager.RegisterMethodDelegate<Texture2D>();
-        appdomain.DelegateManager.RegisterMethodDelegate<int,int>();
+        appdomain.DelegateManager.RegisterMethodDelegate<int, int>();
         appdomain.DelegateManager.RegisterMethodDelegate<float>();
-        appdomain.DelegateManager.RegisterMethodDelegate<object,EventArgs>();
-        appdomain.DelegateManager.RegisterMethodDelegate<GameObject, AnimationClip[],Transform,string>();
+        appdomain.DelegateManager.RegisterMethodDelegate<object, EventArgs>();
+        appdomain.DelegateManager.RegisterMethodDelegate<GameObject, AnimationClip[], Transform, string>();
 
         appdomain.DelegateManager.RegisterMethodDelegate<Slate.Cutscene>();
         appdomain.DelegateManager.RegisterMethodDelegate<Slate.Section>();
         appdomain.DelegateManager.RegisterMethodDelegate<string, object>();
         appdomain.DelegateManager.RegisterMethodDelegate<string>();
         appdomain.DelegateManager.RegisterMethodDelegate<object>();
-        
+
 
 
 
@@ -524,25 +535,25 @@ public class DllManager : MonoBehaviour
 
         appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.FrameReadyEventHandler>((action) =>
         {
-            return new VideoPlayer.FrameReadyEventHandler((a,b) =>
+            return new VideoPlayer.FrameReadyEventHandler((a, b) =>
             {
-                ((Action<VideoPlayer,long>)action)(a,b);
+                ((Action<VideoPlayer, long>)action)(a, b);
             });
         });
 
         appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.ErrorEventHandler>((action) =>
         {
-            return new VideoPlayer.ErrorEventHandler((a,b) =>
+            return new VideoPlayer.ErrorEventHandler((a, b) =>
             {
-                ((Action<VideoPlayer,string>)action)(a,b);
+                ((Action<VideoPlayer, string>)action)(a, b);
             });
         });
 
         appdomain.DelegateManager.RegisterDelegateConvertor<VideoPlayer.TimeEventHandler>((action) =>
         {
-            return new VideoPlayer.TimeEventHandler((a,b) =>
+            return new VideoPlayer.TimeEventHandler((a, b) =>
             {
-                ((Action<VideoPlayer,double>)action)(a,b);
+                ((Action<VideoPlayer, double>)action)(a, b);
             });
         });
 
@@ -639,7 +650,13 @@ public class DllManager : MonoBehaviour
                 ((Action<Color>)act)(arg0);
             });
         });
-
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<UnityEngine.Texture2D>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<UnityEngine.Texture2D>((data) =>
+            {
+                ((Action<UnityEngine.Texture2D>)act)(data);
+            });
+        });
 
         appdomain.DelegateManager.RegisterDelegateConvertor<IT_Gesture.DoubleTapHandler>((act) =>
         {
@@ -861,9 +878,34 @@ public class DllManager : MonoBehaviour
             });
         });
 
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.String, System.Int32, System.Char, System.Char>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UI.InputField.OnValidateInput>((act) =>
+        {
+            return new UnityEngine.UI.InputField.OnValidateInput((text, charIndex, addedChar) =>
+            {
+                return ((Func<System.String, System.Int32, System.Char, System.Char>)act)(text, charIndex, addedChar);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture2D>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Threading.ParameterizedThreadStart>((act) =>
+        {
+            return new System.Threading.ParameterizedThreadStart((obj) =>
+            {
+                ((Action<System.Object>)act)(obj);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Threading.ThreadStart>((act) =>
+        {
+            return new System.Threading.ThreadStart(() =>
+            {
+                ((Action)act)();
+            });
+        });
+
         RegisterVRFunction(appdomain.DelegateManager);
 
         RegisterMessageFunction(appdomain.DelegateManager);
+
     }
 
 
@@ -957,7 +999,6 @@ public class DllManager : MonoBehaviour
                 ((Action<System.Object, WebSocketSharp.CloseEventArgs>)act)(sender, e);
             });
         });
-        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.GameObject, UnityEngine.Texture2D>();
         appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.WebResponseData>();
         appdomain.DelegateManager.RegisterDelegateConvertor<VSWorkSDK.Data.SDKWebResponseCallback>((act) =>
         {
@@ -981,19 +1022,24 @@ public class DllManager : MonoBehaviour
         appdomain.DelegateManager.RegisterMethodDelegate<VSWorkSDK.Data.RoomSycnData>();
         appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Collections.Generic.List<System.Object>>();
         appdomain.DelegateManager.RegisterMethodDelegate<global::LocalCacheFile>();
+        appdomain.DelegateManager.RegisterMethodDelegate<global::GlbSceneObjectFile>();
         appdomain.DelegateManager.RegisterMethodDelegate<global::UserScreenShareReqExData>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Int32>();
+        appdomain.DelegateManager.RegisterMethodDelegate<GaussianModelData>();
+
     }
 
     private static void RegisterVRFunction(ILRuntime.Runtime.Enviorment.DelegateManager delegateManager)
     {
         delegateManager.RegisterMethodDelegate<string, float, Vector2>();
         delegateManager.RegisterMethodDelegate<string, GameObject>();
-        delegateManager.RegisterMethodDelegate<string, string,string>();
+        delegateManager.RegisterMethodDelegate<string, string, string>();
         //delegateManager.RegisterMethodDelegate<string>();
         delegateManager.RegisterMethodDelegate<WsPlaceMarkList>();
         //delegateManager.RegisterMethodDelegate<bool>();
         delegateManager.RegisterMethodDelegate<GameObject>();
         delegateManager.RegisterMethodDelegate<Texture2D>();
+        delegateManager.RegisterMethodDelegate<Cubemap>();
         delegateManager.RegisterMethodDelegate<GameObject, List<string>>();
         //delegateManager.RegisterMethodDelegate<KodFileResult>();
         delegateManager.RegisterMethodDelegate<bool, VRWsRemoteScene>();
@@ -1004,6 +1050,8 @@ public class DllManager : MonoBehaviour
         delegateManager.RegisterMethodDelegate<WsChangeInfo>();
         delegateManager.RegisterMethodDelegate<WsCChangeInfo>();
         delegateManager.RegisterMethodDelegate<VRChanelRoom>();
+        delegateManager.RegisterMethodDelegate<WsBigScreen>();
+        delegateManager.RegisterMethodDelegate<LoadAvatarOBJ>();
 
         delegateManager.RegisterMethodDelegate<WsAvatarFrame>();
         delegateManager.RegisterMethodDelegate<WsMovingObj>();
@@ -1054,7 +1102,7 @@ public class DllManager : MonoBehaviour
         //});
         _Instance = null;
 
-#if ILHotFix && DEBUG && UNITY_STANDALONE_WIN
+#if ILHotFix && DEBUG
         _runType = (int)VSVR_Debug.RtcMsgDllRunType.Destory;
         if (VSVR_Debug.DebugManager.Instance != null)
         {

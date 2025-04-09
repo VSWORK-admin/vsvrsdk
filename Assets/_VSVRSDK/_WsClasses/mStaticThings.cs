@@ -136,7 +136,7 @@ public class mStaticThings : MonoBehaviour
     /// <summary>
     /// 当前动作频道内子房间id(弃用)
     /// </summary>
-    [Obsolete("当前动作频道内子房间id(弃用)")]
+    //[Obsolete("当前动作频道内子房间id(弃用)")]
     public string nowRoomStartChID;
     /// <summary>
     /// 当前频道是否支持语音
@@ -190,7 +190,7 @@ public class mStaticThings : MonoBehaviour
     /// <summary>
     /// 屏幕分享相关配置
     /// </summary>
-    public Dictionary<string,string> nowRoomSettings = new Dictionary<string, string>();
+    public Dictionary<string, string> nowRoomSettings = new Dictionary<string, string>();
     /// <summary>
     /// 软件热更新版本相关配置
     /// </summary>
@@ -203,6 +203,10 @@ public class mStaticThings : MonoBehaviour
     /// 当前频道加载图标
     /// </summary>
     public string nowSceneLoadIcon;
+    /// <summary>
+    /// 当前频道加载图标展示图大图
+    /// </summary>
+    public string vrRoomsIconMax;
     /// <summary>
     /// 当前频道加载名称
     /// </summary>
@@ -279,6 +283,14 @@ public class mStaticThings : MonoBehaviour
     /// 人物昵称
     /// </summary>
     public string mNickName;
+    /// <summary>
+    /// 用户所在国家
+    /// </summary>
+    public string userCountry;
+    /// <summary>
+    /// 用户手机号
+    /// </summary>
+    public string userPhone;
     /// <summary>
     /// 频道当前场景
     /// </summary>
@@ -499,7 +511,7 @@ public class mStaticThings : MonoBehaviour
     /// <summary>
     /// 当前组织默认绑定房间id（暂时无用）
     /// </summary>
-    public string GrouplinkedroomID ="";
+    public string GrouplinkedroomID = "";
     /// <summary>
     /// 第一次加载组织房间（暂时无用）
     /// </summary>
@@ -571,7 +583,7 @@ public class mStaticThings : MonoBehaviour
     /// <summary>
     /// vr人物跳点移动限制（禁足）
     /// </summary>
-    public Dictionary<string,string> TeleportDict = new Dictionary<string,string>();
+    public Dictionary<string, string> TeleportDict = new Dictionary<string, string>();
     /// <summary>
     /// 暂时无用
     /// </summary>
@@ -641,7 +653,14 @@ public class mStaticThings : MonoBehaviour
     /// 名牌显示的最大距离 超过这个值将隐藏
     /// </summary>
     public float MaxDisOfHideNamePanel = 7.0f;
-
+    /// <summary>
+    /// 当前显示的版本名
+    /// </summary>
+    public string vr_scenes_item_id;
+    /// <summary>
+    /// 当前显示的版本名
+    /// </summary>
+    public SceneVersionData _SceneVersionData;
     /// <summary>
     /// 名牌最大缩放值
     /// </summary>
@@ -662,7 +681,6 @@ public class mStaticThings : MonoBehaviour
     /// 是否自动GC (20Mb)
     /// </summary>
     public static bool bOpenAutoGC = true;
-
     public static mStaticThings I
     {
         get
@@ -675,7 +693,10 @@ public class mStaticThings : MonoBehaviour
     {
         instance = this;
         isAdmin = false;
+       
     }
+
+ 
     /// <summary>
     /// 获取当前Avatar的排序（第一个为Admin）
     /// </summary>
@@ -711,10 +732,12 @@ public class mStaticThings : MonoBehaviour
     public List<string> GetAllStaticAvatarsDicNames()
     {
         List<string> nicknames = new List<string>();
-        for(int i = 0;i<AllStaticAvatarList.Count;i++){
-            if(AllStaticAvatarsDic.ContainsKey(AllStaticAvatarList[i])){
+        for (int i = 0; i < AllStaticAvatarList.Count; i++)
+        {
+            if (AllStaticAvatarsDic.ContainsKey(AllStaticAvatarList[i]))
+            {
                 nicknames.Add(AllStaticAvatarsDic[AllStaticAvatarList[i]].name);
-            }  
+            }
         }
 
         return nicknames;
@@ -726,10 +749,12 @@ public class mStaticThings : MonoBehaviour
     public List<string> GetAllActiveAvatarsDicNames()
     {
         List<string> nicknames = new List<string>();
-        for(int i = 0;i<AllActiveAvatarList.Count;i++){
-            if(AllStaticAvatarsDic.ContainsKey(AllActiveAvatarList[i])){
+        for (int i = 0; i < AllActiveAvatarList.Count; i++)
+        {
+            if (AllStaticAvatarsDic.ContainsKey(AllActiveAvatarList[i]))
+            {
                 nicknames.Add(AllStaticAvatarsDic[AllActiveAvatarList[i]].name);
-            }  
+            }
         }
 
         return nicknames;
@@ -758,5 +783,37 @@ public class mStaticThings : MonoBehaviour
             mStaticThings.I.nowRoomLinkScene.scene != mStaticThings.I.mScene.scene)
             return true;
         return false;
+    }
+    public static Color HSVToRGB(Vector4 hsv)
+    {
+        Color color = Color.HSVToRGB(hsv.x, hsv.y, hsv.z);
+        color.a = hsv.w;
+        return color;
+    }
+
+    public static void RGBToHSV(Color color, ref Vector4 colorhsv)
+    {
+        Color.RGBToHSV(color, out colorhsv.x, out colorhsv.y, out colorhsv.z);
+    }
+    public static Color GetSaturation(Vector4 hsv, float x, float y)
+    {
+        Vector4 saturationHSV = hsv;
+        saturationHSV.y = x;
+        saturationHSV.z = y;
+        saturationHSV.w = 1;
+        return HSVToRGB(saturationHSV);
+    }
+    public static void HSVToRGBTexture(Vector4 hsv, ref Texture2D tex)
+    {
+        for (int y = 0; y < tex.height; y++)
+        {
+            for (int x = 0; x < tex.width; x++)
+            {
+                Color pixColor = GetSaturation(hsv, x * 1.0f / tex.width, y * 1.0f / tex.height);
+                tex.SetPixel(x, y, pixColor);
+            }
+        }
+
+        tex.Apply();
     }
 }

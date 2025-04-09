@@ -99,6 +99,12 @@ namespace VSWorkSDK.Enume
         POST,
         GET,
     }
+    public enum ShareFaildType
+    {
+        NoDevice,       //没有设备
+        NoneCaptchPic,  //没有采集到画面  设备被占用或设备损坏
+        Quit,           //分享用户不在分享中
+    }
     public enum TransformControlType
     {
         Move,
