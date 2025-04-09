@@ -151,12 +151,7 @@ public class GeneralDllBehavior : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (GenClass != null)
-        {
-            if (DllName.IsNullOrEmpty())
-                MessageDispatcher.SendMessage(GenClass, VrDispMessageType.SDKScriptDestroyed.ToString(), ScriptClassName, 0);
-            GenClass.OnDestroy();
-        }
+       
     }
     private void OnAnimatorMove()
     {
