@@ -1,1 +1,1 @@
-search_result['406']=["topic_00000000000001C2.html","VSEngine.GetNowUnityVersion Method","获取当前unity版本"];
+search_result['406']=["topic_00000000000001D1.html","VSEngine.SetLogerEnable Method","打开log调试界面"];

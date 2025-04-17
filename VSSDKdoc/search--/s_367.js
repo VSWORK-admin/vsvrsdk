@@ -1,1 +1,1 @@
-search_result['367']=["topic_000000000000019B.html","VSEngine.SeekMusicVedioPosition Method","设置MV跳转到新的播放位置。"];
+search_result['367']=["topic_00000000000001AA.html","VSEngine.RequestMusicVedioInfo Method","请求媒体播放信息"];

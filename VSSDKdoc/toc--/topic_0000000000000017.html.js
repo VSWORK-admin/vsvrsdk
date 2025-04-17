@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B0.html"],['560',"VSWorkSDK.Data Namespace","topic_0000000000000000.html"],['561',"LoginData Class","topic_0000000000000013.html"],['562',"Fields","topic_0000000000000013_vars--.html"],['568',"vr_user_sex Field","topic_0000000000000017.html"]];

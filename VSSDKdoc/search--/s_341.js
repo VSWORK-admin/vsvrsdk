@@ -1,1 +1,1 @@
-search_result['341']=["topic_0000000000000181.html","VSEngine.EnableCameraShareButton Method","设置启用系统摄像头分享按钮"];
+search_result['341']=["topic_0000000000000190.html","VSEngine.SetAddMicrophoneVolume Method","设置自己麦克风音量+\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];

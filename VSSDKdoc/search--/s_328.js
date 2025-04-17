@@ -1,1 +1,1 @@
-search_result['328']=["topic_0000000000000174.html","VSEngine.SetVoiceExitRoom Method","离开语音房间\r\n该方法相关的回调事件为：OnEventVoiceRoomExitEvent"];
+search_result['328']=["topic_0000000000000183.html","VSEngine.RequestVideoCurrentTime Method","获取视频当前播放时长\r\n该方法相关的回调事件为：OnEventReceiveVideoCurrentTime"];

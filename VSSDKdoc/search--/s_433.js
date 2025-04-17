@@ -1,1 +1,1 @@
-search_result['433']=["topic_00000000000001DD.html","VSEngine.GetBackupServerUrl Method","获取备用服务器地址"];
+search_result['433']=["topic_00000000000001EC.html","VSEngine.GetSystemMenuAnchor Method","获取系统菜单锚点"];

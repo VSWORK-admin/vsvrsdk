@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.PlayVideo Method</title>
+	<title>VSEngine.ChangeWebviewSize Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -38,7 +39,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	  </div>
 	</div>
   	<div id="header-top-container2">
-    <div id="runningHeaderText">Assembly-CSharp Reference</div>
+    <div id="runningHeaderText">vsvr_sdk</div>
    
     <div id="search-bar-container">
      <form id="search-bar" action="search--.html">
@@ -74,11 +75,11 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.PlayVideo Method</h1>
+		<h1 class="title">VSEngine.ChangeWebviewSize Method</h1>
         
 		<div class="metadata">
         Namespace:
-<a href="topic_000000000000007B.html">VSWorkSDK</a>
+<a href="topic_000000000000008C.html">VSWorkSDK</a>
 
 
 
@@ -89,8 +90,10 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>播放视频
-InitVideoPlayer之后调用</summary-info>
+        <summary-info>修改网页屏幕尺寸</summary-info>
+
+
+
 
 
 
@@ -106,6 +109,44 @@ InitVideoPlayer之后调用</summary-info>
 	
 	
 	<div id="syntaxCodeBlocks">
+		<div class="codeSnippetContainer">		
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCornerActive">
+				</div>
+				<div class="codeSnippetTab csFirstTab csActiveTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeVB">
+					<pre xml:space="preserve" class="brush: vb">Public Sub ChangeWebviewSize( _&nbsp;<br />   ByVal <i>displayUI</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>bfullscreen</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>width</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>height</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>showtoolbar</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>offset</i> As <strong>Vector2</strong>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
 		<div class="codeSnippetContainer">
 			<div class="codeSnippetTabs">
@@ -138,7 +179,7 @@ InitVideoPlayer之后调用</summary-info>
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> PlayVideo(&nbsp;<br />   <strong>GameObject</strong> <i>controler</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeWebviewSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>displayUI</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bfullscreen</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>height</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showtoolbar</i>,&nbsp;<br />   <strong>Vector2</strong> <i>offset</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -147,37 +188,165 @@ InitVideoPlayer之后调用</summary-info>
 		</div>
 
 
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCpp">
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeWebviewSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>displayUI</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bfullscreen</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>height</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showtoolbar</i>,&nbsp;<br />   <strong>Vector2</strong> <i>offset</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab csLastTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCornerActive">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeJScript">
+					<pre xml:space="preserve" class="brush: js">public function ChangeWebviewSize(&nbsp;<br />    <i>displayUI</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>bfullscreen</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>width</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>height</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>showtoolbar</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>offset</i> : <strong>Vector2</strong>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
 	</div>
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="controler" class="parameterList">
+	Parameters</h4><dl paramName="displayUI" class="parameterList">
 	<dt>
 		<span class="parameter">
-			controler
+			displayUI
 		</span>
 	</dt>
 	<dd>
-		<strong>GameObject</strong> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
 	</dd>
 </dl>
 <p>
-	视频播放器 
+	 
 </p>
-<dl paramName="videotype" class="parameterList">
+<dl paramName="bfullscreen" class="parameterList">
 	<dt>
 		<span class="parameter">
-			videotype
+			bfullscreen
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
 	</dd>
 </dl>
 <p>
-	播放器类型 
+	 
+</p>
+<dl paramName="width" class="parameterList">
+	<dt>
+		<span class="parameter">
+			width
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> 
+	</dd>
+</dl>
+<p>
+	宽 
+</p>
+<dl paramName="height" class="parameterList">
+	<dt>
+		<span class="parameter">
+			height
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> 
+	</dd>
+</dl>
+<p>
+	高 
+</p>
+<dl paramName="showtoolbar" class="parameterList">
+	<dt>
+		<span class="parameter">
+			showtoolbar
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
+	</dd>
+</dl>
+<p>
+	是否显示工具栏 
+</p>
+<dl paramName="offset" class="parameterList">
+	<dt>
+		<span class="parameter">
+			offset
+		</span>
+	</dt>
+	<dd>
+		<strong>Vector2</strong> 
+	</dd>
+</dl>
+<p>
+	半屏窗口偏移中心 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>
@@ -190,10 +359,13 @@ InitVideoPlayer之后调用</summary-info>
 	</dd>
 </dl>
 <p>
-	延迟调用 秒 
+	 
 </p>
 
 <p />
+
+
+
 
 
 
@@ -279,11 +451,11 @@ InitVideoPlayer之后调用</summary-info>
 
 	<div id="seeAlsoSection" class="section">	
 		<div>
-			<a href="topic_0000000000000080.html">VSEngine Class</a><br />
+			<a href="topic_0000000000000091.html">VSEngine Class</a><br />
 
 
 
-<a href="topic_000000000000007B.html">VSWorkSDK Namespace</a><br />
+<a href="topic_000000000000008C.html">VSWorkSDK Namespace</a><br />
 
 
 			

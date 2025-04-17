@@ -1,1 +1,1 @@
-search_result['271']=["topic_000000000000013F.html","VSEngine.SetUserAdmin Method","设置user为管理员"];
+search_result['271']=["topic_000000000000014E.html","VSEngine.SetForceHideSelfAvatarModel Method","强制设置自身avatar角色隐藏"];

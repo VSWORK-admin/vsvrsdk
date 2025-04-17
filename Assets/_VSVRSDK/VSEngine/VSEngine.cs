@@ -3135,6 +3135,17 @@ namespace VSWorkSDK
         /// <param name="delay"></param>
         public extern void SetPersonnelControlPanel(bool IsOpen, float delay = 0);
 
+        /// <summary>
+        /// MAC和Windowss模拟按键消息
+        /// </summary>
+        /// <param name="keycode"></param>
+        public extern void VirtualKeyCodeDown(int keycode);
+        /// <summary>
+        /// MAC和Windowss模拟按键消息
+        /// </summary>
+        /// <param name="keycode"></param>
+        public extern void VirtualKeyCodeUp(int keycode);
+
 #pragma warning restore CS0626
         #endregion
     }

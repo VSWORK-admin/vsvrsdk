@@ -1,1 +1,1 @@
-search_result['532']=["topic_0000000000000240.html","VSEngine.IsAdminUserLaserPenOnly Method","判断是否仅管理员打开激光笔"];
+search_result['532']=["topic_000000000000024F.html","VSEngine.GetMaxShowAvatarModelCount Method","获取最大显示avatar角色模型数量"];

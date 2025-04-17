@@ -1,1 +1,1 @@
-search_result['377']=["topic_00000000000001A5.html","VSEngine.SetVrLaserEnable Method","设置VR激光笔可用"];
+search_result['377']=["topic_00000000000001B4.html","VSEngine.SetStopSelfMediaPlayerByOhter Method","停止MV的播放"];

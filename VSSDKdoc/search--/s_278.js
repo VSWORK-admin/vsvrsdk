@@ -1,1 +1,1 @@
-search_result['278']=["topic_0000000000000144_overloads--.html","VSEngine.SetBigScreenShowImage Method","设置大屏幕显示图片\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];
+search_result['278']=["topic_0000000000000155.html","VSEngine.GetAvatarCurrentFrameData Method","获取avatar当前帧数据"];

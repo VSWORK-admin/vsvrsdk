@@ -1,1 +1,1 @@
-search_result['535']=["topic_0000000000000243.html","VSEngine.SetBlockLaserPen Method","设置是否屏蔽激光笔"];
+search_result['535']=["topic_0000000000000252.html","VSEngine.GetActionRoomBlackAvatarID Method","获取动作房间黑名单AvatarID\r\n在此名单的avatar将不会在场景中显示 房间内也不会有黑名单用户的数据"];

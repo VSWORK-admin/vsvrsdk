@@ -1,1 +1,1 @@
-search_result['226']=["topic_0000000000000112.html","VSEngine.SetSoundMute Method","设置声场静音"];
+search_result['226']=["topic_0000000000000121.html","VSEngine.GetSystemData Method","获取应用内热更扩展的数据"];

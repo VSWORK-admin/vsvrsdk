@@ -1,1 +1,1 @@
-search_result['251']=["topic_000000000000012B.html","VSEngine.PlayAvatarSystemFullAction Method","播放系统挂载的角色的全身动作"];
+search_result['251']=["topic_000000000000013A.html","VSEngine.SetAvatarSyncFrameRate Method","设置同步帧率\r\n如果某些情况下人物抖动严重或需要高帧率可以调用此方法"];

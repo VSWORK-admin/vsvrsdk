@@ -1,1 +1,1 @@
-search_result['245']=["topic_0000000000000125.html","VSEngine.SetSelfSitOnChair Method","设置自己入座"];
+search_result['245']=["topic_0000000000000134.html","VSEngine.LimitSelfRotate Method","限制自身avatar旋转 无法通过摇杆旋转方向"];

@@ -627,49 +627,17 @@ function getDivWithClass(parentElm, className) {
 
 
 /**
- * Determines whether an element contains specified CSS class.
+ * Determines whether an element contains specified CSS class. The search is case insensitive.
  * @param {HTMLElement} elm The element to test.
  * @param {string} className The class name to be tested.
  * @returns {boolean} A value indicating whether the element contains the class.
 */
 function hasElementClass(elm, className) {
-    if (elm.className) {
-        var classes = elm.className.split(" ");
-        className = className.toLowerCase();
-        var i;
-        for (i = 0; i < classes.length; i++) {
-            if (classes[i].toLowerCase() === className) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-
-/**
- * Determines whether an element contains all specified CSS classes.
- * @param {HTMLElement} elm The element to test.
- * @param {Array<string>} classNames An array of class names.
- * @returns {boolean} A value indicating whether the element contains the classes.
- */
-function hasElementClasses(elm, classNames) {
-    if (elm.className) {
-        var classes = elm.className.split(" ");
-        var i, j, found;
-        found = 0;
-        for (j = 0; j < classNames.length; j++) {
-            var className = classNames[j].toLowerCase();
-            for (i = 0; i < classes.length; i++) {
-                var elmClass = classes[i].toLowerCase();
-                if (elmClass === className) {
-                    found++;
-                    break;
-                }
-            }
-        }
-        if (found === classNames.length) {
+    var classes = elm.classList != undefined ? elm.classList : [];
+    className = className.toLowerCase();
+    var i;
+    for (i = 0; i < classes.length; i++) {
+        if (classes[i].toLowerCase() === className) {
             return true;
         }
     }
@@ -679,47 +647,55 @@ function hasElementClasses(elm, classNames) {
 
 
 /**
- * Removes specified CSS class from an element, if any.
+ * Determines whether an element contains all specified CSS classes. The search is case insensitive.
+ * @param {HTMLElement} elm The element to test.
+ * @param {Array<string>} classNames An array of class names.
+ * @returns {boolean} A value indicating whether the element contains the classes.
+ */
+function hasElementClasses(elm, classNames) {
+    var classes = elm.classList != undefined ? elm.classList : [];
+    var i, j, found;
+    found = 0;
+    for (j = 0; j < classNames.length; j++) {
+        var className = classNames[j].toLowerCase();
+        for (i = 0; i < classes.length; i++) {
+            var elmClass = classes[i].toLowerCase();
+            if (elmClass === className) {
+                found++;
+                break;
+            }
+        }
+    }
+    if (found === classNames.length) {
+        return true;
+    }
+
+    return false;
+}
+
+
+/**
+ * Removes specified CSS class from an element, if any. The operation is case sensitive.
  * @param {HTMLElement} elm The element to process.
  * @param {string} className The class name to be removed.
  */
 function removeClassFromElement(elm, className) {
     if (elm === null) return;
-    if (elm.className) {
-        var classes = elm.className.split(" ");
-        className = className.toLowerCase();
-        var i;
-        for (i = classes.length - 1; i >= 0; i--) {
-            if (classes[i].toLowerCase() === className) {
-                classes.splice(i, 1);
-            }
-        }
-        elm.className = classes.join(" ");
+    if (elm.classList) {
+        elm.classList.remove(className);
     }
 }
 
 
 /**
- * Adds specified CSS class to an element.
+ * Adds specified CSS class to an element. The operation is case sensitive.
  * @param {HTMLElement} elm The element to process.
  * @param {string} className The class name to be added.
  */
 function addClassToElement(elm, className) {
     if (elm === null) return;
-    if (elm.className) {
-        var classes = elm.className.split(" ");
-        var classNameLow = className.toLowerCase();
-        var i;
-        for (i = classes.length - 1; i >= 0; i--) {
-            if (classes[i].toLowerCase() === classNameLow) {
-                // class already exists
-                return;
-            }
-        }
-        classes[classes.length] = className;
-        elm.className = classes.join(" ");
-    } else {
-        elm.className = className;
+    if (elm.classList) {
+        elm.classList.add(className);
     }
 }
 
@@ -773,7 +749,7 @@ const getCssCustomProperty = (propertyName, castAs = 'string', element = documen
 
     // Tidy up the string if there's something to work with
     if (response.length) {
-        response = response.replace(/\'|"/g, '').trim();
+        //response = response.replace(/\'|"/g, '').trim();
     }
 
     // Convert the response into a whatever type we wanted

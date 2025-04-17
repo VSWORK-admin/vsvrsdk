@@ -1,1 +1,1 @@
-search_result['531']=["topic_000000000000023F.html","VSEngine.SetStartPlaceGroupDelayTime Method","设置移动位置组延迟时间"];
+search_result['531']=["topic_000000000000024E.html","VSEngine.SetMinAvatarModelVisibleRange Method","设置avatar角色最小可见范围（相对自己，avatar小于这个范围隐藏）"];

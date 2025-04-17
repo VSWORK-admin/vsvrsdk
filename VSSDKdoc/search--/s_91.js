@@ -1,1 +1,1 @@
-search_result['91']=["topic_000000000000008D.html","OnEventDestroyAvatarModel Event","删除avatar模型事件\r\n人物模型即将被销毁时触发\r\n参数 GameObject 是要被销毁的驱动器节点"];
+search_result['91']=["topic_000000000000009C.html","OnEventSelectAvatar Event","选择avatar角色事件\r\n参数 被选择的角色ID"];

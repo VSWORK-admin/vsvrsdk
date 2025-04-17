@@ -1,1 +1,1 @@
-search_result['209']=["topic_0000000000000103.html","OnEventTextTranslateResult Event","返回翻译资源 注意使用该事件需要再退出场景是将注册方法移除"];
+search_result['209']=["topic_0000000000000112.html","OnEventReciveClickWalkTargetPoint Event","获取点击地面的目标点信息"];

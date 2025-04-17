@@ -1,1 +1,1 @@
-search_result['334']=["topic_000000000000017A.html","VSEngine.SetMinusMicrophoneVolume Method","设置自己麦克风音量-\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];
+search_result['334']=["topic_0000000000000189.html","VSEngine.SetVoiceLoudSpeakerOn Method","设置扬声器开 设置后听到其他人语音"];

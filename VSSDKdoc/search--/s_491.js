@@ -1,1 +1,1 @@
-search_result['491']=["topic_0000000000000217.html","VSEngine.GetBigScreenViewRoot Method","获取大屏幕显示根节点（主要用来控制显示隐藏）"];
+search_result['491']=["topic_0000000000000226.html","VSEngine.IsSAmin Method","判断是否为助理管理员"];

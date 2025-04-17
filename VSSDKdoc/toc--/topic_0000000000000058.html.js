@@ -1,1 +1,0 @@
-var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['547',"VSWorkSDK.Enume Namespace","topic_0000000000000007.html"],['557',"ScreenShareType Enumeration","topic_0000000000000058.html"]];

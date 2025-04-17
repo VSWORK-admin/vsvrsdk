@@ -1,1 +1,1 @@
-search_result['517']=["topic_0000000000000231.html","VSEngine.SetAvatarDefaultHeight Method","设置人物的默认高度"];
+search_result['517']=["topic_0000000000000240.html","VSEngine.GetAvatarInQueueIndex Method","获取当前Avatar的排序（第一个为Admin）"];

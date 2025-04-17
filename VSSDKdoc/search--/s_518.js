@@ -1,1 +1,1 @@
-search_result['518']=["topic_0000000000000232.html","VSEngine.GetMaxAvatarVisibleRange Method","获取avatar角色最大可见范围（相对自己，超过这个范围的角色删除）"];
+search_result['518']=["topic_0000000000000241.html","VSEngine.GetAllAvatarName Method","获取所有Avatar的昵称列表"];

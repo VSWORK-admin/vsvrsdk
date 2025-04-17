@@ -1,1 +1,1 @@
-search_result['225']=["topic_0000000000000111.html","VSEngine.SetMenuPanelEnable Method","设置底部菜单面板的显示和隐藏"];
+search_result['225']=["topic_0000000000000120.html","VSEngine.SendSDKExpandEvent Method","扩展事件（用于SDK内部调用消息）\r\n该方法相关的回调事件为：OnEventSystemExpandEvent"];

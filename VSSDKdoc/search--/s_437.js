@@ -1,1 +1,1 @@
-search_result['437']=["topic_00000000000001E1.html","VSEngine.GetNowGroupId Method","获取当前组织id"];
+search_result['437']=["topic_00000000000001F0.html","VSEngine.GetNowServerUrl Method","获取当前登录服务器url"];

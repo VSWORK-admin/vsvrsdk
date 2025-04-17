@@ -1,1 +1,1 @@
-search_result['265']=["topic_0000000000000139.html","VSEngine.ClearFbxAvatarModelResource Method","清除资源中的avatar角色模型"];
+search_result['265']=["topic_0000000000000148.html","VSEngine.SetLockTouchRotateCamera Method","锁定触摸旋转相机或左键旋转相机"];

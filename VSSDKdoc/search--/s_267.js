@@ -1,1 +1,1 @@
-search_result['267']=["topic_000000000000013B.html","VSEngine.ChangeSelfAvatarModel Method","切换自己的avatar模型"];
+search_result['267']=["topic_000000000000014A.html","VSEngine.SetForceHideAllAvatars Method","设置隐藏场景内的所有avatar角色"];

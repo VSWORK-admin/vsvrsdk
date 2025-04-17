@@ -1,1 +1,1 @@
-var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['547',"VSWorkSDK.Enume Namespace","topic_0000000000000007.html"],['555',"RenderQualityLevel Enumeration","topic_000000000000001E.html"]];
+var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B0.html"],['590',"VSWorkSDK.Enume Namespace","topic_000000000000001A.html"],['606',"WalkLockMode Enumeration","topic_000000000000001E.html"]];

@@ -1,1 +1,1 @@
-search_result['108']=["topic_000000000000009E.html","OnEventReceiveVideoRenderTexture Event","接收到视频渲染贴图\r\nRequestVideoTexture 请求视频画面 触发回调\r\n参数GameObject为PDF控制器"];
+search_result['108']=["topic_00000000000000AD.html","OnEventReceivePdfPageCount Event","接收到PDF文件页数事件\r\nRequestPdfRenderPlayerPageCount 请求PDF文件页数回调\r\n参数GameObject为PDF控制器"];

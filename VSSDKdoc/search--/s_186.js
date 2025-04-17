@@ -1,1 +1,1 @@
-search_result['186']=["topic_00000000000000EC.html","OnEventVrLaserStatusChanged Event","激光笔状态改变事件  打开关闭"];
+search_result['186']=["topic_00000000000000FB.html","OnEventVrDevicePutOn Event","带上头显（某些vr无效）"];

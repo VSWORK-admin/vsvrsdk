@@ -1,1 +1,1 @@
-search_result['450']=["topic_00000000000001EE.html","VSEngine.GetAppVersionSettings Method","获取软件热更新版本相关配置"];
+search_result['450']=["topic_00000000000001FD.html","VSEngine.GetNowRoomServerUrl Method","获取当前动作服务器websocket url"];

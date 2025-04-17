@@ -1,1 +1,1 @@
-search_result['229']=["topic_0000000000000115.html","VSEngine.EndSystemVoiceIdenetify Method","结束系统侧的语音转文字"];
+search_result['229']=["topic_0000000000000124.html","VSEngine.SendRoomSyncData Method","同步网络数据 用于同步自定义数据\r\n该方法相关的回调事件为：OnEventReceiveRoomSyncData"];

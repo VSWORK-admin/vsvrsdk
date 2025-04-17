@@ -1,1 +1,1 @@
-search_result['506']=["topic_0000000000000226.html","VSEngine.GetAllAvatarID Method","获取所有AvatarID列表"];
+search_result['506']=["topic_0000000000000235.html","VSEngine.EnableVRStickControlWalk Method","VR端遥感行走"];

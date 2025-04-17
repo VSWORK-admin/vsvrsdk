@@ -1,1 +1,1 @@
-search_result['439']=["topic_00000000000001E3.html","VSEngine.IsRoomLocalMode Method","判断是否是离线频道"];
+search_result['439']=["topic_00000000000001F2.html","VSEngine.GetMiddlePlatformServer Method","获取中台服务器域名"];

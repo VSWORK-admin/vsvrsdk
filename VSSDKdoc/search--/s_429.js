@@ -1,1 +1,1 @@
-search_result['429']=["topic_00000000000001D9.html","VSEngine.GetNowServerUrl Method","获取当前登录服务器url"];
+search_result['429']=["topic_00000000000001E8.html","VSEngine.GetVRRightFingerAnchor Method","获取VR右手手指锚点"];

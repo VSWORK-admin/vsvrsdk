@@ -1,1 +1,1 @@
-search_result['85']=["topic_0000000000000087.html","OnEventRoomInitAvatar Event","场景实例化avatar角色事件\r\n开始实例化某个角色时触发  自己进入房间后房间内的人物都将依次实例化"];
+search_result['85']=["topic_0000000000000096.html","OnEventReceiveRoomSavedData Event","接收场景数据保存事件\r\n调用RequestRoomSavedData请求房间存储的数据后 触发事件"];

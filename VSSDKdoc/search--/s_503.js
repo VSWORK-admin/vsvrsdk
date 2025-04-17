@@ -1,1 +1,1 @@
-search_result['503']=["topic_0000000000000223.html","VSEngine.IsOpenDrawing Method","判断是否开启画笔"];
+search_result['503']=["topic_0000000000000232.html","VSEngine.IsShowAvatarSpeakIcon Method","判断是否显示avatar角色扬声器头标"];

@@ -1,1 +1,1 @@
-search_result['302']=["topic_000000000000015B.html","VSEngine.LoadGlbFile (WsGlbMediaFile, Single) Method","加载GLB模型文件"];
+search_result['302']=["topic_000000000000016B.html","VSEngine.StartStreamChatWebRequest Method","请求流式对话\r\n该方法相关的回调事件为：OnEventReceiveStreamWebData OnEventReceiveStreamWebResult"];

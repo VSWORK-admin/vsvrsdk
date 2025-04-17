@@ -1,1 +1,1 @@
-search_result['351']=["topic_000000000000018B.html","VSEngine.EnableScreenShareSound Method","是否打开共享屏幕的声音"];
+search_result['351']=["topic_000000000000019A.html","VSEngine.SetVoiceBeautifier Method","设置语音美化，一般用于歌唱情景"];

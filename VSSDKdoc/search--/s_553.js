@@ -1,1 +1,1 @@
-search_result['553']=["topic_0000000000000255.html","VSEngine.VideoCaptureRtmpStart Method","推流画面"];
+search_result['553']=["topic_0000000000000264.html","VSEngine.SetNamePanelVisibleMaxRange Method","设置名牌显示的最大距离 （超过这个值名牌将隐藏"];

@@ -1,1 +1,1 @@
-search_result['577']=["topic_000000000000026D.html","VSEngine.ChangeFileDownloadTimeOut Method","改变文件下载的超市时长"];
+search_result['577']=["topic_000000000000027C.html","VSEngine.ShowOrHideAppStickControl Method","显示或者关闭应用的遥感控制"];

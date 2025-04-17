@@ -1,1 +1,1 @@
-search_result['489']=["topic_0000000000000215.html","VSEngine.GetGlbObjectRoot Method","获取glbObj模型的根路径"];
+search_result['489']=["topic_0000000000000224.html","VSEngine.GetMediaResServerUrl Method","获取资源服务器地址(用于拼接)"];

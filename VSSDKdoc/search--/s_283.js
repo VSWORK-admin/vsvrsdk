@@ -1,1 +1,1 @@
-search_result['283']=["topic_0000000000000149.html","VSEngine.CloseBigScreenWebView Method","关闭网页\r\nOpenBigScreenWebView打开"];
+search_result['283']=["topic_000000000000015A.html","VSEngine.SetBigScreenShowImage (WsMediaFile, Single) Method","设置大屏幕显示图片\r\nWsMediaFile 可以只传 URL\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];

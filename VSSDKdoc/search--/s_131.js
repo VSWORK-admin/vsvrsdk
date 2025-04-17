@@ -1,1 +1,1 @@
-search_result['131']=["topic_00000000000000B5.html","OnEventPointExitHandler Event","射线离开事件\r\n参数 GameObject 3D空间物体"];
+search_result['131']=["topic_00000000000000C4.html","OnEventPointClickHandler Event","点击场景物体事件\r\n参数 GameObject 3D空间物体"];

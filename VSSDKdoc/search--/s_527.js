@@ -1,1 +1,1 @@
-search_result['527']=["topic_000000000000023B.html","VSEngine.GetActionRoomBlackAvatarID Method","获取动作房间黑名单AvatarID\r\n在此名单的avatar将不会在场景中显示 房间内也不会有黑名单用户的数据"];
+search_result['527']=["topic_000000000000024A.html","VSEngine.SetMaxAvatarVisibleRange Method","设置avatar角色最大可见范围（相对自己，超过这个范围的角色删除）"];

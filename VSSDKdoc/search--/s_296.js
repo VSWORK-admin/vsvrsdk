@@ -1,1 +1,1 @@
-search_result['296']=["topic_0000000000000156.html","VSEngine.LoadBigScreenImageFile Method","加载大屏幕图片文件"];
+search_result['296']=["topic_0000000000000165.html","VSEngine.DownloadAndCacheFile Method","下载文件并保存到本地\r\n该方法相关的回调事件为：OnEventDownLoadFileProgress"];

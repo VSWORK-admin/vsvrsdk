@@ -1,1 +1,1 @@
-search_result['247']=["topic_0000000000000127.html","VSEngine.PlayAvatarCustomAction Method","播放avatar自定义动画\r\n自定义动作绑定在avatar模型上 DefaultAnimation节点上的动画状态机 动画片段名称以\"CustomAction_\"命名的为自定义动作\r\n比如 CustomAction_0  0为自定义动画序号"];
+search_result['247']=["topic_0000000000000136.html","VSEngine.ChangeSelfActionState Method","改变自身avatar当前的动画状态（该方法一般与MakeSelfActionUnderControl配合使用）"];

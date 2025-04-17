@@ -1,1 +1,1 @@
-search_result['204']=["topic_00000000000000FE.html","OnEventReciveAvatarDirect Event","获取人物朝向"];
+search_result['204']=["topic_000000000000010D.html","OnEventReceiverLoadAssetBundleObj Event","获取加载的AB包资源的OBJ"];

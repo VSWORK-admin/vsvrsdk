@@ -1,1 +1,1 @@
-search_result['469']=["topic_0000000000000201.html","VSEngine.GetMyNickName Method","获取自己的昵称"];
+search_result['469']=["topic_0000000000000210.html","VSEngine.GetNowRoomLinkSceneInfo Method","获取当前频道绑定的初始场景信息"];

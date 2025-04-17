@@ -1,1 +1,1 @@
-search_result['440']=["topic_00000000000001E4.html","VSEngine.IsAvatarReady Method","判断人物连接频道完成"];
+search_result['440']=["topic_00000000000001F3.html","VSEngine.GetMiddlePlatformConfigUrl Method","获取中台配置地址"];

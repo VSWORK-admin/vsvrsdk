@@ -1,1 +1,1 @@
-search_result['434']=["topic_00000000000001DE.html","VSEngine.GetUserVersion Method","获取用户版本"];
+search_result['434']=["topic_00000000000001ED.html","VSEngine.IsDirectorCamera Method","是否为导播相机模式"];

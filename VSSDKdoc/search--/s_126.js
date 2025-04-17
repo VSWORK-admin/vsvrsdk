@@ -1,1 +1,1 @@
-search_result['126']=["topic_00000000000000B0.html","OnEventVoiceLoudSpeakerVolumeChange Event","改变扬声器音量回调  听到场景内其他用户声音大小\r\n参数 int 音量改变量"];
+search_result['126']=["topic_00000000000000BF.html","OnEventVoiceRoomExitEvent Event","退出语音房间回调"];

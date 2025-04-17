@@ -1,1 +1,1 @@
-search_result['490']=["topic_0000000000000216.html","VSEngine.GetBigScreenRoot Method","获取大屏幕的根路径（主要用来控制位置）"];
+search_result['490']=["topic_0000000000000225.html","VSEngine.IsAdmin Method","判断是否为管理员"];

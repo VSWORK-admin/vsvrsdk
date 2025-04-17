@@ -1,1 +1,1 @@
-search_result['114']=["topic_00000000000000A4.html","OnEventReceiveGifProgress Event","GIF录制进度事件"];
+search_result['114']=["topic_00000000000000B3.html","OnEventReceiveVideoFinish Event","接收视频播放完成回调\r\n参数GameObject为视频控制器"];

@@ -1,1 +1,1 @@
-search_result['483']=["topic_000000000000020F.html","VSEngine.IsSAmin Method","判断是否为助理管理员"];
+search_result['483']=["topic_000000000000021E.html","VSEngine.IsPlatformVrApp Method","判断是否为vr应用"];

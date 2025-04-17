@@ -1,1 +1,1 @@
-search_result['520']=["topic_0000000000000234.html","VSEngine.GetMaxAvatarModelVisibleRange Method","获取avatar角色最大可见范围（相对自己，超过这个范围的角色隐藏）"];
+search_result['520']=["topic_0000000000000243.html","VSEngine.GetLaserPenColor Method","获取激光笔颜色"];

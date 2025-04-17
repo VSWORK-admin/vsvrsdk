@@ -1,1 +1,1 @@
-search_result['316']=["topic_0000000000000168.html","VSEngine.SetVideoVolume Method","设置视频音量"];
+search_result['316']=["topic_0000000000000177.html","VSEngine.CreatePdfRenderPlayer Method","创建PDF播放器\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];

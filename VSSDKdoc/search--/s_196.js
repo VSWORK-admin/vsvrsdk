@@ -1,1 +1,1 @@
-search_result['196']=["topic_00000000000000F6.html","OnEventNoticeWebViewClosed Event","根据网址来关闭网页"];
+search_result['196']=["topic_0000000000000105.html","OnEventStopSelfShareByOutSide Event","监听关闭系统投屏和摄像机或投屏失败的事件"];

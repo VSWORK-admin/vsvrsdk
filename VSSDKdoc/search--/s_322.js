@@ -1,1 +1,1 @@
-search_result['322']=["topic_000000000000016E.html","VSEngine.StartRecordGif Method","开始录制当前场景画面为GIF图片\r\nOnEventReceiveGifProgress"];
+search_result['322']=["topic_000000000000017D.html","VSEngine.StopVideo Method","停止视频"];

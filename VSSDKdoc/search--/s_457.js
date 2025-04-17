@@ -1,1 +1,1 @@
-search_result['457']=["topic_00000000000001F5.html","VSEngine.GetNowRoomMaxUserCount Method","获取频道最大人数"];
+search_result['457']=["topic_0000000000000204.html","VSEngine.GetNowRoomSettings Method","获取房间后台配置数据"];

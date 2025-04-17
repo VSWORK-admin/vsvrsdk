@@ -1,1 +1,1 @@
-search_result['336']=["topic_000000000000017C.html","VSEngine.IsVoiceMicrophoneOn Method","麦克风是否打开"];
+search_result['336']=["topic_000000000000018B.html","VSEngine.SetVoiceExitRoom Method","离开语音房间\r\n该方法相关的回调事件为：OnEventVoiceRoomExitEvent"];

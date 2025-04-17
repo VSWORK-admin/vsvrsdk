@@ -1,1 +1,1 @@
-search_result['498']=["topic_000000000000021E.html","VSEngine.EnableVRStickControlWalk Method","VR端遥感行走"];
+search_result['498']=["topic_000000000000022D.html","VSEngine.GetBigScreenRoot Method","获取大屏幕的根路径（主要用来控制位置）"];

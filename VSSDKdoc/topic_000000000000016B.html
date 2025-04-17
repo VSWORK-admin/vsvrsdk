@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.RequestVideoTexture Method</title>
+	<title>VSEngine.StartStreamChatWebRequest Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -38,7 +39,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	  </div>
 	</div>
   	<div id="header-top-container2">
-    <div id="runningHeaderText">Assembly-CSharp Reference</div>
+    <div id="runningHeaderText">vsvr_sdk</div>
    
     <div id="search-bar-container">
      <form id="search-bar" action="search--.html">
@@ -74,11 +75,11 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.RequestVideoTexture Method</h1>
+		<h1 class="title">VSEngine.StartStreamChatWebRequest Method</h1>
         
 		<div class="metadata">
         Namespace:
-<a href="topic_000000000000007B.html">VSWorkSDK</a>
+<a href="topic_000000000000008C.html">VSWorkSDK</a>
 
 
 
@@ -89,8 +90,11 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>获取视频贴图
-该方法相关的回调事件为：<a target="_top" href="topic_000000000000009E.html" onclick="this.target='';return true;">OnEventReceiveVideoRenderTexture</a></summary-info>
+        <summary-info>请求流式对话
+该方法相关的回调事件为：<a target="_top" href="topic_00000000000000D5.html" onclick="this.target='';return true;">OnEventReceiveStreamWebData</a> <a target="_top" href="topic_00000000000000D6.html" onclick="this.target='';return true;">OnEventReceiveStreamWebResult</a></summary-info>
+
+
+
 
 
 
@@ -106,6 +110,44 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	
 	
 	<div id="syntaxCodeBlocks">
+		<div class="codeSnippetContainer">		
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCornerActive">
+				</div>
+				<div class="codeSnippetTab csFirstTab csActiveTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeVB">
+					<pre xml:space="preserve" class="brush: vb">Public Sub StartStreamChatWebRequest( _&nbsp;<br />   ByVal <i>url</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>content</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
 		<div class="codeSnippetContainer">
 			<div class="codeSnippetTabs">
@@ -138,7 +180,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> RequestVideoTexture(&nbsp;<br />   <strong>GameObject</strong> <i>controller</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <strong>Texture</strong>&gt; <i>receiveCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartStreamChatWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>url</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>content</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -147,50 +189,113 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 		</div>
 
 
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csLastTab csNaTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCorner">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeCpp">
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartStreamChatWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>url</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>content</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
+		<div class="codeSnippetContainer">
+			<div class="codeSnippetTabs">
+				<div class="codeSnippetTabLeftCorner">
+				</div>
+				<div class="codeSnippetTab csFirstTab csNaTab codeVB">
+					<a>VB</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Csharp');">C#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeFsharp">
+					<a href="javascript: CodeSnippet_SetLanguage('Fsharp');">F#</a>
+				</div>
+				<div class="codeSnippetTab csNaTab codeCpp">
+					<a href="javascript: CodeSnippet_SetLanguage('Cpp');">C++</a>
+				</div>
+				<div class="codeSnippetTab csActiveTab csLastTab codeJScript">
+					<a href="javascript: CodeSnippet_SetLanguage('JScript');">JScript</a>
+				</div>
+				<div class="codeSnippetTabRightCornerActive">
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+	
+			<div class="codeSnippetCodeCollection">
+				<div class="codeSnippetToolbar">
+					<a title="Copy to clipboard." href="javascript:void(0)" onclick="CopyCode(this);">Copy</a>
+				</div>
+				
+				<div class="codeSnippetCode codeJScript">
+					<pre xml:space="preserve" class="brush: js">public function StartStreamChatWebRequest(&nbsp;<br />    <i>url</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>,&nbsp;<br />    <i>content</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+				</div>
+				<div class="codeSnippetCode codeNA">
+					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
+				</div>
+			</div>
+		</div>
 		
 	</div>
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="controller" class="parameterList">
+	Parameters</h4><dl paramName="url" class="parameterList">
 	<dt>
 		<span class="parameter">
-			controller
+			url
 		</span>
 	</dt>
 	<dd>
-		<strong>GameObject</strong> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> 
 	</dd>
 </dl>
 <p>
-	视频播放器 
+	请求地址 
 </p>
-<dl paramName="videotype" class="parameterList">
+<dl paramName="content" class="parameterList">
 	<dt>
 		<span class="parameter">
-			videotype
+			content
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> 
 	</dd>
 </dl>
 <p>
-	播放器类型 
-</p>
-<dl paramName="receiveCallback" class="parameterList">
-	<dt>
-		<span class="parameter">
-			receiveCallback
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <strong>Texture</strong>&gt; 
-	</dd>
-</dl>
-<p>
-	接收回调 与<a target="_top" href="topic_000000000000009E.html" onclick="this.target='';return true;">OnEventReceiveVideoRenderTexture</a>实现效果一样 
+	请求内容 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>
@@ -203,10 +308,13 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	延迟调用 秒 
+	 
 </p>
 
 <p />
+
+
+
 
 
 
@@ -292,11 +400,11 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 	<div id="seeAlsoSection" class="section">	
 		<div>
-			<a href="topic_0000000000000080.html">VSEngine Class</a><br />
+			<a href="topic_0000000000000091.html">VSEngine Class</a><br />
 
 
 
-<a href="topic_000000000000007B.html">VSWorkSDK Namespace</a><br />
+<a href="topic_000000000000008C.html">VSWorkSDK Namespace</a><br />
 
 
 			

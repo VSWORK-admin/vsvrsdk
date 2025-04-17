@@ -1,1 +1,1 @@
-search_result['273']=["topic_0000000000000141.html","VSEngine.SetBigScreenProperty Method","设置大屏幕的属性"];
+search_result['273']=["topic_0000000000000150.html","VSEngine.ClearFbxAvatarModelResource Method","清除资源中的avatar角色模型"];

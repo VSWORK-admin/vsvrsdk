@@ -1,1 +1,1 @@
-search_result['408']=["topic_00000000000001C4.html","VSEngine.GetAppVersion Method","获取当前应用版本号"];
+search_result['408']=["topic_00000000000001D3.html","VSEngine.SetSelfAvatarHide Method","设置自己隐身,不同步自身数据给其他人，无法与别人交流"];

@@ -1,1 +1,1 @@
-search_result['95']=["topic_0000000000000091.html","OnEventSelfAdminStatusChanged Event","自己admin状态改变事件"];
+search_result['95']=["topic_00000000000000A0.html","OnEventSwitchCameraViewMode Event","切换相机视角事件\r\nSwitchCameraViewMode 切换第一第三人称后回调\r\n参数 1 代表当前是第一人称 3 是当前是第三人称"];

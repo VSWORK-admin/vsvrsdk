@@ -1,1 +1,1 @@
-search_result['331']=["topic_0000000000000177.html","VSEngine.SetMinusVoiceLoudSpeakerVolume Method","设置扬声器音量- 场景内其他用户音量大小\r\n该方法相关的回调事件为：OnEventVoiceLoudSpeakerVolumeChange"];
+search_result['331']=["topic_0000000000000186.html","VSEngine.StopAndSaveRecordGif Method","停止录制GIF并保存到本地\r\nOnEventReceiveGifLocalPath"];

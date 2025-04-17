@@ -1,1 +1,1 @@
-search_result['550']=["topic_0000000000000252.html","VSEngine.VideoCaptureStop Method","关闭录制视频"];
+search_result['550']=["topic_0000000000000261.html","VSEngine.SetSelfHideVisibleModel Method","设置自己是否隐身（相对自己）"];

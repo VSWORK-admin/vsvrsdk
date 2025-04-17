@@ -1,1 +1,1 @@
-search_result['317']=["topic_0000000000000169.html","VSEngine.SetVideoLoop Method","设置视频是否循环"];
+search_result['317']=["topic_0000000000000178.html","VSEngine.ShowPdfRenderPlayerPage Method","显示PDF指定页的内容\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];

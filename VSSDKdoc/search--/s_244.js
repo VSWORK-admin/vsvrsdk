@@ -1,1 +1,1 @@
-search_result['244']=["topic_0000000000000124.html","VSEngine.ReSetAvatarSyncFrameRate Method","还原成系统的同步帧率"];
+search_result['244']=["topic_0000000000000133.html","VSEngine.LimitSelfMove Method","限制自身avatar移动，无法通过摇杆和wasd移动人物"];

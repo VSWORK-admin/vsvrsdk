@@ -1,1 +1,1 @@
-search_result['147']=["topic_00000000000000C5.html","OnEventReceiveStreamWebResult Event","流式接口传输完成事件\r\n参数 接收到的数据"];
+search_result['147']=["topic_00000000000000D4.html","OnEventReceiveMusicVedioInfo Event","接收到MV信息\r\nRequestMusicVedioInfo 请求MV信息回调\r\n参数 视频信息 json格式"];

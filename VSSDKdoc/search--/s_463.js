@@ -1,1 +1,1 @@
-search_result['463']=["topic_00000000000001FB.html","VSEngine.GetMyAvatarID Method","获取自己的人物的avatar角色id"];
+search_result['463']=["topic_000000000000020A.html","VSEngine.GetNowRoomVoiceRange Method","获取当前房间声场范围"];

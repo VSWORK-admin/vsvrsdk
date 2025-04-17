@@ -1,1 +1,1 @@
-search_result['113']=["topic_00000000000000A3.html","OnEventReceiveGifLocalPath Event","GIF录制结束 保存到本地事件\r\n参数 本地文件地址"];
+search_result['113']=["topic_00000000000000B2.html","OnEventReceiveVideoInfo Event","接收视频信息\r\nRequestVideoInfo 触发回调\r\n参数GameObject为视频控制器"];

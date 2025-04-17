@@ -1,1 +1,1 @@
-search_result['420']=["topic_00000000000001D0.html","VSEngine.GetVRLeftFingerAnchor Method","获取VR左手手指锚点"];
+search_result['420']=["topic_00000000000001DF.html","VSEngine.GetChoosedLanguage Method","获取当前语言"];

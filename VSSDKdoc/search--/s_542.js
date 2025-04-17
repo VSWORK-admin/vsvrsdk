@@ -1,1 +1,1 @@
-search_result['542']=["topic_000000000000024A.html","VSEngine.SetSelfHideVisibleModel Method","设置自己是否隐身（相对自己）"];
+search_result['542']=["topic_0000000000000259.html","VSEngine.IsBlockLaserPen Method","判断是否屏蔽激光笔"];

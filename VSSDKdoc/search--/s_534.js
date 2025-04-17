@@ -1,1 +1,1 @@
-search_result['534']=["topic_0000000000000242.html","VSEngine.IsBlockLaserPen Method","判断是否屏蔽激光笔"];
+search_result['534']=["topic_0000000000000251.html","VSEngine.GetNowRoomAvatarFrameData Method","获取当前频道所有人物数据缓存（大约4秒同步一次数据）"];

@@ -1,1 +1,1 @@
-search_result['569']=["topic_0000000000000265.html","VSEngine.ShowOrHideAppStickControl Method","显示或者关闭应用的遥感控制"];
+search_result['569']=["topic_0000000000000274.html","VSEngine.StartGameObjectTransformController Method","物体进行位置控制偏移旋转"];

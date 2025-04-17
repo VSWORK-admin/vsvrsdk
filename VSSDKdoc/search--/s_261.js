@@ -1,1 +1,1 @@
-search_result['261']=["topic_0000000000000135.html","VSEngine.SetForceHideAvatar Method","设置隐藏指定avatar角色"];
+search_result['261']=["topic_0000000000000144.html","VSEngine.StartAutoFindPathMode Method","开启自动寻路模式\r\n注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值\r\n2.场景要注意设置障碍物"];

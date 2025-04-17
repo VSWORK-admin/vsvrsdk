@@ -1,1 +1,1 @@
-search_result['445']=["topic_00000000000001E9.html","VSEngine.GetNowRoomVoiceRoomID Method","获取当前语音的房间ID"];
+search_result['445']=["topic_00000000000001F8.html","VSEngine.GetNowGroupId Method","获取当前组织id"];

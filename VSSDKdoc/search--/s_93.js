@@ -1,1 +1,1 @@
-search_result['93']=["topic_000000000000008F.html","OnEventSwitchCameraViewMode Event","切换相机视角事件\r\nSwitchCameraViewMode 切换第一第三人称后回调\r\n参数 1 代表当前是第一人称 3 是当前是第三人称"];
+search_result['93']=["topic_000000000000009E.html","OnEventDestroyAvatarModel Event","删除avatar模型事件\r\n人物模型即将被销毁时触发\r\n参数 GameObject 是要被销毁的驱动器节点"];

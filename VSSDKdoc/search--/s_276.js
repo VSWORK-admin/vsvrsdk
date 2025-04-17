@@ -1,1 +1,1 @@
-search_result['276']=["topic_0000000000000143_overloads--.html","VSEngine.SetBigScreenShowImage Method","设置大屏幕显示图片\r\nWsMediaFile 可以只传 URL\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];
+search_result['276']=["topic_0000000000000153.html","VSEngine.ChangeAvatarBodyPart Method","模型换装\r\n注:该方法的使用需要avatar角色模型先绑定好多套衣服，具体可与模型开发沟通"];

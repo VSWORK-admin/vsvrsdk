@@ -1,1 +1,1 @@
-search_result['587']=["topic_0000000000000277.html","VSEngine.OnStartAutoFindPath Method","设置跟随自动寻路"];
+search_result['587']=["topic_0000000000000286.html","VSEngine.SetDirectorModelEnable Method","设置导播模式是否启用"];

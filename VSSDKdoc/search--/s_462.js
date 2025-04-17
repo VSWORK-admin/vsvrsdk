@@ -1,1 +1,1 @@
-search_result['462']=["topic_00000000000001FA.html","VSEngine.GetNowSceneInfo Method","获取当前场景信息"];
+search_result['462']=["topic_0000000000000209.html","VSEngine.IsAvatarVisibleOnLoading Method","判断加载场景时是否看见人（主要用于vr）"];

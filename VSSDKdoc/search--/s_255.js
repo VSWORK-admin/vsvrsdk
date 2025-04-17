@@ -1,1 +1,1 @@
-search_result['255']=["topic_000000000000012F.html","VSEngine.SetSelfAvatarFollowCamera Method","设置自身人物模型跟随相机旋转方式"];
+search_result['255']=["topic_000000000000013E.html","VSEngine.PlayAvatarCustomAction Method","播放avatar自定义动画\r\n自定义动作绑定在avatar模型上 DefaultAnimation节点上的动画状态机 动画片段名称以\"CustomAction_\"命名的为自定义动作\r\n比如 CustomAction_0  0为自定义动画序号"];

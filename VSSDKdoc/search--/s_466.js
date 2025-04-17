@@ -1,1 +1,1 @@
-search_result['466']=["topic_00000000000001FE.html","VSEngine.GetMyAvatarDefaultModelID Method","获取自己的人物的avatar角色初始模型id"];
+search_result['466']=["topic_000000000000020D.html","VSEngine.GetNowRoomMaxVisibleUserCount Method","获取最大avatar可见数量（超过这人数的人能进入但其他就看不见了）"];

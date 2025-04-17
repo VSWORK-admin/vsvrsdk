@@ -1,1 +1,1 @@
-search_result['510']=["topic_000000000000022A.html","VSEngine.GetAllAvatarName Method","获取所有Avatar的昵称列表"];
+search_result['510']=["topic_0000000000000239.html","VSEngine.GetNowDeviceSNNumber Method","获取当前设备编号"];

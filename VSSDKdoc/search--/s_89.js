@@ -1,1 +1,1 @@
-search_result['89']=["topic_000000000000008B.html","OnEventSelectAvatar Event","选择avatar角色事件\r\n参数 被选择的角色ID"];
+search_result['89']=["topic_000000000000009A.html","OnEventAvatarLoadDone Event","avatar角色模型加载成功事件\r\n参数 Transform 是实例化的模型驱动器节点 该节点的名称以该用户的实际avatarid命名"];

@@ -1,1 +1,1 @@
-search_result['384']=["topic_00000000000001AC.html","VSEngine.ShowAvatarSyncFrameRate Method","显示Avatar同步帧率数据"];
+search_result['384']=["topic_00000000000001BB.html","VSEngine.CleanCachesAndGC Method","清除缓存及GC"];

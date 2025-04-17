@@ -1,1 +1,1 @@
-search_result['455']=["topic_00000000000001F3.html","VSEngine.GetNowRoomVoiceRange Method","获取当前房间声场范围"];
+search_result['455']=["topic_0000000000000202.html","VSEngine.GetRoomAdminCommand Method","获取当前频道的管理员命令"];

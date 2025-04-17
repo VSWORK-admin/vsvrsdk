@@ -1,1 +1,1 @@
-search_result['285']=["topic_000000000000014B.html","VSEngine.ShowBigScreenWeb Method","显示大屏幕的Web页面"];
+search_result['285']=["topic_000000000000015B.html","VSEngine.SetBigScreenShowImage (Texture2D, Boolean, Single) Method","设置大屏幕显示图片\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];

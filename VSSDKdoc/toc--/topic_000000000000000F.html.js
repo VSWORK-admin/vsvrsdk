@@ -1,1 +1,1 @@
-var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['547',"VSWorkSDK.Enume Namespace","topic_0000000000000007.html"],['554',"MovingObjectMarkType Enumeration","topic_000000000000000F.html"]];
+var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B0.html"],['560',"VSWorkSDK.Data Namespace","topic_0000000000000000.html"],['569',"RoomSycnData Class","topic_000000000000000B.html"],['570',"Fields","topic_000000000000000B_vars--.html"],['574',"d Field","topic_000000000000000F.html"]];

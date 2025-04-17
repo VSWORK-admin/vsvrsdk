@@ -1,1 +1,1 @@
-search_result['152']=["topic_00000000000000CA.html","OnEventVrRightTriggerDown Event","右手柄的扳机键按下"];
+search_result['152']=["topic_00000000000000D9.html","OnEventVrLeftTriggerDown Event","左手柄的扳机键按下"];

@@ -1,1 +1,1 @@
-search_result['430']=["topic_00000000000001DA.html","VSEngine.GetNowTestServerUrl Method","获取当前测试服务器url"];
+search_result['430']=["topic_00000000000001E9.html","VSEngine.GetMainCharacter Method","获取主角的控制器（可以获取character controller）"];

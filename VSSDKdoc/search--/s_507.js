@@ -1,1 +1,1 @@
-search_result['507']=["topic_0000000000000227.html","VSEngine.GetAllActiveAvatarID Method","获取当前显示的AvatarID列表"];
+search_result['507']=["topic_0000000000000236.html","VSEngine.IsShowAvatarNamePanel Method","判断是否显示avatar角色名牌"];

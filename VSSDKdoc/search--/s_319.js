@@ -1,1 +1,1 @@
-search_result['319']=["topic_000000000000016B.html","VSEngine.RequestVideoTexture Method","获取视频贴图\r\n该方法相关的回调事件为：OnEventReceiveVideoRenderTexture"];
+search_result['319']=["topic_000000000000017A.html","VSEngine.InitVideoPlayer Method","初始化视频播放器"];

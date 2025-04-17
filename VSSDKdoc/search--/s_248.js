@@ -1,1 +1,1 @@
-search_result['248']=["topic_0000000000000128.html","VSEngine.PlayAvatarSystemFullActionReq Method","播放全身的自定义动画ID"];
+search_result['248']=["topic_0000000000000137.html","VSEngine.LockSelfWalkMode Method","锁定自身走跑状态\r\n比如锁定 LOCKWALK，那人物只能走路无法切换跑\r\n锁定 LOCKRUN，那人物只能跑"];

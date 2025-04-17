@@ -1,1 +1,1 @@
-search_result['398']=["topic_00000000000001BA.html","VSEngine.SetLogerEnable Method","打开log调试界面"];
+search_result['398']=["topic_00000000000001C9.html","VSEngine.ShowAvatarNamePanel Method","显示场景内所有Avatar名牌"];

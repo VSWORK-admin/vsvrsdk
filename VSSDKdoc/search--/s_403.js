@@ -1,1 +1,1 @@
-search_result['403']=["topic_00000000000001BF.html","VSEngine.SetCloudRenderExitData Method","设置云渲染退出时发送的json数据"];
+search_result['403']=["topic_00000000000001CE.html","VSEngine.SetTakePhotoEnable Method","开启拍照功能"];

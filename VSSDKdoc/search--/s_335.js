@@ -1,1 +1,1 @@
-search_result['335']=["topic_000000000000017B.html","VSEngine.SetMicrophoneVolumeMax Method","设置自己麦克风音量最大\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];
+search_result['335']=["topic_000000000000018A.html","VSEngine.SetVoiceConnectToExRoom Method","连接房间语音区\r\n该方法相关的回调事件为：OnEventVoiceRoomConnected"];

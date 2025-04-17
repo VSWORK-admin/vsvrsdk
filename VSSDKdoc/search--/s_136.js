@@ -1,1 +1,1 @@
-search_result['136']=["topic_00000000000000BA.html","OnEventTeleportStatusChanged Event","当前是否可以传送事件"];
+search_result['136']=["topic_00000000000000C9.html","OnEventAllPlaceToGroup Event","人物集合到位置组事件\r\n参数 string 位置组名称  bool 是否是所有人"];

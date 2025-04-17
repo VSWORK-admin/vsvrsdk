@@ -1,1 +1,1 @@
-search_result['281']=["topic_0000000000000147.html","VSEngine.OpenBigScreenWebView Method","打开大屏幕网页\r\nPC、VR端是在应用内打开网页，显示在大屏上，也可切换到全屏显示 手机端使用手机浏览器打开原生网页，显示在应用之上"];
+search_result['281']=["topic_0000000000000158.html","VSEngine.SetBigScreenProperty Method","设置大屏幕的属性"];

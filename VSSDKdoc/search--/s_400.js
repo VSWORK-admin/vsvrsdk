@@ -1,1 +1,1 @@
-search_result['400']=["topic_00000000000001BC.html","VSEngine.SetSelfAvatarHide Method","设置自己隐身,不同步自身数据给其他人，无法与别人交流"];
+search_result['400']=["topic_00000000000001CB.html","VSEngine.OpenLaserPenDraw Method","开启画笔功能"];

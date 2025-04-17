@@ -1,1 +1,1 @@
-search_result['94']=["topic_0000000000000090.html","OnEventAdminChanged Event","管理员改变事件\r\n参数 ConnectAvatars sceneavatars[0].id是当前管理员"];
+search_result['94']=["topic_000000000000009F.html","OnEventLoadedFbxAvatarModel Event","加载FBX avatar角色模型事件\r\nLoadFbxAvatarModel 请求加载fbx人物模型，加载成功后触发"];

@@ -1,1 +1,1 @@
-search_result['446']=["topic_00000000000001EA.html","VSEngine.GetNowRoomVoiceExRoomID Method","获取当前语音子房间ID"];
+search_result['446']=["topic_00000000000001F9.html","VSEngine.GetNowScenePrefix Method","获取当前场景的前缀（用来区分平台的）"];

@@ -1,1 +1,1 @@
-search_result['558']=["topic_000000000000025A.html","VSEngine.SetupTranslateLanguage Method","设置翻译的语言"];
+search_result['558']=["topic_0000000000000269.html","VSEngine.VideoCaptureStop Method","关闭录制视频"];

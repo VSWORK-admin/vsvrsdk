@@ -1,1 +1,1 @@
-search_result['357']=["topic_0000000000000191.html","VSEngine.StopPreviewScreenShareView Method","结束预览投屏 分享"];
+search_result['357']=["topic_00000000000001A0.html","VSEngine.StopShareScreen Method","结束分享屏幕\r\n共享"];

@@ -1,1 +1,1 @@
-search_result['451']=["topic_00000000000001EF.html","VSEngine.IsRoomEnableMediaRes Method","判断当前频道是否可以下载资源"];
+search_result['451']=["topic_00000000000001FE.html","VSEngine.GetNowActionRoomID Method","获取当前动作频道id"];

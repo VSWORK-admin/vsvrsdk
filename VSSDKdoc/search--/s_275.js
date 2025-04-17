@@ -1,1 +1,1 @@
-search_result['275']=["topic_0000000000000143.html","VSEngine.SetBigScreenShowImage (WsMediaFile, Single) Method","设置大屏幕显示图片\r\nWsMediaFile 可以只传 URL\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];
+search_result['275']=["topic_0000000000000152.html","VSEngine.ChangeSelfAvatarModel Method","切换自己的avatar模型"];

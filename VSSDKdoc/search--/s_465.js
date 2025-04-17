@@ -1,1 +1,1 @@
-search_result['465']=["topic_00000000000001FD.html","VSEngine.SetMyAvatarModelID Method","设置自己的人物的avatar角色模型id"];
+search_result['465']=["topic_000000000000020C.html","VSEngine.GetNowRoomMaxUserCount Method","获取频道最大人数"];

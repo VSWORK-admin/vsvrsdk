@@ -1,1 +1,1 @@
-search_result['481']=["topic_000000000000020D.html","VSEngine.GetMediaResServerUrl Method","获取资源服务器地址(用于拼接)"];
+search_result['481']=["topic_000000000000021C.html","VSEngine.GetNowSelectAvatarID Method","获取当前选择avatar角色id"];

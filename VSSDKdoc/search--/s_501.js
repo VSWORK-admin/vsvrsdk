@@ -1,1 +1,1 @@
-search_result['501']=["topic_0000000000000221.html","VSEngine.GetNowDeviceName Method","获取当前设备名称(ios,mac,pc,phone等)"];
+search_result['501']=["topic_0000000000000230.html","VSEngine.GetBigScreenDefaultTexture Method","获取大屏幕系统默认图"];

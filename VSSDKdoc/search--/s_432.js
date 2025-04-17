@@ -1,1 +1,1 @@
-search_result['432']=["topic_00000000000001DC.html","VSEngine.GetMiddlePlatformConfigUrl Method","获取中台配置地址"];
+search_result['432']=["topic_00000000000001EB.html","VSEngine.GetPhotoCamera Method","获取主角视角拍照相机"];

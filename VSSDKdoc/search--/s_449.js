@@ -1,1 +1,1 @@
-search_result['449']=["topic_00000000000001ED.html","VSEngine.GetNowRoomSettings Method","获取房间后台配置数据"];
+search_result['449']=["topic_00000000000001FC.html","VSEngine.GetNowRoomID Method","获取当前频道id"];

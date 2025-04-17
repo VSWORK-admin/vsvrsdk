@@ -1,1 +1,1 @@
-search_result['121']=["topic_00000000000000AB.html","OnEventVoiceRoomInit Event","语音房间初始化回调\r\n参数 VRVoiceInitConfig"];
+search_result['121']=["topic_00000000000000BA.html","OnEventSelfLeaveRoom Event","自己离开房间回调\r\n通过系统主菜单退出房间事件"];

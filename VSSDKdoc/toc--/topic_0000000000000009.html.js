@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B0.html"],['560',"VSWorkSDK.Data Namespace","topic_0000000000000000.html"],['578',"WebResponseData Class","topic_0000000000000002.html"],['581',"Fields","topic_0000000000000002_vars--.html"],['586',"img Field","topic_0000000000000009.html"]];

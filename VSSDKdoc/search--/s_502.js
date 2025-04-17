@@ -1,1 +1,1 @@
-search_result['502']=["topic_0000000000000222.html","VSEngine.GetNowDeviceSNNumber Method","获取当前设备编号"];
+search_result['502']=["topic_0000000000000231.html","VSEngine.GetScreenSharePanel Method","获取屏幕分享大屏（whiteBoard）"];

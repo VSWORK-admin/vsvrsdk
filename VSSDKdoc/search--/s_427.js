@@ -1,1 +1,1 @@
-search_result['427']=["topic_00000000000001D7.html","VSEngine.GetLaserEndPoint Method","获取VR射线终点物体"];
+search_result['427']=["topic_00000000000001E6.html","VSEngine.GetVRRightTeleportAnchor Method","获取VR右手传送锚点"];

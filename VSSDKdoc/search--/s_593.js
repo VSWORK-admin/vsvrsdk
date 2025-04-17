@@ -1,1 +1,1 @@
-search_result['593']=["topic_000000000000027D.html","VSEngine.RTCPushEnable Method","是否开启RTC推流"];
+search_result['593']=["topic_000000000000028C.html","VSEngine.StopChatStreamRequest Method","停止流式请求"];

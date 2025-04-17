@@ -1,1 +1,1 @@
-search_result['415']=["topic_00000000000001CB.html","VSEngine.GetVRCameras Method","获取VR相机"];
+search_result['415']=["topic_00000000000001DA.html","VSEngine.GetAppName Method","获取当前应用名称"];

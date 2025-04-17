@@ -1,1 +1,1 @@
-search_result['509']=["topic_0000000000000229.html","VSEngine.GetAvatarInQueueIndex Method","获取当前Avatar的排序（第一个为Admin）"];
+search_result['509']=["topic_0000000000000238.html","VSEngine.GetNowDeviceName Method","获取当前设备名称(ios,mac,pc,phone等)"];

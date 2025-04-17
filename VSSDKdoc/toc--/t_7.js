@@ -1,1 +1,1 @@
-c['7']=[['8',"ApplyRendererInfo Method","topic_0000000000000077.html",0],['9',"Awake Method","topic_0000000000000076.html",0],['10',"GenerateLightmapInfo Method","topic_0000000000000079_overloads--.html",1],['13',"OnDestroy Method","topic_0000000000000078.html",0]];
+c['7']=[['8',"Methods","topic_000000000000008D_methods--.html",1]];

@@ -1,1 +1,1 @@
-search_result['72']=["topic_000000000000007F.html","Tools.GetBytes Method","根据编码类型返回输入的Byte[]"];
+search_result['72']=["topic_000000000000008E.html","Tools.EnumToList Method","用于枚举转int值"];

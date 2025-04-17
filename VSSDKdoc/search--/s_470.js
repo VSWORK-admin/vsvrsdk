@@ -1,1 +1,1 @@
-search_result['470']=["topic_0000000000000202.html","VSEngine.SetMyNickName Method","设置自己的昵称"];
+search_result['470']=["topic_0000000000000211.html","VSEngine.GetNowSceneInfo Method","获取当前场景信息"];

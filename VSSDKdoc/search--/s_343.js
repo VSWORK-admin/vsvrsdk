@@ -1,1 +1,1 @@
-search_result['343']=["topic_0000000000000183.html","VSEngine.SetVoiceBeautifier Method","设置语音美化，一般用于歌唱情景"];
+search_result['343']=["topic_0000000000000192.html","VSEngine.SetMicrophoneVolumeMax Method","设置自己麦克风音量最大\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];

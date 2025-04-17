@@ -1,1 +1,1 @@
-search_result['482']=["topic_000000000000020E.html","VSEngine.IsAdmin Method","判断是否为管理员"];
+search_result['482']=["topic_000000000000021D.html","VSEngine.SetNowSelectAvatarID Method","设置当前选择avatar角色id"];

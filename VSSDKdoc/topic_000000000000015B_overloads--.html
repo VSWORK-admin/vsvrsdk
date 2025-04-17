@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.LoadGlbFile Method</title>
+	<title>VSEngine.SetBigScreenShowImage Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -38,7 +39,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	  </div>
 	</div>
   	<div id="header-top-container2">
-    <div id="runningHeaderText">Assembly-CSharp Reference</div>
+    <div id="runningHeaderText">vsvr_sdk</div>
    
     <div id="search-bar-container">
      <form id="search-bar" action="search--.html">
@@ -75,11 +76,12 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.LoadGlbFile Method</h1>
+		<h1 class="title">VSEngine.SetBigScreenShowImage Method</h1>
         <p />
        
 
-        <summary-info>加载GLB模型文件</summary-info>
+        <summary-info>设置大屏幕显示图片
+该方法相关的回调事件为：<a target="_top" href="topic_00000000000000A3.html" onclick="this.target='';return true;">OnEventBigScreenShowImage</a></summary-info>
 
 
 <div class="section_container">
@@ -101,24 +103,27 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
             <tr>
               <td>
 
-<a href="topic_000000000000015B.html">LoadGlbFile(WsGlbMediaFile, float)</a>
+<a href="topic_000000000000015B.html">SetBigScreenShowImage(Texture2D, bool, float)</a>
               
               </td>
               <td>
 
-加载GLB模型文件
+设置大屏幕显示图片
+该方法相关的回调事件为：<a target="_top" href="topic_00000000000000A3.html" onclick="this.target='';return true;">OnEventBigScreenShowImage</a>
 
               </td>
             </tr>
             <tr>
               <td>
 
-<a href="topic_000000000000015A.html">LoadGlbFile(WsMediaFile, float)</a>
+<a href="topic_000000000000015A.html">SetBigScreenShowImage(WsMediaFile, float)</a>
               
               </td>
               <td>
 
-加载GLB模型文件
+设置大屏幕显示图片
+WsMediaFile 可以只传 URL
+该方法相关的回调事件为：<a target="_top" href="topic_00000000000000A3.html" onclick="this.target='';return true;">OnEventBigScreenShowImage</a>
 
               </td>
             </tr>
@@ -139,11 +144,11 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 	<div id="seeAlsoSection" class="section">	
 		<div>
-			<a href="topic_0000000000000080.html">VSEngine Class</a><br />
+			<a href="topic_0000000000000091.html">VSEngine Class</a><br />
 
 
 
-<a href="topic_000000000000007B.html">VSWorkSDK Namespace</a><br />
+<a href="topic_000000000000008C.html">VSWorkSDK Namespace</a><br />
 
 
 			

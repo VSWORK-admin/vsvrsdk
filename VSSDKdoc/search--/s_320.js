@@ -1,1 +1,1 @@
-search_result['320']=["topic_000000000000016C.html","VSEngine.RequestVideoCurrentTime Method","获取视频当前播放时长\r\n该方法相关的回调事件为：OnEventReceiveVideoCurrentTime"];
+search_result['320']=["topic_000000000000017B.html","VSEngine.PlayVideo Method","播放视频\r\nInitVideoPlayer之后调用"];

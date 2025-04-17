@@ -1,1 +1,1 @@
-search_result['269']=["topic_000000000000013D.html","VSEngine.GetAvatarModel Method","获取avatar模型节点"];
+search_result['269']=["topic_000000000000014C.html","VSEngine.SetForceHideAvatar Method","设置隐藏指定avatar角色"];

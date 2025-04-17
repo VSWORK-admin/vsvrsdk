@@ -1,1 +1,0 @@
-var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_0000000000000282.html"],['4',"\u003cdefault\u003e Namespace","topic_0000000000000284.html"],['5',"PrefabLightmapData Class","topic_0000000000000074.html"],['7',"Methods","topic_0000000000000074_methods--.html"],['10',"GenerateLightmapInfo Method","topic_0000000000000079_overloads--.html"]];

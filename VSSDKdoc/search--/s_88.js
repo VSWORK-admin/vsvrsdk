@@ -1,1 +1,1 @@
-search_result['88']=["topic_000000000000008A.html","OnEventAvatarChanged Event","avatar角色数据修改事件\r\n名字、模型、换装修改后触发"];
+search_result['88']=["topic_0000000000000099.html","OnEventRoomEnterNewAvatar Event","场景接收到新的人物事件\r\n有新人进入房间触发"];

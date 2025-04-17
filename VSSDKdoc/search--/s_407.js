@@ -1,1 +1,1 @@
-search_result['407']=["topic_00000000000001C3.html","VSEngine.GetAppName Method","获取当前应用名称"];
+search_result['407']=["topic_00000000000001D2.html","VSEngine.SetBigscreenGrabEnabled Method","打开大屏幕可拖拽模式"];

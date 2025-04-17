@@ -1,1 +1,1 @@
-search_result['540']=["topic_0000000000000248.html","VSEngine.SetVrCameraFarClipPlane Method","设置相机远截面"];
+search_result['540']=["topic_0000000000000257.html","VSEngine.IsAdminUserLaserPenOnly Method","判断是否仅管理员打开激光笔"];

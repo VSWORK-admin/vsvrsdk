@@ -1,1 +1,1 @@
-search_result['92']=["topic_000000000000008E.html","OnEventLoadedFbxAvatarModel Event","加载FBX avatar角色模型事件\r\nLoadFbxAvatarModel 请求加载fbx人物模型，加载成功后触发"];
+search_result['92']=["topic_000000000000009D.html","OnEventDestroyAvatar Event","销毁avatar角色事件\r\n该人物离开房间时触发\r\n参数 string 是人物avatarid"];

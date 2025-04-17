@@ -1,1 +1,1 @@
-search_result['563']=["topic_000000000000025F.html","VSEngine.SetTransformControlCamera Method","设置物体控制相机"];
+search_result['563']=["topic_000000000000026E.html","VSEngine.SetCaanvasOnGameScreenShare Method","分享应用窗口的画面时是否显示Canvas元素"];

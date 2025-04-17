@@ -1,1 +1,1 @@
-search_result['144']=["topic_00000000000000C2.html","OnEventScreenShareTextureSizeChange Event","共享图片尺寸改变\r\n参数 分享面板名称、分享画面宽、高"];
+search_result['144']=["topic_00000000000000D1.html","OnEventUserShareScreen Event","用户共享屏幕回调\r\n有用户分享或关闭分享 屏幕、摄像头触发回调\r\n参数 UserScreenShareReqData  分享用户ID 开启关闭分享"];

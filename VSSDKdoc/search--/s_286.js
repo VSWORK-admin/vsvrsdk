@@ -1,1 +1,1 @@
-search_result['286']=["topic_000000000000014C.html","VSEngine.SendMsgToWebview Method","发送消息给网页\r\n该方法相关的回调事件为：OnEventReceiveWebviewMessage"];
+search_result['286']=["topic_000000000000015B_overloads--.html","VSEngine.SetBigScreenShowImage Method","设置大屏幕显示图片\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];

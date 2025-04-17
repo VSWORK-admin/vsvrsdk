@@ -1,1 +1,1 @@
-search_result['479']=["topic_000000000000020B.html","VSEngine.IsPlatformMiniProgram Method","判断是否为云渲染端小程序"];
+search_result['479']=["topic_000000000000021A.html","VSEngine.IsLaserPenEnable Method","判断vr激光笔是否打开"];

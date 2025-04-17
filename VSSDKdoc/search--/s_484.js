@@ -1,1 +1,1 @@
-search_result['484']=["topic_0000000000000210.html","VSEngine.IsMyAvatarHide Method","判断自己的avatar角色是否隐藏"];
+search_result['484']=["topic_000000000000021F.html","VSEngine.IsPlatformPhone Method","判断是否为手机端"];

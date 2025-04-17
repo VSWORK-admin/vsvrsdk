@@ -1,1 +1,1 @@
-search_result['515']=["topic_000000000000022F.html","VSEngine.IsHideAllAvatar Method","判断是否隐藏场景中所有Avatar"];
+search_result['515']=["topic_000000000000023E.html","VSEngine.GetAllActiveAvatarID Method","获取当前显示的AvatarID列表"];

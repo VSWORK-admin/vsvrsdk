@@ -1,1 +1,1 @@
-search_result['318']=["topic_000000000000016A.html","VSEngine.SetVideoMuteAudio Method","设置视频是否静音"];
+search_result['318']=["topic_0000000000000179.html","VSEngine.RequestPdfRenderPlayerPageCount Method","请求PDF文件总页数\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfPageCount"];

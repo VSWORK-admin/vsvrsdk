@@ -1,1 +1,1 @@
-search_result['487']=["topic_0000000000000213.html","VSEngine.GetGlbRoot Method","获取glb模型的根路径"];
+search_result['487']=["topic_0000000000000222.html","VSEngine.IsPlatformMiniProgram Method","判断是否为云渲染端小程序"];

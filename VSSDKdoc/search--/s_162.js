@@ -1,1 +1,1 @@
-search_result['162']=["topic_00000000000000D4.html","OnEventVrRightStickClick Event","右手柄摇杆键触发"];
+search_result['162']=["topic_00000000000000E3.html","OnEventVrBButtonUp Event","手柄B键抬起"];

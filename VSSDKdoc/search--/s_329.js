@@ -1,1 +1,1 @@
-search_result['329']=["topic_0000000000000175.html","VSEngine.SetVoiceRange Method","修改声场范围 （语音可听范围）"];
+search_result['329']=["topic_0000000000000184.html","VSEngine.RequestVideoInfo Method","请求视频信息"];

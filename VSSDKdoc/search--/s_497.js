@@ -1,1 +1,1 @@
-search_result['497']=["topic_000000000000021D.html","VSEngine.EnableVRStickControlRotate Method","VR端遥感转向"];
+search_result['497']=["topic_000000000000022C.html","VSEngine.GetGlbObjectRoot Method","获取glbObj模型的根路径"];
