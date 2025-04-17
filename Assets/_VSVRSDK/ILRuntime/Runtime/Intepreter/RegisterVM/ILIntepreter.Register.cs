@@ -15,7 +15,7 @@ using ILRuntime.CLR.Utils;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 
 namespace ILRuntime.Runtime.Intepreter

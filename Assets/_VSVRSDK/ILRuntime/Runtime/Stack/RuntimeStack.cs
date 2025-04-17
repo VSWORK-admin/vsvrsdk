@@ -10,7 +10,7 @@ using ILRuntime.Runtime.Intepreter;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 namespace ILRuntime.Runtime.Stack
 {
@@ -165,7 +165,7 @@ namespace ILRuntime.Runtime.Stack
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
             ((List<object>)managedStack).RemoveRange(mStackBase, managedStack.Count - mStackBase);
 #else
-            ((UncheckedList<object>)managedStack).RemoveRange(mStackBase, managedStack.Count - mStackBase);
+            ((List<object>)managedStack).RemoveRange(mStackBase, managedStack.Count - mStackBase);
 #endif
             valueTypePtr = frame.ValueTypeBasePointer;
             return ret;
@@ -604,7 +604,7 @@ namespace ILRuntime.Runtime.Stack
                 else
                     throw new NotSupportedException();
 #else
-                    ((UncheckedList<object>)managedStack).RemoveRange(start, managedStack.Count - start);
+                    ((List<object>)managedStack).RemoveRange(start, managedStack.Count - start);
 #endif
             }
         }

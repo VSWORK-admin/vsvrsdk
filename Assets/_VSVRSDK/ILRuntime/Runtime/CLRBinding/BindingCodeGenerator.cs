@@ -53,7 +53,7 @@ using ILRuntime.CLR.Utils;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 
 namespace ILRuntime.Runtime.Generated
@@ -271,7 +271,7 @@ using ILRuntime.CLR.Utils;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 namespace ILRuntime.Runtime.Generated
 {
@@ -363,7 +363,7 @@ using System.Reflection;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 namespace ILRuntime.Runtime.Generated
 {
@@ -673,7 +673,7 @@ using ILRuntime.CLR.Utils;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 namespace ILRuntime.Runtime.Generated
 {
@@ -842,7 +842,7 @@ using System.Reflection;
 #if DEBUG && !DISABLE_ILRUNTIME_DEBUG
 using AutoList = System.Collections.Generic.List<object>;
 #else
-using AutoList = ILRuntime.Other.UncheckedList<object>;
+using AutoList = System.Collections.Generic.List<object>;
 #endif
 namespace ILRuntime.Runtime.Generated
 {
