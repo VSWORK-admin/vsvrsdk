@@ -660,7 +660,7 @@ namespace VSWorkSDK
         /// <summary>
         /// 返回加载模型进度
         /// </summary>
-        public event Action<string> OnEventLoadModelProgress;
+        public event Action<VRProgressInfo> OnEventLoadModelProgress;
         /// <summary>
         /// 网页点击输入框
         /// </summary>
