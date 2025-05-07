@@ -1,1 +1,1 @@
-search_result['577']=["topic_000000000000027C.html","VSEngine.ShowOrHideAppStickControl Method","显示或者关闭应用的遥感控制"];
+search_result['577']=["topic_000000000000027C.html","VSEngine.SettingButtonClick Method","设置按钮是否打开"];

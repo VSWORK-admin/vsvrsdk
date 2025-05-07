@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.SetStopSelfMediaPlayerByOhter Method</title>
+	<title>VSEngine.SetMusicVedioAudioTrackMode Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.SetStopSelfMediaPlayerByOhter Method</h1>
+		<h1 class="title">VSEngine.SetMusicVedioAudioTrackMode Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>停止MV的播放</summary-info>
+        <summary-info>MV的声音模式</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub SetStopSelfMediaPlayerByOhter( _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub SetMusicVedioAudioTrackMode( _&nbsp;<br />   ByVal <i>type</i> As <a target="_top" href="topic_000000000000005A.html" onclick="this.target='';return true;">AudioDualMonoModeType</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetStopSelfMediaPlayerByOhter(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetMusicVedioAudioTrackMode(&nbsp;<br />   <a target="_top" href="topic_000000000000005A.html" onclick="this.target='';return true;">AudioDualMonoModeType</a> <i>type</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetStopSelfMediaPlayerByOhter(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetMusicVedioAudioTrackMode(&nbsp;<br />   <a target="_top" href="topic_000000000000005A.html" onclick="this.target='';return true;">AudioDualMonoModeType</a> <i>type</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function SetStopSelfMediaPlayerByOhter(&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function SetMusicVedioAudioTrackMode(&nbsp;<br />    <i>type</i> : <a target="_top" href="topic_000000000000005A.html" onclick="this.target='';return true;">AudioDualMonoModeType</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -270,7 +270,20 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="delay" class="parameterList">
+	Parameters</h4><dl paramName="type" class="parameterList">
+	<dt>
+		<span class="parameter">
+			type
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="topic_000000000000005A.html" onclick="this.target='';return true;">AudioDualMonoModeType</a> 
+	</dd>
+</dl>
+<p>
+	0立体声 1左声道 2右声道 3混合声道 
+</p>
+<dl paramName="delay" class="parameterList">
 	<dt>
 		<span class="parameter">
 			delay

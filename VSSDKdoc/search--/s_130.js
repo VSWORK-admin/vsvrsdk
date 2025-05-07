@@ -1,1 +1,1 @@
-search_result['130']=["topic_00000000000000C3.html","OnEventMicrophoneStatusChange Event","场景内用户开关麦事件\r\n数据 string 用户ID  bool 开关麦"];
+search_result['130']=["topic_00000000000000C3.html","OnEventVoiceMicrophoneMult Event","开关麦事件\r\n数据 TRUE  关麦 FALSE 开麦"];

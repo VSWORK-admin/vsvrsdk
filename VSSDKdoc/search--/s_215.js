@@ -1,1 +1,1 @@
-search_result['215']=["topic_0000000000000118.html","OnEventLoadModelProgress Event","返回加载模型进度"];
+search_result['215']=["topic_0000000000000118.html","OnEventLongVoiceIdentifyResult Event","返回一句话语音转文字的结果"];

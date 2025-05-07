@@ -1,1 +1,1 @@
-search_result['121']=["topic_00000000000000BA.html","OnEventSelfLeaveRoom Event","自己离开房间回调\r\n通过系统主菜单退出房间事件"];
+search_result['121']=["topic_00000000000000BA.html","OnEventRoomConnectClose Event","房间关闭事件回调\r\n参数string 服务器地址"];

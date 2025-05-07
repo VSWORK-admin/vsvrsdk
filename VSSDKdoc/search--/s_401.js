@@ -1,1 +1,1 @@
-search_result['401']=["topic_00000000000001CC.html","VSEngine.OpenSpacePenDraw Method","开启空间画笔功能"];
+search_result['401']=["topic_00000000000001CC.html","VSEngine.OpenLaserPenDraw Method","开启画笔功能"];

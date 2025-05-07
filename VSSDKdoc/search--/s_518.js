@@ -1,1 +1,1 @@
-search_result['518']=["topic_0000000000000241.html","VSEngine.GetAllAvatarName Method","获取所有Avatar的昵称列表"];
+search_result['518']=["topic_0000000000000241.html","VSEngine.GetAvatarInQueueIndex Method","获取当前Avatar的排序（第一个为Admin）"];

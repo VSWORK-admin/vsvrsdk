@@ -1,1 +1,1 @@
-search_result['193']=["topic_0000000000000102.html","OnEventShowCanvasMask_1OnGameScreen Event","是否显示屏幕投屏的Canvas遮罩1\r\n参数 是否显示Canvas遮罩1"];
+search_result['193']=["topic_0000000000000102.html","OnEventStopCaptureRtmpSucceed Event","结束录制推流消息"];

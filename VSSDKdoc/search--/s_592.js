@@ -1,1 +1,1 @@
-search_result['592']=["topic_000000000000028B.html","VSEngine.StopShareGameScreen Method","停止分享场景内画面"];
+search_result['592']=["topic_000000000000028B.html","VSEngine.StartShareGameScreen Method","开始分享场景内的画面"];

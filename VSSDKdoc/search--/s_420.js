@@ -1,1 +1,1 @@
-search_result['420']=["topic_00000000000001DF.html","VSEngine.GetChoosedLanguage Method","获取当前语言"];
+search_result['420']=["topic_00000000000001DF.html","VSEngine.GetApiVersion Method","获取接口版本"];

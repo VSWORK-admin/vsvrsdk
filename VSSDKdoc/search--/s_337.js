@@ -1,1 +1,1 @@
-search_result['337']=["topic_000000000000018C.html","VSEngine.SetVoiceRange Method","修改声场范围 （语音可听范围）"];
+search_result['337']=["topic_000000000000018C.html","VSEngine.SetVoiceExitRoom Method","离开语音房间\r\n该方法相关的回调事件为：OnEventVoiceRoomExitEvent"];

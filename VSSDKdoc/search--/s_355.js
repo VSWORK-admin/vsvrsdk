@@ -1,1 +1,1 @@
-search_result['355']=["topic_000000000000019E.html","VSEngine.MarkObjectCanMove Method","标记物体是否可移动"];
+search_result['355']=["topic_000000000000019E.html","VSEngine.SendMovingObject Method","同步移动场景内物体"];

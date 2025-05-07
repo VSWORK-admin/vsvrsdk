@@ -1,1 +1,1 @@
-search_result['92']=["topic_000000000000009D.html","OnEventDestroyAvatar Event","销毁avatar角色事件\r\n该人物离开房间时触发\r\n参数 string 是人物avatarid"];
+search_result['92']=["topic_000000000000009D.html","OnEventSelectAvatar Event","选择avatar角色事件\r\n参数 被选择的角色ID"];

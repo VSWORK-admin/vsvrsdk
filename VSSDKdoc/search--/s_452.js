@@ -1,1 +1,1 @@
-search_result['452']=["topic_00000000000001FF.html","VSEngine.GetNowRoomVoiceAppID Method","获取当前语音的appid"];
+search_result['452']=["topic_00000000000001FF.html","VSEngine.GetNowActionRoomID Method","获取当前动作频道id"];

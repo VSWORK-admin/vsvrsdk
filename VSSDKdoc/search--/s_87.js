@@ -1,1 +1,1 @@
-search_result['87']=["topic_0000000000000098.html","OnEventRoomInitAvatar Event","场景实例化avatar角色事件\r\n开始实例化某个角色时触发  自己进入房间后房间内的人物都将依次实例化"];
+search_result['87']=["topic_0000000000000098.html","OnEventReceiveRoomSyncData Event","接收场景数据同步事件\r\n调用SendRoomSyncData 向房间内的其他用户同步数据，房间内所有人都将接收到\r\nRoomSycnData 一般 a: 存放自定义消息的key 用于区别不同的消息"];

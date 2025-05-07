@@ -1,1 +1,1 @@
-search_result['273']=["topic_0000000000000150.html","VSEngine.ClearFbxAvatarModelResource Method","清除资源中的avatar角色模型"];
+search_result['273']=["topic_0000000000000150.html","VSEngine.LoadFbxAvatarModel Method","加载Avatar fbx模型\r\n该方法相关的回调事件为：OnEventLoadedFbxAvatarModel"];

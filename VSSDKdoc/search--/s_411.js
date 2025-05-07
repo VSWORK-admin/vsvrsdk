@@ -1,1 +1,1 @@
-search_result['411']=["topic_00000000000001D6.html","VSEngine.SetCloudRenderExitData Method","设置云渲染退出时发送的json数据"];
+search_result['411']=["topic_00000000000001D6.html","VSEngine.BindInputToCloudRenderKeyboard Method","云渲染输入框转到网页输入框输入显示"];

@@ -1,1 +1,1 @@
-search_result['279']=["topic_0000000000000156.html","VSEngine.SetUserAdmin Method","设置user为管理员"];
+search_result['279']=["topic_0000000000000156.html","VSEngine.GetAvatarCurrentFrameData Method","获取avatar当前帧数据"];

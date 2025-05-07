@@ -1,1 +1,1 @@
-search_result['449']=["topic_00000000000001FC.html","VSEngine.GetNowRoomID Method","获取当前频道id"];
+search_result['449']=["topic_00000000000001FC.html","VSEngine.IsAvatarReady Method","判断人物连接频道完成"];

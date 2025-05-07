@@ -1,1 +1,1 @@
-search_result['386']=["topic_00000000000001BD.html","VSEngine.SetVrLaserOpen Method","设置VR激光笔打开"];
+search_result['386']=["topic_00000000000001BD.html","VSEngine.SetVrLaserEnable Method","设置VR激光笔可用"];

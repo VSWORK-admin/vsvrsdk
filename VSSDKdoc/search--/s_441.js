@@ -1,1 +1,1 @@
-search_result['441']=["topic_00000000000001F4.html","VSEngine.GetBackupServerUrl Method","获取备用服务器地址"];
+search_result['441']=["topic_00000000000001F4.html","VSEngine.GetMiddlePlatformConfigUrl Method","获取中台配置地址"];

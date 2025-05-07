@@ -1,1 +1,1 @@
-search_result['406']=["topic_00000000000001D1.html","VSEngine.SetLogerEnable Method","打开log调试界面"];
+search_result['406']=["topic_00000000000001D1.html","VSEngine.SetEnableVrDeviceOnOffEvent Method","设置是否可接收到VR设备穿戴事件"];

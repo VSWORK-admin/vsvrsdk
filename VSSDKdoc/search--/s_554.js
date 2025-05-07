@@ -1,1 +1,1 @@
-search_result['554']=["topic_0000000000000265.html","VSEngine.GetNamePanelMaxScale Method","获取名牌最大缩放值（系统限制限定名牌缩放的最大值为3）"];
+search_result['554']=["topic_0000000000000265.html","VSEngine.SetNamePanelVisibleMaxRange Method","设置名牌显示的最大距离 （超过这个值名牌将隐藏"];

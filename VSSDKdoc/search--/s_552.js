@@ -1,1 +1,1 @@
-search_result['552']=["topic_0000000000000263.html","VSEngine.GetNamePanelVisibleMaxRange Method","获取名牌显示的最大距离 （超过这个值名牌将隐藏）"];
+search_result['552']=["topic_0000000000000263.html","VSEngine.GetScreenShareUserData Method","获取屏幕分享用户数据"];

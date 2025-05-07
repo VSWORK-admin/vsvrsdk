@@ -1,1 +1,1 @@
-search_result['147']=["topic_00000000000000D4.html","OnEventReceiveMusicVedioInfo Event","接收到MV信息\r\nRequestMusicVedioInfo 请求MV信息回调\r\n参数 视频信息 json格式"];
+search_result['147']=["topic_00000000000000D4.html","OnEventScreenShareTextureSizeChange Event","共享图片尺寸改变\r\n参数 分享面板名称、分享画面宽、高"];

@@ -1,1 +1,1 @@
-search_result['202']=["topic_000000000000010B.html","OnEventAgoraShareFaild Event","声网分享失败回调"];
+search_result['202']=["topic_000000000000010B.html","OnEventCameraDirectorMode Event","切换摄像机导播模式事件"];

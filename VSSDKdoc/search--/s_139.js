@@ -1,1 +1,1 @@
-search_result['139']=["topic_00000000000000CC.html","OnEventVrPlacePointEnter Event","VR 射线触碰放置点选择事件"];
+search_result['139']=["topic_00000000000000CC.html","OnEventTeleportStatusChanged Event","当前是否可以传送事件"];

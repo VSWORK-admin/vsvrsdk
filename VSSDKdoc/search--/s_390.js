@@ -1,1 +1,1 @@
-search_result['390']=["topic_00000000000001C1.html","VSEngine.SetSystemMenuEnable Method","设置显示系统菜单"];
+search_result['390']=["topic_00000000000001C1.html","VSEngine.SetSendFrameRate Method","设置同步数据帧速率"];

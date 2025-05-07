@@ -1,1 +1,1 @@
-search_result['102']=["topic_00000000000000A7.html","OnEventBigScreenUpdateImage Event","大屏幕更新图片事件"];
+search_result['102']=["topic_00000000000000A7.html","OnEventBigScreenVideoFrameReady Event","大屏幕显示视频第一帧事件"];

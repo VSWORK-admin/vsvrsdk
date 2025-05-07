@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.PostWebRequest Method</title>
+	<title>VSEngine.GetWebRequest Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.PostWebRequest Method</h1>
+		<h1 class="title">VSEngine.GetWebRequest Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>post接口请求</summary-info>
+        <summary-info>get接口请求</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub PostWebRequest( _&nbsp;<br />   ByVal <i>url</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>data</i> As <strong>WWWForm</strong>, _&nbsp;<br />   ByVal <i>postDoneCallBack</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>), _&nbsp;<br />   ByVal <i>progressCallBack</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a>), _&nbsp;<br />   Optional ByVal <i>header</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>) = null, _&nbsp;<br />   Optional ByRef <i>timeout</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub GetWebRequest( _&nbsp;<br />   ByVal <i>url</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>data</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.object">Object</a>), _&nbsp;<br />   ByVal <i>getDoneCallBack</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>), _&nbsp;<br />   Optional ByVal <i>progressCallBack</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a>) = null, _&nbsp;<br />   Optional ByVal <i>heads</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>) = null, _&nbsp;<br />   Optional ByRef <i>timeout</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> PostWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>url</i>,&nbsp;<br />   <strong>WWWForm</strong> <i>data</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>&gt; <i>postDoneCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt; <i>progressCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>&gt; <i>header</i> = null,&nbsp;<br />   out <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>timeout</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> GetWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>url</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.object">object</a>&gt; <i>data</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>&gt; <i>getDoneCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt; <i>progressCallBack</i> = null,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>&gt; <i>heads</i> = null,&nbsp;<br />   out <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>timeout</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> PostWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>url</i>,&nbsp;<br />   <strong>WWWForm</strong>^ <i>data</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^&gt;^ <i>postDoneCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt;^ <i>progressCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^&gt;^ <i>header</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&amp; <i>timeout</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> GetWebRequest(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>url</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.object">object</a>^&gt;^ <i>data</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^&gt;^ <i>getDoneCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt;^ <i>progressCallBack</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^&gt;^ <i>heads</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&amp; <i>timeout</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -281,7 +281,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	提交地址 
+	接口地址 
 </p>
 <dl paramName="data" class="parameterList">
 	<dt>
@@ -290,16 +290,16 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 		</span>
 	</dt>
 	<dd>
-		<strong>WWWForm</strong> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.object">object</a>&gt; 
 	</dd>
 </dl>
 <p>
-	提交数据 
+	url地址附加参数 
 </p>
-<dl paramName="postDoneCallBack" class="parameterList">
+<dl paramName="getDoneCallBack" class="parameterList">
 	<dt>
 		<span class="parameter">
-			postDoneCallBack
+			getDoneCallBack
 		</span>
 	</dt>
 	<dd>
@@ -307,7 +307,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	提交成功回调 
+	成功回调 结果 
 </p>
 <dl paramName="progressCallBack" class="parameterList">
 	<dt>
@@ -320,12 +320,12 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	提交进度回调 
+	进度回调 
 </p>
-<dl paramName="header" class="parameterList">
+<dl paramName="heads" class="parameterList">
 	<dt>
 		<span class="parameter">
-			header
+			heads
 		</span>
 	</dt>
 	<dd>
@@ -333,7 +333,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	请求头部 
+	web请求头 
 </p>
 <dl paramName="timeout" class="parameterList">
 	<dt>

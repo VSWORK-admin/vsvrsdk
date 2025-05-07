@@ -1,1 +1,1 @@
-search_result['94']=["topic_000000000000009F.html","OnEventLoadedFbxAvatarModel Event","加载FBX avatar角色模型事件\r\nLoadFbxAvatarModel 请求加载fbx人物模型，加载成功后触发"];
+search_result['94']=["topic_000000000000009F.html","OnEventDestroyAvatarModel Event","删除avatar模型事件\r\n人物模型即将被销毁时触发\r\n参数 GameObject 是要被销毁的驱动器节点"];

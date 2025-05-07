@@ -1,1 +1,1 @@
-search_result['575']=["topic_000000000000027A.html","VSEngine.ShowBtnRunRootEnable Method","是否显示跑步图标"];
+search_result['575']=["topic_000000000000027A.html","VSEngine.ShowThirdPersionRootEnable Method","是否第三人称切换图标"];

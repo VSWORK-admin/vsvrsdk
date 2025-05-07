@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.ClearSceneDataObject Method</title>
+	<title>VSEngine.ClearCacheDataFile Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.ClearSceneDataObject Method</h1>
+		<h1 class="title">VSEngine.ClearCacheDataFile Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>清除场景数据</summary-info>
+        <summary-info>清除缓存数据</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub ClearSceneDataObject( _&nbsp;<br />   ByVal <i>type</i> As <a target="_top" href="topic_000000000000002C.html" onclick="this.target='';return true;">SceneDataObjectType</a> _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub ClearCacheDataFile( _&nbsp;<br />   ByVal <i>type</i> As <a target="_top" href="topic_0000000000000026.html" onclick="this.target='';return true;">CacheDataFileType</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ClearSceneDataObject(&nbsp;<br />   <a target="_top" href="topic_000000000000002C.html" onclick="this.target='';return true;">SceneDataObjectType</a> <i>type</i>&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ClearCacheDataFile(&nbsp;<br />   <a target="_top" href="topic_0000000000000026.html" onclick="this.target='';return true;">CacheDataFileType</a> <i>type</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ClearSceneDataObject(&nbsp;<br />   <a target="_top" href="topic_000000000000002C.html" onclick="this.target='';return true;">SceneDataObjectType</a> <i>type</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ClearCacheDataFile(&nbsp;<br />   <a target="_top" href="topic_0000000000000026.html" onclick="this.target='';return true;">CacheDataFileType</a> <i>type</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function ClearSceneDataObject(&nbsp;<br />    <i>type</i> : <a target="_top" href="topic_000000000000002C.html" onclick="this.target='';return true;">SceneDataObjectType</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function ClearCacheDataFile(&nbsp;<br />    <i>type</i> : <a target="_top" href="topic_0000000000000026.html" onclick="this.target='';return true;">CacheDataFileType</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -277,11 +277,24 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href="topic_000000000000002C.html" onclick="this.target='';return true;">SceneDataObjectType</a> 
+		<a target="_top" href="topic_0000000000000026.html" onclick="this.target='';return true;">CacheDataFileType</a> 
 	</dd>
 </dl>
 <p>
-	场景数据类型 
+	数据类型 
+</p>
+<dl paramName="delay" class="parameterList">
+	<dt>
+		<span class="parameter">
+			delay
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
+	</dd>
+</dl>
+<p>
+	延迟调用 秒 
 </p>
 
 <p />

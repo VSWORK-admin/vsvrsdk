@@ -1,1 +1,1 @@
-search_result['558']=["topic_0000000000000269.html","VSEngine.VideoCaptureStop Method","关闭录制视频"];
+search_result['558']=["topic_0000000000000269.html","VSEngine.VideoCaptureStart Method","开启录制视频"];

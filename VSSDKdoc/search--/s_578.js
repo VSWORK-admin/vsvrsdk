@@ -1,1 +1,1 @@
-search_result['578']=["topic_000000000000027D.html","VSEngine.LogSaveToServer Method","保存Log信息到服务器"];
+search_result['578']=["topic_000000000000027D.html","VSEngine.ShowOrHideAppStickControl Method","显示或者关闭应用的遥感控制"];

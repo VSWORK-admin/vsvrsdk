@@ -1,1 +1,1 @@
-search_result['243']=["topic_0000000000000132.html","VSEngine.SwitchCameraViewMode Method","切换视角\r\n该方法相关的回调事件为：OnEventSwitchCameraViewMode"];
+search_result['243']=["topic_0000000000000132.html","VSEngine.ShowRoomMarqueeLog Method","设置翻译的信息"];

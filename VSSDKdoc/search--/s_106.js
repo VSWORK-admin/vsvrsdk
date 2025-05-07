@@ -1,1 +1,1 @@
-search_result['106']=["topic_00000000000000AB.html","OnEventDownLoadFileProgress Event","文件下载进度"];
+search_result['106']=["topic_00000000000000AB.html","OnEventGetTxtFileString Event","加载TXT文件接收到文件内容事件\r\n参数 TXT 内容"];

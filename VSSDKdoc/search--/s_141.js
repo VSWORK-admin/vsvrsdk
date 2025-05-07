@@ -1,1 +1,1 @@
-search_result['141']=["topic_00000000000000CE.html","OnEventPlacePortTo Event","人物放置到某个位置事件"];
+search_result['141']=["topic_00000000000000CE.html","OnEventVrPlacePointExit Event","VR 射线离开放置点选择事件"];

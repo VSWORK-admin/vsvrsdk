@@ -1,1 +1,1 @@
-search_result['294']=["topic_0000000000000163.html","VSEngine.SendMsgToWebview Method","发送消息给网页\r\n该方法相关的回调事件为：OnEventReceiveWebviewMessage"];
+search_result['294']=["topic_0000000000000163.html","VSEngine.ShowBigScreenWeb Method","显示大屏幕的Web页面"];

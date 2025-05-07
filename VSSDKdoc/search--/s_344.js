@@ -1,1 +1,1 @@
-search_result['344']=["topic_0000000000000193.html","VSEngine.IsVoiceMicrophoneOn Method","麦克风是否打开"];
+search_result['344']=["topic_0000000000000193.html","VSEngine.SetMicrophoneVolumeMax Method","设置自己麦克风音量最大\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];

@@ -1,1 +1,1 @@
-search_result['85']=["topic_0000000000000096.html","OnEventReceiveRoomSavedData Event","接收场景数据保存事件\r\n调用RequestRoomSavedData请求房间存储的数据后 触发事件"];
+search_result['85']=["topic_0000000000000096.html","OnEventSystemExpandEvent Event","扩展事件（用于热更新的接口向SDK场景传递数据）\r\n参数 string 为事件类型标识\r\n参数 List 为事件数据"];

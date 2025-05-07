@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.GetGlbRoot Method</title>
+	<title>VSEngine.SetGlbObjectLoadTransform Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.GetGlbRoot Method</h1>
+		<h1 class="title">VSEngine.SetGlbObjectLoadTransform Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>获取glb模型的根路径</summary-info>
+        <summary-info>设置加载glb物体的初始位置、旋转、缩放</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Function GetGlbRoot() As <strong>Transform</strong></pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub SetGlbObjectLoadTransform( _&nbsp;<br />   ByVal <i>pos</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>rot</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>scale</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <strong>Transform</strong> GetGlbRoot()</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetGlbObjectLoadTransform(&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Vector3</strong> <i>rot</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>scale</i>&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><strong>Transform</strong>^ GetGlbRoot() </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetGlbObjectLoadTransform(&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Vector3</strong> <i>rot</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>scale</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function GetGlbRoot() : <strong>Transform</strong>;</pre>			
+					<pre xml:space="preserve" class="brush: js">public function SetGlbObjectLoadTransform(&nbsp;<br />    <i>pos</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>rot</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>scale</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -269,14 +269,49 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</div>
 
 
+<h4 class="subHeading">
+	Parameters</h4><dl paramName="pos" class="parameterList">
+	<dt>
+		<span class="parameter">
+			pos
+		</span>
+	</dt>
+	<dd>
+		<strong>Vector3</strong> 
+	</dd>
+</dl>
+<p>
+	位置 
+</p>
+<dl paramName="rot" class="parameterList">
+	<dt>
+		<span class="parameter">
+			rot
+		</span>
+	</dt>
+	<dd>
+		<strong>Vector3</strong> 
+	</dd>
+</dl>
+<p>
+	旋转 
+</p>
+<dl paramName="scale" class="parameterList">
+	<dt>
+		<span class="parameter">
+			scale
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
+	</dd>
+</dl>
+<p>
+	缩放 
+</p>
 
-	<h4 class="subHeading">
-		Return Value</h4>
-	<strong>Transform</strong> 
-		<p>
-		模型的根路径 
-	</p>
-	
+<p />
+
 
 
 

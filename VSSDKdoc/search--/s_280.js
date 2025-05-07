@@ -1,1 +1,1 @@
-search_result['280']=["topic_0000000000000157.html","VSEngine.ShowBigScreen Method","显示大屏幕"];
+search_result['280']=["topic_0000000000000157.html","VSEngine.SetUserAdmin Method","设置user为管理员"];

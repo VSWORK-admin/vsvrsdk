@@ -1,1 +1,1 @@
-search_result['465']=["topic_000000000000020C.html","VSEngine.GetNowRoomMaxUserCount Method","获取频道最大人数"];
+search_result['465']=["topic_000000000000020C.html","VSEngine.GetNowRoomVoiceAppKey Method","获取语音房间的appkey（时效）"];

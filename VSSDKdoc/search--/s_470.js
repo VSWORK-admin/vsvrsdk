@@ -1,1 +1,1 @@
-search_result['470']=["topic_0000000000000211.html","VSEngine.GetNowSceneInfo Method","获取当前场景信息"];
+search_result['470']=["topic_0000000000000211.html","VSEngine.GetNowRoomLinkSceneInfo Method","获取当前频道绑定的初始场景信息"];

@@ -1,1 +1,1 @@
-search_result['234']=["topic_0000000000000129.html","VSEngine.SetSoundMute Method","设置声场静音"];
+search_result['234']=["topic_0000000000000129.html","VSEngine.SetMenuPanelEnable Method","设置底部菜单面板的显示和隐藏"];

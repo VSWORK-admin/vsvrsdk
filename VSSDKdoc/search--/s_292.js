@@ -1,1 +1,1 @@
-search_result['292']=["topic_0000000000000161.html","VSEngine.CloseBigScreenWebInner Method",""];
+search_result['292']=["topic_0000000000000161.html","VSEngine.CloseBigScreenWebView Method","关闭网页\r\nOpenBigScreenWebView打开"];

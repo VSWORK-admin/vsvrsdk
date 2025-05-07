@@ -1,1 +1,1 @@
-search_result['353']=["topic_000000000000019C.html","VSEngine.SetAllAvatarToGroupPos Method","设置所有用户移动到指定group位置"];
+search_result['353']=["topic_000000000000019C.html","VSEngine.SetVoiceMicrophoneEnableFromAvatarIDlist Method","根据角色ID列表禁用或启用"];

@@ -1,1 +1,1 @@
-search_result['304']=["topic_000000000000016D.html","VSEngine.LoadBigScreenImageFile Method","加载大屏幕图片文件"];
+search_result['304']=["topic_000000000000016D.html","VSEngine.LoadBigScreenMediaFileAndSync Method","加载并同步大屏幕媒体文件\r\n只对主持人、助理主持人可用，并且在房间连接成功，房间支持媒体文件加载（IsRoomEnableMediaRes）"];

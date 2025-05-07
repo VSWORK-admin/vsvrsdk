@@ -1,1 +1,1 @@
-search_result['439']=["topic_00000000000001F2.html","VSEngine.GetMiddlePlatformServer Method","获取中台服务器域名"];
+search_result['439']=["topic_00000000000001F2.html","VSEngine.GetNowTestServerUrl Method","获取当前测试服务器url"];

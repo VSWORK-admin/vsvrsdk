@@ -1,1 +1,1 @@
-search_result['138']=["topic_00000000000000CB.html","OnEventTeleportStatusChanged Event","当前是否可以传送事件"];
+search_result['138']=["topic_00000000000000CB.html","OnEventAvatarTeleportTo Event","人物传送到某个位置事件"];

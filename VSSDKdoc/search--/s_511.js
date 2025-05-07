@@ -1,1 +1,1 @@
-search_result['511']=["topic_000000000000023A.html","VSEngine.IsOpenDrawing Method","判断是否开启画笔"];
+search_result['511']=["topic_000000000000023A.html","VSEngine.GetNowDeviceSNNumber Method","获取当前设备编号"];

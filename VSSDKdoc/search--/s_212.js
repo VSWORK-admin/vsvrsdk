@@ -1,1 +1,1 @@
-search_result['212']=["topic_0000000000000115.html","OnEventTencentVoiceIdentifyResult Event","返回语音转文字的实时结果"];
+search_result['212']=["topic_0000000000000115.html","OnEventTextTranslateResult Event","返回翻译资源 注意使用该事件需要再退出场景是将注册方法移除"];

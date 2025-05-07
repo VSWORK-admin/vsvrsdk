@@ -1,1 +1,1 @@
-search_result['363']=["topic_00000000000001A6.html","VSEngine.SetUpScreenShareToViewPanel Method","指定屏幕显示某人分享画面\r\n共享"];
+search_result['363']=["topic_00000000000001A6.html","VSEngine.SetRoomMultiScreenShare Method","设置是否支持多用户分享\r\n共享"];

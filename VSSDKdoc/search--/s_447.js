@@ -1,1 +1,1 @@
-search_result['447']=["topic_00000000000001FA.html","VSEngine.IsRoomLocalMode Method","判断是否是离线频道"];
+search_result['447']=["topic_00000000000001FA.html","VSEngine.GetNowScenePrefix Method","获取当前场景的前缀（用来区分平台的）"];

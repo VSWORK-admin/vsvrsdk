@@ -1,1 +1,1 @@
-search_result['384']=["topic_00000000000001BB.html","VSEngine.CleanCachesAndGC Method","清除缓存及GC"];
+search_result['384']=["topic_00000000000001BB.html","VSEngine.ClearSceneDataObject Method","清除场景数据"];

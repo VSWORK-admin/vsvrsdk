@@ -1,1 +1,1 @@
-search_result['303']=["topic_000000000000016C.html","VSEngine.LoadBigScreenMediaFileAndSync Method","加载并同步大屏幕媒体文件\r\n只对主持人、助理主持人可用，并且在房间连接成功，房间支持媒体文件加载（IsRoomEnableMediaRes）"];
+search_result['303']=["topic_000000000000016C.html","VSEngine.StartStreamChatWebRequest Method","请求流式对话\r\n该方法相关的回调事件为：OnEventReceiveStreamWebData OnEventReceiveStreamWebResult"];

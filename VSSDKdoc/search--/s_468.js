@@ -1,1 +1,1 @@
-search_result['468']=["topic_000000000000020F.html","VSEngine.GetNowMicrophoneVolume Method","获取当前麦克风音量"];
+search_result['468']=["topic_000000000000020F.html","VSEngine.IsMicrophoneEnable Method","判断麦克风开关状态"];

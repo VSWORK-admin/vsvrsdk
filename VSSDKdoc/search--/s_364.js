@@ -1,1 +1,1 @@
-search_result['364']=["topic_00000000000001A7.html","VSEngine.StartPreviewScreenShareView Method","预览投屏  分享"];
+search_result['364']=["topic_00000000000001A7.html","VSEngine.SetUpScreenShareToViewPanel Method","指定屏幕显示某人分享画面\r\n共享"];

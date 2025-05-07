@@ -1,1 +1,1 @@
-search_result['327']=["topic_0000000000000182.html","VSEngine.RequestVideoTexture Method","获取视频贴图\r\n该方法相关的回调事件为：OnEventReceiveVideoRenderTexture"];
+search_result['327']=["topic_0000000000000182.html","VSEngine.SetVideoMuteAudio Method","设置视频是否静音"];

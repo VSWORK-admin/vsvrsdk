@@ -1,1 +1,1 @@
-search_result['117']=["topic_00000000000000B6.html","OnEventRoomConnected Event","房间连接成功回调\r\n参数string 服务器地址"];
+search_result['117']=["topic_00000000000000B6.html","OnEventReceiveGifProgress Event","GIF录制进度事件"];

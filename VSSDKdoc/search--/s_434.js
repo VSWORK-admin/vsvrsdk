@@ -1,1 +1,1 @@
-search_result['434']=["topic_00000000000001ED.html","VSEngine.IsDirectorCamera Method","是否为导播相机模式"];
+search_result['434']=["topic_00000000000001ED.html","VSEngine.GetSystemMenuAnchor Method","获取系统菜单锚点"];

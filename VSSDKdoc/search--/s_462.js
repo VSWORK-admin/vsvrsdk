@@ -1,1 +1,1 @@
-search_result['462']=["topic_0000000000000209.html","VSEngine.IsAvatarVisibleOnLoading Method","判断加载场景时是否看见人（主要用于vr）"];
+search_result['462']=["topic_0000000000000209.html","VSEngine.GetNowSceneName Method","获取当前频道名称"];

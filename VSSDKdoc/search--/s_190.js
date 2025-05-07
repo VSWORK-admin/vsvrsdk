@@ -1,1 +1,1 @@
-search_result['190']=["topic_00000000000000FF.html","OnEventGetCapturePath Event","在视频录制结束时 获取录制视频的地址\r\n参数 保存地址"];
+search_result['190']=["topic_00000000000000FF.html","OnEventVrKeyboardChanged Event","VR键盘输入事件\r\n参数 键盘输入框内容"];

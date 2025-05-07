@@ -1,1 +1,1 @@
-search_result['134']=["topic_00000000000000C7.html","OnEventSelfPlaceTo Event","自身位置改变事件"];
+search_result['134']=["topic_00000000000000C7.html","OnEventPointExitHandler Event","射线离开事件\r\n参数 GameObject 3D空间物体"];

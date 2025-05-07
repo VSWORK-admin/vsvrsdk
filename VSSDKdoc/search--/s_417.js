@@ -1,1 +1,1 @@
-search_result['417']=["topic_00000000000001DC.html","VSEngine.GetApiKey Method","获取动作服务器参数Key"];
+search_result['417']=["topic_00000000000001DC.html","VSEngine.GetAppVersion Method","获取当前应用版本号"];

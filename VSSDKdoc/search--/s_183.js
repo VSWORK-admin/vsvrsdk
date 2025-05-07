@@ -1,1 +1,1 @@
-search_result['183']=["topic_00000000000000F8.html","OnEventVrRightTriggerAxis Event","右手柄扳机键坐标轴数据（float）"];
+search_result['183']=["topic_00000000000000F8.html","OnEventVrLeftTriggerAxis Event","左手柄扳机键坐标轴数据（float）"];

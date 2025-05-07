@@ -1,1 +1,1 @@
-search_result['495']=["topic_000000000000022A.html","VSEngine.GetGlbRoot Method","获取glb模型的根路径"];
+search_result['495']=["topic_000000000000022A.html","VSEngine.SetGlbObjectLoadTransform Method","设置加载glb物体的初始位置、旋转、缩放"];

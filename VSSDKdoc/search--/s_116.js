@@ -1,1 +1,1 @@
-search_result['116']=["topic_00000000000000B5.html","OnEventReceiveGifProgress Event","GIF录制进度事件"];
+search_result['116']=["topic_00000000000000B5.html","OnEventReceiveGifLocalPath Event","GIF录制结束 保存到本地事件\r\n参数 本地文件地址"];

@@ -1,1 +1,1 @@
-search_result['95']=["topic_00000000000000A0.html","OnEventSwitchCameraViewMode Event","切换相机视角事件\r\nSwitchCameraViewMode 切换第一第三人称后回调\r\n参数 1 代表当前是第一人称 3 是当前是第三人称"];
+search_result['95']=["topic_00000000000000A0.html","OnEventLoadedFbxAvatarModel Event","加载FBX avatar角色模型事件\r\nLoadFbxAvatarModel 请求加载fbx人物模型，加载成功后触发"];

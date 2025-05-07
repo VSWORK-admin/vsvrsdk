@@ -1,1 +1,1 @@
-search_result['196']=["topic_0000000000000105.html","OnEventStopSelfShareByOutSide Event","监听关闭系统投屏和摄像机或投屏失败的事件"];
+search_result['196']=["topic_0000000000000105.html","OnEventSystemSettingPanelHide Event","系统设置面板显示隐藏事件"];

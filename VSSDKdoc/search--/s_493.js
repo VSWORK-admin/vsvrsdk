@@ -1,1 +1,1 @@
-search_result['493']=["topic_0000000000000228.html","VSEngine.SetGlbSceneLoadTransform Method","设置加载glb场景的初始位置、旋转、缩放"];
+search_result['493']=["topic_0000000000000228.html","VSEngine.IsMyAvatarHide Method","判断自己的avatar角色是否隐藏"];

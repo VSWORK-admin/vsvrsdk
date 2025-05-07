@@ -1,1 +1,1 @@
-search_result['472']=["topic_0000000000000213.html","VSEngine.GetMyAvatarModelID Method","获取自己的人物的avatar角色模型id"];
+search_result['472']=["topic_0000000000000213.html","VSEngine.GetMyAvatarID Method","获取自己的人物的avatar角色id"];

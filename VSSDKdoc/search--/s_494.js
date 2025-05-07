@@ -1,1 +1,1 @@
-search_result['494']=["topic_0000000000000229.html","VSEngine.SetGlbObjectLoadTransform Method","设置加载glb物体的初始位置、旋转、缩放"];
+search_result['494']=["topic_0000000000000229.html","VSEngine.SetGlbSceneLoadTransform Method","设置加载glb场景的初始位置、旋转、缩放"];

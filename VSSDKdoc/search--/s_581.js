@@ -1,1 +1,1 @@
-search_result['581']=["topic_0000000000000280.html","VSEngine.StartBroadcastVoice Method","开启广播语音"];
+search_result['581']=["topic_0000000000000280.html","VSEngine.SetVRResetVoice Method","设置语音重置"];

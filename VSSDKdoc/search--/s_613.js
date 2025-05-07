@@ -1,1 +1,1 @@
-search_result['613']=["topic_00000000000002A0.html","VSEngine.SetVrStickMoveSpeed Method","设置VR端遥感移动的速度"];
+search_result['613']=["topic_00000000000002A0.html","VSEngine.SetVrStickMoveMaskShowORHide Method","设置VR端遥感行走时的黑色遮罩显示或隐藏"];

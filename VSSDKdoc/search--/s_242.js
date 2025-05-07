@@ -1,1 +1,1 @@
-search_result['242']=["topic_0000000000000131.html","VSEngine.ShowRoomMarqueeLog Method","设置翻译的信息"];
+search_result['242']=["topic_0000000000000131.html","VSEngine.StartSystemLongVoiceIdentify Method","开启系统侧长语音识别"];

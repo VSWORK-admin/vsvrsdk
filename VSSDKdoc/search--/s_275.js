@@ -1,1 +1,1 @@
-search_result['275']=["topic_0000000000000152.html","VSEngine.ChangeSelfAvatarModel Method","切换自己的avatar模型"];
+search_result['275']=["topic_0000000000000152.html","VSEngine.SyncSelfFrameDataToServer Method","强制同步自身数据到服务器"];

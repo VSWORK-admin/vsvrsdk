@@ -1,1 +1,1 @@
-search_result['482']=["topic_000000000000021D.html","VSEngine.SetNowSelectAvatarID Method","设置当前选择avatar角色id"];
+search_result['482']=["topic_000000000000021D.html","VSEngine.GetNowSelectAvatarID Method","获取当前选择avatar角色id"];

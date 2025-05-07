@@ -1,1 +1,1 @@
-search_result['433']=["topic_00000000000001EC.html","VSEngine.GetSystemMenuAnchor Method","获取系统菜单锚点"];
+search_result['433']=["topic_00000000000001EC.html","VSEngine.GetPhotoCamera Method","获取主角视角拍照相机"];

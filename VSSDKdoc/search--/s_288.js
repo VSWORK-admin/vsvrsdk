@@ -1,1 +1,1 @@
-search_result['288']=["topic_000000000000015D.html","VSEngine.SetBigScreenShowRTSP Method","设置大屏幕显示RTSP推流\r\n该方法相关的回调事件为：OnEventBigScreenRecieveRTSP"];
+search_result['288']=["topic_000000000000015D.html","VSEngine.SetBigScreenPrepareVideo Method","设置大屏幕准备视频\r\n只有管理员才能显示视频控制面板 播放、暂停、快进等\r\n该方法相关的回调事件为：OnEventBigScreenPrepareVideo"];

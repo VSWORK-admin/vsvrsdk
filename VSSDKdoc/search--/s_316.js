@@ -1,1 +1,1 @@
-search_result['316']=["topic_0000000000000177.html","VSEngine.CreatePdfRenderPlayer Method","创建PDF播放器\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];
+search_result['316']=["topic_0000000000000177.html","VSEngine.LoadSwitchRoomChannelFile Method","通过加载资源管理器文件切换频道\r\n比如文件内容是 linkroom,a270d4b8-025c-4666-a7af-e5e7ee194657,vbqrpayi\r\na270d4b8-025c-4666-a7af-e5e7ee194657 频道ID\r\nvbqrpayi 语音ID"];

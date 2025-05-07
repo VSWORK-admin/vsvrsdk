@@ -1,1 +1,1 @@
-search_result['522']=["topic_0000000000000245.html","VSEngine.IsSceneUpdateComplete Method","判断场景是否更新完成"];
+search_result['522']=["topic_0000000000000245.html","VSEngine.SetLaserPenColor Method","设置激光笔颜色"];

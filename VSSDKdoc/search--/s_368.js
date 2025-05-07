@@ -1,1 +1,1 @@
-search_result['368']=["topic_00000000000001AB.html","VSEngine.SetMusicVedioAudioDualMonoMode Method","设置当前MV的声道模式"];
+search_result['368']=["topic_00000000000001AB.html","VSEngine.RequestMusicVedioInfo Method","请求媒体播放信息"];

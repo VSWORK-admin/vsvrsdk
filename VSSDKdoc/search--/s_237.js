@@ -1,1 +1,1 @@
-search_result['237']=["topic_000000000000012C.html","VSEngine.EndSystemVoiceIdenetify Method","结束系统侧的语音转文字"];
+search_result['237']=["topic_000000000000012C.html","VSEngine.StartSystemVoiceIdentify Method","开启系统侧语音转文字"];

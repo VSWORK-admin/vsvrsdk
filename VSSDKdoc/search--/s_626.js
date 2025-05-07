@@ -1,1 +1,1 @@
-search_result['626']=["topic_00000000000002AD.html","VSEngine.SetPersonnelControlPanel Method","设置会议模式的人员分享页面的开启和关闭"];
+search_result['626']=["topic_00000000000002AD.html","VSEngine.CloseWebrtcBigScreenSharePanel Method","关闭会议模式大屏分享页面"];

@@ -1,1 +1,1 @@
-search_result['338']=["topic_000000000000018D.html","VSEngine.SetAddVoiceLoudSpeakerVolume Method","设置扬声器音量+  场景内其他用户音量大小\r\n该方法相关的回调事件为：OnEventVoiceLoudSpeakerVolumeChange"];
+search_result['338']=["topic_000000000000018D.html","VSEngine.SetVoiceRange Method","修改声场范围 （语音可听范围）"];

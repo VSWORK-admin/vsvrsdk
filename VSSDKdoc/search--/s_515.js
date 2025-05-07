@@ -1,1 +1,1 @@
-search_result['515']=["topic_000000000000023E.html","VSEngine.GetAllActiveAvatarID Method","获取当前显示的AvatarID列表"];
+search_result['515']=["topic_000000000000023E.html","VSEngine.GetAllAvatarID Method","获取所有AvatarID列表"];

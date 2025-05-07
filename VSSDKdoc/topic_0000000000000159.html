@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.SetBigScreenSize Method</title>
+	<title>VSEngine.SetBigScreenProperty Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.SetBigScreenSize Method</h1>
+		<h1 class="title">VSEngine.SetBigScreenProperty Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>设置大屏幕尺寸</summary-info>
+        <summary-info>设置大屏幕的属性</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub SetBigScreenSize( _&nbsp;<br />   ByVal <i>width</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a>, _&nbsp;<br />   ByVal <i>height</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub SetBigScreenProperty( _&nbsp;<br />   ByVal <i>pos</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>rot</i> As <strong>Quaternion</strong>, _&nbsp;<br />   ByVal <i>scale</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>curvangle</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>benable</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetBigScreenSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>height</i>&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetBigScreenProperty(&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Quaternion</strong> <i>rot</i>,&nbsp;<br />   <strong>Vector3</strong> <i>scale</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>curvangle</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>benable</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetBigScreenSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>height</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetBigScreenProperty(&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Quaternion</strong> <i>rot</i>,&nbsp;<br />   <strong>Vector3</strong> <i>scale</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>curvangle</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>benable</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function SetBigScreenSize(&nbsp;<br />    <i>width</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>,&nbsp;<br />    <i>height</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function SetBigScreenProperty(&nbsp;<br />    <i>pos</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>rot</i> : <strong>Quaternion</strong>,&nbsp;<br />    <i>scale</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>curvangle</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>benable</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -270,23 +270,75 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="width" class="parameterList">
+	Parameters</h4><dl paramName="pos" class="parameterList">
 	<dt>
 		<span class="parameter">
-			width
+			pos
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
+		<strong>Vector3</strong> 
 	</dd>
 </dl>
 <p>
-	宽 
+	位置 
 </p>
-<dl paramName="height" class="parameterList">
+<dl paramName="rot" class="parameterList">
 	<dt>
 		<span class="parameter">
-			height
+			rot
+		</span>
+	</dt>
+	<dd>
+		<strong>Quaternion</strong> 
+	</dd>
+</dl>
+<p>
+	旋转 
+</p>
+<dl paramName="scale" class="parameterList">
+	<dt>
+		<span class="parameter">
+			scale
+		</span>
+	</dt>
+	<dd>
+		<strong>Vector3</strong> 
+	</dd>
+</dl>
+<p>
+	缩放 
+</p>
+<dl paramName="curvangle" class="parameterList">
+	<dt>
+		<span class="parameter">
+			curvangle
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> 
+	</dd>
+</dl>
+<p>
+	大屏幕曲率 
+</p>
+<dl paramName="benable" class="parameterList">
+	<dt>
+		<span class="parameter">
+			benable
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
+	</dd>
+</dl>
+<p>
+	大屏幕是否打开 
+</p>
+<dl paramName="delay" class="parameterList">
+	<dt>
+		<span class="parameter">
+			delay
 		</span>
 	</dt>
 	<dd>
@@ -294,7 +346,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	高 
+	延迟调用 秒 
 </p>
 
 <p />

@@ -1,1 +1,1 @@
-search_result['109']=["topic_00000000000000AE.html","OnEventReceivePdfRenderTexture Event","接收到PDF的页面贴图\r\nVsEngine.Instance.ShowPdfRenderPlayerPage 显示PDF页回调\r\n参数GameObject为PDF控制器"];
+search_result['109']=["topic_00000000000000AE.html","OnEventReceivePdfPageCount Event","接收到PDF文件页数事件\r\nRequestPdfRenderPlayerPageCount 请求PDF文件页数回调\r\n参数GameObject为PDF控制器"];

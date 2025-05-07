@@ -1,1 +1,1 @@
-search_result['537']=["topic_0000000000000254.html","VSEngine.GetVoiceRoomBlackAvatarID Method","获取语音房间黑名单AvatarID\r\n在此名单中的无法与此用户语音交流"];
+search_result['537']=["topic_0000000000000254.html","VSEngine.SetActionRoomBlackAvatarID Method","设置动作黑名单AvatarID\r\n在此名单的avatar将不会在场景中显示 房间内也不会有黑名单用户的数据"];

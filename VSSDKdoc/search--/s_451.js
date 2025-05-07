@@ -1,1 +1,1 @@
-search_result['451']=["topic_00000000000001FE.html","VSEngine.GetNowActionRoomID Method","获取当前动作频道id"];
+search_result['451']=["topic_00000000000001FE.html","VSEngine.GetNowRoomServerUrl Method","获取当前动作服务器websocket url"];

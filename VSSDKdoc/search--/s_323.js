@@ -1,1 +1,1 @@
-search_result['323']=["topic_000000000000017E.html","VSEngine.SeekVideoPos Method","跳转视频到指定时间点"];
+search_result['323']=["topic_000000000000017E.html","VSEngine.StopVideo Method","停止视频"];

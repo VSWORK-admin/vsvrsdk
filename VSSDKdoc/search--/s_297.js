@@ -1,1 +1,1 @@
-search_result['297']=["topic_0000000000000166.html","VSEngine.LoadImageFile Method","加载图片文件\r\n该方法相关的回调事件为：OnEventDownLoadFileProgress"];
+search_result['297']=["topic_0000000000000166.html","VSEngine.DownloadAndCacheFile Method","下载文件并保存到本地\r\n该方法相关的回调事件为：OnEventDownLoadFileProgress"];

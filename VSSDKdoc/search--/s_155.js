@@ -1,1 +1,1 @@
-search_result['155']=["topic_00000000000000DC.html","OnEventVrStartButtonClick Event","手柄菜单键触发"];
+search_result['155']=["topic_00000000000000DC.html","OnEventVrRightTriggerDown Event","右手柄的扳机键按下"];

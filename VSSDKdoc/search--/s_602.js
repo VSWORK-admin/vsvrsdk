@@ -1,1 +1,1 @@
-search_result['602']=["topic_0000000000000295.html","VSEngine.ShowOrHideRTCUI Method","隐藏或显示Rtc的UI"];
+search_result['602']=["topic_0000000000000295.html","VSEngine.RTCPushEnable Method","是否开启RTC推流"];

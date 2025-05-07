@@ -1,1 +1,1 @@
-search_result['241']=["topic_0000000000000130.html","VSEngine.StartSystemLongVoiceIdentify Method","开启系统侧长语音识别"];
+search_result['241']=["topic_0000000000000130.html","VSEngine.EndSystemLongVoiceIdentify Method","结束系统侧长语音识别"];

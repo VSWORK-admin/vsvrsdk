@@ -1,1 +1,1 @@
-search_result['211']=["topic_0000000000000114.html","OnEventTextTranslateResult Event","返回翻译资源 注意使用该事件需要再退出场景是将注册方法移除"];
+search_result['211']=["topic_0000000000000114.html","OnEventReciveSwitchCameraType Event","接收切换摄像机的类型"];

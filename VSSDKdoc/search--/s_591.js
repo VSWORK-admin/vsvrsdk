@@ -1,1 +1,1 @@
-search_result['591']=["topic_000000000000028A.html","VSEngine.StartShareGameScreen Method","开始分享场景内的画面"];
+search_result['591']=["topic_000000000000028A.html","VSEngine.SwitchShareCamera Method","切换分享摄像头"];

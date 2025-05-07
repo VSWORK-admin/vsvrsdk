@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.DownloadAndCacheFile Method</title>
+	<title>VSEngine.ChangeWebviewSize Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.DownloadAndCacheFile Method</h1>
+		<h1 class="title">VSEngine.ChangeWebviewSize Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,8 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>下载文件并保存到本地
-该方法相关的回调事件为：<a target="_top" href="topic_00000000000000AB.html" onclick="this.target='';return true;">OnEventDownLoadFileProgress</a></summary-info>
+        <summary-info>修改网页屏幕尺寸</summary-info>
 
 
 
@@ -141,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub DownloadAndCacheFile( _&nbsp;<br />   ByVal <i>media</i> As <a target="_top" href=".html" onclick="this.target='';return true;">WsMediaFile</a>, _&nbsp;<br />   ByVal <i>LoadDoneCallback</i> As <a target="_top" href="topic_0000000000000001.html" onclick="this.target='';return true;">SDKWebResponseCallback</a>, _&nbsp;<br />   Optional ByVal <i>progressCallback</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a>) = null, _&nbsp;<br />   Optional ByVal <i>cancancle</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = true, _&nbsp;<br />   Optional ByVal <i>showprogress</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByVal <i>syncprogressevent</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByVal <i>sendprogressevent</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByRef <i>timeout</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub ChangeWebviewSize( _&nbsp;<br />   ByVal <i>displayUI</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>bfullscreen</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>width</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>height</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>showtoolbar</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>offset</i> As <strong>Vector2</strong>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -180,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> DownloadAndCacheFile(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">WsMediaFile</a> <i>media</i>,&nbsp;<br />   <a target="_top" href="topic_0000000000000001.html" onclick="this.target='';return true;">SDKWebResponseCallback</a> <i>LoadDoneCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt; <i>progressCallback</i> = null,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>cancancle</i> = true,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showprogress</i> = false,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>syncprogressevent</i> = false,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>sendprogressevent</i> = false,&nbsp;<br />   out <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>timeout</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeWebviewSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>displayUI</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bfullscreen</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>height</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showtoolbar</i>,&nbsp;<br />   <strong>Vector2</strong> <i>offset</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -220,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> DownloadAndCacheFile(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">WsMediaFile</a>^ <i>media</i>,&nbsp;<br />   <a target="_top" href="topic_0000000000000001.html" onclick="this.target='';return true;">SDKWebResponseCallback</a>^ <i>LoadDoneCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt;^ <i>progressCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>cancancle</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showprogress</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>syncprogressevent</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>sendprogressevent</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&amp; <i>timeout</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeWebviewSize(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>displayUI</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bfullscreen</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>width</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>height</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showtoolbar</i>,&nbsp;<br />   <strong>Vector2</strong> <i>offset</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -259,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">JScript does not support generic types and methods.</pre>			
+					<pre xml:space="preserve" class="brush: js">public function ChangeWebviewSize(&nbsp;<br />    <i>displayUI</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>bfullscreen</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>width</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>height</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>showtoolbar</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>offset</i> : <strong>Vector2</strong>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -271,49 +270,10 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="media" class="parameterList">
+	Parameters</h4><dl paramName="displayUI" class="parameterList">
 	<dt>
 		<span class="parameter">
-			media
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href=".html" onclick="this.target='';return true;">WsMediaFile</a> 
-	</dd>
-</dl>
-<p>
-	媒体文件信息 
-</p>
-<dl paramName="LoadDoneCallback" class="parameterList">
-	<dt>
-		<span class="parameter">
-			LoadDoneCallback
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="topic_0000000000000001.html" onclick="this.target='';return true;">SDKWebResponseCallback</a> 
-	</dd>
-</dl>
-<p>
-	下载成功回调 参数 localpath 是返回结果 本地文件缓存地址 
-</p>
-<dl paramName="progressCallback" class="parameterList">
-	<dt>
-		<span class="parameter">
-			progressCallback
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&gt; 
-	</dd>
-</dl>
-<p>
-	下载进度回调 与<a target="_top" href="topic_00000000000000AB.html" onclick="this.target='';return true;">OnEventDownLoadFileProgress</a>实现效果一样 
-</p>
-<dl paramName="cancancle" class="parameterList">
-	<dt>
-		<span class="parameter">
-			cancancle
+			displayUI
 		</span>
 	</dt>
 	<dd>
@@ -321,12 +281,12 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	是否可以中断下载 
+	 
 </p>
-<dl paramName="showprogress" class="parameterList">
+<dl paramName="bfullscreen" class="parameterList">
 	<dt>
 		<span class="parameter">
-			showprogress
+			bfullscreen
 		</span>
 	</dt>
 	<dd>
@@ -334,38 +294,12 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	是否显示下载进度 
+	 
 </p>
-<dl paramName="syncprogressevent" class="parameterList">
+<dl paramName="width" class="parameterList">
 	<dt>
 		<span class="parameter">
-			syncprogressevent
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
-	</dd>
-</dl>
-<p>
-	是否同步下载进度 
-</p>
-<dl paramName="sendprogressevent" class="parameterList">
-	<dt>
-		<span class="parameter">
-			sendprogressevent
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
-	</dd>
-</dl>
-<p>
-	是否发送下载进度 
-</p>
-<dl paramName="timeout" class="parameterList">
-	<dt>
-		<span class="parameter">
-			timeout
+			width
 		</span>
 	</dt>
 	<dd>
@@ -373,7 +307,59 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	&lt;default&gt; 
+	宽 
+</p>
+<dl paramName="height" class="parameterList">
+	<dt>
+		<span class="parameter">
+			height
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> 
+	</dd>
+</dl>
+<p>
+	高 
+</p>
+<dl paramName="showtoolbar" class="parameterList">
+	<dt>
+		<span class="parameter">
+			showtoolbar
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
+	</dd>
+</dl>
+<p>
+	是否显示工具栏 
+</p>
+<dl paramName="offset" class="parameterList">
+	<dt>
+		<span class="parameter">
+			offset
+		</span>
+	</dt>
+	<dd>
+		<strong>Vector2</strong> 
+	</dd>
+</dl>
+<p>
+	半屏窗口偏移中心 
+</p>
+<dl paramName="delay" class="parameterList">
+	<dt>
+		<span class="parameter">
+			delay
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
+	</dd>
+</dl>
+<p>
+	 
 </p>
 
 <p />

@@ -1,1 +1,1 @@
-search_result['319']=["topic_000000000000017A.html","VSEngine.InitVideoPlayer Method","初始化视频播放器"];
+search_result['319']=["topic_000000000000017A.html","VSEngine.RequestPdfRenderPlayerPageCount Method","请求PDF文件总页数\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfPageCount"];

@@ -1,1 +1,1 @@
-search_result['253']=["topic_000000000000013C.html","VSEngine.SetSelfSitOnChair Method","设置自己入座"];
+search_result['253']=["topic_000000000000013C.html","VSEngine.ReSetAvatarSyncFrameRate Method","还原成系统的同步帧率"];

@@ -1,1 +1,1 @@
-search_result['409']=["topic_00000000000001D4.html","VSEngine.SendMessageToCloudRender Method","向云渲染发送消息"];
+search_result['409']=["topic_00000000000001D4.html","VSEngine.SetSelfAvatarHide Method","设置自己隐身,不同步自身数据给其他人，无法与别人交流"];

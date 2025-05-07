@@ -1,1 +1,1 @@
-search_result['418']=["topic_00000000000001DD.html","VSEngine.GetApiToken Method","获取动作服务器参数Token"];
+search_result['418']=["topic_00000000000001DD.html","VSEngine.GetApiKey Method","获取动作服务器参数Key"];

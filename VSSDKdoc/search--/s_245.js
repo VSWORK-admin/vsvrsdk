@@ -1,1 +1,1 @@
-search_result['245']=["topic_0000000000000134.html","VSEngine.LimitSelfRotate Method","限制自身avatar旋转 无法通过摇杆旋转方向"];
+search_result['245']=["topic_0000000000000134.html","VSEngine.LimitSelfMove Method","限制自身avatar移动，无法通过摇杆和wasd移动人物"];

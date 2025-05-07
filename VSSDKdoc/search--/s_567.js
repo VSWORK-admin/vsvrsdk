@@ -1,1 +1,1 @@
-search_result['567']=["topic_0000000000000272.html","VSEngine.LockThirdPersonMode Method","第三视角切换是否锁定"];
+search_result['567']=["topic_0000000000000272.html","VSEngine.SetupTranslateLanguage Method","设置翻译的语言"];

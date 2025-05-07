@@ -1,1 +1,1 @@
-search_result['520']=["topic_0000000000000243.html","VSEngine.GetLaserPenColor Method","获取激光笔颜色"];
+search_result['520']=["topic_0000000000000243.html","VSEngine.GetAllActiveAvatarName Method","获取当前显示的Avatar的昵称列表"];

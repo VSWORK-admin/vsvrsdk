@@ -1,1 +1,1 @@
-search_result['250']=["topic_0000000000000139.html","VSEngine.RefreshSelfAvatarDataImmediately Method","立刻刷新本地自身avatar数据\r\n一般提高自身刷新帧率"];
+search_result['250']=["topic_0000000000000139.html","VSEngine.SyncSelfAvatarDataImmediately Method","立刻同步自身avatar数据给其他人"];

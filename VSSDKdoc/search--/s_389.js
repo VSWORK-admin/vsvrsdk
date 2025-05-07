@@ -1,1 +1,1 @@
-search_result['389']=["topic_00000000000001C0.html","VSEngine.SetSendFrameRate Method","设置同步数据帧速率"];
+search_result['389']=["topic_00000000000001C0.html","VSEngine.SetRenderQuality Method","设置场景渲染质量"];

@@ -1,1 +1,1 @@
-search_result['236']=["topic_000000000000012B.html","VSEngine.StartSystemVoiceIdentify Method","开启系统侧语音转文字"];
+search_result['236']=["topic_000000000000012B.html","VSEngine.StartTextTranslate Method","开始进行文本翻译"];

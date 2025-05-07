@@ -1,1 +1,1 @@
-search_result['605']=["topic_0000000000000298.html","VSEngine.GetCameraDeviceInfo Method","获取摄像头的设备信息"];
+search_result['605']=["topic_0000000000000298.html","VSEngine.RevertThirdPersionCameraOffset Method","恢复摄像机的偏移值"];

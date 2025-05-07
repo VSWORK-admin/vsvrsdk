@@ -1,1 +1,1 @@
-search_result['378']=["topic_00000000000001B5.html","VSEngine.SetVrResetSensor Method","重置VR传感器"];
+search_result['378']=["topic_00000000000001B5.html","VSEngine.SetStopSelfMediaPlayerByOhter Method","停止MV的播放"];

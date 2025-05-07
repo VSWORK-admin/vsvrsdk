@@ -1,1 +1,1 @@
-search_result['550']=["topic_0000000000000261.html","VSEngine.SetSelfHideVisibleModel Method","设置自己是否隐身（相对自己）"];
+search_result['550']=["topic_0000000000000261.html","VSEngine.IsSelfHideVisibleModel Method","判断自己是否隐身（相对自己）"];

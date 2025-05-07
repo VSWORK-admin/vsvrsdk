@@ -1,1 +1,1 @@
-search_result['341']=["topic_0000000000000190.html","VSEngine.SetAddMicrophoneVolume Method","设置自己麦克风音量+\r\n该方法相关的回调事件为：OnEventVoiceMicrophoneVolumeChange"];
+search_result['341']=["topic_0000000000000190.html","VSEngine.SetVoiceLoudSpeakerVolumeMax Method","设置扬声器音量最大\r\n该方法相关的回调事件为：OnEventVoiceLoudSpeakerVolumeChange"];

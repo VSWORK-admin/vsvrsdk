@@ -1,1 +1,1 @@
-search_result['197']=["topic_0000000000000106.html","OnEventNoticeWebViewShow Event","是否显示网页页面"];
+search_result['197']=["topic_0000000000000106.html","OnEventStopSelfShareByOutSide Event","监听关闭系统投屏和摄像机或投屏失败的事件"];

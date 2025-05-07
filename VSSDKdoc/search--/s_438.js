@@ -1,1 +1,1 @@
-search_result['438']=["topic_00000000000001F1.html","VSEngine.GetNowTestServerUrl Method","获取当前测试服务器url"];
+search_result['438']=["topic_00000000000001F1.html","VSEngine.GetNowServerUrl Method","获取当前登录服务器url"];

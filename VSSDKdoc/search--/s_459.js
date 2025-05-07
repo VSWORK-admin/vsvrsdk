@@ -1,1 +1,1 @@
-search_result['459']=["topic_0000000000000206.html","VSEngine.IsRoomEnableMediaRes Method","判断当前频道是否可以下载资源"];
+search_result['459']=["topic_0000000000000206.html","VSEngine.GetAppVersionSettings Method","获取软件热更新版本相关配置"];

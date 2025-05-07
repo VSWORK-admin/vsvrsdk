@@ -1,1 +1,1 @@
-search_result['535']=["topic_0000000000000252.html","VSEngine.GetActionRoomBlackAvatarID Method","获取动作房间黑名单AvatarID\r\n在此名单的avatar将不会在场景中显示 房间内也不会有黑名单用户的数据"];
+search_result['535']=["topic_0000000000000252.html","VSEngine.GetNowRoomAvatarFrameData Method","获取当前频道所有人物数据缓存（大约4秒同步一次数据）"];

@@ -1,1 +1,1 @@
-search_result['622']=["topic_00000000000002A9.html","VSEngine.SetLiveBroadcastPos Method","设置直播位置"];
+search_result['622']=["topic_00000000000002A9.html","VSEngine.StopLiveBroadcast Method","关闭绿幕直播"];

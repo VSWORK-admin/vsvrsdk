@@ -1,1 +1,1 @@
-search_result['600']=["topic_0000000000000293.html","VSEngine.CloseUnderMenuPanel Method","关闭下排菜单页面"];
+search_result['600']=["topic_0000000000000293.html","VSEngine.SendCameraDeviceInfo Method","请求所有的摄像头信息。用于SDK端指定摄像头分享"];

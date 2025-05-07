@@ -1,1 +1,1 @@
-search_result['264']=["topic_0000000000000147.html","VSEngine.SetAvatarFlightMode Method","设置人物飞行模式"];
+search_result['264']=["topic_0000000000000147.html","VSEngine.SetSelfAvatarFollowCamera Method","设置自身人物模型跟随相机旋转方式"];

@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.InitVideoPlayer Method</title>
+	<title>VSEngine.RequestPdfRenderPlayerPageCount Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.InitVideoPlayer Method</h1>
+		<h1 class="title">VSEngine.RequestPdfRenderPlayerPageCount Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,9 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>初始化视频播放器</summary-info>
+        <summary-info>请求PDF文件总页数
+在CreatePdfRenderPlayer方法之后调用
+该方法相关的回调事件为：<a target="_top" href="topic_00000000000000AE.html" onclick="this.target='';return true;">OnEventReceivePdfPageCount</a></summary-info>
 
 
 
@@ -140,7 +142,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub InitVideoPlayer( _&nbsp;<br />   ByVal <i>controller</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>videotype</i> As <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>, _&nbsp;<br />   ByVal <i>url</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>renderobjs</i> As <strong>GameObject</strong>(), _&nbsp;<br />   Optional ByVal <i>volume</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 100, _&nbsp;<br />   Optional ByVal <i>bloop</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByVal <i>autostart</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByVal <i>showdefaultimg</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a> = false, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub RequestPdfRenderPlayerPageCount( _&nbsp;<br />   ByVal <i>render</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>receiveCallback</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>(Of <strong>GameObject</strong>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>), _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +181,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> InitVideoPlayer(&nbsp;<br />   <strong>GameObject</strong> <i>controller</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>url</i>,&nbsp;<br />   <strong>GameObject</strong>[] <i>renderobjs</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>volume</i> = 100,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bloop</i> = false,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>autostart</i> = false,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showdefaultimg</i> = false,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> RequestPdfRenderPlayerPageCount(&nbsp;<br />   <strong>GameObject</strong> <i>render</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&gt; <i>receiveCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +221,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> InitVideoPlayer(&nbsp;<br />   <strong>GameObject</strong>^ <i>controller</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>url</i>,&nbsp;<br />   array&lt; <strong>GameObject</strong>^ &gt;^ <i>renderobjs</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>volume</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>bloop</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>autostart</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>showdefaultimg</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> RequestPdfRenderPlayerPageCount(&nbsp;<br />   <strong>GameObject</strong>^ <i>render</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>^, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&gt;^ <i>receiveCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +260,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function InitVideoPlayer(&nbsp;<br />    <i>controller</i> : <strong>GameObject</strong>,&nbsp;<br />    <i>videotype</i> : <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>,&nbsp;<br />    <i>url</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>,&nbsp;<br />    <i>renderobjs</i> : <strong>GameObject</strong>[],&nbsp;<br />    <i>volume</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>,&nbsp;<br />    <i>bloop</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>autostart</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>showdefaultimg</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">JScript does not support generic types and methods.</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -270,10 +272,10 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="controller" class="parameterList">
+	Parameters</h4><dl paramName="render" class="parameterList">
 	<dt>
 		<span class="parameter">
-			controller
+			render
 		</span>
 	</dt>
 	<dd>
@@ -281,98 +283,20 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	视频控制器 
+	pdf播放器 
 </p>
-<dl paramName="videotype" class="parameterList">
+<dl paramName="receiveCallback" class="parameterList">
 	<dt>
 		<span class="parameter">
-			videotype
+			receiveCallback
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> 
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&gt; 
 	</dd>
 </dl>
 <p>
-	播放器类型 
-</p>
-<dl paramName="url" class="parameterList">
-	<dt>
-		<span class="parameter">
-			url
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> 
-	</dd>
-</dl>
-<p>
-	视频地址 
-</p>
-<dl paramName="renderobjs" class="parameterList">
-	<dt>
-		<span class="parameter">
-			renderobjs
-		</span>
-	</dt>
-	<dd>
-		<strong>GameObject</strong>[] 
-	</dd>
-</dl>
-<p>
-	渲染视频的物体 
-</p>
-<dl paramName="volume" class="parameterList">
-	<dt>
-		<span class="parameter">
-			volume
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
-	</dd>
-</dl>
-<p>
-	音量 
-</p>
-<dl paramName="bloop" class="parameterList">
-	<dt>
-		<span class="parameter">
-			bloop
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
-	</dd>
-</dl>
-<p>
-	是否循环 
-</p>
-<dl paramName="autostart" class="parameterList">
-	<dt>
-		<span class="parameter">
-			autostart
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
-	</dd>
-</dl>
-<p>
-	是否自动播放 
-</p>
-<dl paramName="showdefaultimg" class="parameterList">
-	<dt>
-		<span class="parameter">
-			showdefaultimg
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> 
-	</dd>
-</dl>
-<p>
-	是否显示默认图片 
+	接收回调 与<a target="_top" href="topic_00000000000000AE.html" onclick="this.target='';return true;">OnEventReceivePdfPageCount</a>实现效果一样 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>

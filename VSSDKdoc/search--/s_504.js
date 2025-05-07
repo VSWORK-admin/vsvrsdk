@@ -1,1 +1,1 @@
-search_result['504']=["topic_0000000000000233.html","VSEngine.ShowAvatarSpeakIcon Method","设置显示avatar角色扬声器头标"];
+search_result['504']=["topic_0000000000000233.html","VSEngine.IsShowAvatarSpeakIcon Method","判断是否显示avatar角色扬声器头标"];

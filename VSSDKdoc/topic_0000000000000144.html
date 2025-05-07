@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.StartAutoFindPathMode Method</title>
+	<title>VSEngine.PlayAvatarSystemHalfAction Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.StartAutoFindPathMode Method</h1>
+		<h1 class="title">VSEngine.PlayAvatarSystemHalfAction Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,9 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>开启自动寻路模式
-注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值
-2.场景要注意设置障碍物</summary-info>
+        <summary-info>播放系统挂载的通用的半身动作</summary-info>
 
 
 
@@ -142,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub StartAutoFindPathMode( _&nbsp;<br />   ByVal <i>followTarget</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>moveType</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   ByVal <i>offset</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>targetpos</i> As <strong>Vector3</strong>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub PlayAvatarSystemHalfAction( _&nbsp;<br />   ByVal <i>ActionID</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -181,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartAutoFindPathMode(&nbsp;<br />   <strong>GameObject</strong> <i>followTarget</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>moveType</i>,&nbsp;<br />   <strong>Vector3</strong> <i>offset</i>,&nbsp;<br />   <strong>Vector3</strong> <i>targetpos</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> PlayAvatarSystemHalfAction(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>ActionID</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -221,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartAutoFindPathMode(&nbsp;<br />   <strong>GameObject</strong>^ <i>followTarget</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>moveType</i>,&nbsp;<br />   <strong>Vector3</strong> <i>offset</i>,&nbsp;<br />   <strong>Vector3</strong> <i>targetpos</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> PlayAvatarSystemHalfAction(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a> <i>ActionID</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -260,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function StartAutoFindPathMode(&nbsp;<br />    <i>followTarget</i> : <strong>GameObject</strong>,&nbsp;<br />    <i>moveType</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>offset</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>targetpos</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function PlayAvatarSystemHalfAction(&nbsp;<br />    <i>ActionID</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -272,23 +270,10 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="followTarget" class="parameterList">
+	Parameters</h4><dl paramName="ActionID" class="parameterList">
 	<dt>
 		<span class="parameter">
-			followTarget
-		</span>
-	</dt>
-	<dd>
-		<strong>GameObject</strong> 
-	</dd>
-</dl>
-<p>
-	目标体 可使用挂载CustomAvatarDriver的物体（只有指定目标时才使用，如果使用自由寻路模式 这个参数设置为空） 
-</p>
-<dl paramName="moveType" class="parameterList">
-	<dt>
-		<span class="parameter">
-			moveType
+			ActionID
 		</span>
 	</dt>
 	<dd>
@@ -296,33 +281,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	移动类型（暂时未使用） 
-</p>
-<dl paramName="offset" class="parameterList">
-	<dt>
-		<span class="parameter">
-			offset
-		</span>
-	</dt>
-	<dd>
-		<strong>Vector3</strong> 
-	</dd>
-</dl>
-<p>
-	相对目标点的偏移值 如(1,1,0) 
-</p>
-<dl paramName="targetpos" class="parameterList">
-	<dt>
-		<span class="parameter">
-			targetpos
-		</span>
-	</dt>
-	<dd>
-		<strong>Vector3</strong> 
-	</dd>
-</dl>
-<p>
-	目标位置(指定目标寻路时 这个参数值不使用) 
+	动作在主工程中的ID 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>
@@ -335,7 +294,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	延迟调用 秒 
+	&lt;default&gt; 
 </p>
 
 <p />

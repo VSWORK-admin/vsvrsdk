@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.LockSelfWalkMode Method</title>
+	<title>VSEngine.ChangeSelfActionState Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.LockSelfWalkMode Method</h1>
+		<h1 class="title">VSEngine.ChangeSelfActionState Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,9 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>锁定自身走跑状态
-比如锁定 LOCKWALK，那人物只能走路无法切换跑
-锁定 LOCKRUN，那人物只能跑</summary-info>
+        <summary-info>改变自身avatar当前的动画状态（该方法一般与MakeSelfActionUnderControl配合使用）</summary-info>
 
 
 
@@ -142,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub LockSelfWalkMode( _&nbsp;<br />   ByVal <i>lockmode</i> As <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub ChangeSelfActionState( _&nbsp;<br />   ByVal <i>state</i> As <a target="_top" href="topic_0000000000000048.html" onclick="this.target='';return true;">ActorActionType</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -181,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> LockSelfWalkMode(&nbsp;<br />   <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> <i>lockmode</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeSelfActionState(&nbsp;<br />   <a target="_top" href="topic_0000000000000048.html" onclick="this.target='';return true;">ActorActionType</a> <i>state</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -221,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> LockSelfWalkMode(&nbsp;<br />   <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> <i>lockmode</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> ChangeSelfActionState(&nbsp;<br />   <a target="_top" href="topic_0000000000000048.html" onclick="this.target='';return true;">ActorActionType</a> <i>state</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -260,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function LockSelfWalkMode(&nbsp;<br />    <i>lockmode</i> : <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function ChangeSelfActionState(&nbsp;<br />    <i>state</i> : <a target="_top" href="topic_0000000000000048.html" onclick="this.target='';return true;">ActorActionType</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -272,18 +270,18 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="lockmode" class="parameterList">
+	Parameters</h4><dl paramName="state" class="parameterList">
 	<dt>
 		<span class="parameter">
-			lockmode
+			state
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> 
+		<a target="_top" href="topic_0000000000000048.html" onclick="this.target='';return true;">ActorActionType</a> 
 	</dd>
 </dl>
 <p>
-	锁定走跑状态 
+	动画状态值 如1代表Idle动画 2代表走 4代表跑 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>

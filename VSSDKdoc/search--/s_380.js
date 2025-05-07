@@ -1,1 +1,1 @@
-search_result['380']=["topic_00000000000001B7.html","VSEngine.BindInputToVrKeyboard Method","unity 输入框转到VR键盘输入显示"];
+search_result['380']=["topic_00000000000001B7.html","VSEngine.SetVrHandVibration Method","设置VR手柄震动"];

@@ -1,1 +1,1 @@
-search_result['206']=["topic_000000000000010F.html","OnEventReciveAvatarDirect Event","获取人物朝向"];
+search_result['206']=["topic_000000000000010F.html","OnEventGetCheckFileAlreadyCached Event","String为缓存的sign bool  为是否存在"];

@@ -1,1 +1,1 @@
-search_result['272']=["topic_000000000000014F.html","VSEngine.LoadFbxAvatarModel Method","加载Avatar fbx模型\r\n该方法相关的回调事件为：OnEventLoadedFbxAvatarModel"];
+search_result['272']=["topic_000000000000014F.html","VSEngine.SetForceHideSelfAvatarModel Method","强制设置自身avatar角色隐藏"];

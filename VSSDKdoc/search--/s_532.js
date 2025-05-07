@@ -1,1 +1,1 @@
-search_result['532']=["topic_000000000000024F.html","VSEngine.GetMaxShowAvatarModelCount Method","获取最大显示avatar角色模型数量"];
+search_result['532']=["topic_000000000000024F.html","VSEngine.SetMinAvatarModelVisibleRange Method","设置avatar角色最小可见范围（相对自己，avatar小于这个范围隐藏）"];

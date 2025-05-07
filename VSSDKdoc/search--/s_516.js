@@ -1,1 +1,1 @@
-search_result['516']=["topic_000000000000023F.html","VSEngine.GetAllActiveAvatarData Method","获取所有显示的Avatar的帧同步数据"];
+search_result['516']=["topic_000000000000023F.html","VSEngine.GetAllActiveAvatarID Method","获取当前显示的AvatarID列表"];

@@ -1,1 +1,1 @@
-search_result['228']=["topic_0000000000000123.html","VSEngine.RequestRoomSavedData Method","请求当前场景服务端保持的数据\r\n该方法相关的回调事件为： OnEventReceiveRoomSavedData"];
+search_result['228']=["topic_0000000000000123.html","VSEngine.SaveDataToRoom Method","保存数据到当前场景服务端 以字典的格式存储\r\n与RequestRoomSavedData配合使用"];

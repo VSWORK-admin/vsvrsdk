@@ -1,1 +1,1 @@
-search_result['461']=["topic_0000000000000208.html","VSEngine.GetNowSceneName Method","获取当前频道名称"];
+search_result['461']=["topic_0000000000000208.html","VSEngine.GetNowSceneIconUrl Method","获取当前频道加载图标url"];

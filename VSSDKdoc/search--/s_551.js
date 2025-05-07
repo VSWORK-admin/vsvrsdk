@@ -1,1 +1,1 @@
-search_result['551']=["topic_0000000000000262.html","VSEngine.GetScreenShareUserData Method","获取屏幕分享用户数据"];
+search_result['551']=["topic_0000000000000262.html","VSEngine.SetSelfHideVisibleModel Method","设置自己是否隐身（相对自己）"];

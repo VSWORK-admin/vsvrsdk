@@ -1,1 +1,1 @@
-search_result['588']=["topic_0000000000000287.html","VSEngine.VRExitRoom Method","退出空间"];
+search_result['588']=["topic_0000000000000287.html","VSEngine.SetDirectorModelEnable Method","设置导播模式是否启用"];

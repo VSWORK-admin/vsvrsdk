@@ -1,1 +1,1 @@
-search_result['509']=["topic_0000000000000238.html","VSEngine.GetNowDeviceName Method","获取当前设备名称(ios,mac,pc,phone等)"];
+search_result['509']=["topic_0000000000000238.html","VSEngine.IsPanoramaMode Method","判断是否为全景模式"];

@@ -1,1 +1,1 @@
-search_result['430']=["topic_00000000000001E9.html","VSEngine.GetMainCharacter Method","获取主角的控制器（可以获取character controller）"];
+search_result['430']=["topic_00000000000001E9.html","VSEngine.GetVRRightFingerAnchor Method","获取VR右手手指锚点"];

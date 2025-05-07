@@ -1,1 +1,1 @@
-search_result['407']=["topic_00000000000001D2.html","VSEngine.SetBigscreenGrabEnabled Method","打开大屏幕可拖拽模式"];
+search_result['407']=["topic_00000000000001D2.html","VSEngine.SetLogerEnable Method","打开log调试界面"];

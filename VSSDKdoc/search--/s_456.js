@@ -1,1 +1,1 @@
-search_result['456']=["topic_0000000000000203.html","VSEngine.SetRoomAdminCommand Method","设置当前频道的管理员命令\r\n用于系统控制面板输入口令开启管理"];
+search_result['456']=["topic_0000000000000203.html","VSEngine.GetRoomAdminCommand Method","获取当前频道的管理员命令"];

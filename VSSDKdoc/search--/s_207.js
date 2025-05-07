@@ -1,1 +1,1 @@
-search_result['207']=["topic_0000000000000110.html","OnEventReciveLoadGaussionModel Event","获取加载的高斯泼溅的模型"];
+search_result['207']=["topic_0000000000000110.html","OnEventReciveAvatarDirect Event","获取人物朝向"];

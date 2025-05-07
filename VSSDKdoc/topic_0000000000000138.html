@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.SyncSelfAvatarDataImmediately Method</title>
+	<title>VSEngine.LockSelfWalkMode Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.SyncSelfAvatarDataImmediately Method</h1>
+		<h1 class="title">VSEngine.LockSelfWalkMode Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,9 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>立刻同步自身avatar数据给其他人</summary-info>
+        <summary-info>锁定自身走跑状态
+比如锁定 LOCKWALK，那人物只能走路无法切换跑
+锁定 LOCKRUN，那人物只能跑</summary-info>
 
 
 
@@ -140,7 +142,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub SyncSelfAvatarDataImmediately()</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub LockSelfWalkMode( _&nbsp;<br />   ByVal <i>lockmode</i> As <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +181,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SyncSelfAvatarDataImmediately()</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> LockSelfWalkMode(&nbsp;<br />   <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> <i>lockmode</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +221,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SyncSelfAvatarDataImmediately() </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> LockSelfWalkMode(&nbsp;<br />   <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> <i>lockmode</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +260,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function SyncSelfAvatarDataImmediately();</pre>			
+					<pre xml:space="preserve" class="brush: js">public function LockSelfWalkMode(&nbsp;<br />    <i>lockmode</i> : <a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -269,6 +271,35 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</div>
 
 
+<h4 class="subHeading">
+	Parameters</h4><dl paramName="lockmode" class="parameterList">
+	<dt>
+		<span class="parameter">
+			lockmode
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="topic_000000000000001E.html" onclick="this.target='';return true;">WalkLockMode</a> 
+	</dd>
+</dl>
+<p>
+	锁定走跑状态 
+</p>
+<dl paramName="delay" class="parameterList">
+	<dt>
+		<span class="parameter">
+			delay
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
+	</dd>
+</dl>
+<p>
+	延迟调用 秒 
+</p>
+
+<p />
 
 
 

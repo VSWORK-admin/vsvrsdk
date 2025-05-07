@@ -1,1 +1,1 @@
-search_result['421']=["topic_00000000000001E0.html","VSEngine.SetLanguage Method","设置语言"];
+search_result['421']=["topic_00000000000001E0.html","VSEngine.GetChoosedLanguage Method","获取当前语言"];

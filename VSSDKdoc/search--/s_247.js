@@ -1,1 +1,1 @@
-search_result['247']=["topic_0000000000000136.html","VSEngine.ChangeSelfActionState Method","改变自身avatar当前的动画状态（该方法一般与MakeSelfActionUnderControl配合使用）"];
+search_result['247']=["topic_0000000000000136.html","VSEngine.MakeSelfActionUnderControl Method","人物脱离系统控制 系统不再控制人物走、跑、跳、转向等\r\n一般用于SDK自己控制人物，比如瞬移"];

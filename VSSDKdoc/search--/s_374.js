@@ -1,1 +1,1 @@
-search_result['374']=["topic_00000000000001B1.html","VSEngine.AdjustRemoteMusicVedioVolume Method","调整MV的远端音量\r\n可以调用此方法来调整远程用户听到的MV的音量"];
+search_result['374']=["topic_00000000000001B1.html","VSEngine.AdjustMusicVedioVolume Method","调整MV本地播放音量"];

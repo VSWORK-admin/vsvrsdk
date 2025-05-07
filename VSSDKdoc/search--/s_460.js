@@ -1,1 +1,1 @@
-search_result['460']=["topic_0000000000000207.html","VSEngine.GetNowSceneIconUrl Method","获取当前频道加载图标url"];
+search_result['460']=["topic_0000000000000207.html","VSEngine.IsRoomEnableMediaRes Method","判断当前频道是否可以下载资源"];

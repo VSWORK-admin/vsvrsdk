@@ -1,1 +1,1 @@
-search_result['565']=["topic_0000000000000270.html","VSEngine.RequestCameraFaceType Method",""];
+search_result['565']=["topic_0000000000000270.html","VSEngine.Dispose Method","SDK资源释放"];

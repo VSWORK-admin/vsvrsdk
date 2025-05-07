@@ -1,1 +1,1 @@
-search_result['321']=["topic_000000000000017C.html","VSEngine.PauseVideo Method","暂停视频"];
+search_result['321']=["topic_000000000000017C.html","VSEngine.PlayVideo Method","播放视频\r\nInitVideoPlayer之后调用"];

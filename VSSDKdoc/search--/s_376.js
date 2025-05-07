@@ -1,1 +1,1 @@
-search_result['376']=["topic_00000000000001B3.html","VSEngine.SetMusicVedioAudioTrackMode Method","MV的声音模式"];
+search_result['376']=["topic_00000000000001B3.html","VSEngine.SeekMusicVedioPosition Method","设置MV跳转到新的播放位置。"];

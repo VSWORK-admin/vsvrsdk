@@ -1,1 +1,1 @@
-search_result['195']=["topic_0000000000000104.html","OnEventSystemSettingPanelHide Event","系统设置面板显示隐藏事件"];
+search_result['195']=["topic_0000000000000104.html","OnEventShowCanvasMask_2OnGameScreen Event","是否显示屏幕投屏的Canvas遮罩1\r\n参数 是否显示Canvas遮罩2"];

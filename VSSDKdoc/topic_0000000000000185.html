@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.StartRecordGif Method</title>
+	<title>VSEngine.RequestVideoInfo Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.StartRecordGif Method</h1>
+		<h1 class="title">VSEngine.RequestVideoInfo Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,8 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>开始录制当前场景画面为GIF图片
-<a target="_top" href="topic_00000000000000B5.html" onclick="this.target='';return true;">OnEventReceiveGifProgress</a></summary-info>
+        <summary-info>请求视频信息</summary-info>
 
 
 
@@ -141,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub StartRecordGif( _&nbsp;<br />   ByVal <i>param</i> As <a target="_top" href=".html" onclick="this.target='';return true;">GifRecordData</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub RequestVideoInfo( _&nbsp;<br />   ByVal <i>controller</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>videotype</i> As <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>, _&nbsp;<br />   ByVal <i>receiveCallback</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>(Of <strong>GameObject</strong>, <a target="_top" href=".html" onclick="this.target='';return true;">CustomVideoPlayer</a>), _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -180,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartRecordGif(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">GifRecordData</a> <i>param</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> RequestVideoInfo(&nbsp;<br />   <strong>GameObject</strong> <i>controller</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <a target="_top" href=".html" onclick="this.target='';return true;">CustomVideoPlayer</a>&gt; <i>receiveCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -220,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StartRecordGif(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">GifRecordData</a>^ <i>param</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> RequestVideoInfo(&nbsp;<br />   <strong>GameObject</strong>^ <i>controller</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>^, <a target="_top" href=".html" onclick="this.target='';return true;">CustomVideoPlayer</a>^&gt;^ <i>receiveCallback</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -259,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function StartRecordGif(&nbsp;<br />    <i>param</i> : <a target="_top" href=".html" onclick="this.target='';return true;">GifRecordData</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">JScript does not support generic types and methods.</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -271,18 +270,44 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="param" class="parameterList">
+	Parameters</h4><dl paramName="controller" class="parameterList">
 	<dt>
 		<span class="parameter">
-			param
+			controller
 		</span>
 	</dt>
 	<dd>
-		<a target="_top" href=".html" onclick="this.target='';return true;">GifRecordData</a> 
+		<strong>GameObject</strong> 
 	</dd>
 </dl>
 <p>
-	&lt;default&gt; 
+	视频播放器 
+</p>
+<dl paramName="videotype" class="parameterList">
+	<dt>
+		<span class="parameter">
+			videotype
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> 
+	</dd>
+</dl>
+<p>
+	播放器类型 
+</p>
+<dl paramName="receiveCallback" class="parameterList">
+	<dt>
+		<span class="parameter">
+			receiveCallback
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <a target="_top" href=".html" onclick="this.target='';return true;">CustomVideoPlayer</a>&gt; 
+	</dd>
+</dl>
+<p>
+	接收回调 与<a target="_top" href="topic_00000000000000B3.html" onclick="this.target='';return true;">OnEventReceiveVideoInfo</a>实现效果一样 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>
@@ -295,7 +320,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	&lt;default&gt; 
+	延迟调用 秒 
 </p>
 
 <p />

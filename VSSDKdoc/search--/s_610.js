@@ -1,1 +1,1 @@
-search_result['610']=["topic_000000000000029D.html","VSEngine.ChangeRtcShareCamera Method","切换Rtc分享摄像机"];
+search_result['610']=["topic_000000000000029D.html","VSEngine.SDKDestroyMainObject Method","删除主工程的物体"];

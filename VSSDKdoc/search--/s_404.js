@@ -1,1 +1,1 @@
-search_result['404']=["topic_00000000000001CF.html","VSEngine.SetCameraDirectorMode Method","开启导播模式"];
+search_result['404']=["topic_00000000000001CF.html","VSEngine.SetTakePhotoEnable Method","开启拍照功能"];

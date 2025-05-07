@@ -1,1 +1,1 @@
-search_result['249']=["topic_0000000000000138.html","VSEngine.SyncSelfAvatarDataImmediately Method","立刻同步自身avatar数据给其他人"];
+search_result['249']=["topic_0000000000000138.html","VSEngine.LockSelfWalkMode Method","锁定自身走跑状态\r\n比如锁定 LOCKWALK，那人物只能走路无法切换跑\r\n锁定 LOCKRUN，那人物只能跑"];

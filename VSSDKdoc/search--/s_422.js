@@ -1,1 +1,1 @@
-search_result['422']=["topic_00000000000001E1.html","VSEngine.GetMainCamera Method","获取当前主相机"];
+search_result['422']=["topic_00000000000001E1.html","VSEngine.SetLanguage Method","设置语言"];

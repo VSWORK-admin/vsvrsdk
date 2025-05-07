@@ -1,1 +1,1 @@
-search_result['412']=["topic_00000000000001D7.html","VSEngine.SetCloudRenderOpenMicrophone Method","云渲染开启关闭应用麦克风 使用网页麦克风"];
+search_result['412']=["topic_00000000000001D7.html","VSEngine.SetCloudRenderExitData Method","设置云渲染退出时发送的json数据"];

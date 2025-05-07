@@ -1,1 +1,1 @@
-search_result['457']=["topic_0000000000000204.html","VSEngine.GetNowRoomSettings Method","获取房间后台配置数据"];
+search_result['457']=["topic_0000000000000204.html","VSEngine.SetRoomAdminCommand Method","设置当前频道的管理员命令\r\n用于系统控制面板输入口令开启管理"];

@@ -1,1 +1,1 @@
-search_result['419']=["topic_00000000000001DE.html","VSEngine.GetApiVersion Method","获取接口版本"];
+search_result['419']=["topic_00000000000001DE.html","VSEngine.GetApiToken Method","获取动作服务器参数Token"];

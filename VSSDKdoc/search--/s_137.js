@@ -1,1 +1,1 @@
-search_result['137']=["topic_00000000000000CA.html","OnEventAvatarTeleportTo Event","人物传送到某个位置事件"];
+search_result['137']=["topic_00000000000000CA.html","OnEventAllPlaceToGroup Event","人物集合到位置组事件\r\n参数 string 位置组名称  bool 是否是所有人"];

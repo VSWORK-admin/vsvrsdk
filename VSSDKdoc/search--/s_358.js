@@ -1,1 +1,1 @@
-search_result['358']=["topic_00000000000001A1.html","VSEngine.ShareFirstScreen Method","共享第一个桌面屏幕"];
+search_result['358']=["topic_00000000000001A1.html","VSEngine.StopShareScreen Method","结束分享屏幕\r\n共享"];

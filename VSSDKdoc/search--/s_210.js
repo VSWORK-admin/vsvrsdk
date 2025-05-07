@@ -1,1 +1,1 @@
-search_result['210']=["topic_0000000000000113.html","OnEventReciveSwitchCameraType Event","接收切换摄像机的类型"];
+search_result['210']=["topic_0000000000000113.html","OnEventReciveClickWalkTargetPoint Event","获取点击地面的目标点信息"];

@@ -1,1 +1,1 @@
-search_result['583']=["topic_0000000000000282.html","VSEngine.StopGrabObject Method","松开VR手柄握持的物体"];
+search_result['583']=["topic_0000000000000282.html","VSEngine.SetDefaultBigScreenImage Method","设置默认大屏的图"];

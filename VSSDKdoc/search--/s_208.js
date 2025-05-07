@@ -1,1 +1,1 @@
-search_result['208']=["topic_0000000000000111.html","OnEventHandleCloudRenderMsgInfo Event","获取云渲染信息"];
+search_result['208']=["topic_0000000000000111.html","OnEventReciveLoadGaussionModel Event","获取加载的高斯泼溅的模型"];

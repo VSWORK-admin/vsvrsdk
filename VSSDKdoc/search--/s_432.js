@@ -1,1 +1,1 @@
-search_result['432']=["topic_00000000000001EB.html","VSEngine.GetPhotoCamera Method","获取主角视角拍照相机"];
+search_result['432']=["topic_00000000000001EB.html","VSEngine.GetFreeCamera Method","获取自由视角相机"];

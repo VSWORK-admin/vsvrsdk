@@ -1,1 +1,1 @@
-search_result['455']=["topic_0000000000000202.html","VSEngine.GetRoomAdminCommand Method","获取当前频道的管理员命令"];
+search_result['455']=["topic_0000000000000202.html","VSEngine.GetNowRoomVoiceExRoomID Method","获取当前语音子房间ID"];

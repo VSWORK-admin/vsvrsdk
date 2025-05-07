@@ -1,1 +1,1 @@
-search_result['556']=["topic_0000000000000267.html","VSEngine.IsSpaceFliping Method","判断当前是否正在翻转空间"];
+search_result['556']=["topic_0000000000000267.html","VSEngine.SetNamePanelMaxScale Method","设置名牌最大缩放值（系统限制限定名牌缩放的最大值为3）"];

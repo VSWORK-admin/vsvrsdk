@@ -1,1 +1,1 @@
-search_result['213']=["topic_0000000000000116.html","OnEventTencentTextToVoiceEnd Event","返回文字转语音的结果"];
+search_result['213']=["topic_0000000000000116.html","OnEventTencentVoiceIdentifyResult Event","返回语音转文字的实时结果"];

@@ -1,1 +1,1 @@
-search_result['333']=["topic_0000000000000188.html","VSEngine.SetVoiceMicrophoneEnable Method","设置启用麦克风 （设置后可以打开麦克风、语音交流）"];
+search_result['333']=["topic_0000000000000188.html","VSEngine.SetVoiceMicrophoneOn Method","打开麦克风（和别人语音交流）"];

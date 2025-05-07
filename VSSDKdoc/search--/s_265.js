@@ -1,1 +1,1 @@
-search_result['265']=["topic_0000000000000148.html","VSEngine.SetLockTouchRotateCamera Method","锁定触摸旋转相机或左键旋转相机"];
+search_result['265']=["topic_0000000000000148.html","VSEngine.SetAvatarFlightMode Method","设置人物飞行模式"];

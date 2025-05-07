@@ -1,1 +1,1 @@
-search_result['191']=["topic_0000000000000100.html","OnEventGetCollectAudioPath Event","在音频录制结束时，获取录制的音频地址\r\n参数 保存地址"];
+search_result['191']=["topic_0000000000000100.html","OnEventGetCapturePath Event","在视频录制结束时 获取录制视频的地址\r\n参数 保存地址"];

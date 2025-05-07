@@ -1,1 +1,1 @@
-search_result['428']=["topic_00000000000001E7.html","VSEngine.GetVRLeftFingerAnchor Method","获取VR左手手指锚点"];
+search_result['428']=["topic_00000000000001E7.html","VSEngine.GetVRRightTeleportAnchor Method","获取VR右手传送锚点"];

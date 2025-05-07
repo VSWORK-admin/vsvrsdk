@@ -1,1 +1,1 @@
-search_result['100']=["topic_00000000000000A5.html","OnEventBigScreenRecieveRTSP Event","大屏幕接收到RTSP推流事件\r\n大屏播放推流请求回调，推流地址一般存放在order文件，LoadBigScreenOrderFile请求order文件后触发回调\r\n参数是推流地址"];
+search_result['100']=["topic_00000000000000A5.html","OnEventBigScreenPrepareVideo Event","大屏幕加载视屏已准备事件\r\nLoadBigScreenMovieFile 大屏播放视频请求，视频先缓存到本地，缓存完成后触发\r\n参数是视频地址"];

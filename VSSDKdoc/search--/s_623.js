@@ -1,1 +1,1 @@
-search_result['623']=["topic_00000000000002AA.html","VSEngine.EnableSetDeckardChromaGizmo Method","开启调节绿幕位置旋转缩放的三维轴"];
+search_result['623']=["topic_00000000000002AA.html","VSEngine.SetLiveBroadcastPos Method","设置直播位置"];

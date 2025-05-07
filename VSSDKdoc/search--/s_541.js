@@ -1,1 +1,1 @@
-search_result['541']=["topic_0000000000000258.html","VSEngine.SetAdminUserLaserPenOnly Method","设置是否仅管理员打开激光笔"];
+search_result['541']=["topic_0000000000000258.html","VSEngine.IsAdminUserLaserPenOnly Method","判断是否仅管理员打开激光笔"];

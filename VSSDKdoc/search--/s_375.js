@@ -1,1 +1,1 @@
-search_result['375']=["topic_00000000000001B2.html","VSEngine.SeekMusicVedioPosition Method","设置MV跳转到新的播放位置。"];
+search_result['375']=["topic_00000000000001B2.html","VSEngine.AdjustRemoteMusicVedioVolume Method","调整MV的远端音量\r\n可以调用此方法来调整远程用户听到的MV的音量"];

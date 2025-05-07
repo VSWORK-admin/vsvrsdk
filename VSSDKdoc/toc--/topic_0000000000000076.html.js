@@ -1,1 +1,1 @@
-var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B0.html"],['590',"VSWorkSDK.Enume Namespace","topic_000000000000001A.html"],['605',"Voice_Conversion_Type Enumeration","topic_0000000000000076.html"]];
+var breadcrumbs=[['-1',"",""],['2',"Y:df340fd2fcf24b429f79f3cc18cf140e","topic_00000000000002B1.html"],['592',"VSWorkSDK.Enume Namespace","topic_000000000000001A.html"],['607',"Voice_Conversion_Type Enumeration","topic_0000000000000076.html"]];

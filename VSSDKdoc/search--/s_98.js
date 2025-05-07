@@ -1,1 +1,1 @@
-search_result['98']=["topic_00000000000000A3.html","OnEventBigScreenShowImage Event","大屏幕显示图片事件\r\n大屏幕图片更换后触发，参数是大屏当前展示的图"];
+search_result['98']=["topic_00000000000000A3.html","OnEventSelfAdminStatusChanged Event","自己admin状态改变事件"];

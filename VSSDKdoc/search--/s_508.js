@@ -1,1 +1,1 @@
-search_result['508']=["topic_0000000000000237.html","VSEngine.IsPanoramaMode Method","判断是否为全景模式"];
+search_result['508']=["topic_0000000000000237.html","VSEngine.IsShowAvatarNamePanel Method","判断是否显示avatar角色名牌"];

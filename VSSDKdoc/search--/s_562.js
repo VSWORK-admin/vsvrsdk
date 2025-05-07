@@ -1,1 +1,1 @@
-search_result['562']=["topic_000000000000026D.html","VSEngine.VideoCaptureRtmpStop Method","关闭画面推流"];
+search_result['562']=["topic_000000000000026D.html","VSEngine.VideoCaptureRtmpStart Method","推流画面"];

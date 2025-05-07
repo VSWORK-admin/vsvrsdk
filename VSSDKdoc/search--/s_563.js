@@ -1,1 +1,1 @@
-search_result['563']=["topic_000000000000026E.html","VSEngine.SetCaanvasOnGameScreenShare Method","分享应用窗口的画面时是否显示Canvas元素"];
+search_result['563']=["topic_000000000000026E.html","VSEngine.VideoCaptureRtmpStop Method","关闭画面推流"];

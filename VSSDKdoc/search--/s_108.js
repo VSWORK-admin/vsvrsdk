@@ -1,1 +1,1 @@
-search_result['108']=["topic_00000000000000AD.html","OnEventReceivePdfPageCount Event","接收到PDF文件页数事件\r\nRequestPdfRenderPlayerPageCount 请求PDF文件页数回调\r\n参数GameObject为PDF控制器"];
+search_result['108']=["topic_00000000000000AD.html","OnEventReceiveLocalCacheFile Event","文件缓存成功后事件  返回缓存路径数据"];

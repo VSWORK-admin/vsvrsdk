@@ -1,1 +1,1 @@
-search_result['262']=["topic_0000000000000145.html","VSEngine.StopAutoFindPathMode Method","结束自动寻路模式"];
+search_result['262']=["topic_0000000000000145.html","VSEngine.StartAutoFindPathMode Method","开启自动寻路模式\r\n注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值\r\n2.场景要注意设置障碍物"];

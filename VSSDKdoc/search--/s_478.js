@@ -1,1 +1,1 @@
-search_result['478']=["topic_0000000000000219.html","VSEngine.SetMyNickName Method","设置自己的昵称"];
+search_result['478']=["topic_0000000000000219.html","VSEngine.GetMyNickName Method","获取自己的昵称"];

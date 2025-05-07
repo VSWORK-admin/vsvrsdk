@@ -1,1 +1,1 @@
-search_result['305']=["topic_000000000000016E.html","VSEngine.LoadSceneFile Method","加载场景文件"];
+search_result['305']=["topic_000000000000016E.html","VSEngine.LoadBigScreenImageFile Method","加载大屏幕图片文件"];

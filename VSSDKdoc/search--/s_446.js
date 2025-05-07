@@ -1,1 +1,1 @@
-search_result['446']=["topic_00000000000001F9.html","VSEngine.GetNowScenePrefix Method","获取当前场景的前缀（用来区分平台的）"];
+search_result['446']=["topic_00000000000001F9.html","VSEngine.GetNowGroupId Method","获取当前组织id"];

@@ -1,1 +1,1 @@
-search_result['251']=["topic_000000000000013A.html","VSEngine.SetAvatarSyncFrameRate Method","设置同步帧率\r\n如果某些情况下人物抖动严重或需要高帧率可以调用此方法"];
+search_result['251']=["topic_000000000000013A.html","VSEngine.RefreshSelfAvatarDataImmediately Method","立刻刷新本地自身avatar数据\r\n一般提高自身刷新帧率"];

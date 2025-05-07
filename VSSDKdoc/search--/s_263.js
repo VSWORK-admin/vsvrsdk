@@ -1,1 +1,1 @@
-search_result['263']=["topic_0000000000000146.html","VSEngine.SetSelfAvatarFollowCamera Method","设置自身人物模型跟随相机旋转方式"];
+search_result['263']=["topic_0000000000000146.html","VSEngine.StopAutoFindPathMode Method","结束自动寻路模式"];

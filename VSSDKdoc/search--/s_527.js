@@ -1,1 +1,1 @@
-search_result['527']=["topic_000000000000024A.html","VSEngine.SetMaxAvatarVisibleRange Method","设置avatar角色最大可见范围（相对自己，超过这个范围的角色删除）"];
+search_result['527']=["topic_000000000000024A.html","VSEngine.GetMaxAvatarVisibleRange Method","获取avatar角色最大可见范围（相对自己，超过这个范围的角色删除）"];

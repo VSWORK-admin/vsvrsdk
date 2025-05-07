@@ -1,1 +1,1 @@
-search_result['96']=["topic_00000000000000A1.html","OnEventAdminChanged Event","管理员改变事件\r\n参数 ConnectAvatars sceneavatars[0].id是当前管理员"];
+search_result['96']=["topic_00000000000000A1.html","OnEventSwitchCameraViewMode Event","切换相机视角事件\r\nSwitchCameraViewMode 切换第一第三人称后回调\r\n参数 1 代表当前是第一人称 3 是当前是第三人称"];

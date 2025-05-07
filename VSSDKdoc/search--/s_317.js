@@ -1,1 +1,1 @@
-search_result['317']=["topic_0000000000000178.html","VSEngine.ShowPdfRenderPlayerPage Method","显示PDF指定页的内容\r\n在CreatePdfRenderPlayer方法之后调用\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];
+search_result['317']=["topic_0000000000000178.html","VSEngine.CreatePdfRenderPlayer Method","创建PDF播放器\r\n该方法相关的回调事件为：OnEventReceivePdfRenderTexture"];

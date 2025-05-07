@@ -1,1 +1,1 @@
-search_result['531']=["topic_000000000000024E.html","VSEngine.SetMinAvatarModelVisibleRange Method","设置avatar角色最小可见范围（相对自己，avatar小于这个范围隐藏）"];
+search_result['531']=["topic_000000000000024E.html","VSEngine.GetMinAvatarModelVisibleRange Method","获取avatar角色最小可见范围（相对自己，avatar小于这个范围隐藏）"];

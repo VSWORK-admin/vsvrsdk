@@ -1,1 +1,1 @@
-search_result['477']=["topic_0000000000000218.html","VSEngine.GetMyNickName Method","获取自己的昵称"];
+search_result['477']=["topic_0000000000000218.html","VSEngine.GetMyAvatarSex Method","获取自己avatar角色的性别"];

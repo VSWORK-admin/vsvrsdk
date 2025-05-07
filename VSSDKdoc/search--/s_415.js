@@ -1,1 +1,1 @@
-search_result['415']=["topic_00000000000001DA.html","VSEngine.GetAppName Method","获取当前应用名称"];
+search_result['415']=["topic_00000000000001DA.html","VSEngine.GetNowUnityVersion Method","获取当前unity版本"];

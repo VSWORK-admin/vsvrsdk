@@ -1,1 +1,1 @@
-search_result['524']=["topic_0000000000000247.html","VSEngine.GetAvatarDefaultHeight Method","获取人物的默认高度"];
+search_result['524']=["topic_0000000000000247.html","VSEngine.IsHideAllAvatar Method","判断是否隐藏场景中所有Avatar"];

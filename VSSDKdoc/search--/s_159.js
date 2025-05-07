@@ -1,1 +1,1 @@
-search_result['159']=["topic_00000000000000E0.html","OnEventVrYButtonDown Event","手柄Y键抬起"];
+search_result['159']=["topic_00000000000000E0.html","OnEventVrYButtonUp Event","手柄Y键抬起"];

@@ -1,1 +1,1 @@
-search_result['555']=["topic_0000000000000266.html","VSEngine.SetNamePanelMaxScale Method","设置名牌最大缩放值（系统限制限定名牌缩放的最大值为3）"];
+search_result['555']=["topic_0000000000000266.html","VSEngine.GetNamePanelMaxScale Method","获取名牌最大缩放值（系统限制限定名牌缩放的最大值为3）"];

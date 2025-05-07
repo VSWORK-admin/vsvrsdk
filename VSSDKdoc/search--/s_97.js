@@ -1,1 +1,1 @@
-search_result['97']=["topic_00000000000000A2.html","OnEventSelfAdminStatusChanged Event","自己admin状态改变事件"];
+search_result['97']=["topic_00000000000000A2.html","OnEventAdminChanged Event","管理员改变事件\r\n参数 ConnectAvatars sceneavatars[0].id是当前管理员"];

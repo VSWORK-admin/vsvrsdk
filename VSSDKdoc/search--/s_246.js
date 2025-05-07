@@ -1,1 +1,1 @@
-search_result['246']=["topic_0000000000000135.html","VSEngine.MakeSelfActionUnderControl Method","人物脱离系统控制 系统不再控制人物走、跑、跳、转向等\r\n一般用于SDK自己控制人物，比如瞬移"];
+search_result['246']=["topic_0000000000000135.html","VSEngine.LimitSelfRotate Method","限制自身avatar旋转 无法通过摇杆旋转方向"];

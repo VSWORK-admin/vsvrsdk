@@ -1,1 +1,1 @@
-search_result['609']=["topic_000000000000029C.html","VSEngine.SDKDestroyMainObject Method","删除主工程的物体"];
+search_result['609']=["topic_000000000000029C.html","VSEngine.SetFirstPersonCameraRotate Method","设置第一人称的摄像机旋转"];

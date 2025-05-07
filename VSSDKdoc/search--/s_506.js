@@ -1,1 +1,1 @@
-search_result['506']=["topic_0000000000000235.html","VSEngine.EnableVRStickControlWalk Method","VR端遥感行走"];
+search_result['506']=["topic_0000000000000235.html","VSEngine.EnableVRStickControlRotate Method","VR端遥感转向"];

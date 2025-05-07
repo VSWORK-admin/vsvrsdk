@@ -1,1 +1,1 @@
-search_result['260']=["topic_0000000000000143.html","VSEngine.PlayAvatarSystemHalfAction Method","播放系统挂载的通用的半身动作"];
+search_result['260']=["topic_0000000000000143.html","VSEngine.PlayAvatarSystemFullAction Method","播放系统挂载的角色的全身动作"];

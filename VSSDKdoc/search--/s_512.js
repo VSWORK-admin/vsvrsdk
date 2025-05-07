@@ -1,1 +1,1 @@
-search_result['512']=["topic_000000000000023B.html","VSEngine.GetLastLinkChannelRoomData Method","获取最新链接频道房间数据"];
+search_result['512']=["topic_000000000000023B.html","VSEngine.IsOpenDrawing Method","判断是否开启画笔"];

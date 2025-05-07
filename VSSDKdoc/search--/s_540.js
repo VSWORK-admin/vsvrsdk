@@ -1,1 +1,1 @@
-search_result['540']=["topic_0000000000000257.html","VSEngine.IsAdminUserLaserPenOnly Method","判断是否仅管理员打开激光笔"];
+search_result['540']=["topic_0000000000000257.html","VSEngine.SetStartPlaceGroupDelayTime Method","设置移动位置组延迟时间"];

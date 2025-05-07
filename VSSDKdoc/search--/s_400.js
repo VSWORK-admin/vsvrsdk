@@ -1,1 +1,1 @@
-search_result['400']=["topic_00000000000001CB.html","VSEngine.OpenLaserPenDraw Method","开启画笔功能"];
+search_result['400']=["topic_00000000000001CB.html","VSEngine.SetLaserPenEnable Method","设置画笔是否可用"];

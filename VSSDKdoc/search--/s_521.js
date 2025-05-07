@@ -1,1 +1,1 @@
-search_result['521']=["topic_0000000000000244.html","VSEngine.SetLaserPenColor Method","设置激光笔颜色"];
+search_result['521']=["topic_0000000000000244.html","VSEngine.GetLaserPenColor Method","获取激光笔颜色"];

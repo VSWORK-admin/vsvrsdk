@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>OnEventReceivePdfPageCount Event</title>
+	<title>OnEventReceiveLocalCacheFile Event</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">OnEventReceivePdfPageCount Event</h1>
+		<h1 class="title">OnEventReceiveLocalCacheFile Event</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,9 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>接收到PDF文件页数事件
-RequestPdfRenderPlayerPageCount 请求PDF文件页数回调
-参数GameObject为PDF控制器</summary-info>
+        <summary-info>文件缓存成功后事件  返回缓存路径数据</summary-info>
 
 
 
@@ -142,7 +140,7 @@ RequestPdfRenderPlayerPageCount 请求PDF文件页数回调
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Event OnEventReceivePdfPageCount As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>(Of <strong>GameObject</strong>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">Integer</a>)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Event OnEventReceiveLocalCacheFile As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href=".html" onclick="this.target='';return true;">LocalCacheFile</a>)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -181,7 +179,7 @@ RequestPdfRenderPlayerPageCount 请求PDF文件页数回调
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&gt; OnEventReceivePdfPageCount</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href=".html" onclick="this.target='';return true;">LocalCacheFile</a>&gt; OnEventReceiveLocalCacheFile</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -221,7 +219,7 @@ RequestPdfRenderPlayerPageCount 请求PDF文件页数回调
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br />event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-2">Action</a>&lt;<strong>GameObject</strong>^, <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.int32">int</a>&gt;^ OnEventReceivePdfPageCount {&nbsp;<br />}</pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br />event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href=".html" onclick="this.target='';return true;">LocalCacheFile</a>^&gt;^ OnEventReceiveLocalCacheFile {&nbsp;<br />}</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			

@@ -1,1 +1,1 @@
-search_result['267']=["topic_000000000000014A.html","VSEngine.SetForceHideAllAvatars Method","设置隐藏场景内的所有avatar角色"];
+search_result['267']=["topic_000000000000014A.html","VSEngine.SetHideAvatarsExeptAdmin Method","设置隐藏场景内除了admin外的所有avatar角色"];

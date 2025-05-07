@@ -1,1 +1,1 @@
-search_result['201']=["topic_000000000000010A.html","OnEventCameraDirectorMode Event","切换摄像机导播模式事件"];
+search_result['201']=["topic_000000000000010A.html","OnEventRecieveAvatarDriverOBJ Event","获取接收角色Root节点的事件。"];

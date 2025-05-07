@@ -1,1 +1,1 @@
-search_result['448']=["topic_00000000000001FB.html","VSEngine.IsAvatarReady Method","判断人物连接频道完成"];
+search_result['448']=["topic_00000000000001FB.html","VSEngine.IsRoomLocalMode Method","判断是否是离线频道"];

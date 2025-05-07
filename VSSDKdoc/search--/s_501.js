@@ -1,1 +1,1 @@
-search_result['501']=["topic_0000000000000230.html","VSEngine.GetBigScreenDefaultTexture Method","获取大屏幕系统默认图"];
+search_result['501']=["topic_0000000000000230.html","VSEngine.GetBigScreenView Method","获取大屏幕显示面板（图片RawImage显示）"];

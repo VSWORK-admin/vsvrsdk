@@ -1,1 +1,1 @@
-search_result['564']=["topic_000000000000026F.html","VSEngine.Dispose Method","SDK资源释放"];
+search_result['564']=["topic_000000000000026F.html","VSEngine.SetCaanvasOnGameScreenShare Method","分享应用窗口的画面时是否显示Canvas元素"];

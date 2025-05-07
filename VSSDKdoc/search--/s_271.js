@@ -1,1 +1,1 @@
-search_result['271']=["topic_000000000000014E.html","VSEngine.SetForceHideSelfAvatarModel Method","强制设置自身avatar角色隐藏"];
+search_result['271']=["topic_000000000000014E.html","VSEngine.SetSelfVisibleAllTime Method","设置自身avatar角色一直可见"];

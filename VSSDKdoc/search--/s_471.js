@@ -1,1 +1,1 @@
-search_result['471']=["topic_0000000000000212.html","VSEngine.GetMyAvatarID Method","获取自己的人物的avatar角色id"];
+search_result['471']=["topic_0000000000000212.html","VSEngine.GetNowSceneInfo Method","获取当前场景信息"];

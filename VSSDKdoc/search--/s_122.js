@@ -1,1 +1,1 @@
-search_result['122']=["topic_00000000000000BB.html","OnEventRoomConnectNewChannel Event","房间连接到新的频道"];
+search_result['122']=["topic_00000000000000BB.html","OnEventSelfLeaveRoom Event","自己离开房间回调\r\n通过系统主菜单退出房间事件"];

@@ -1,1 +1,1 @@
-search_result['385']=["topic_00000000000001BC.html","VSEngine.SetVrLaserEnable Method","设置VR激光笔可用"];
+search_result['385']=["topic_00000000000001BC.html","VSEngine.CleanCachesAndGC Method","清除缓存及GC"];

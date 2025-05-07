@@ -1,1 +1,1 @@
-search_result['589']=["topic_0000000000000288.html","VSEngine.SetUIControllerEnable Method","设置UI控制退出"];
+search_result['589']=["topic_0000000000000288.html","VSEngine.VRExitRoom Method","退出空间"];

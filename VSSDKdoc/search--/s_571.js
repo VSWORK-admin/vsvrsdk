@@ -1,1 +1,1 @@
-search_result['571']=["topic_0000000000000276.html","VSEngine.SetTransformControlCamera Method","设置物体控制相机"];
+search_result['571']=["topic_0000000000000276.html","VSEngine.StopGameObjectTransformController Method","停止物体位移控制"];

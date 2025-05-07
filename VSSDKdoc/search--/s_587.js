@@ -1,1 +1,1 @@
-search_result['587']=["topic_0000000000000286.html","VSEngine.SetDirectorModelEnable Method","设置导播模式是否启用"];
+search_result['587']=["topic_0000000000000286.html","VSEngine.CancelDownLoadAsset Method","取消下载文件资源"];

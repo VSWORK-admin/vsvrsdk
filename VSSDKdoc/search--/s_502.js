@@ -1,1 +1,1 @@
-search_result['502']=["topic_0000000000000231.html","VSEngine.GetScreenSharePanel Method","获取屏幕分享大屏（whiteBoard）"];
+search_result['502']=["topic_0000000000000231.html","VSEngine.GetBigScreenDefaultTexture Method","获取大屏幕系统默认图"];

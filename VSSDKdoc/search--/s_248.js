@@ -1,1 +1,1 @@
-search_result['248']=["topic_0000000000000137.html","VSEngine.LockSelfWalkMode Method","锁定自身走跑状态\r\n比如锁定 LOCKWALK，那人物只能走路无法切换跑\r\n锁定 LOCKRUN，那人物只能跑"];
+search_result['248']=["topic_0000000000000137.html","VSEngine.ChangeSelfActionState Method","改变自身avatar当前的动画状态（该方法一般与MakeSelfActionUnderControl配合使用）"];

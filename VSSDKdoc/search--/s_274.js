@@ -1,1 +1,1 @@
-search_result['274']=["topic_0000000000000151.html","VSEngine.SyncSelfFrameDataToServer Method","强制同步自身数据到服务器"];
+search_result['274']=["topic_0000000000000151.html","VSEngine.ClearFbxAvatarModelResource Method","清除资源中的avatar角色模型"];

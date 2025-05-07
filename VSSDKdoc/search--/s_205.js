@@ -1,1 +1,1 @@
-search_result['205']=["topic_000000000000010E.html","OnEventGetCheckFileAlreadyCached Event","String为缓存的sign bool  为是否存在"];
+search_result['205']=["topic_000000000000010E.html","OnEventReceiverLoadAssetBundleObj Event","获取加载的AB包资源的OBJ"];

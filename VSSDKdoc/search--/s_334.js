@@ -1,1 +1,1 @@
-search_result['334']=["topic_0000000000000189.html","VSEngine.SetVoiceLoudSpeakerOn Method","设置扬声器开 设置后听到其他人语音"];
+search_result['334']=["topic_0000000000000189.html","VSEngine.SetVoiceMicrophoneEnable Method","设置启用麦克风 （设置后可以打开麦克风、语音交流）"];

@@ -1,1 +1,1 @@
-search_result['603']=["topic_0000000000000296.html","VSEngine.ThirdPersionChangeCameraOffset Method","设置第三人称切换摄像机的偏移值"];
+search_result['603']=["topic_0000000000000296.html","VSEngine.ShowOrHideRTCUI Method","隐藏或显示Rtc的UI"];

@@ -1,1 +1,1 @@
-search_result['218']=["topic_000000000000011B.html","OnEventWebRtcHideAudioChangeResult Event","会议模式下切换完音频输入回调"];
+search_result['218']=["topic_000000000000011B.html","OnEventWebRtcAvatarJoinScene Event","RTC中人员加入频道"];

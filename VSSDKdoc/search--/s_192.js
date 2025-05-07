@@ -1,1 +1,1 @@
-search_result['192']=["topic_0000000000000101.html","OnEventStopCaptureRtmpSucceed Event","结束录制推流消息"];
+search_result['192']=["topic_0000000000000101.html","OnEventGetCollectAudioPath Event","在音频录制结束时，获取录制的音频地址\r\n参数 保存地址"];

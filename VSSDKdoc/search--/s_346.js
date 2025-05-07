@@ -1,1 +1,1 @@
-search_result['346']=["topic_0000000000000195.html","VSEngine.IsVoiceLoudSpeakerOn Method","是否屏蔽场景内其他用户声音"];
+search_result['346']=["topic_0000000000000195.html","VSEngine.IsVoiceMicrophoneEnable Method","麦克风是否禁用"];

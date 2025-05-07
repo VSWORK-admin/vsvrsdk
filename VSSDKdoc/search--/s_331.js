@@ -1,1 +1,1 @@
-search_result['331']=["topic_0000000000000186.html","VSEngine.StopAndSaveRecordGif Method","停止录制GIF并保存到本地\r\nOnEventReceiveGifLocalPath"];
+search_result['331']=["topic_0000000000000186.html","VSEngine.StartRecordGif Method","开始录制当前场景画面为GIF图片\r\nOnEventReceiveGifProgress"];

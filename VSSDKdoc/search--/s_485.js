@@ -1,1 +1,1 @@
-search_result['485']=["topic_0000000000000220.html","VSEngine.IsPlatformCloudRender Method","判断是否为云渲染端"];
+search_result['485']=["topic_0000000000000220.html","VSEngine.IsPlatformPhone Method","判断是否为手机端"];

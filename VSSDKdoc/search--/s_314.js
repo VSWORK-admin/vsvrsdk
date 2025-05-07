@@ -1,1 +1,1 @@
-search_result['314']=["topic_0000000000000175.html","VSEngine.LoadBigScreenWebViewLinkFile Method","加载大屏幕网页链接"];
+search_result['314']=["topic_0000000000000175.html","VSEngine.LoadBigScreenPDFFile Method","加载大屏幕PDF文件"];

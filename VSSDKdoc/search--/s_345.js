@@ -1,1 +1,1 @@
-search_result['345']=["topic_0000000000000194.html","VSEngine.IsVoiceMicrophoneEnable Method","麦克风是否禁用"];
+search_result['345']=["topic_0000000000000194.html","VSEngine.IsVoiceMicrophoneOn Method","麦克风是否打开"];

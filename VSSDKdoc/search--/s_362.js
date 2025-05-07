@@ -1,1 +1,1 @@
-search_result['362']=["topic_00000000000001A5.html","VSEngine.SetRoomMultiScreenShare Method","设置是否支持多用户分享\r\n共享"];
+search_result['362']=["topic_00000000000001A5.html","VSEngine.StopShareCamera Method","结束分享摄像头\r\n共享"];

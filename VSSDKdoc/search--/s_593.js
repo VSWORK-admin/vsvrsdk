@@ -1,1 +1,1 @@
-search_result['593']=["topic_000000000000028C.html","VSEngine.StopChatStreamRequest Method","停止流式请求"];
+search_result['593']=["topic_000000000000028C.html","VSEngine.StopShareGameScreen Method","停止分享场景内画面"];

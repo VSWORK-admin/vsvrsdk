@@ -1,1 +1,1 @@
-search_result['125']=["topic_00000000000000BE.html","OnEventVoiceRoomDisconnected Event","语音房间断开连接回调\r\n参数 string 语音房间ID"];
+search_result['125']=["topic_00000000000000BE.html","OnEventVoiceRoomConnected Event","语音房间连接成功回调\r\n参数 string 语音房间ID"];

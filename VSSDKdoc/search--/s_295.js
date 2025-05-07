@@ -1,1 +1,1 @@
-search_result['295']=["topic_0000000000000164.html","VSEngine.ChangeWebviewSize Method","修改网页屏幕尺寸"];
+search_result['295']=["topic_0000000000000164.html","VSEngine.SendMsgToWebview Method","发送消息给网页\r\n该方法相关的回调事件为：OnEventReceiveWebviewMessage"];

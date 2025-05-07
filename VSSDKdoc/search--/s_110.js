@@ -1,1 +1,1 @@
-search_result['110']=["topic_00000000000000AF.html","OnEventReceiveVideoRenderTexture Event","接收到视频渲染贴图\r\nRequestVideoTexture 请求视频画面 触发回调\r\n参数GameObject为PDF控制器"];
+search_result['110']=["topic_00000000000000AF.html","OnEventReceivePdfRenderTexture Event","接收到PDF的页面贴图\r\nVsEngine.Instance.ShowPdfRenderPlayerPage 显示PDF页回调\r\n参数GameObject为PDF控制器"];

@@ -1,1 +1,1 @@
-search_result['379']=["topic_00000000000001B6.html","VSEngine.SetVrHandVibration Method","设置VR手柄震动"];
+search_result['379']=["topic_00000000000001B6.html","VSEngine.SetVrResetSensor Method","重置VR传感器"];

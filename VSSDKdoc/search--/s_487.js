@@ -1,1 +1,1 @@
-search_result['487']=["topic_0000000000000222.html","VSEngine.IsPlatformMiniProgram Method","判断是否为云渲染端小程序"];
+search_result['487']=["topic_0000000000000222.html","VSEngine.IsPlatformCloudRenderPhone Method","判断是否为云渲染手机端"];

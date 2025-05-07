@@ -1,1 +1,1 @@
-search_result['285']=["topic_000000000000015B.html","VSEngine.SetBigScreenShowImage (Texture2D, Boolean, Single) Method","设置大屏幕显示图片\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];
+search_result['285']=["topic_000000000000015B_overloads--.html","VSEngine.SetBigScreenShowImage Method","设置大屏幕显示图片\r\nWsMediaFile 可以只传 URL\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];

@@ -1,1 +1,1 @@
-search_result['499']=["topic_000000000000022E.html","VSEngine.GetBigScreenViewRoot Method","获取大屏幕显示根节点（主要用来控制显示隐藏）"];
+search_result['499']=["topic_000000000000022E.html","VSEngine.GetBigScreenRoot Method","获取大屏幕的根路径（主要用来控制位置）"];

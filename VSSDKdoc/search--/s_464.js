@@ -1,1 +1,1 @@
-search_result['464']=["topic_000000000000020B.html","VSEngine.GetNowRoomVoiceAppKey Method","获取语音房间的appkey（时效）"];
+search_result['464']=["topic_000000000000020B.html","VSEngine.GetNowRoomVoiceRange Method","获取当前房间声场范围"];

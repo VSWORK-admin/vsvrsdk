@@ -1,1 +1,1 @@
-search_result['431']=["topic_00000000000001EA.html","VSEngine.GetFreeCamera Method","获取自由视角相机"];
+search_result['431']=["topic_00000000000001EA.html","VSEngine.GetMainCharacter Method","获取主角的控制器（可以获取character controller）"];

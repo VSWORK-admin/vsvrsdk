@@ -1,1 +1,1 @@
-search_result['244']=["topic_0000000000000133.html","VSEngine.LimitSelfMove Method","限制自身avatar移动，无法通过摇杆和wasd移动人物"];
+search_result['244']=["topic_0000000000000133.html","VSEngine.SwitchCameraViewMode Method","切换视角\r\n该方法相关的回调事件为：OnEventSwitchCameraViewMode"];

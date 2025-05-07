@@ -1,1 +1,1 @@
-search_result['340']=["topic_000000000000018F.html","VSEngine.SetVoiceLoudSpeakerVolumeMax Method","设置扬声器音量最大\r\n该方法相关的回调事件为：OnEventVoiceLoudSpeakerVolumeChange"];
+search_result['340']=["topic_000000000000018F.html","VSEngine.SetMinusVoiceLoudSpeakerVolume Method","设置扬声器音量- 场景内其他用户音量大小\r\n该方法相关的回调事件为：OnEventVoiceLoudSpeakerVolumeChange"];

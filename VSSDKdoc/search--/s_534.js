@@ -1,1 +1,1 @@
-search_result['534']=["topic_0000000000000251.html","VSEngine.GetNowRoomAvatarFrameData Method","获取当前频道所有人物数据缓存（大约4秒同步一次数据）"];
+search_result['534']=["topic_0000000000000251.html","VSEngine.SetMaxShowAvatarModelCount Method","设置最大显示avatar角色模型数量"];

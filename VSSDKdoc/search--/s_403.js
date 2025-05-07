@@ -1,1 +1,1 @@
-search_result['403']=["topic_00000000000001CE.html","VSEngine.SetTakePhotoEnable Method","开启拍照功能"];
+search_result['403']=["topic_00000000000001CE.html","VSEngine.CloseLaserPenDraw Method","关闭画笔功能"];

@@ -1,1 +1,1 @@
-search_result['616']=["topic_00000000000002A3.html","VSEngine.OpenMainMenuPanel Method","是否打开主工程的菜单页面"];
+search_result['616']=["topic_00000000000002A3.html","VSEngine.JumpControlEnabled Method","是否开启跳跃功能"];

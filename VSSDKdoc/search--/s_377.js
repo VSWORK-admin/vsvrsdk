@@ -1,1 +1,1 @@
-search_result['377']=["topic_00000000000001B4.html","VSEngine.SetStopSelfMediaPlayerByOhter Method","停止MV的播放"];
+search_result['377']=["topic_00000000000001B4.html","VSEngine.SetMusicVedioAudioTrackMode Method","MV的声音模式"];

@@ -1,1 +1,1 @@
-search_result['476']=["topic_0000000000000217.html","VSEngine.GetMyAvatarSex Method","获取自己avatar角色的性别"];
+search_result['476']=["topic_0000000000000217.html","VSEngine.SetMyAvatarDefaultModelID Method","设置自己的人物的avatar角色初始模型id"];

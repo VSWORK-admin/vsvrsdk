@@ -1,1 +1,1 @@
-search_result['497']=["topic_000000000000022C.html","VSEngine.GetGlbObjectRoot Method","获取glbObj模型的根路径"];
+search_result['497']=["topic_000000000000022C.html","VSEngine.GetGlbSceneRoot Method","获取glbScene模型的根路径"];

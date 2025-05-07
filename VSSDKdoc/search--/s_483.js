@@ -1,1 +1,1 @@
-search_result['483']=["topic_000000000000021E.html","VSEngine.IsPlatformVrApp Method","判断是否为vr应用"];
+search_result['483']=["topic_000000000000021E.html","VSEngine.SetNowSelectAvatarID Method","设置当前选择avatar角色id"];

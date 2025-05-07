@@ -1,1 +1,1 @@
-search_result['231']=["topic_0000000000000126.html","VSEngine.SetWebRtcInviteEnable Method","设置WebRtc邀请按钮是否可交互"];
+search_result['231']=["topic_0000000000000126.html","VSEngine.ConnectToNewChannel Method","切换频道"];

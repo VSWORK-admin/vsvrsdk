@@ -1,1 +1,1 @@
-search_result['467']=["topic_000000000000020E.html","VSEngine.IsMicrophoneEnable Method","判断麦克风开关状态"];
+search_result['467']=["topic_000000000000020E.html","VSEngine.GetNowRoomMaxVisibleUserCount Method","获取最大avatar可见数量（超过这人数的人能进入但其他就看不见了）"];

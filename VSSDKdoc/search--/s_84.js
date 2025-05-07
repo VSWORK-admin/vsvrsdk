@@ -1,1 +1,1 @@
-search_result['84']=["topic_0000000000000095.html","OnEventSystemExpandEvent Event","扩展事件（用于热更新的接口向SDK场景传递数据）\r\n参数 string 为事件类型标识\r\n参数 List 为事件数据"];
+search_result['84']=["topic_0000000000000095.html","OnEventLoginOut Event","退出登录事件"];

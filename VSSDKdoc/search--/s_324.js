@@ -1,1 +1,1 @@
-search_result['324']=["topic_000000000000017F.html","VSEngine.SetVideoVolume Method","设置视频音量"];
+search_result['324']=["topic_000000000000017F.html","VSEngine.SeekVideoPos Method","跳转视频到指定时间点"];

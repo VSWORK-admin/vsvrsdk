@@ -1,1 +1,1 @@
-search_result['612']=["topic_000000000000029F.html","VSEngine.SetVrStickMoveMaskShowORHide Method","设置VR端遥感行走时的黑色遮罩显示或隐藏"];
+search_result['612']=["topic_000000000000029F.html","VSEngine.DisableVRButtonKeyCode Method","是否禁用VR按钮的键值"];

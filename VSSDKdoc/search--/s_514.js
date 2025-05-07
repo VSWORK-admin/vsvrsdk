@@ -1,1 +1,1 @@
-search_result['514']=["topic_000000000000023D.html","VSEngine.GetAllAvatarID Method","获取所有AvatarID列表"];
+search_result['514']=["topic_000000000000023D.html","VSEngine.GetAllAvatarData Method","获取当前频道房间内的所有人物数据字典（key 为avatarID）"];

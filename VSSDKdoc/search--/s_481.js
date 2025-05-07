@@ -1,1 +1,1 @@
-search_result['481']=["topic_000000000000021C.html","VSEngine.GetNowSelectAvatarID Method","获取当前选择avatar角色id"];
+search_result['481']=["topic_000000000000021C.html","VSEngine.IsRoomVoiceConnected Method","判断语音连接是否成功"];

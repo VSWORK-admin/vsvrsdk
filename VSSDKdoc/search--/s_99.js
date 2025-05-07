@@ -1,1 +1,1 @@
-search_result['99']=["topic_00000000000000A4.html","OnEventBigScreenPrepareVideo Event","大屏幕加载视屏已准备事件\r\nLoadBigScreenMovieFile 大屏播放视频请求，视频先缓存到本地，缓存完成后触发\r\n参数是视频地址"];
+search_result['99']=["topic_00000000000000A4.html","OnEventBigScreenShowImage Event","大屏幕显示图片事件\r\n大屏幕图片更换后触发，参数是大屏当前展示的图"];

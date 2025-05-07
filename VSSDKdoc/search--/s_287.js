@@ -1,1 +1,1 @@
-search_result['287']=["topic_000000000000015C.html","VSEngine.SetBigScreenPrepareVideo Method","设置大屏幕准备视频\r\n只有管理员才能显示视频控制面板 播放、暂停、快进等\r\n该方法相关的回调事件为：OnEventBigScreenPrepareVideo"];
+search_result['287']=["topic_000000000000015C_overloads--.html","VSEngine.SetBigScreenShowImage Method","设置大屏幕显示图片\r\n该方法相关的回调事件为：OnEventBigScreenShowImage"];

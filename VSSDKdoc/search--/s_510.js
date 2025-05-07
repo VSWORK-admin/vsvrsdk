@@ -1,1 +1,1 @@
-search_result['510']=["topic_0000000000000239.html","VSEngine.GetNowDeviceSNNumber Method","获取当前设备编号"];
+search_result['510']=["topic_0000000000000239.html","VSEngine.GetNowDeviceName Method","获取当前设备名称(ios,mac,pc,phone等)"];

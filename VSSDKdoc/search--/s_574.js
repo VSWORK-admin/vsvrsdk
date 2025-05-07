@@ -1,1 +1,1 @@
-search_result['574']=["topic_0000000000000279.html","VSEngine.ShowThirdPersionRootEnable Method","是否第三人称切换图标"];
+search_result['574']=["topic_0000000000000279.html","VSEngine.ShowJumpRootEnable Method","是否显示跳跃图标"];

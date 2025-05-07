@@ -1,1 +1,1 @@
-search_result['599']=["topic_0000000000000292.html","VSEngine.SendCameraDeviceInfo Method","请求所有的摄像头信息。用于SDK端指定摄像头分享"];
+search_result['599']=["topic_0000000000000292.html","VSEngine.AppointCameraDeviceInfo Method","指定摄像机的设备信息"];

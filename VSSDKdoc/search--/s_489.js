@@ -1,1 +1,1 @@
-search_result['489']=["topic_0000000000000224.html","VSEngine.GetMediaResServerUrl Method","获取资源服务器地址(用于拼接)"];
+search_result['489']=["topic_0000000000000224.html","VSEngine.GetNowPlaceGroupName Method","获取当前位置组名称"];

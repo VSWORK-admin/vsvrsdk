@@ -1,1 +1,1 @@
-search_result['278']=["topic_0000000000000155.html","VSEngine.GetAvatarCurrentFrameData Method","获取avatar当前帧数据"];
+search_result['278']=["topic_0000000000000155.html","VSEngine.GetAvatarModel Method","获取avatar模型节点"];

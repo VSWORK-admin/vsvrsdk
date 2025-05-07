@@ -1,1 +1,1 @@
-search_result['332']=["topic_0000000000000187.html","VSEngine.SetVoiceMicrophoneOn Method","打开麦克风（和别人语音交流）"];
+search_result['332']=["topic_0000000000000187.html","VSEngine.StopAndSaveRecordGif Method","停止录制GIF并保存到本地\r\nOnEventReceiveGifLocalPath"];

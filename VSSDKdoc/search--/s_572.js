@@ -1,1 +1,1 @@
-search_result['572']=["topic_0000000000000277.html","VSEngine.ShowMicRootEnable Method","是否显示MIC图标"];
+search_result['572']=["topic_0000000000000277.html","VSEngine.SetTransformControlCamera Method","设置物体控制相机"];

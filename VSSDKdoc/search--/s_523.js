@@ -1,1 +1,1 @@
-search_result['523']=["topic_0000000000000246.html","VSEngine.IsHideAllAvatar Method","判断是否隐藏场景中所有Avatar"];
+search_result['523']=["topic_0000000000000246.html","VSEngine.IsSceneUpdateComplete Method","判断场景是否更新完成"];

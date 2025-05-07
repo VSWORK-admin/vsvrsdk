@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.GetMainCamera Method</title>
+	<title>VSEngine.SetLanguage Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.GetMainCamera Method</h1>
+		<h1 class="title">VSEngine.SetLanguage Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>获取当前主相机</summary-info>
+        <summary-info>设置语言</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Function GetMainCamera() As <strong>Camera</strong></pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub SetLanguage( _&nbsp;<br />   ByVal <i>type</i> As <a target="_top" href=".html" onclick="this.target='';return true;">LanguageType</a> _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <strong>Camera</strong> GetMainCamera()</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetLanguage(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">LanguageType</a> <i>type</i>&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><strong>Camera</strong>^ GetMainCamera() </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetLanguage(&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">LanguageType</a> <i>type</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function GetMainCamera() : <strong>Camera</strong>;</pre>			
+					<pre xml:space="preserve" class="brush: js">public function SetLanguage(&nbsp;<br />    <i>type</i> : <a target="_top" href=".html" onclick="this.target='';return true;">LanguageType</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -269,14 +269,23 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</div>
 
 
+<h4 class="subHeading">
+	Parameters</h4><dl paramName="type" class="parameterList">
+	<dt>
+		<span class="parameter">
+			type
+		</span>
+	</dt>
+	<dd>
+		<a target="_top" href=".html" onclick="this.target='';return true;">LanguageType</a> 
+	</dd>
+</dl>
+<p>
+	&lt;default&gt; 
+</p>
 
-	<h4 class="subHeading">
-		Return Value</h4>
-	<strong>Camera</strong> 
-		<p>
-		当前主相机 
-	</p>
-	
+<p />
+
 
 
 

@@ -1,1 +1,1 @@
-search_result['490']=["topic_0000000000000225.html","VSEngine.IsAdmin Method","判断是否为管理员"];
+search_result['490']=["topic_0000000000000225.html","VSEngine.GetMediaResServerUrl Method","获取资源服务器地址(用于拼接)"];

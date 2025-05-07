@@ -1,1 +1,1 @@
-search_result['423']=["topic_00000000000001E2.html","VSEngine.GetVRCameras Method","获取VR相机"];
+search_result['423']=["topic_00000000000001E2.html","VSEngine.GetMainCamera Method","获取当前主相机"];

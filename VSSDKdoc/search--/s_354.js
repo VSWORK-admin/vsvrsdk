@@ -1,1 +1,1 @@
-search_result['354']=["topic_000000000000019D.html","VSEngine.SendMovingObject Method","同步移动场景内物体"];
+search_result['354']=["topic_000000000000019D.html","VSEngine.SetAllAvatarToGroupPos Method","设置所有用户移动到指定group位置"];

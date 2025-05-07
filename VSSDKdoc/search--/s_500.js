@@ -1,1 +1,1 @@
-search_result['500']=["topic_000000000000022F.html","VSEngine.GetBigScreenView Method","获取大屏幕显示面板（图片RawImage显示）"];
+search_result['500']=["topic_000000000000022F.html","VSEngine.GetBigScreenViewRoot Method","获取大屏幕显示根节点（主要用来控制显示隐藏）"];

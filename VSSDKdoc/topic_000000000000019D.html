@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.SendMovingObject Method</title>
+	<title>VSEngine.SetAllAvatarToGroupPos Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.SendMovingObject Method</h1>
+		<h1 class="title">VSEngine.SetAllAvatarToGroupPos Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>同步移动场景内物体</summary-info>
+        <summary-info>设置所有用户移动到指定group位置</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub SendMovingObject( _&nbsp;<br />   ByVal <i>objname</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>pos</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>rot</i> As <strong>Quaternion</strong>, _&nbsp;<br />   ByVal <i>scale</i> As <strong>Vector3</strong>, _&nbsp;<br />   ByVal <i>blocal</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   ByVal <i>mark</i> As <a target="_top" href="topic_0000000000000022.html" onclick="this.target='';return true;">MovingObjectMarkType</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub SetAllAvatarToGroupPos( _&nbsp;<br />   ByVal <i>groupname</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>, _&nbsp;<br />   ByVal <i>ball</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">Boolean</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SendMovingObject(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>objname</i>,&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Quaternion</strong> <i>rot</i>,&nbsp;<br />   <strong>Vector3</strong> <i>scale</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>blocal</i>,&nbsp;<br />   <a target="_top" href="topic_0000000000000022.html" onclick="this.target='';return true;">MovingObjectMarkType</a> <i>mark</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetAllAvatarToGroupPos(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a> <i>groupname</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>ball</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SendMovingObject(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>objname</i>,&nbsp;<br />   <strong>Vector3</strong> <i>pos</i>,&nbsp;<br />   <strong>Quaternion</strong> <i>rot</i>,&nbsp;<br />   <strong>Vector3</strong> <i>scale</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>blocal</i>,&nbsp;<br />   <a target="_top" href="topic_0000000000000022.html" onclick="this.target='';return true;">MovingObjectMarkType</a> <i>mark</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SetAllAvatarToGroupPos(&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^ <i>groupname</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">bool</a> <i>ball</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function SendMovingObject(&nbsp;<br />    <i>objname</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>,&nbsp;<br />    <i>pos</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>rot</i> : <strong>Quaternion</strong>,&nbsp;<br />    <i>scale</i> : <strong>Vector3</strong>,&nbsp;<br />    <i>blocal</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>mark</i> : <a target="_top" href="topic_0000000000000022.html" onclick="this.target='';return true;">MovingObjectMarkType</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function SetAllAvatarToGroupPos(&nbsp;<br />    <i>groupname</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>,&nbsp;<br />    <i>ball</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.boolean">boolean</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -270,10 +270,10 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
 
 <h4 class="subHeading">
-	Parameters</h4><dl paramName="objname" class="parameterList">
+	Parameters</h4><dl paramName="groupname" class="parameterList">
 	<dt>
 		<span class="parameter">
-			objname
+			groupname
 		</span>
 	</dt>
 	<dd>
@@ -281,51 +281,12 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	物体名称 
+	group名 
 </p>
-<dl paramName="pos" class="parameterList">
+<dl paramName="ball" class="parameterList">
 	<dt>
 		<span class="parameter">
-			pos
-		</span>
-	</dt>
-	<dd>
-		<strong>Vector3</strong> 
-	</dd>
-</dl>
-<p>
-	移动位置 
-</p>
-<dl paramName="rot" class="parameterList">
-	<dt>
-		<span class="parameter">
-			rot
-		</span>
-	</dt>
-	<dd>
-		<strong>Quaternion</strong> 
-	</dd>
-</dl>
-<p>
-	旋转 
-</p>
-<dl paramName="scale" class="parameterList">
-	<dt>
-		<span class="parameter">
-			scale
-		</span>
-	</dt>
-	<dd>
-		<strong>Vector3</strong> 
-	</dd>
-</dl>
-<p>
-	缩放 
-</p>
-<dl paramName="blocal" class="parameterList">
-	<dt>
-		<span class="parameter">
-			blocal
+			ball
 		</span>
 	</dt>
 	<dd>
@@ -333,20 +294,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	是否本地 
-</p>
-<dl paramName="mark" class="parameterList">
-	<dt>
-		<span class="parameter">
-			mark
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="topic_0000000000000022.html" onclick="this.target='';return true;">MovingObjectMarkType</a> 
-	</dd>
-</dl>
-<p>
-	物体移动类型 
+	是否全部移动 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>
@@ -359,7 +307,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 	</dd>
 </dl>
 <p>
-	&lt;default&gt; 
+	延迟调用 秒 
 </p>
 
 <p />

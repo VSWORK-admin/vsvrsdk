@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>OnEventDownLoadFileProgress Event</title>
+	<title>OnEventGetTxtFileString Event</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">OnEventDownLoadFileProgress Event</h1>
+		<h1 class="title">OnEventGetTxtFileString Event</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,8 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>文件下载进度</summary-info>
+        <summary-info>加载TXT文件接收到文件内容事件
+参数 TXT 内容</summary-info>
 
 
 
@@ -140,7 +141,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Event OnEventDownLoadFileProgress As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href=".html" onclick="this.target='';return true;">VRProgressInfo</a>)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Event OnEventGetTxtFileString As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>(Of <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +180,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href=".html" onclick="this.target='';return true;">VRProgressInfo</a>&gt; OnEventDownLoadFileProgress</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">string</a>&gt; OnEventGetTxtFileString</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +220,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br />event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href=".html" onclick="this.target='';return true;">VRProgressInfo</a>^&gt;^ OnEventDownLoadFileProgress {&nbsp;<br />}</pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br />event <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.action-1">Action</a>&lt;<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.string">String</a>^&gt;^ OnEventGetTxtFileString {&nbsp;<br />}</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			

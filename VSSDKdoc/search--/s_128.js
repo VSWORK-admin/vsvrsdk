@@ -1,1 +1,1 @@
-search_result['128']=["topic_00000000000000C1.html","OnEventVoiceLoudSpeakerVolumeChange Event","改变扬声器音量回调  听到场景内其他用户声音大小\r\n参数 int 音量改变量"];
+search_result['128']=["topic_00000000000000C1.html","OnEventVoiceMicrophoneVolumeChange Event","麦克风音量改变回调\r\n参数 int 音量改变量"];

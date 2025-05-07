@@ -1,1 +1,1 @@
-search_result['266']=["topic_0000000000000149.html","VSEngine.SetHideAvatarsExeptAdmin Method","设置隐藏场景内除了admin外的所有avatar角色"];
+search_result['266']=["topic_0000000000000149.html","VSEngine.SetLockTouchRotateCamera Method","锁定触摸旋转相机或左键旋转相机"];

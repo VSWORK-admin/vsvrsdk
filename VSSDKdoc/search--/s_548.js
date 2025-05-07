@@ -1,1 +1,1 @@
-search_result['548']=["topic_000000000000025F.html","VSEngine.SetVrCameraFarClipPlane Method","设置相机远截面"];
+search_result['548']=["topic_000000000000025F.html","VSEngine.GetVrCameraFarClipPlane Method","获取相机远截面"];

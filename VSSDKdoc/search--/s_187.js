@@ -1,1 +1,1 @@
-search_result['187']=["topic_00000000000000FC.html","OnEventVrDeviceTakeOff Event","脱下头显（某些vr无效）"];
+search_result['187']=["topic_00000000000000FC.html","OnEventVrDevicePutOn Event","带上头显（某些vr无效）"];

@@ -1,1 +1,1 @@
-search_result['113']=["topic_00000000000000B2.html","OnEventReceiveVideoInfo Event","接收视频信息\r\nRequestVideoInfo 触发回调\r\n参数GameObject为视频控制器"];
+search_result['113']=["topic_00000000000000B2.html","OnEventReceiveVideoCurrentTime Event","接收视频当前播放时长\r\nRequestVideoCurrentTime 触发回调\r\n参数GameObject为视频控制器"];

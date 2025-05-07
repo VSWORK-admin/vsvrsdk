@@ -1,1 +1,1 @@
-search_result['463']=["topic_000000000000020A.html","VSEngine.GetNowRoomVoiceRange Method","获取当前房间声场范围"];
+search_result['463']=["topic_000000000000020A.html","VSEngine.IsAvatarVisibleOnLoading Method","判断加载场景时是否看见人（主要用于vr）"];

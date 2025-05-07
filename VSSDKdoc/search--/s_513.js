@@ -1,1 +1,1 @@
-search_result['513']=["topic_000000000000023C.html","VSEngine.GetAllAvatarData Method","获取当前频道房间内的所有人物数据字典（key 为avatarID）"];
+search_result['513']=["topic_000000000000023C.html","VSEngine.GetLastLinkChannelRoomData Method","获取最新链接频道房间数据"];

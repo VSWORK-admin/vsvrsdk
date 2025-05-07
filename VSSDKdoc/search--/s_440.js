@@ -1,1 +1,1 @@
-search_result['440']=["topic_00000000000001F3.html","VSEngine.GetMiddlePlatformConfigUrl Method","获取中台配置地址"];
+search_result['440']=["topic_00000000000001F3.html","VSEngine.GetMiddlePlatformServer Method","获取中台服务器域名"];

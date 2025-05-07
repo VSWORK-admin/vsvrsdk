@@ -1,1 +1,1 @@
-search_result['281']=["topic_0000000000000158.html","VSEngine.SetBigScreenProperty Method","设置大屏幕的属性"];
+search_result['281']=["topic_0000000000000158.html","VSEngine.ShowBigScreen Method","显示大屏幕"];

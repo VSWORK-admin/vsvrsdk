@@ -1,1 +1,1 @@
-search_result['103']=["topic_00000000000000A8.html","OnEventReceiveWebviewMessage Event","接收到网页消息事件\r\n网页与工程互通消息，网页向工程发送数据回调\r\n参数 网页发送的数据"];
+search_result['103']=["topic_00000000000000A8.html","OnEventBigScreenUpdateImage Event","大屏幕更新图片事件"];

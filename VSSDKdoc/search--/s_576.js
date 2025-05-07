@@ -1,1 +1,1 @@
-search_result['576']=["topic_000000000000027B.html","VSEngine.SettingButtonClick Method","设置按钮是否打开"];
+search_result['576']=["topic_000000000000027B.html","VSEngine.ShowBtnRunRootEnable Method","是否显示跑步图标"];

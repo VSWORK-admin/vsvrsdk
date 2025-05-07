@@ -1,1 +1,1 @@
-search_result['402']=["topic_00000000000001CD.html","VSEngine.CloseLaserPenDraw Method","关闭画笔功能"];
+search_result['402']=["topic_00000000000001CD.html","VSEngine.OpenSpacePenDraw Method","开启空间画笔功能"];

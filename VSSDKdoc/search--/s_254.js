@@ -1,1 +1,1 @@
-search_result['254']=["topic_000000000000013D.html","VSEngine.SetSelfStandUpFromChair Method","设置自己从椅子上起身"];
+search_result['254']=["topic_000000000000013D.html","VSEngine.SetSelfSitOnChair Method","设置自己入座"];

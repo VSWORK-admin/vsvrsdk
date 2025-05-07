@@ -1,1 +1,1 @@
-search_result['91']=["topic_000000000000009C.html","OnEventSelectAvatar Event","选择avatar角色事件\r\n参数 被选择的角色ID"];
+search_result['91']=["topic_000000000000009C.html","OnEventAvatarChanged Event","avatar角色数据修改事件\r\n名字、模型、换装修改后触发"];

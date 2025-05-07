@@ -1,1 +1,1 @@
-search_result['335']=["topic_000000000000018A.html","VSEngine.SetVoiceConnectToExRoom Method","连接房间语音区\r\n该方法相关的回调事件为：OnEventVoiceRoomConnected"];
+search_result['335']=["topic_000000000000018A.html","VSEngine.SetVoiceLoudSpeakerOn Method","设置扬声器开 设置后听到其他人语音"];

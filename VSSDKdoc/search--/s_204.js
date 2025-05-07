@@ -1,1 +1,1 @@
-search_result['204']=["topic_000000000000010D.html","OnEventReceiverLoadAssetBundleObj Event","获取加载的AB包资源的OBJ"];
+search_result['204']=["topic_000000000000010D.html","OnEventReceiveWebviewMessageBase64 Event","接收网页沟通消息"];

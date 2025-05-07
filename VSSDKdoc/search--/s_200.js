@@ -1,1 +1,1 @@
-search_result['200']=["topic_0000000000000109.html","OnEventRecieveAvatarDriverOBJ Event","获取接收角色Root节点的事件。"];
+search_result['200']=["topic_0000000000000109.html","OnEventCloseWebviewByHand Event","关闭所有网页"];

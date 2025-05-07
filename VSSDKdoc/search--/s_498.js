@@ -1,1 +1,1 @@
-search_result['498']=["topic_000000000000022D.html","VSEngine.GetBigScreenRoot Method","获取大屏幕的根路径（主要用来控制位置）"];
+search_result['498']=["topic_000000000000022D.html","VSEngine.GetGlbObjectRoot Method","获取glbObj模型的根路径"];

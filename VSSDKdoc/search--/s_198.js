@@ -1,1 +1,1 @@
-search_result['198']=["topic_0000000000000107.html","OnEventNoticeWebViewClosed Event","根据网址来关闭网页"];
+search_result['198']=["topic_0000000000000107.html","OnEventNoticeWebViewShow Event","是否显示网页页面"];

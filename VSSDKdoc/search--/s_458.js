@@ -1,1 +1,1 @@
-search_result['458']=["topic_0000000000000205.html","VSEngine.GetAppVersionSettings Method","获取软件热更新版本相关配置"];
+search_result['458']=["topic_0000000000000205.html","VSEngine.GetNowRoomSettings Method","获取房间后台配置数据"];

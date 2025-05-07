@@ -1,1 +1,1 @@
-search_result['181']=["topic_00000000000000F6.html","OnEventVrRightStickAxis Event","右手柄摇杆坐标轴数据（Vector2）"];
+search_result['181']=["topic_00000000000000F6.html","OnEventVrRightStickRelease Event","右手柄摇杆方向键还原"];

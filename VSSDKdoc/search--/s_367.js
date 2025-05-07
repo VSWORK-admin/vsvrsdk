@@ -1,1 +1,1 @@
-search_result['367']=["topic_00000000000001AA.html","VSEngine.RequestMusicVedioInfo Method","请求媒体播放信息"];
+search_result['367']=["topic_00000000000001AA.html","VSEngine.CloseUserScreenShare Method","关闭用户共享屏幕"];

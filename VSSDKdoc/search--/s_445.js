@@ -1,1 +1,1 @@
-search_result['445']=["topic_00000000000001F8.html","VSEngine.GetNowGroupId Method","获取当前组织id"];
+search_result['445']=["topic_00000000000001F8.html","VSEngine.GetPlatformTokenFixUrl Method","获取区分平台的请求"];

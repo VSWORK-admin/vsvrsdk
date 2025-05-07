@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="GENERATOR" content="VSdocman - documentation generator; https://www.helixoft.com" />
 	<link rel="icon" href="favicon.ico">
-	<title>VSEngine.SeekVideoPos Method</title>
+	<title>VSEngine.StopVideo Method</title>
 
 	<link rel="stylesheet" type="text/css" href="msdn2019/toc.css" />
 	<script src="msdn2019/toc.js"></script>
@@ -75,7 +75,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
   </div>
 
 <div id="mainBody">
-		<h1 class="title">VSEngine.SeekVideoPos Method</h1>
+		<h1 class="title">VSEngine.StopVideo Method</h1>
         
 		<div class="metadata">
         Namespace:
@@ -90,7 +90,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 
        
        
-        <summary-info>跳转视频到指定时间点</summary-info>
+        <summary-info>停止视频</summary-info>
 
 
 
@@ -140,7 +140,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeVB">
-					<pre xml:space="preserve" class="brush: vb">Public Sub SeekVideoPos( _&nbsp;<br />   ByVal <i>controler</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>videotype</i> As <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>, _&nbsp;<br />   ByVal <i>seekpos</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: vb">Public Sub StopVideo( _&nbsp;<br />   ByVal <i>controler</i> As <strong>GameObject</strong>, _&nbsp;<br />   ByVal <i>videotype</i> As <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>, _&nbsp;<br />   Optional ByVal <i>delay</i> As <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">Single</a> = 0 _&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -179,7 +179,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCsharp">
-					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SeekVideoPos(&nbsp;<br />   <strong>GameObject</strong> <i>controler</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>seekpos</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
+					<pre xml:space="preserve" class="brush: csharp">public <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StopVideo(&nbsp;<br />   <strong>GameObject</strong> <i>controler</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i> = 0&nbsp;<br />)</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -219,7 +219,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeCpp">
-					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> SeekVideoPos(&nbsp;<br />   <strong>GameObject</strong>^ <i>controler</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>seekpos</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
+					<pre xml:space="preserve" class="brush: cpp">public: &nbsp;<br /><a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.void">void</a> StopVideo(&nbsp;<br />   <strong>GameObject</strong>^ <i>controler</i>,&nbsp;<br />   <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a> <i>videotype</i>,&nbsp;<br />   <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> <i>delay</i>&nbsp;<br />) </pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -258,7 +258,7 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 				</div>
 				
 				<div class="codeSnippetCode codeJScript">
-					<pre xml:space="preserve" class="brush: js">public function SeekVideoPos(&nbsp;<br />    <i>controler</i> : <strong>GameObject</strong>,&nbsp;<br />    <i>videotype</i> : <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>,&nbsp;<br />    <i>seekpos</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
+					<pre xml:space="preserve" class="brush: js">public function StopVideo(&nbsp;<br />    <i>controler</i> : <strong>GameObject</strong>,&nbsp;<br />    <i>videotype</i> : <a target="_top" href=".html" onclick="this.target='';return true;">VideoPlayerKind</a>,&nbsp;<br />    <i>delay</i> : <a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a>&nbsp;<br />);</pre>			
 				</div>
 				<div class="codeSnippetCode codeNA">
 					<pre xml:space="preserve">This language is not supported or no code example is available.</pre>			
@@ -295,19 +295,6 @@ document.write(getCssCustomProperty('--headerTopCustomLineHtml'));
 </dl>
 <p>
 	播放器类型 
-</p>
-<dl paramName="seekpos" class="parameterList">
-	<dt>
-		<span class="parameter">
-			seekpos
-		</span>
-	</dt>
-	<dd>
-		<a target="_top" href="https://docs.microsoft.com/en-us/dotnet/api/system.single">float</a> 
-	</dd>
-</dl>
-<p>
-	&lt;default&gt; 
 </p>
 <dl paramName="delay" class="parameterList">
 	<dt>

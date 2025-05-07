@@ -1,1 +1,1 @@
-search_result['533']=["topic_0000000000000250.html","VSEngine.SetMaxShowAvatarModelCount Method","设置最大显示avatar角色模型数量"];
+search_result['533']=["topic_0000000000000250.html","VSEngine.GetMaxShowAvatarModelCount Method","获取最大显示avatar角色模型数量"];

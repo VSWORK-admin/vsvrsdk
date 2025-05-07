@@ -1,1 +1,1 @@
-search_result['320']=["topic_000000000000017B.html","VSEngine.PlayVideo Method","播放视频\r\nInitVideoPlayer之后调用"];
+search_result['320']=["topic_000000000000017B.html","VSEngine.InitVideoPlayer Method","初始化视频播放器"];

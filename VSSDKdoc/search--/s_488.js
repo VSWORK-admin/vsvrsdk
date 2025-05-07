@@ -1,1 +1,1 @@
-search_result['488']=["topic_0000000000000223.html","VSEngine.GetNowPlaceGroupName Method","获取当前位置组名称"];
+search_result['488']=["topic_0000000000000223.html","VSEngine.IsPlatformMiniProgram Method","判断是否为云渲染端小程序"];
