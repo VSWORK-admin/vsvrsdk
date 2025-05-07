@@ -484,7 +484,660 @@ public class DllManager : MonoBehaviour
                 ((Action<UnityEngine.Vector3>)act)(pNewValue);
             });
         });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseUpEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseUpEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseUpEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseUpEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseDownEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseDownEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseDownEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseDownEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Single>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Single>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<System.Single>>)act)(evt);
+            });
+        });
 
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Button>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Scroller>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<System.Single>>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Toggle>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.RadioButton>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Label>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.IntegerField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.FloatField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.LongField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ListView>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MinMaxSlider>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Vector2Field>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Vector3Field>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Vector4Field>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.RectField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.BoundsField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.UnsignedIntegerField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.UnsignedLongField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.SliderInt>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Vector2IntField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Vector3IntField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.RectIntField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.BoundsIntField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.EnumField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEditor.UIElements.TagField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DropdownField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.RadioButtonGroup>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.Slider>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<bool>>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TextField>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.HelpBox>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<string>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Boolean>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Boolean>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<System.Boolean>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Collections.Generic.IEnumerable<System.Object>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<System.Collections.Generic.IEnumerable<System.Object>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<System.Collections.Generic.IEnumerable<System.Object>>((evt) =>
+            {
+                ((Action<System.Collections.Generic.IEnumerable<System.Object>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Collections.Generic.IEnumerable<System.Int32>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<System.Collections.Generic.IEnumerable<System.Int32>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<System.Collections.Generic.IEnumerable<System.Int32>>((evt) =>
+            {
+                ((Action<System.Collections.Generic.IEnumerable<System.Int32>>)act)(evt);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<string>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<string>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<string>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<System.Int64>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Int64>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Int64>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<System.Int64>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Vector2>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector2>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector2>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Vector2>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Vector3>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector3>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector3>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Vector3>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Vector4>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector4>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector4>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Vector4>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Rect>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Rect>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Rect>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Rect>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Bounds>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Bounds>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Bounds>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Bounds>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<uint>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<uint>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<uint>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<uint>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<System.UInt32>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.UInt32>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.UInt32>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<System.UInt32>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<ulong>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<ulong>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<ulong>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<ulong>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Vector2Int>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector2Int>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector2Int>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Vector2Int>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Vector3Int>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector3Int>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Vector3Int>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Vector3Int>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<RectInt>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<RectInt>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<RectInt>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<RectInt>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<BoundsInt>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<BoundsInt>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<BoundsInt>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<BoundsInt>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Color>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Color>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Color>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Color>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<AnimationCurve>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<AnimationCurve>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<AnimationCurve>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<AnimationCurve>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Gradient>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Gradient>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Gradient>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Gradient>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Enum>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Enum>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Enum>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Enum>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<Enum>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Enum>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<Enum>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<Enum>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<UnityEngine.Object>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<UnityEngine.Object>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<UnityEngine.Object>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<UnityEngine.Object>>)act)(evt);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterFunctionDelegate<UnityEngine.UIElements.VisualElement>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.VisualElement, System.Int32>();
+
+
+
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<object>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<object>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<object>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<object>>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseCaptureEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseCaptureEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseCaptureEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseCaptureEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseCaptureOutEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseCaptureOutEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseCaptureOutEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseCaptureOutEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerCancelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCancelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCancelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerCancelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerCaptureOutEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCaptureOutEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCaptureOutEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerCaptureOutEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ClickEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ClickEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ClickEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ClickEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ValidateCommandEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ValidateCommandEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ValidateCommandEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ValidateCommandEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ExecuteCommandEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ExecuteCommandEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ExecuteCommandEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ExecuteCommandEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DragExitedEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragExitedEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragExitedEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DragExitedEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DragUpdatedEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragUpdatedEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragUpdatedEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DragUpdatedEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DragPerformEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragPerformEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragPerformEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DragPerformEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DragEnterEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragEnterEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragEnterEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DragEnterEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DragLeaveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragLeaveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DragLeaveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DragLeaveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerDownEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerDownEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerDownEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerDownEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerMoveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerMoveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerMoveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerMoveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerUpEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerUpEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerUpEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerUpEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerEnterEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerEnterEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerEnterEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerEnterEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerLeaveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerLeaveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerLeaveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerLeaveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerOutEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerOutEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerOutEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerOutEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerOverEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerOverEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerOverEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerOverEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerStationaryEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerStationaryEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerStationaryEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerStationaryEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.PointerCancelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCancelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.PointerCancelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.PointerCancelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TooltipEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TooltipEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TooltipEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TooltipEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TransitionRunEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionRunEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionRunEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TransitionRunEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TransitionStartEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionStartEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionStartEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TransitionStartEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TransitionEndEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionEndEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionEndEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TransitionEndEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TransitionCancelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionCancelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionCancelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TransitionCancelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.TransitionRunEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionRunEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.TransitionRunEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.TransitionRunEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.GeometryChangedEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.GeometryChangedEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.GeometryChangedEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.GeometryChangedEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.FocusOutEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusOutEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusOutEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.FocusOutEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.FocusInEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusInEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusInEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.FocusInEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.BlurEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.BlurEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.BlurEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.BlurEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.FocusEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.FocusEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.FocusEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.InputEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.InputEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.InputEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.InputEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.KeyDownEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.KeyDownEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.KeyDownEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.KeyDownEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.KeyUpEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.KeyUpEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.KeyUpEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.KeyUpEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseMoveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseMoveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseMoveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseMoveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.WheelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.WheelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.WheelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.WheelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseEnterWindowEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseEnterWindowEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseEnterWindowEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseEnterWindowEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseLeaveWindowEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseLeaveWindowEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseLeaveWindowEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseLeaveWindowEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseEnterEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseEnterEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseEnterEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseEnterEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseLeaveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseLeaveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseLeaveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseLeaveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseOverEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseOverEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseOverEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseOverEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.MouseOutEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseOutEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.MouseOutEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.MouseOutEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.NavigationMoveEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationMoveEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationMoveEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.NavigationMoveEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.NavigationCancelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationCancelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationCancelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.NavigationCancelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.NavigationSubmitEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationSubmitEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.NavigationSubmitEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.NavigationSubmitEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ContextualMenuPopulateEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ContextualMenuPopulateEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ContextualMenuPopulateEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ContextualMenuPopulateEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.AttachToPanelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.AttachToPanelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.AttachToPanelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.AttachToPanelEvent>)act)(evt);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.DetachFromPanelEvent>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DetachFromPanelEvent>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.DetachFromPanelEvent>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.DetachFromPanelEvent>)act)(evt);
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UIElements.ChangeEvent<System.Int32>>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Int32>>>((act) =>
+        {
+            return new UnityEngine.UIElements.EventCallback<UnityEngine.UIElements.ChangeEvent<System.Int32>>((evt) =>
+            {
+                ((Action<UnityEngine.UIElements.ChangeEvent<System.Int32>>)act)(evt);
+            });
+        });
         appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
         appdomain.DelegateManager.RegisterMethodDelegate<Tap>();
         appdomain.DelegateManager.RegisterMethodDelegate<ChargedInfo>();
