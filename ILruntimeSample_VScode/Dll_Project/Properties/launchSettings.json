@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Dll_Project": {
+      "commandName": "Project"
+    },
+    "newProfile1": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug-address=127.0.0.1 --debug-port=56000"
+    }
+  }
+}

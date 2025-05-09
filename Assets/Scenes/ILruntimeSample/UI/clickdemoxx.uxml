@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scenes/ILruntimeSample/clickdemoxx.uss?fileID=7433441132597879392&amp;guid=c68c508aef1b10c4ab22ac835e92f1dd&amp;type=3#clickdemoxx" />
+    <ui:VisualElement class="panel-row">
+        <ui:VisualElement name="mainPanel" class="main-container collapsed" style="top: auto; margin-top: 0;">
+            <ui:Label text="Hello World! From UXML" class="title-label" />
+            <ui:Label text="Hello World! With Style" class="custom-label" />
+            <ui:Button text="ClickMe" name="bt" class="fancy-button" />
+            <ui:Slider label="Slider" high-value="100" name="sl" style="color: rgb(255, 255, 255); align-self: center; width: 311px; justify-content: center; align-items: center; flex-direction: row-reverse; height: 35px; -unity-text-align: upper-center; -unity-text-outline-color: rgba(142, 142, 142, 0); visibility: visible; display: flex; overflow: visible;" />
+        </ui:VisualElement>
+        <ui:Button text="&gt;" name="collapseBtn" class="collapse-toggle-btn" style="margin-right: 2px; margin-left: 2px;" />
+    </ui:VisualElement>
+</ui:UXML>

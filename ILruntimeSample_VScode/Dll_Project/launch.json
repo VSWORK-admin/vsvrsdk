@@ -5,7 +5,7 @@
             "type": "ilruntime",
             "request": "launch",
             "name": "Attach to ILRuntime",
-            "address": "127.0.0.1:56001",
+            "address": "127.0.0.1:56002",
             "debug": true,
             "stopOnEntry": true
         }
