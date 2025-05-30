@@ -2930,15 +2930,17 @@ namespace VSWorkSDK
         /// <param name="bEnable">开启或者关闭</param>
         /// <param name="delay"></param>
         public extern void ClickGroundWalkEnable(bool bEnable, float delay = 0);
-
+       
         /// <summary>
-        /// 设置跟随自动寻路
+        /// 开启自动寻路模式
+        /// 注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值
+        /// 2.场景要注意设置障碍物
         /// </summary>
         /// <param name="FollowTaret">跟随的角色 不为空时会一直跟随</param>
-        /// <param name="targetpos">目标点，走到这个点位就暂停</param>
+        /// <param name="targetpos">目标位置(指定目标寻路时 这个参数值不使用)</param>
         /// <param name="offset"> 自动寻路距离目标点的偏移值</param>
         /// <param name="movetype">暂时没有使用预留值</param>
-        /// <param name="delay"></param>
+        /// <param name="delay">延迟调用 秒</param>
         public extern void OnStartAutoFindPath(GameObject FollowTaret, Vector3 targetpos, Vector3 offset, int movetype, float delay = 0);
         /// <summary>
         /// 停止自动寻路
