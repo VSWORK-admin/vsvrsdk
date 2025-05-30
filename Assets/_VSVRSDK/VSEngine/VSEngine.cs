@@ -3147,6 +3147,26 @@ namespace VSWorkSDK
         /// </summary>
         /// <param name="keycode"></param>
         public extern void VirtualKeyCodeUp(int keycode);
+        #region 2.8.1
+        public extern void VirtualGetMousePosition(out int x, out int y);
+
+        public extern void VirtualSetMousePosition(int x, int y);
+
+        public extern void VirtualSetMouseLeftDown();
+
+        public extern void VirtualSetMouseLeftUp();
+
+        public extern void VirtualSetMouseRightDown();
+
+        public extern void VirtualSetMouseRightUp();
+
+        public extern void VirtualSetMouseMiddleDown();
+
+        public extern void VirtualSetMouseMiddleUp();
+
+        public extern void VirtualSetMouseWheel(int delta);
+      
+        #endregion
 
 #pragma warning restore CS0626
         #endregion
