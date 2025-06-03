@@ -1,6 +1,6 @@
 ## 一、环境搭建
 ### 1. 开发环境
-unity版本： 使用 **unity2021.3.23**  版本
+unity版本： 使用 **unity2022.3.54**  版本
 ### 2. VSVRSDK 环境搭建
 ###### 2.1.1  注册并登录 check到本地 或直接下载 zip工程包
 > https://gitee.com/vswork_admin/vsvrsdk

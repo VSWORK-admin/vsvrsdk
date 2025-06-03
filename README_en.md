@@ -1,6 +1,6 @@
 ## 1. Environment Setup
 ### 1. Development Environment
-Unity Version: Use **Unity2021.3.23** version
+Unity Version: Use **Unity2022.3.54** version
 
 ### 2. VSVRSDK Environment Setup
 ###### 2.1.1 Register and log in, check out to local or directly download the zip project package
