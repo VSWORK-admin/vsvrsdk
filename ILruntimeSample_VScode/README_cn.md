@@ -5,7 +5,7 @@
 
 >编写VSVR交互逻辑时将此工程check到本地，并在此工程编写VSVR C# 交互代码。
 
->VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.8.1/VSVRDevTools_Release_2.8.1.zip
+>VSVRDevTool 下载：https://oss.vswork.vip/Files/vsvr/2.8.1_2/VSVRDevTools_Release_2.8.1.zip
 
 >场景包加密工具 下载 ：https://oss.vswork.vip/Files/vsvr/VSVRCryptTool1.0.zip
 
