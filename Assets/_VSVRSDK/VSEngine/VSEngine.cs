@@ -973,17 +973,17 @@ namespace VSWorkSDK
         /// <param name="ActionID">动作在主工程中的ID</param>
         /// <param name="delay"></param>
         public extern void PlayAvatarSystemHalfAction(int ActionID, float delay = 0);
-        /// <summary>
-        /// 开启自动寻路模式
-        /// 注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值
-        /// 2.场景要注意设置障碍物
-        /// </summary>
-        /// <param name="followTarget">目标体 可使用挂载CustomAvatarDriver的物体（只有指定目标时才使用，如果使用自由寻路模式 这个参数设置为空）</param>
-        /// <param name="moveType">移动类型（暂时未使用）</param>
-        /// <param name="offset">相对目标点的偏移值 如(1,1,0)</param>
-        /// <param name="targetpos">目标位置(指定目标寻路时 这个参数值不使用)</param>
-        /// <param name="delay">延迟调用 秒</param>
-        public extern void StartAutoFindPathMode(GameObject followTarget, int moveType, Vector3 offset, Vector3 targetpos, float delay = 0);
+        ///// <summary>
+        ///// 开启自动寻路模式
+        ///// 注：1.主要通过消息体的内容区分是指定跟随还是自由导航模式，指定目标跟随需要传入followtarget的值，自由导航模式不需要传入followtarget的值，但是需要传入targetpos的值
+        ///// 2.场景要注意设置障碍物
+        ///// </summary>
+        ///// <param name="followTarget">目标体 可使用挂载CustomAvatarDriver的物体（只有指定目标时才使用，如果使用自由寻路模式 这个参数设置为空）</param>
+        ///// <param name="moveType">移动类型（暂时未使用）</param>
+        ///// <param name="offset">相对目标点的偏移值 如(1,1,0)</param>
+        ///// <param name="targetpos">目标位置(指定目标寻路时 这个参数值不使用)</param>
+        ///// <param name="delay">延迟调用 秒</param>
+        //public extern void StartAutoFindPathMode(GameObject followTarget, int moveType, Vector3 offset, Vector3 targetpos, float delay = 0);
         /// <summary>
         /// 结束自动寻路模式
         /// </summary>
@@ -3137,6 +3137,7 @@ namespace VSWorkSDK
         /// <param name="delay"></param>
         public extern void SetPersonnelControlPanel(bool IsOpen, float delay = 0);
 
+        #region  MAC和WINDOWS适用
         /// <summary>
         /// MAC和Windowss模拟按键消息
         /// </summary>
@@ -3148,24 +3149,62 @@ namespace VSWorkSDK
         /// <param name="keycode"></param>
         public extern void VirtualKeyCodeUp(int keycode);
         #region 2.8.1
+        /// <summary>
+        /// MAC和Windowss模拟获取鼠标位置
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualGetMousePosition(out int x, out int y);
-
+        /// <summary>
+        /// MAC和Windowss模拟设置鼠标位置
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMousePosition(int x, int y);
 
+        /// <summary>
+        /// MAC和Windowss模拟鼠标左键按下
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseLeftDown();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标左键抬起
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseLeftUp();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标右键按下
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseRightDown();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标右键抬起
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseRightUp();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标中间按下
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseMiddleDown();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标中键抬起
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseMiddleUp();
-
+        /// <summary>
+        /// MAC和Windowss模拟鼠标滚轮值
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public extern void VirtualSetMouseWheel(int delta);
-      
+        #endregion
         #endregion
 
 #pragma warning restore CS0626
