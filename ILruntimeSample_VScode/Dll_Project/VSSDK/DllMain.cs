@@ -17,6 +17,7 @@ namespace Dll_Project
                     generalDllBehaviorAdapters[i].DllName = "";
                 }
             }
+
             foreach (var obj in DllManager.Instance.ExtralDatas)
             {
                 if (obj.Target != null)

@@ -5,6 +5,7 @@ using VSWorkSDK; // 引入VSWorkSDK库
 using VSWorkSDK.Data; // 引入VSWorkSDK数据命名空间
 using UnityEngine.Rendering.Universal; // 引入Universal Rendering Pipeline命名空间
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 namespace Dll_Project
 {
@@ -21,7 +22,29 @@ namespace Dll_Project
         public override void Init()
         {
             Debug.Log("Click_Demo Init !");
+            root = BaseMono.GetComponent<UIDocument>().rootVisualElement;
+
+            //Slider
+            sl = root.Q<Slider>("sl");
+            sl.RegisterValueChangedCallback(SliderChange);
+            //Button
+            btn = root.Q<Button>("bt");
+            btn.RegisterCallback<ClickEvent>(ButtonClicked);
+
+
+            //Panel
+            mainPanel = root.Q<VisualElement>("mainPanel");
+            collapseBtn = root.Q<Button>("collapseBtn");
+            collapseBtn.RegisterCallback<PointerUpEvent>(CollapButtonClick);
         }
+
+
+        private bool collapsed = true;
+        Button btn;
+        Slider sl;
+        VisualElement root;
+        VisualElement mainPanel;
+        Button collapseBtn;
 
         // 重写Awake方法，在对象激活时调用
         public override void Awake()
@@ -33,6 +56,43 @@ namespace Dll_Project
             VSEngine.Instance.OnEventReceiveRoomSyncData += OnReceiveRoomSyncData;
         }
 
+        void SliderChange(ChangeEvent<float> evt)
+        {
+            Debug.Log("滑块值已更改:" + evt.newValue);
+        }
+
+        void ButtonClicked(ClickEvent evt)
+        {
+            Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value); // 随机生成颜色
+            bool isZoomIn = false; // 判断对象当前是否处于缩放状态
+            RoomSycnData roomSycnData = new VSWorkSDK.Data.RoomSycnData()
+            {
+                a = "GameObjectScaleChange",
+                b = "Cube",
+                c = isZoomIn.ToString(),
+                d = ColorUtility.ToHtmlStringRGB(randomColor) // 将颜色转换为HTML字符串格式
+            };
+            Debug.Log("bt Clicked");
+
+            VSEngine.Instance.SendRoomSyncData(roomSycnData);
+        }
+
+        void CollapButtonClick(PointerUpEvent evt)
+        {
+            collapsed = !collapsed;
+            Debug.Log("collapsed Clicked");
+            if (collapsed)
+            {
+                mainPanel.AddToClassList("collapsed");
+                collapseBtn.text = ">";
+            }
+            else
+            {
+                mainPanel.RemoveFromClassList("collapsed");
+                collapseBtn.text = "<";
+            }
+        }
+
         // 重写OnDestroy方法，在对象销毁时调用
         public override void OnDestroy()
         {
@@ -40,9 +100,14 @@ namespace Dll_Project
             // 取消订阅点击事件和房间同步数据接收事件
             VSEngine.Instance.OnEventPointClickHandler -= OnPointClick;
             VSEngine.Instance.OnEventReceiveRoomSyncData -= OnReceiveRoomSyncData;
+            btn.UnregisterCallback<ClickEvent>(ButtonClicked);
+            sl.UnregisterValueChangedCallback(SliderChange);
+            collapseBtn.UnregisterCallback<PointerUpEvent>(CollapButtonClick);
         }
 
-        // 点击事件处理方法
+
+
+        // 点击物体事件处理方法，VR射线同时起作用
         private void OnPointClick(GameObject obj)
         {
             if (obj.name.Contains("Cube")) // 检查点击的对象名称是否包含"Cube"
@@ -134,7 +199,6 @@ namespace Dll_Project
             {
                 urpAsset.shadowDistance = 40f; // 设置最大阴影距离
                 urpAsset.shadowCascadeCount = 4; // 设置阴影级联数量
-
 
                 urpAsset.shadowCascadeOption = ShadowCascadesOption.FourCascades; // 使用四级联阴影
             }

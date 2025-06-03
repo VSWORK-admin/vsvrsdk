@@ -3,7 +3,9 @@ using System.Collections.Generic; // 引入System.Collections.Generic命名空�
 using UnityEngine; // 引入Unity引擎相关命名空间
 using VSWorkSDK; // 引入VSWorkSDK库
 using VSWorkSDK.Data; // 引入VSWorkSDK数据命名空间
-
+using UnityEngine.Rendering.Universal; // 引入Universal Rendering Pipeline命名空间
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 namespace Dll_Project
 {
@@ -13,31 +15,82 @@ namespace Dll_Project
         // 定义一个VR点对象事件类型，默认为VRPointClick
         public VRPointObjEventType PointEventType = VRPointObjEventType.VRPointClick;
 
-
         // 存储每个物体的初始材质的字典
         private Dictionary<string, Material> originalMaterials = new Dictionary<string, Material>();
-
-        
-        public Transform targetTransform; //自定义的目标Transform对象
 
         // 重写Init方法，进行初始化操作
         public override void Init()
         {
-            if(BaseMono.ExtralDatas.Length > 0){
-                targetTransform = BaseMono.ExtralDatas[0].Target;//获取unity中Inspector 窗口中拖入的物体对象
-                Debug.Log("ExtraDataTargetName： " + targetTransform.name);
-            }
-            
             Debug.Log("Click_Demo Init !");
+            root = BaseMono.GetComponent<UIDocument>().rootVisualElement;
+
+            //Slider
+            sl = root.Q<Slider>("sl");
+            sl.RegisterValueChangedCallback(SliderChange);
+            //Button
+            btn = root.Q<Button>("bt");
+            btn.RegisterCallback<ClickEvent>(ButtonClicked);
+
+
+            //Panel
+            mainPanel = root.Q<VisualElement>("mainPanel");
+            collapseBtn = root.Q<Button>("collapseBtn");
+            collapseBtn.RegisterCallback<PointerUpEvent>(CollapButtonClick);
         }
+
+
+        private bool collapsed = true;
+        Button btn;
+        Slider sl;
+        VisualElement root;
+        VisualElement mainPanel;
+        Button collapseBtn;
 
         // 重写Awake方法，在对象激活时调用
         public override void Awake()
         {
             Debug.Log("Click_Demo Awake !");
+            SetHighestShadowQuality();
             // 订阅点击事件和房间同步数据接收事件
             VSEngine.Instance.OnEventPointClickHandler += OnPointClick;
             VSEngine.Instance.OnEventReceiveRoomSyncData += OnReceiveRoomSyncData;
+        }
+
+        void SliderChange(ChangeEvent<float> evt)
+        {
+            Debug.Log("滑块值已更改:" + evt.newValue);
+        }
+
+        void ButtonClicked(ClickEvent evt)
+        {
+            Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value); // 随机生成颜色
+            bool isZoomIn = false; // 判断对象当前是否处于缩放状态
+            RoomSycnData roomSycnData = new VSWorkSDK.Data.RoomSycnData()
+            {
+                a = "GameObjectScaleChange",
+                b = "Cube",
+                c = isZoomIn.ToString(),
+                d = ColorUtility.ToHtmlStringRGB(randomColor) // 将颜色转换为HTML字符串格式
+            };
+            Debug.Log("bt Clicked");
+
+            VSEngine.Instance.SendRoomSyncData(roomSycnData);
+        }
+
+        void CollapButtonClick(PointerUpEvent evt)
+        {
+            collapsed = !collapsed;
+            Debug.Log("collapsed Clicked");
+            if (collapsed)
+            {
+                mainPanel.AddToClassList("collapsed");
+                collapseBtn.text = ">";
+            }
+            else
+            {
+                mainPanel.RemoveFromClassList("collapsed");
+                collapseBtn.text = "<";
+            }
         }
 
         // 重写OnDestroy方法，在对象销毁时调用
@@ -47,9 +100,14 @@ namespace Dll_Project
             // 取消订阅点击事件和房间同步数据接收事件
             VSEngine.Instance.OnEventPointClickHandler -= OnPointClick;
             VSEngine.Instance.OnEventReceiveRoomSyncData -= OnReceiveRoomSyncData;
+            btn.UnregisterCallback<ClickEvent>(ButtonClicked);
+            sl.UnregisterValueChangedCallback(SliderChange);
+            collapseBtn.UnregisterCallback<PointerUpEvent>(CollapButtonClick);
         }
 
-        // 点击事件处理方法
+
+
+        // 点击物体事件处理方法，VR射线同时起作用
         private void OnPointClick(GameObject obj)
         {
             if (obj.name.Contains("Cube")) // 检查点击的对象名称是否包含"Cube"
@@ -112,30 +170,38 @@ namespace Dll_Project
         // 应用新的材质和颜色
         private void ApplyNewMaterialWithColor(GameObject gameObject, Color color)
         {
-            // 获取游戏对象的Renderer组件
+            SetHighestShadowQuality();
             Renderer renderer = gameObject.GetComponent<Renderer>();
-            // 如果Renderer组件存在
-            if (renderer!= null)
+            if (renderer != null)
             {
-                // 如果字典中不包含该游戏对象的名称
                 if (!originalMaterials.ContainsKey(gameObject.name))
                 {
-                    // 将原始材质保存到字典中
+                    // 保存原始材质
                     originalMaterials[gameObject.name] = renderer.material;
-                    // 创建一个新的材质实例
+
+                    // 创建新的材质并应用颜色
                     Material material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                    // 设置新材质的颜色
                     material.color = color;
-                    // 将新材质应用到游戏对象上
                     renderer.material = material;
                 }
                 else
                 {
-                    // 如果字典中已包含该游戏对象的名称，则直接修改现有材质的颜色
+                    // 只修改现有材质的颜色
                     renderer.material.color = color;
                 }
             }
         }
 
+        private void SetHighestShadowQuality()
+        {
+            var urpAsset = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
+            if (urpAsset != null)
+            {
+                urpAsset.shadowDistance = 40f; // 设置最大阴影距离
+                urpAsset.shadowCascadeCount = 4; // 设置阴影级联数量
+
+                urpAsset.shadowCascadeOption = ShadowCascadesOption.FourCascades; // 使用四级联阴影
+            }
+        }
     }
 }

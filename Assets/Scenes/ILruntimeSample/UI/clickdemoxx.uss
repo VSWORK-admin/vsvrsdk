@@ -1,0 +1,85 @@
+.main-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background-color: rgb(34, 36, 42);
+    border-radius: 16px;
+    width: 400px;
+    margin-top: 40px;
+}
+
+.title-label {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    -unity-font-style: normal;
+    -unity-text-align: upper-center;
+}
+
+.custom-label {
+    color: rgb(142, 202, 230);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.fancy-button {
+    background-color: rgb(33, 150, 243);
+    color: white;
+    font-size: 18px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    margin-bottom: 24px;
+}
+
+.fancy-button:hover {
+    background-color: rgb(25, 118, 210);
+}
+
+.fancy-button:active {
+    background-color: rgb(23, 102, 178);
+    transition-property: transform, background-color;
+    transition-duration: 0.08s;
+}
+
+.custom-slider {
+    margin-top: 12px;
+    width: 280px;
+    white-space: nowrap;
+    -unity-text-align: upper-left;
+    color: rgb(233, 233, 233);
+}
+
+.panel-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+}
+
+.collapse-toggle-btn {
+    background-color: rgb(68, 72, 87);
+    color: rgb(142, 202, 230);
+    font-size: 24px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-left: 16px;
+    cursor: link;
+    transition: background-color 0.18s;
+}
+
+.collapse-toggle-btn:hover {
+    background-color: rgb(33, 150, 243);
+    color: rgb(255, 255, 255);
+}
+
+.collapsed {
+    display: none;
+}

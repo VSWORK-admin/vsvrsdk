@@ -5,9 +5,11 @@
 
 >When writing VSVR interaction logic, check this project locally and write the VSVR C# interaction code in this project. 
 
->Download VSVRDevTool: https://oss.vswork.vip/Files/vsvr/2.7.3/VSVRDevTools_Release_2.7.3.6.zip
+>Download VSVRDevTool: https://oss.vswork.vip/Files/vsvr/2.8.1/VSVRDevTools_Release_2.8.1.zip
 
 >Download Scene Package Encryption Tool: https://oss.vswork.vip/Files/vsvr/VSVRCryptTool1.0.zip
+
+> Install the C# extension in VS Code (**choose version v1.25.0**), and uninstall the C# Dev Kit extension to avoid conflicts. Do not use the latest version, as OmniSharp support is best for Unity projects and the newer versions of the C# extension no longer use OmniSharp.
 
 ### 2. Usage Steps
 #### 2.1 Writing Interaction Logic Code
